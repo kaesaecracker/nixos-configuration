@@ -56,7 +56,7 @@
         my.insync-v3
         jetbrains.rider
         alejandra
-        gnome-secrets
+        # gnome-secrets
         amberol
         dotnet-sdk_7
         # gnome workbench
@@ -124,10 +124,10 @@
         enableUpdateCheck = false;
         extensions = [pkgs.vscode-extensions.bbenoist.nix];
         userSettings = {
-            "files.insertFinalNewline" = true;
-            "[nix]" = {
-              "editor.tabSize" = 2;
-            };
+          "files.insertFinalNewline" = true;
+          "[nix]" = {
+            "editor.tabSize" = 2;
+          };
         };
       };
     };

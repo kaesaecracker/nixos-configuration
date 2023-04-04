@@ -11,17 +11,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  boot = {
-    # supportedFilesystems = [ "btrfs" ];
-    loader = {
-      systemd-boot.enable = true;
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
     };
   };
-
 
   networking = {
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -50,12 +46,9 @@
     };
   };
 
-
   time.timeZone = "Europe/Berlin";
-
   i18n = {
     defaultLocale = "en_US.UTF-8";
-
     extraLocaleSettings = {
       LC_ADDRESS = "de_DE.UTF-8";
       LC_IDENTIFICATION = "de_DE.UTF-8";
@@ -90,7 +83,6 @@
       enable = true;
       permitRootLogin = "no";
     };
-
   };
 
   # Configure console keymap
