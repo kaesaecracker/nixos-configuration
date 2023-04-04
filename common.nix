@@ -9,16 +9,7 @@
     ./home.nix
   ];
 
-  nixpkgs.config = {
-    # override insync build version
-    packageOverrides = pkgs: {
-      my = import (builtins.fetchTarball https://github.com/kaesaecracker/nixpkgs/archive/db254c650b7f5b6657c6579afba1568f7f997195.tar.gz) {
-        config = config.nixpkgs.config;
-      };
-    };
-
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   boot = {
     # supportedFilesystems = [ "btrfs" ];
@@ -83,10 +74,6 @@
       # Enable the X11 windowing system / wayland depending on DE
       enable = true;
 
-      # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-
       # Configure keymap in X11
       layout = "de";
       xkbVariant = "";
@@ -104,10 +91,6 @@
       permitRootLogin = "no";
     };
 
-    gnome = {
-      tracker-miners.enable = false;
-      tracker.enable = false;
-    };
   };
 
   # Configure console keymap
@@ -161,24 +144,6 @@
     package = pkgs.gitFull;
   };
 
-  environment = {
-    # List packages installed in system profile.
-    systemPackages = with pkgs; [
-      #  The Nano editor is also installed by default
-    ];
-
-    # remove gnome default apps
-    gnome.excludePackages = with pkgs.gnome; [
-      cheese # photo booth
-      epiphany # web browser
-      evince # document viewer
-      geary # email client
-      seahorse # password manager
-      gnome-clocks
-      gnome-maps
-      gnome-weather
-      gnome-music
-      pkgs.gnome-connections
-    ];
-  };
+  # List packages installed in system profile.
+  # environment.systemPackages = [];
 }

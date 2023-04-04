@@ -3,6 +3,13 @@
   pkgs,
   ...
 }: {
+  # override insync build version
+  nixpkgs.config.packageOverrides = pkgs: {
+    my = import (builtins.fetchTarball https://github.com/kaesaecracker/nixpkgs/archive/db254c650b7f5b6657c6579afba1568f7f997195.tar.gz) {
+      config = config.nixpkgs.config;
+    };
+  };
+
   # Define user account
   users.users.vinzenz = {
     isNormalUser = true;
@@ -118,6 +125,9 @@
         extensions = [pkgs.vscode-extensions.bbenoist.nix];
         userSettings = {
             "files.insertFinalNewline" = true;
+            "[nix]" = {
+              "editor.tabSize" = 2;
+            };
         };
       };
     };
