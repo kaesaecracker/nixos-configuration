@@ -27,42 +27,50 @@
     pkgs,
     ...
   }: {
-    #imports = [ "${builtins.fetchTarball https://github.com/schuelermine/xhmm/archive/1608fa757cbd8fb4f11435a50610e44de3fc2223.tar.gz}/console/nano.nix" ];
-
     home = {
       username = "vinzenz";
       homeDirectory = "/home/vinzenz";
       stateVersion = "22.11";
-      #editor = "nano";
 
       sessionVariables = {
         EDITOR = "nano";
       };
 
-      packages = with pkgs; [
-        firefox
-        htop
-        btop
-        iotop
-        radeontop
-        powerline
-        powerline-fonts
-        thefuck
-        keepassxc
-        steam
-        wine-staging
-        nix-zsh-completions
-        tldr
-        my.insync-v3
-        jetbrains.rider
-        alejandra
-        # gnome-secrets
-        amberol
-        dotnet-sdk_7
-        # gnome workbench
-        tdesktop
-        lutris
-      ];
+      packages = with pkgs;
+        []
+        # Apps
+        ++ [
+          firefox
+          keepassxc
+          steam
+          wine-staging
+          my.insync-v3
+          # gnome-secrets
+          tdesktop
+          lutris
+          amberol
+        ]
+        # system monitoring
+        ++ [
+          htop
+          btop
+          iotop
+          radeontop
+        ]
+        # command line niceness
+        ++ [
+          tldr
+          powerline
+          powerline-fonts
+          thefuck
+        ]
+        # development
+        ++ [
+          dotnet-sdk_7
+          # gnome workbench
+          jetbrains.rider
+          alejandra
+        ];
 
       file.".nanorc".text = ''
         set linenumbers
@@ -93,7 +101,7 @@
         oh-my-zsh = {
           enable = true;
           theme = "agnoster";
-          plugins = ["git" "sudo" "docker" "systemadmin" "thefuck" "nix-zsh-completions"];
+          plugins = ["git" "sudo" "docker" "systemadmin" "thefuck"];
         };
       };
 
