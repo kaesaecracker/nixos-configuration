@@ -49,6 +49,7 @@
           tdesktop
           lutris
           amberol
+          simple-scan
         ]
         # system monitoring
         ++ [
@@ -56,6 +57,8 @@
           btop
           iotop
           radeontop
+          lsof
+          wirelesstools
         ]
         # command line niceness
         ++ [
@@ -70,6 +73,9 @@
           # gnome workbench
           jetbrains.rider
           alejandra
+          arduino
+          uucp
+          screen
         ];
 
       file.".nanorc".text = ''
