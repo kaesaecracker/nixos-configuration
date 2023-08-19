@@ -21,6 +21,7 @@
 
   networking = {
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # wireless.userControlled.enable = true;
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
@@ -33,15 +34,17 @@
       enable = true;
       allowedTCPPortRanges = [
         {
+          # KDE Connect
           from = 1714;
           to = 1764;
-        } # KDE Connect
+        }
       ];
       allowedUDPPortRanges = [
         {
+          # KDE Connect
           from = 1714;
           to = 1764;
-        } # KDE Connect
+        }
       ];
     };
   };
@@ -134,6 +137,13 @@
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
+  };
+
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   # List packages installed in system profile.

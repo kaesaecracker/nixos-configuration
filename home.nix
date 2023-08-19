@@ -5,7 +5,7 @@
 }: {
   # override insync build version
   nixpkgs.config.packageOverrides = pkgs: {
-    my = import (builtins.fetchTarball https://github.com/kaesaecracker/nixpkgs/archive/db254c650b7f5b6657c6579afba1568f7f997195.tar.gz) {
+    my = import (builtins.fetchTarball https://github.com/kaesaecracker/nixpkgs/archive/0fa91456d2f6dfb9cd4008e81c89c2fec8512415.tar.gz) {
       config = config.nixpkgs.config;
     };
   };
@@ -50,6 +50,11 @@
           lutris
           amberol
           simple-scan
+          gnome.gpaste
+          wireguard-tools
+          # steamlink
+          chromium
+          element-desktop
         ]
         # system monitoring
         ++ [
@@ -59,6 +64,7 @@
           radeontop
           lsof
           wirelesstools
+          #lm-sensors
         ]
         # command line niceness
         ++ [
@@ -76,6 +82,8 @@
           arduino
           uucp
           screen
+          jetbrains.pycharm-professional
+          kdiff3
         ];
 
       file.".nanorc".text = ''
@@ -123,12 +131,9 @@
           prettylog = "log --pretty=oneline --graph";
         };
         extraConfig = {
-          pull = {
-            ff = "only";
-          };
-          init = {
-            defaultBranch = "main";
-          };
+          pull.ff = "only";
+          init.defaultBranch = "main";
+          merge.tool = "kdiff3";
         };
       };
 
@@ -136,12 +141,22 @@
         enable = true;
         package = pkgs.vscodium;
         enableUpdateCheck = false;
-        extensions = [pkgs.vscode-extensions.bbenoist.nix];
+        extensions = with pkgs; [
+          vscode-extensions.bbenoist.nix
+          vscode-extensions.ms-python.python
+        ];
         userSettings = {
           "files.insertFinalNewline" = true;
+          "git.autofetch" = true;
+          "update.mode" = "none";
+          "editor.fontFamily" = "'Fira Code', 'Droid Sans Mono', 'monospace', monospace";
+          "editor.fontLigatures" = true;
           "[nix]" = {
             "editor.tabSize" = 2;
           };
+          "redhat.telemetry.enabled" = false;
+          "markdown.extension.tableFormatter.normalizeIndentation" = true;
+          "markdown.extension.toc.orderedList" = false;
         };
       };
     };
