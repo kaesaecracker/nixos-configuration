@@ -16,6 +16,8 @@
     };
   };
 
+  environment.systemPackages = [pkgs.gnomeExtensions.gsconnect];
+
   # remove some gnome default apps
   environment.gnome.excludePackages = with pkgs.gnome; [
     cheese # photo booth

@@ -73,6 +73,7 @@
           powerline
           powerline-fonts
           thefuck
+          direnv
         ]
         # development
         ++ [
@@ -105,20 +106,29 @@
       home-manager.enable = true;
       zsh = {
         enable = true;
+
+        # syntaxHighlighting.enable = true;
+        enableAutosuggestions = true;
+        enableVteIntegration = true;
+
         shellAliases = {
           my-update = "sudo nixos-rebuild switch";
-          my-config = "sudo nano /etc/nixos/configuration.nix";
-          my-fmt = "sudo alejandra /etc/nixos/configuration.nix";
+          my-fmt = "alejandra .";
         };
+
         history = {
           size = 10000;
           path = "${config.xdg.dataHome}/zsh/history";
+          expireDuplicatesFirst = true;
         };
+
         oh-my-zsh = {
           enable = true;
           theme = "agnoster";
           plugins = ["git" "sudo" "docker" "systemadmin" "thefuck"];
         };
+
+        initExtra = "eval \"$(direnv hook zsh)\"";
       };
 
       git = {

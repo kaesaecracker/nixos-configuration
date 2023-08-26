@@ -139,13 +139,16 @@
     package = pkgs.gitFull;
   };
 
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  # List packages installed in system profile.
-  # environment.systemPackages = [];
+  environment = {
+    pathsToLink = ["/share/zsh"];
+
+    # List packages installed in system profile.
+    # systemPackages = [];
+  };
 }
