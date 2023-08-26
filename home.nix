@@ -40,7 +40,6 @@
         []
         # Apps
         ++ [
-          firefox
           keepassxc
           steam
           wine-staging
@@ -53,13 +52,11 @@
           gnome.gpaste
           wireguard-tools
           # steamlink
-          chromium
           element-desktop
           youtube-music
         ]
         # system monitoring
         ++ [
-          htop
           btop
           iotop
           radeontop
@@ -73,7 +70,6 @@
           powerline
           powerline-fonts
           thefuck
-          direnv
         ]
         # development
         ++ [
@@ -104,10 +100,18 @@
 
     programs = {
       home-manager.enable = true;
+
+      firefox.enable = true;
+      atuin.enable = true;
+      command-not-found.enable = true;
+      dircolors.enable = true;
+      fzf.enable = true;
+      htop.enable = true;
+
       zsh = {
         enable = true;
 
-        # syntaxHighlighting.enable = true;
+        enableSyntaxHighlighting = true;
         enableAutosuggestions = true;
         enableVteIntegration = true;
 
@@ -149,6 +153,11 @@
         };
       };
 
+      gh = {
+        enable = true;
+        enableGitCredentialHelper = true;
+      };
+
       vscode = {
         enable = true;
         package = pkgs.vscodium;
@@ -169,6 +178,61 @@
           "redhat.telemetry.enabled" = false;
           "markdown.extension.tableFormatter.normalizeIndentation" = true;
           "markdown.extension.toc.orderedList" = false;
+        };
+      };
+
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+
+      chromium = {
+        enable = true;
+        extensions = [
+          {
+            # ublock origin
+            id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
+          }
+          {
+            id = "dcpihecpambacapedldabdbpakmachpb";
+            updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/updates.xml";
+          }
+        ];
+      };
+
+      bottom = {
+        enable = true;
+        settings = {
+          # https://github.com/ClementTsang/bottom/blob/master/sample_configs/default_config.toml
+        };
+      };
+
+      exa = {
+        enable = true;
+        # not availiable at 22.11
+        # git = true;
+        #   icons = true;
+        # enableAliases = true;
+        # extraOptions = [
+        #   "--group-directories-first"
+        #   "--header"
+        # ];
+      };
+
+      # checked https://rycee.gitlab.io/home-manager/options.html until "programs.jq"
+    };
+
+    editorconfig = {
+      enable = true;
+      settings = {
+        "*" = {
+          charset = "utf-8";
+          end_of_line = "lf";
+          trim_trailing_whitespace = true;
+          insert_final_newline = true;
+          max_line_width = 120;
+          indent_style = "space";
+          indent_size = 4;
         };
       };
     };
