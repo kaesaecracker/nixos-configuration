@@ -55,6 +55,7 @@
           # steamlink
           chromium
           element-desktop
+          youtube-music
         ]
         # system monitoring
         ++ [
@@ -84,6 +85,7 @@
           screen
           jetbrains.pycharm-professional
           kdiff3
+          docker
         ];
 
       file.".nanorc".text = ''
