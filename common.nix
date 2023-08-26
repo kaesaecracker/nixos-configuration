@@ -9,7 +9,12 @@
     ./home.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-12.2.3"
+    ];
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -73,9 +78,6 @@
       # Configure keymap in X11
       layout = "de";
       xkbVariant = "";
-
-      # Enable touchpad support (enabled default in most desktopManager).
-      # libinput.enable = true;
     };
 
     # Enable CUPS to print documents.
@@ -84,7 +86,7 @@
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
-      permitRootLogin = "no";
+      settings.PermitRootLogin = "no";
     };
   };
 
@@ -134,15 +136,19 @@
     dates = "00:30";
   };
 
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-  };
+  programs = {
+    git = {
+      enable = true;
+      package = pkgs.gitFull;
+    };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+
+    zsh.enable = true;
   };
 
   environment = {

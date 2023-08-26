@@ -3,13 +3,6 @@
   pkgs,
   ...
 }: {
-  # override insync build version
-  nixpkgs.config.packageOverrides = pkgs: {
-    my = import (builtins.fetchTarball https://github.com/kaesaecracker/nixpkgs/archive/0fa91456d2f6dfb9cd4008e81c89c2fec8512415.tar.gz) {
-      config = config.nixpkgs.config;
-    };
-  };
-
   # Define user account
   users.users.vinzenz = {
     isNormalUser = true;
@@ -36,54 +29,46 @@
         EDITOR = "nano";
       };
 
-      packages = with pkgs;
-        []
-        # Apps
-        ++ [
-          keepassxc
-          steam
-          wine-staging
-          my.insync-v3
-          # gnome-secrets
-          tdesktop
-          lutris
-          amberol
-          simple-scan
-          gnome.gpaste
-          wireguard-tools
-          # steamlink
-          element-desktop
-          youtube-music
-        ]
-        # system monitoring
-        ++ [
-          btop
-          iotop
-          radeontop
-          lsof
-          wirelesstools
-          #lm-sensors
-        ]
-        # command line niceness
-        ++ [
-          tldr
-          powerline
-          powerline-fonts
-          thefuck
-        ]
-        # development
-        ++ [
-          dotnet-sdk_7
-          # gnome workbench
-          jetbrains.rider
-          alejandra
-          arduino
-          uucp
-          screen
-          jetbrains.pycharm-professional
-          kdiff3
-          docker
-        ];
+      packages = with pkgs; [
+        ## Apps
+        keepassxc
+        steam
+        wine-staging
+        insync
+        # gnome-secrets
+        tdesktop
+        lutris
+        amberol
+        simple-scan
+        gnome.gpaste
+        wireguard-tools
+        # steamlink
+        element-desktop
+        # youtube-music
+        etcher
+        ## system monitoring
+        iotop
+        radeontop
+        lsof
+        wirelesstools
+        # lm-sensors
+        ## command line niceness
+        tldr
+        powerline
+        powerline-fonts
+        thefuck
+        ## development
+        dotnet-sdk_7
+        # gnome workbench
+        jetbrains.rider
+        alejandra
+        arduino
+        uucp
+        screen
+        jetbrains.pycharm-professional
+        kdiff3
+        docker
+      ];
 
       file.".nanorc".text = ''
         set linenumbers
@@ -102,7 +87,6 @@
       home-manager.enable = true;
 
       firefox.enable = true;
-      atuin.enable = true;
       command-not-found.enable = true;
       dircolors.enable = true;
       fzf.enable = true;
@@ -114,6 +98,8 @@
         enableSyntaxHighlighting = true;
         enableAutosuggestions = true;
         enableVteIntegration = true;
+
+        initExtra = "eval \"$(direnv hook zsh)\"";
 
         shellAliases = {
           my-update = "sudo nixos-rebuild switch";
@@ -131,8 +117,6 @@
           theme = "agnoster";
           plugins = ["git" "sudo" "docker" "systemadmin" "thefuck"];
         };
-
-        initExtra = "eval \"$(direnv hook zsh)\"";
       };
 
       git = {
@@ -167,14 +151,10 @@
           vscode-extensions.ms-python.python
         ];
         userSettings = {
-          "files.insertFinalNewline" = true;
           "git.autofetch" = true;
           "update.mode" = "none";
           "editor.fontFamily" = "'Fira Code', 'Droid Sans Mono', 'monospace', monospace";
           "editor.fontLigatures" = true;
-          "[nix]" = {
-            "editor.tabSize" = 2;
-          };
           "redhat.telemetry.enabled" = false;
           "markdown.extension.tableFormatter.normalizeIndentation" = true;
           "markdown.extension.toc.orderedList" = false;
@@ -233,6 +213,9 @@
           max_line_width = 120;
           indent_style = "space";
           indent_size = 4;
+        };
+        "*.nix" = {
+          indent_size = 2;
         };
       };
     };
