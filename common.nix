@@ -83,7 +83,11 @@
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
-      settings.PermitRootLogin = "no";
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
     };
   };
 

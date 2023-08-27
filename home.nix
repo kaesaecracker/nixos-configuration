@@ -9,7 +9,9 @@
     description = "Vinzenz Schroeter";
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
-    # openssh.authorizedKeys.keys = [ "ssh-dss AAAAB3NzaC1kc3MAAACBAPIkGWVEt4..." ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINrY6tcgnoC/xbgL7vxSjddEY9MBxRXe9n2cAHt88/TT home roaming"
+    ];
   };
 
   # home manager
@@ -37,7 +39,6 @@
         insync
         # gnome-secrets
         tdesktop
-        lutris
         simple-scan
         wireguard-tools
         # steamlink
@@ -66,6 +67,15 @@
         jetbrains.pycharm-professional
         kdiff3
         docker
+
+        (lutris.override {
+          extraPkgs = pkgs: [
+            # List package dependencies here
+          ];
+          extraLibraries = pkgs: [
+            # List library dependencies here
+          ];
+        })
       ];
 
       file.".nanorc".text = ''
