@@ -147,15 +147,23 @@
         extensions = with pkgs; [
           vscode-extensions.bbenoist.nix
           vscode-extensions.ms-python.python
+          vscode-extensions.kamadorueda.alejandra
         ];
         userSettings = {
           "git.autofetch" = true;
           "update.mode" = "none";
           "editor.fontFamily" = "'Fira Code', 'Droid Sans Mono', 'monospace', monospace";
           "editor.fontLigatures" = true;
-          "redhat.telemetry.enabled" = false;
+          "editor.formatOnSave" = true;
+          "editor.formatOnSaveMode" = "modificationsIfAvailiable";
+          "editor.minimap.autohide" = true;
+          "diffEditor.diffAlgorithm" = "advanced";
+          "explorer.excludeGitIgnore" = true;
           "markdown.extension.tableFormatter.normalizeIndentation" = true;
           "markdown.extension.toc.orderedList" = false;
+          "telemetry.telemetryLevel" = "off";
+          "redhat.telemetry.enabled" = false;
+          "workbench.enableExperiments" = false;
         };
       };
 
