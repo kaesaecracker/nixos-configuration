@@ -110,7 +110,9 @@
         initExtra = "eval \"$(direnv hook zsh)\"";
 
         shellAliases = {
-          my-update = "sudo nixos-rebuild switch";
+          my-apply = "sudo nixos-rebuild boot";
+          my-switch = "sudo nixos-rebuild switch";
+          my-update = "sudo nixos-rebuild boot --upgrade";
           my-fmt = "alejandra .";
         };
 
@@ -165,10 +167,11 @@
           "editor.fontFamily" = "'Fira Code', 'Droid Sans Mono', 'monospace', monospace";
           "editor.fontLigatures" = true;
           "editor.formatOnSave" = true;
-          "editor.formatOnSaveMode" = "modificationsIfAvailiable";
+          "editor.formatOnSaveMode" = "modificationsIfAvailable";
           "editor.minimap.autohide" = true;
           "diffEditor.diffAlgorithm" = "advanced";
           "explorer.excludeGitIgnore" = true;
+          "workbench.startupEditor" = "readme";
           "markdown.extension.tableFormatter.normalizeIndentation" = true;
           "markdown.extension.toc.orderedList" = false;
           "telemetry.telemetryLevel" = "off";
@@ -205,14 +208,13 @@
 
       exa = {
         enable = true;
-        # not availiable at 22.11
-        # git = true;
-        #   icons = true;
-        # enableAliases = true;
-        # extraOptions = [
-        #   "--group-directories-first"
-        #   "--header"
-        # ];
+        git = true;
+        icons = true;
+        enableAliases = true;
+        extraOptions = [
+          "--group-directories-first"
+          "--header"
+        ];
       };
 
       # checked https://rycee.gitlab.io/home-manager/options.html until "programs.jq"

@@ -29,17 +29,22 @@
       fsType = "vfat";
     };
 
-#    "/sdmanjaro" = {
-#      device = "/dev/disk/by-uuid/b6b4c0b8-4b16-4a72-a18d-d7923a2bb532";
-#      fsType = "btrfs";
-#      options = ["subvol=@"];
-#    };
+    "/mnt/manjaro" = {
+      device = "/dev/disk/by-uuid/b6b4c0b8-4b16-4a72-a18d-d7923a2bb532";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
 
-#    "/sdmanjaro/home" = {
-#      device = "/dev/disk/by-uuid/b6b4c0b8-4b16-4a72-a18d-d7923a2bb532";
-#      fsType = "btrfs";
-#      options = ["subvol=home"];
-#    };
+    "/mnt/manjaro/home" = {
+      device = "/dev/disk/by-uuid/b6b4c0b8-4b16-4a72-a18d-d7923a2bb532";
+      fsType = "btrfs";
+      options = ["subvol=@home"];
+    };
+
+    "/mnt/ssd2" = {
+      device = "/dev/disk/by-uuid/6b2a647d-c68e-4c07-85bf-c9bfc5db7e8a";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [];
