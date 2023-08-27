@@ -31,4 +31,15 @@
     gnome-music
     pkgs.gnome-connections
   ];
+
+  home-manager.users.vinzenz = {
+    config,
+    pkgs,
+    ...
+  }: {
+    home.packages = with pkgs; [
+        gnome.gpaste
+        amberol
+    ];
+  };
 }

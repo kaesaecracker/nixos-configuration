@@ -38,9 +38,7 @@
         # gnome-secrets
         tdesktop
         lutris
-        amberol
         simple-scan
-        gnome.gpaste
         wireguard-tools
         # steamlink
         element-desktop
