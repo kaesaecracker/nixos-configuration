@@ -38,8 +38,8 @@
     ...
   }: {
     home.packages = with pkgs; [
-        gnome.gpaste
-        amberol
+      gnome.gpaste
+      amberol
     ];
   };
 }

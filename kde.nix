@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   services = {
     # Enable the KDE Plasma Desktop Environment.
     xserver = {
@@ -9,21 +11,18 @@
     };
   };
 
-
-
-    home-manager.users.vinzenz = {
-      config,
-      pkgs,
-      ...
-    }: {
-      home = {
-        packages = with pkgs; [
-        ];
-      };
-       services.kdeconnect = {
+  home-manager.users.vinzenz = {
+    config,
+    pkgs,
+    ...
+  }: {
+    home = {
+      packages = with pkgs; [
+      ];
+    };
+    services.kdeconnect = {
       enable = true;
       indicator = true;
     };
   };
-
 }
