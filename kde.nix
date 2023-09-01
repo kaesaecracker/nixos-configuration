@@ -22,8 +22,10 @@
     khelpcenter
   ];
 
-  programs.dconf.enable = true;
-  programs.partition-manager.enable = true;
+  programs = {
+    dconf.enable = true;
+    partition-manager.enable = true;
+  };
 
   home-manager.users.vinzenz = {
     config,

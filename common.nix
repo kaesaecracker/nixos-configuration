@@ -88,6 +88,10 @@
     };
   };
 
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=7s
+  '';
+
   # Configure console keymap
   console.keyMap = "de";
 
