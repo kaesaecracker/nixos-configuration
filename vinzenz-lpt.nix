@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  modulesPath,
   ...
 }: {
   networking.hostName = "vinzenz-lpt";
