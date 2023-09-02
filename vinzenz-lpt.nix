@@ -20,15 +20,17 @@
     loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/34cb86c4-8823-4785-9672-92ef0bcd5eaf";
-    fsType = "btrfs";
-    options = ["subvol=@"];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/34cb86c4-8823-4785-9672-92ef0bcd5eaf";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/2381-1CD2";
-    fsType = "vfat";
+    "/boot/efi" = {
+      device = "/dev/disk/by-uuid/2381-1CD2";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [

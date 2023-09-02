@@ -35,7 +35,7 @@
         wine-staging
         insync
         # gnome-secrets
-        tdesktop
+        telegram-desktop
         simple-scan
         wireguard-tools
         # steamlink
