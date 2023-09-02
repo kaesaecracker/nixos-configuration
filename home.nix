@@ -9,9 +9,6 @@
     description = "Vinzenz Schroeter";
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINrY6tcgnoC/xbgL7vxSjddEY9MBxRXe9n2cAHt88/TT home roaming"
-    ];
   };
 
   # home manager
