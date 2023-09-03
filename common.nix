@@ -86,6 +86,8 @@
         KbdInteractiveAuthentication = false;
       };
     };
+
+    flatpak.enable = true;
   };
 
   systemd.extraConfig = ''
