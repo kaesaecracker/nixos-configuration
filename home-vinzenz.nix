@@ -53,7 +53,8 @@
         jetbrains.pycharm-professional
         kdiff3
         docker
-        wineWowPackages.staging
+        wineWowPackages.stagingFull
+        wineWowPackages.fonts
 	      winetricks
 
         (lutris.override {

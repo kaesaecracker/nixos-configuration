@@ -15,6 +15,10 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    libsForQt5.kate
+  ];
+
   environment.plasma5.excludePackages = with pkgs.libsForQt5; [
     elisa
     gwenview

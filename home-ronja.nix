@@ -36,7 +36,8 @@
         powerline-fonts
         lutris
         kdiff3
-        wineWowPackages.staging
+        wineWowPackages.stagingFull
+        wineWowPackages.fonts
 	      winetricks
 
         (lutris.override {
