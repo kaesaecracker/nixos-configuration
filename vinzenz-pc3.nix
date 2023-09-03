@@ -13,6 +13,10 @@
     ./home-ronja.nix
   ];
 
+  users.groups."games" = {
+    members = ["vinzenz" "ronja"];
+  };
+
   users.users.vinzenz.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINrY6tcgnoC/xbgL7vxSjddEY9MBxRXe9n2cAHt88/TT home roaming"
   ];
@@ -30,6 +34,12 @@
       device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
       fsType = "btrfs";
       options = ["subvol=@"];
+    };
+
+    "/games" = {
+      device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
+      fsType = "btrfs";
+      options = ["subvol=@games"];
     };
 
     "/boot" = {

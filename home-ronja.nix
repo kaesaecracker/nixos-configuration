@@ -31,13 +31,14 @@
       packages = with pkgs; [
         ## Apps
         steam
-        wine-staging
         telegram-desktop
         tldr
         powerline
         powerline-fonts
         lutris
         kdiff3
+        wineWowPackages.staging
+	      winetricks
 
         (lutris.override {
           extraPkgs = pkgs: [

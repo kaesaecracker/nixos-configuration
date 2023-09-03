@@ -29,33 +29,24 @@
       };
 
       packages = with pkgs; [
-        ## Apps
         keepassxc
         steam
-        wine-staging
         insync
-        # gnome-secrets
         telegram-desktop
         simple-scan
         wireguard-tools
-        # steamlink
         element-desktop
-        # youtube-music
         etcher
-        ## system monitoring
         iotop
         radeontop
         lsof
         wirelesstools
-        # lm-sensors
-        ## command line niceness
+        lm-sensors
         tldr
         powerline
         powerline-fonts
         thefuck
-        ## development
         dotnet-sdk_7
-        # gnome workbench
         jetbrains.rider
         alejandra
         arduino
@@ -64,6 +55,8 @@
         jetbrains.pycharm-professional
         kdiff3
         docker
+        wineWowPackages.staging
+	      winetricks
 
         (lutris.override {
           extraPkgs = pkgs: [
