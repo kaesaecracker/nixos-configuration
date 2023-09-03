@@ -134,7 +134,9 @@
   environment = {
     pathsToLink = ["/share/zsh"];
 
-    # List packages installed in system profile.
-    # systemPackages = [];
+    systemPackages = with pkgs; [
+      lm_sensors
+      tldr
+    ];
   };
 }

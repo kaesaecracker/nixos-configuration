@@ -41,8 +41,6 @@
         radeontop
         lsof
         wirelesstools
-        lm-sensors
-        tldr
         powerline
         powerline-fonts
         thefuck

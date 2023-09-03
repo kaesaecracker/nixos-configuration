@@ -32,7 +32,6 @@
         ## Apps
         steam
         telegram-desktop
-        tldr
         powerline
         powerline-fonts
         lutris
