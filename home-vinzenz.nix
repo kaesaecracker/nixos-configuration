@@ -55,7 +55,7 @@
         docker
         wineWowPackages.stagingFull
         wineWowPackages.fonts
-	      winetricks
+        winetricks
 
         (lutris.override {
           extraPkgs = pkgs: [
@@ -96,7 +96,10 @@
         enableAutosuggestions = true;
         enableVteIntegration = true;
 
-        initExtra = "eval \"$(direnv hook zsh)\"";
+        initExtra = ''
+          eval "$(direnv hook zsh)";
+          eval $(thefuck --alias);
+        '';
 
         shellAliases = {
           my-apply = "sudo nixos-rebuild boot";
