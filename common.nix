@@ -139,6 +139,7 @@
     systemPackages = with pkgs; [
       lm_sensors
       tldr
+      ncdu
     ];
   };
 }

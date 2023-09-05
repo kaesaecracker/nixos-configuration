@@ -17,6 +17,7 @@
 
   environment.systemPackages = with pkgs; [
     libsForQt5.kate
+    libsForQt5.kalk
   ];
 
   environment.plasma5.excludePackages = with pkgs.libsForQt5; [
