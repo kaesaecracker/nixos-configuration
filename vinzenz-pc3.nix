@@ -42,6 +42,14 @@
       options = ["subvol=@games"];
     };
 
+    "/mnt/nixos_btrfs_root" = {
+      # subvolume with id 5 is always the root volume
+      # this is convenient for managing the flat subvolume hierarchy
+      device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
+      fsType = "btrfs";
+      options = ["subvolid=5"];
+    };
+
     "/boot" = {
       device = "/dev/disk/by-uuid/AF67-8F16";
       fsType = "vfat";
