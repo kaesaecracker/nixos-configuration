@@ -36,10 +36,21 @@
       options = ["subvol=@"];
     };
 
+    "/home" = {
+      device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
+      fsType = "btrfs";
+      options = ["subvol=@home"];
+    };
+
     "/games" = {
       device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
       fsType = "btrfs";
       options = ["subvol=@games"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/AF67-8F16";
+      fsType = "vfat";
     };
 
     "/mnt/nixos_btrfs_root" = {
@@ -49,12 +60,7 @@
       fsType = "btrfs";
       options = ["subvolid=5"];
     };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/AF67-8F16";
-      fsType = "vfat";
-    };
-
+    
     "/mnt/ssd2" = {
       device = "/dev/disk/by-uuid/6b2a647d-c68e-4c07-85bf-c9bfc5db7e8a";
       fsType = "ext4";
