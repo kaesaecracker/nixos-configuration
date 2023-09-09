@@ -10,7 +10,7 @@
     networking.hostName = "vinzenz-pc3";
 
     my.kde.enable = true;
-    my.users = {
+    my.home = {
       vinzenz.enable = true;
       ronja.enable = true;
     };

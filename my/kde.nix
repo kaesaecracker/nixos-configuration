@@ -5,6 +5,18 @@
   ...
 }: let
   cfg = config.my.kde;
+
+  applyKdeUserSettings = {
+    home = {
+      packages = with pkgs; [
+      ];
+    };
+
+    services.kdeconnect = {
+      enable = true;
+      indicator = true;
+    };
+  };
 in {
   options.my.kde = {
     enable = lib.mkEnableOption "KDE desktop";
@@ -40,20 +52,9 @@ in {
       partition-manager.enable = true;
     };
 
-    home-manager.users.vinzenz = {
-      config,
-      pkgs,
-      ...
-    }: {
-      home = {
-        packages = with pkgs; [
-        ];
-      };
-
-      services.kdeconnect = {
-        enable = true;
-        indicator = true;
-      };
+    home-manager.users = {
+      vinzenz = lib.mkIf config.my.home.vinzenz.enable applyKdeUserSettings;
+      ronja = lib.mkIf config.my.home.ronja.enable applyKdeUserSettings;
     };
   };
 }

@@ -54,8 +54,8 @@ in {
     ];
 
     home-manager.users = {
-      vinzenz = lib.mkIf config.my.users.vinzenz.enable applyGnomeUserSettings;
-      ronja = lib.mkIf config.my.users.ronja.enable applyGnomeUserSettings;
+      vinzenz = lib.mkIf config.my.home.vinzenz.enable applyGnomeUserSettings;
+      ronja = lib.mkIf config.my.home.ronja.enable applyGnomeUserSettings;
     };
   };
 }

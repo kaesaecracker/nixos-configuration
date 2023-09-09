@@ -10,7 +10,7 @@
     networking.hostName = "vinzenz-lpt";
 
     my.gnome.enable = true;
-    my.users.vinzenz.enable = true;
+    my.home.vinzenz.enable = true;
 
     services.flatpak.enable = true;
 

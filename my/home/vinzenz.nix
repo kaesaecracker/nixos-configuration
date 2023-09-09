@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.my.users.vinzenz;
+  cfg = config.my.home.vinzenz;
 in {
-  options.my.users.vinzenz = {
+  options.my.home.vinzenz = {
     enable = lib.mkEnableOption "user vinzenz";
   };
 
@@ -20,8 +20,7 @@ in {
     };
 
     # home manager
-    home-manager.useUserPackages = true;
-    home-manager.useGlobalPkgs = true;
+    my.home.enable = true;
     home-manager.users.vinzenz = {
       config,
       pkgs,

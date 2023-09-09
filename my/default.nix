@@ -9,13 +9,9 @@ with lib; let
   cfg = config.my;
 in {
   imports = [
+    ./home/default.nix
     ./gnome.nix
-    ./home-vinzenz.nix
-    ./home-ronja.nix
     ./kde.nix
-
-    # enable home manager
-    <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
