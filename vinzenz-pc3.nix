@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ./modules
     (import ./hardware "vinzenz-pc3")
