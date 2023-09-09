@@ -45,14 +45,5 @@
         };
       };
     };
-
-    gdm = {...}: {
-      home.stateVersion = "23.05";
-      dconf.settings = {
-        "org/gnome/desktop/peripherals/keyboard" = {
-          numlock-state = true;
-        };
-      };
-    };
   };
 }
