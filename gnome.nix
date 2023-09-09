@@ -32,14 +32,27 @@
     pkgs.gnome-connections
   ];
 
-  home-manager.users.vinzenz = {
-    config,
-    pkgs,
-    ...
-  }: {
-    home.packages = with pkgs; [
-      gnome.gpaste
-      amberol
-    ];
+  home-manager.users = {
+    vinzenz = {pkgs, ...}: {
+      home.packages = with pkgs; [
+        gnome.gpaste
+        amberol
+      ];
+
+      dconf.settings = {
+        "org/gnome/desktop/peripherals/keyboard" = {
+          numlock-state = true;
+        };
+      };
+    };
+
+    gdm = {...}: {
+      home.stateVersion = "23.05";
+      dconf.settings = {
+        "org/gnome/desktop/peripherals/keyboard" = {
+          numlock-state = true;
+        };
+      };
+    };
   };
 }
