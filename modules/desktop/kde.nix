@@ -23,6 +23,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    my.desktop.enable = true;
+
     services = {
       # Enable the KDE Plasma Desktop Environment.
       xserver = {

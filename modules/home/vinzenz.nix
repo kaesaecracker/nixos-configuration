@@ -133,16 +133,15 @@ in {
           userName = "Vinzenz Schroeter";
           userEmail = "vinzenz.f.s@gmail.com";
 
-          #package = pkgs.gitFull;
-          #config.credential.helper = "libsecret";
-
           aliases = {
             prettylog = "log --pretty=oneline --graph";
           };
+
           extraConfig = {
             pull.ff = "only";
             init.defaultBranch = "main";
             merge.tool = "kdiff3";
+            push.autoSetupRemote = "true";
           };
         };
 
