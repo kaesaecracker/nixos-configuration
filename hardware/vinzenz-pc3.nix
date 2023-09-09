@@ -1,12 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: {
-  imports = [
-    ./common.nix
-  ];
-
+{...}: {
   config = {
     boot = {
       initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"]; # "usb_storage"
@@ -57,5 +49,5 @@
     swapDevices = [];
   };
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = true;
 }

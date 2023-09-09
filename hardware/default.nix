@@ -1,13 +1,16 @@
-{
+hostName: {
   modulesPath,
   lib,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    (builtins.toString ./. + "/${hostName}.nix")
   ];
 
   config = {
+    networking.hostName = hostName;
+
     boot.loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

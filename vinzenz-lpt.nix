@@ -6,12 +6,10 @@
 }: {
   imports = [
     ./modules
-    ./hardware/vinzenz-lpt.nix
+    (import ./hardware "vinzenz-lpt")
   ];
 
   config = {
-    networking.hostName = "vinzenz-lpt";
-
     my.gnome.enable = true;
     my.home.vinzenz.enable = true;
 

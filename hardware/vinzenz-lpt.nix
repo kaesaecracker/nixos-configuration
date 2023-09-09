@@ -1,12 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: {
-  imports = [
-    ./common.nix
-  ];
-
+{...}: {
   config = {
     boot = {
       initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
@@ -33,6 +25,6 @@
       {device = "/dev/disk/by-uuid/f5932f70-60e4-4abe-b23d-2cab3c095c7d";}
     ];
 
-    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    hardware.cpu.intel.updateMicrocode = true;
   };
 }

@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.my.home;
 in {
   imports = [

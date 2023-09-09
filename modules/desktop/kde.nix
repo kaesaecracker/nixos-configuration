@@ -6,17 +6,17 @@
 }: let
   cfg = config.my.kde;
 
-  applyKdeUserSettings = {
-    #home = {
-    #  packages = with pkgs; [
-    #  ];
-    #};
+  # applyKdeUserSettings = {
+  #   #home = {
+  #   #  packages = with pkgs; [
+  #   #  ];
+  #   #};
 
-    services.kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
+  #   services.kdeconnect = {
+  #     enable = true;
+  #     indicator = true;
+  #   };
+  # };
 in {
   options.my.kde = {
     enable = lib.mkEnableOption "KDE desktop";
@@ -55,8 +55,8 @@ in {
     };
 
     home-manager.users = {
-      vinzenz = lib.mkIf config.my.home.vinzenz.enable applyKdeUserSettings;
-      ronja = lib.mkIf config.my.home.ronja.enable applyKdeUserSettings;
+      #vinzenz = lib.mkIf config.my.home.vinzenz.enable applyKdeUserSettings;
+      #ronja = lib.mkIf config.my.home.ronja.enable applyKdeUserSettings;
     };
   };
 }

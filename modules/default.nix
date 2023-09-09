@@ -1,11 +1,8 @@
 {
   config,
   pkgs,
-  modulesPath,
-  lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.my;
 in {
   imports = [

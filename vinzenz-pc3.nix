@@ -6,12 +6,10 @@
 }: {
   imports = [
     ./modules
-    ./hardware/vinzenz-pc3.nix
+    (import ./hardware "vinzenz-pc3")
   ];
 
   config = {
-    networking.hostName = "vinzenz-pc3";
-
     my.kde.enable = true;
     my.home = {
       vinzenz.enable = true;
