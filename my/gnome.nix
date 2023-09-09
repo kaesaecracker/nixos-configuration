@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.my.gnome;
 in {
   options.my.gnome = {
@@ -42,7 +41,7 @@ in {
     ];
 
     home-manager.users = {
-      vinzenz = {pkgs, ...}: {
+      vinzenz = lib.mkIf config.my.users.vinzenz.enable {
         home.packages = with pkgs; [
           gnome.gpaste
           amberol

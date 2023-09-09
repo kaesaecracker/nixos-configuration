@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.my.users.vinzenz;
 in {
   options.my.users.vinzenz = {
