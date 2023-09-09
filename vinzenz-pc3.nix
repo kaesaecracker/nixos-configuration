@@ -6,12 +6,13 @@
 }: {
   networking.hostName = "vinzenz-pc3";
 
-  imports = [
-    ./common.nix
-    ./kde.nix
-    ./home-vinzenz.nix
-    ./home-ronja.nix
-  ];
+  my.kde.enable = true;
+  my.users = {
+    vinzenz.enable = true;
+    ronja.enable = true;
+  };
+
+  imports = [./my/default.nix];
 
   users.groups."games" = {
     members = ["vinzenz" "ronja"];
