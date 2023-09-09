@@ -2,9 +2,18 @@
   config,
   pkgs,
   modulesPath,
+  lib,
   ...
-}: {
+}:
+with lib; let
+  cfg = config.my;
+in {
   imports = [
+    ./gnome.nix
+    ./home-vinzenz.nix
+    ./home-ronja.nix
+    ./kde.nix
+
     # enable home manager
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")

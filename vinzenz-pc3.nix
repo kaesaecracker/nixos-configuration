@@ -60,7 +60,7 @@
       fsType = "btrfs";
       options = ["subvolid=5"];
     };
-    
+
     "/mnt/ssd2" = {
       device = "/dev/disk/by-uuid/6b2a647d-c68e-4c07-85bf-c9bfc5db7e8a";
       fsType = "ext4";

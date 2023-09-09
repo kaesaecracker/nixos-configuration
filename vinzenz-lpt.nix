@@ -6,11 +6,10 @@
 }: {
   networking.hostName = "vinzenz-lpt";
 
-  imports = [
-    ./common.nix
-    ./gnome.nix
-    ./home-vinzenz.nix
-  ];
+  my.gnome.enable = true;
+  my.users.vinzenz.enable = true;
+
+  imports = [./my/default.nix];
 
   services.flatpak.enable = true;
 
