@@ -13,22 +13,11 @@ in {
     ./desktop
     ./i18n.nix
     ./nixpkgs.nix
-    (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   config = {
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-
     networking = {
-      # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-      # wireless.userControlled.enable = true;
-
-      # Enable networking
       networkmanager.enable = true;
-
       firewall.enable = true;
     };
 
