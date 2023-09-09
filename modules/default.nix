@@ -9,7 +9,7 @@ with lib; let
   cfg = config.my;
 in {
   imports = [
-    ./home/default.nix
+    ./home
     ./gnome.nix
     ./kde.nix
     (modulesPath + "/installer/scan/not-detected.nix")

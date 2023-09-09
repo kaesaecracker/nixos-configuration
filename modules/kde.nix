@@ -7,10 +7,10 @@
   cfg = config.my.kde;
 
   applyKdeUserSettings = {
-    home = {
-      packages = with pkgs; [
-      ];
-    };
+    #home = {
+    #  packages = with pkgs; [
+    #  ];
+    #};
 
     services.kdeconnect = {
       enable = true;
