@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./modules
-    (import ./hardware "vinzenz-pc3")
+    (import ./hardware "vinzenz-pc2")
   ];
 
   config = {
