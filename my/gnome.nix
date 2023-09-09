@@ -5,6 +5,19 @@
   ...
 }: let
   cfg = config.my.gnome;
+
+  applyGnomeUserSettings = {
+    home.packages = with pkgs; [
+      gnome.gpaste
+      amberol
+    ];
+
+    dconf.settings = {
+      "org/gnome/desktop/peripherals/keyboard" = {
+        numlock-state = true;
+      };
+    };
+  };
 in {
   options.my.gnome = {
     enable = lib.mkEnableOption "gnome desktop";
@@ -41,18 +54,8 @@ in {
     ];
 
     home-manager.users = {
-      vinzenz = lib.mkIf config.my.users.vinzenz.enable {
-        home.packages = with pkgs; [
-          gnome.gpaste
-          amberol
-        ];
-
-        dconf.settings = {
-          "org/gnome/desktop/peripherals/keyboard" = {
-            numlock-state = true;
-          };
-        };
-      };
+      vinzenz = lib.mkIf config.my.users.vinzenz.enable applyGnomeUserSettings;
+      ronja = lib.mkIf config.my.users.ronja.enable applyGnomeUserSettings;
     };
   };
 }
