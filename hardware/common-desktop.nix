@@ -1,17 +1,18 @@
-hostName: {
-  modulesPath,
+{
   lib,
+  config,
   ...
-}: {
+}: let
+  isEnabled = config.my.hardware.common-desktop.enable;
+in {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (builtins.toString ./. + "/${hostName}.nix")
-    ./common-desktop.nix
   ];
 
-  config = {
-    networking.hostName = hostName;
+  options.my.hardware.common-desktop = {
+    enable = lib.mkEnableOption "common desktop hardware settings";
+  };
 
+  config = lib.mkIf isEnabled {
     boot.loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

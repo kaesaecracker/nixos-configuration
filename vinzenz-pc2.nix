@@ -5,10 +5,12 @@
   ];
 
   config = {
-    my.kde.enable = true;
-    my.home = {
-      vinzenz.enable = true;
-      ronja.enable = true;
+    my = {
+      kde.enable = true;
+      home = {
+        vinzenz.enable = true;
+        ronja.enable = true;
+      };
     };
 
     users.groups."games" = {

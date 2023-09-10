@@ -22,6 +22,8 @@ in {
 
       # Enable CUPS to print documents.
       printing.enable = true;
+
+      openssh.settings.PermitRootLogin = "no";
     };
 
     # Enable sound with pipewire.

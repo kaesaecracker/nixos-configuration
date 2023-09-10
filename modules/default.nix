@@ -4,6 +4,7 @@
   ...
 }: let
   cfg = config.my;
+  helpers = import ../helpers;
 in {
   imports = [
     ./home
@@ -22,7 +23,7 @@ in {
     services.openssh = {
       enable = true;
       settings = {
-        PermitRootLogin = "no";
+        PermitRootLogin = helpers.mkIfElse config.my.server.enable "yes" "no";
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
       };

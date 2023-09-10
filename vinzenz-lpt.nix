@@ -5,8 +5,10 @@
   ];
 
   config = {
-    my.gnome.enable = true;
-    my.home.vinzenz.enable = true;
+    my = {
+      gnome.enable = true;
+      home.vinzenz.enable = true;
+    };
 
     services.flatpak.enable = true;
   };
