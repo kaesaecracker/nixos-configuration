@@ -15,7 +15,7 @@ in {
   config = lib.mkIf cfg.enable {
     services = {
       # Enable the OpenSSH daemon.
-      services.openssh = {
+      openssh = {
         enable = true;
         settings = {
           # PermitRootLogin = "no"; # this is managed through authorized keys
