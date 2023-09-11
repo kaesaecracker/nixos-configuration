@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./modules
+    ./modules/desktop
     (import ./modules/hardware "vinzenz-pc2")
   ];
 

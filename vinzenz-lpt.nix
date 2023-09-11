@@ -13,6 +13,7 @@
       };
     };
 
+    # flatpak xdg-portal-kde crashes, otherwise this would be global
     services.flatpak.enable = true;
   };
 }
