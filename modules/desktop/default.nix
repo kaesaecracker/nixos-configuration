@@ -7,8 +7,13 @@
   cfg = config.my.desktop;
 in {
   imports = [
+    <home-manager/nixos>
     ./gnome.nix
     ./kde.nix
+    ./i18n.nix
+    ./nixpkgs.nix
+    ./vinzenz.nix
+    ./ronja.nix
   ];
 
   options.my.desktop = {
@@ -16,6 +21,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home-manager.useUserPackages = true;
+    home-manager.useGlobalPkgs = true;
+
     services = {
       # Enable the X11 windowing system / wayland depending on DE
       xserver.enable = true;
@@ -23,7 +31,15 @@ in {
       # Enable CUPS to print documents.
       printing.enable = true;
 
-      openssh.settings.PermitRootLogin = "no";
+      # Enable the OpenSSH daemon.
+      openssh = {
+        enable = true;
+        settings = {
+          PermitRootLogin = "no";
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+        };
+      };
     };
 
     # Enable sound with pipewire.
@@ -46,20 +62,48 @@ in {
     };
 
     # unblock kde connect / gsconnect
-    networking.firewall = {
-      allowedTCPPortRanges = [
-        {
-          # KDE Connect
-          from = 1714;
-          to = 1764;
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-          # KDE Connect
-          from = 1714;
-          to = 1764;
-        }
+    networking = {
+      networkmanager.enable = true;
+      firewall.enable = true;
+
+      firewall = {
+        allowedTCPPortRanges = [
+          {
+            # KDE Connect
+            from = 1714;
+            to = 1764;
+          }
+        ];
+        allowedUDPPortRanges = [
+          {
+            # KDE Connect
+            from = 1714;
+            to = 1764;
+          }
+        ];
+      };
+    };
+
+    systemd.extraConfig = ''
+      DefaultTimeoutStopSec=12s
+    '';
+
+    programs = {
+      zsh.enable = true;
+
+      git = {
+        enable = true;
+        package = pkgs.gitFull;
+      };
+    };
+
+    environment = {
+      pathsToLink = ["/share/zsh"];
+
+      systemPackages = with pkgs; [
+        lm_sensors
+        tldr
+        ncdu
       ];
     };
   };

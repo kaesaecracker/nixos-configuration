@@ -4,7 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.my.gnome;
+  desktopCfg = config.my.desktop;
+  cfg = desktopCfg.gnome;
+
   applyGnomeUserSettings = {
     home.packages = with pkgs; [
       gnome.gpaste
@@ -17,7 +19,7 @@
     };
   };
 in {
-  options.my.gnome = {
+  options.my.desktop.gnome = {
     enable = lib.mkEnableOption "gnome desktop";
   };
 
@@ -56,8 +58,8 @@ in {
     ];
 
     home-manager.users = {
-      vinzenz = lib.mkIf config.my.home.vinzenz.enable applyGnomeUserSettings;
-      ronja = lib.mkIf config.my.home.ronja.enable applyGnomeUserSettings;
+      vinzenz = lib.mkIf desktopCfg.vinzenz.enable applyGnomeUserSettings;
+      ronja = lib.mkIf desktopCfg.ronja.enable applyGnomeUserSettings;
     };
   };
 }

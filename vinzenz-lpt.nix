@@ -1,13 +1,16 @@
 {...}: {
   imports = [
-    ./modules
-    (import ./hardware "vinzenz-lpt")
+    ./modules/desktop
+    (import ./modules/hardware "vinzenz-lpt")
   ];
 
   config = {
     my = {
-      gnome.enable = true;
-      home.vinzenz.enable = true;
+      desktop = {
+        enable = true;
+        gnome.enable = true;
+        vinzenz.enable = true;
+      };
     };
 
     services.flatpak.enable = true;

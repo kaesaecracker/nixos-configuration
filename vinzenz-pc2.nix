@@ -1,13 +1,14 @@
 {...}: {
   imports = [
     ./modules
-    (import ./hardware "vinzenz-pc2")
+    (import ./modules/hardware "vinzenz-pc2")
   ];
 
   config = {
     my = {
-      kde.enable = true;
-      home = {
+      desktop = {
+        enable = true;
+        kde.enable = true;
         vinzenz.enable = true;
         ronja.enable = true;
       };

@@ -4,7 +4,8 @@
   lib,
   ...
 }: let
-  cfg = config.my.kde;
+  desktopCfg = config.my.desktop;
+  cfg = desktopCfg.kde;
 
   applyKdeUserSettings = {
     home = {
@@ -17,7 +18,7 @@
     };
   };
 in {
-  options.my.kde = {
+  options.my.desktop.kde = {
     enable = lib.mkEnableOption "KDE desktop";
   };
 
@@ -56,8 +57,8 @@ in {
     };
 
     home-manager.users = {
-      vinzenz = lib.mkIf config.my.home.vinzenz.enable applyKdeUserSettings;
-      ronja = lib.mkIf config.my.home.ronja.enable applyKdeUserSettings;
+      vinzenz = lib.mkIf desktopCfg.vinzenz.enable applyKdeUserSettings;
+      ronja = lib.mkIf desktopCfg.ronja.enable applyKdeUserSettings;
     };
   };
 }

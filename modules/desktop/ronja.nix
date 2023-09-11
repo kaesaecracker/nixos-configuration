@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.my.home.ronja;
+  cfg = config.my.desktop.ronja;
 in {
-  options.my.home.ronja = {
+  options.my.desktop.ronja = {
     enable = lib.mkEnableOption "user ronja";
   };
 
@@ -21,7 +21,6 @@ in {
     };
 
     # home manager
-    my.home.enable = true;
     home-manager.users.ronja = {
       config,
       pkgs,
