@@ -23,7 +23,7 @@ in {
     services.openssh = {
       enable = true;
       settings = {
-        PermitRootLogin = helpers.mkIfElse config.my.server.enable "yes" "no";
+        # PermitRootLogin = "no"; # this is managed through authorized keys
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
       };

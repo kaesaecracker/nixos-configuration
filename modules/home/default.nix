@@ -6,12 +6,13 @@
 }: let
   cfg = config.my.home;
 in {
-  imports = [
-    ./vinzenz.nix
-    ./ronja.nix
-    # enable home manager
-    <home-manager/nixos>
-  ];
+  imports =
+    [
+      ./vinzenz.nix
+      ./ronja.nix
+      # enable home manager
+    ]
+    ++ lib.optional (builtins.pathExists <home-manager/nixos>) <home-manager/nixos>;
 
   options.my.home = {
     enable = lib.mkEnableOption "my home management";

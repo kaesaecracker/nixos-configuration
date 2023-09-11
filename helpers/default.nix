@@ -1,7 +1,7 @@
 {lib, ...}: {
   mkIfElse = p: yes: no:
     lib.mkMerge [
-      (mkIf p yes)
-      (mkIf (!p) no)
+      (lib.mkIf p yes)
+      (lib.mkIf (!p) no)
     ];
 }
