@@ -1,14 +1,17 @@
 {...}: {
   imports = [
     ./modules
-    (import ./hardware "vinzenz-pc2")
+    (import ./modules/hardware "vinzenz-pc2")
   ];
 
   config = {
-    my.kde.enable = true;
-    my.home = {
-      vinzenz.enable = true;
-      ronja.enable = true;
+    my = {
+      desktop = {
+        enable = true;
+        kde.enable = true;
+        vinzenz.enable = true;
+        ronja.enable = true;
+      };
     };
 
     users.groups."games" = {

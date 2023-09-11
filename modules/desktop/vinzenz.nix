@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.my.home.vinzenz;
+  cfg = config.my.desktop.vinzenz;
 in {
-  options.my.home.vinzenz = {
+  options.my.desktop.vinzenz = {
     enable = lib.mkEnableOption "user vinzenz";
   };
 
@@ -20,7 +20,6 @@ in {
     };
 
     # home manager
-    my.home.enable = true;
     home-manager.users.vinzenz = {
       config,
       pkgs,
@@ -78,13 +77,6 @@ in {
           set linenumbers
           set mouse
         '';
-      };
-
-      services = {
-        kdeconnect = {
-          enable = true;
-          indicator = true;
-        };
       };
 
       programs = {

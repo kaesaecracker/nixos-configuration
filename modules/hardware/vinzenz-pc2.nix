@@ -1,5 +1,7 @@
 {...}: {
   config = {
+    my.hardware.common-desktop.enable = true;
+
     boot = {
       initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"]; # "usb_storage"
       initrd.kernelModules = [];

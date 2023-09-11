@@ -1,11 +1,6 @@
 {...}: {
   config = {
-    nixpkgs.config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [
-        "electron-12.2.3"
-      ];
-    };
+    nixpkgs.config.allowUnfree = true;
 
     system = {
       stateVersion = "22.11";
