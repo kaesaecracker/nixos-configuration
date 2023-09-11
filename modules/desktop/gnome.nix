@@ -19,10 +19,6 @@
     };
   };
 in {
-  options.my.desktop.gnome = {
-    enable = lib.mkEnableOption "gnome desktop";
-  };
-
   config = lib.mkIf cfg.enable {
     my.desktop.enable = true;
 

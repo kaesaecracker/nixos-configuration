@@ -17,6 +17,10 @@ in {
 
   options.my.desktop = {
     enable = lib.mkEnableOption "desktop";
+    gnome .enable = lib.mkEnableOption "gnome desktop";
+    kde.enable = lib.mkEnableOption "KDE desktop";
+    ronja.enable = lib.mkEnableOption "user ronja";
+    vinzenz.enable = lib.mkEnableOption "user vinzenz";
   };
 
   config = lib.mkIf cfg.enable {

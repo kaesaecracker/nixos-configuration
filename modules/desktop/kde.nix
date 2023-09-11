@@ -18,10 +18,6 @@
     };
   };
 in {
-  options.my.desktop.kde = {
-    enable = lib.mkEnableOption "KDE desktop";
-  };
-
   config = lib.mkIf cfg.enable {
     my.desktop.enable = true;
 

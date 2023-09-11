@@ -6,7 +6,6 @@ hostName: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (builtins.toString ./. + "/${hostName}.nix")
-    ./common-desktop.nix
   ];
 
   config = {

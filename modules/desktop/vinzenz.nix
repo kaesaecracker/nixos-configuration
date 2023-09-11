@@ -6,10 +6,6 @@
 }: let
   cfg = config.my.desktop.vinzenz;
 in {
-  options.my.desktop.vinzenz = {
-    enable = lib.mkEnableOption "user vinzenz";
-  };
-
   config = lib.mkIf cfg.enable {
     # Define user account
     users.users.vinzenz = {

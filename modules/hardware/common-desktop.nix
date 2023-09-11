@@ -1,18 +1,5 @@
-{
-  lib,
-  config,
-  ...
-}: let
-  isEnabled = config.my.hardware.common-desktop.enable;
-in {
-  imports = [
-  ];
-
-  options.my.hardware.common-desktop = {
-    enable = lib.mkEnableOption "common desktop hardware settings";
-  };
-
-  config = lib.mkIf isEnabled {
+{lib, ...}: {
+  config = {
     boot.loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
