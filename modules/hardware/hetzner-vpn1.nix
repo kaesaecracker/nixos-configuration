@@ -8,6 +8,11 @@
   ];
 
   config = {
+    nixpkgs = {
+      hostPlatform = "aarch64-linux";
+      system = "aarch64-linux";
+    };
+
     boot = {
       tmp.cleanOnBoot = true;
       loader = {
