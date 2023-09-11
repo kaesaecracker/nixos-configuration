@@ -8,10 +8,9 @@
 in {
   imports = [
     <home-manager/nixos>
+    ../_common
     ./gnome.nix
     ./kde.nix
-    ./i18n.nix
-    ./nixpkgs.nix
     ./vinzenz.nix
     ./ronja.nix
   ];
