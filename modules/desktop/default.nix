@@ -105,5 +105,9 @@ in {
         ncdu
       ];
     };
+
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-12.2.3"
+    ];
   };
 }
