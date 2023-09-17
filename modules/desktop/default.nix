@@ -87,9 +87,14 @@ in {
       };
     };
 
-    systemd.extraConfig = ''
-      DefaultTimeoutStopSec=12s
-    '';
+    systemd = {
+      # save some boot time because nothing actually requires network connectivity
+      services.NetworkManager-wait-online.enable = false;
+
+      extraConfig = ''
+        DefaultTimeoutStopSec=12s
+      '';
+    };
 
     programs = {
       zsh.enable = true;
