@@ -58,6 +58,7 @@ in {
           wineWowPackages.stagingFull
           wineWowPackages.fonts
           winetricks
+          youtube-music
 
           (lutris.override {
             extraPkgs = pkgs: [
