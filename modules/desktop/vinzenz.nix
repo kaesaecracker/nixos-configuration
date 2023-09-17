@@ -101,6 +101,8 @@ in {
             my-switch = "sudo nixos-rebuild switch";
             my-update = "sudo nixos-rebuild boot --upgrade";
             my-fmt = "alejandra .";
+            my-direnvallow = "echo \"use nix\" > .envrc && direnv allow";
+            my-ip4 = "ip addr show | grep 192";
           };
 
           history = {
