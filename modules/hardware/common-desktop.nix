@@ -1,8 +1,16 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   config = {
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+    boot = {
+      kernelPackages = pkgs.linuxPackages_zen;
+      kernelParams = ["quiet" "loglevel=3"];
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+      };
     };
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
