@@ -35,8 +35,6 @@ in {
           ## Apps
           steam
           telegram-desktop
-          powerline
-          powerline-fonts
           lutris
           kdiff3
           wineWowPackages.stagingFull

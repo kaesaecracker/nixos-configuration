@@ -43,8 +43,6 @@ in {
           radeontop
           lsof
           wirelesstools
-          powerline
-          powerline-fonts
           thefuck
           dotnet-sdk_7
           jetbrains.rider
@@ -186,13 +184,6 @@ in {
               updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/updates.xml";
             }
           ];
-        };
-
-        bottom = {
-          enable = true;
-          settings = {
-            # https://github.com/ClementTsang/bottom/blob/master/sample_configs/default_config.toml
-          };
         };
 
         exa = {

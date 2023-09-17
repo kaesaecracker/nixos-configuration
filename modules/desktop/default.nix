@@ -118,5 +118,19 @@ in {
     nixpkgs.config.permittedInsecurePackages = [
       "electron-12.2.3"
     ];
+
+    fonts = {
+      fonts = with pkgs; [
+        (nerdfonts.override {fonts = ["FiraCode"];})
+      ];
+
+      fontconfig = {
+        defaultFonts = {
+          serif = [];
+          sansSerif = [];
+          monospace = ["FiraCode Nerd Font"];
+        };
+      };
+    };
   };
 }
