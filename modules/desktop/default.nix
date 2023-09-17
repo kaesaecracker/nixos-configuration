@@ -120,17 +120,10 @@ in {
     ];
 
     fonts = {
+      fontconfig.defaultFonts.monospace = ["FiraCode Nerd Font"];
       fonts = with pkgs; [
         (nerdfonts.override {fonts = ["FiraCode"];})
       ];
-
-      fontconfig = {
-        defaultFonts = {
-          serif = [];
-          sansSerif = [];
-          monospace = ["FiraCode Nerd Font"];
-        };
-      };
     };
   };
 }
