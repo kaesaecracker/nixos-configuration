@@ -6,9 +6,14 @@
   config = {
     boot = {
       kernelPackages = pkgs.linuxPackages_zen;
-      kernelParams = ["quiet" "loglevel=3"];
+      kernelParams = ["quiet" "udev.log_level=3"];
+      supportedFilesystems = ["btrfs"];
+      initrd.supportedFilesystems = ["btrfs"];
+      consoleLogLevel = 0;
+      initrd.verbose = false;
       loader = {
         systemd-boot.enable = true;
+        timeout = 3;
         efi.canTouchEfiVariables = true;
       };
     };
