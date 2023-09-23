@@ -13,6 +13,7 @@ in {
     ./kde.nix
     ./vinzenz.nix
     ./ronja.nix
+    ./gaming.nix
   ];
 
   options.my.desktop = {
@@ -21,6 +22,7 @@ in {
     kde.enable = lib.mkEnableOption "KDE desktop";
     ronja.enable = lib.mkEnableOption "user ronja";
     vinzenz.enable = lib.mkEnableOption "user vinzenz";
+    gaming.enable = lib.mkEnableOption "gaming with wine";
   };
 
   config = lib.mkIf cfg.enable {

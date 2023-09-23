@@ -1,18 +1,19 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./modules/desktop
     (import ./modules/hardware "vinzenz-pc2")
   ];
 
   config = {
-    my = {
-      desktop = {
-        enable = true;
-        kde.enable = true;
-        vinzenz.enable = true;
-        ronja.enable = true;
-      };
+    my.desktop = {
+      enable = true;
+      kde.enable = true;
+      vinzenz.enable = true;
+      ronja.enable = true;
+      gaming.enable = true;
     };
+
+    environment.systemPackages = [pkgs.radeontop];
 
     users.groups."games" = {
       members = ["vinzenz" "ronja"];

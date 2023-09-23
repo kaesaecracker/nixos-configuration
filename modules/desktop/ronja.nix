@@ -33,22 +33,8 @@ in {
 
         packages = with pkgs; [
           ## Apps
-          steam
           telegram-desktop
-          lutris
           kdiff3
-          wineWowPackages.stagingFull
-          wineWowPackages.fonts
-          winetricks
-
-          (lutris.override {
-            extraPkgs = pkgs: [
-              # List package dependencies here
-            ];
-            extraLibraries = pkgs: [
-              # List library dependencies here
-            ];
-          })
         ];
 
         file.".nanorc".text = ''

@@ -32,7 +32,6 @@ in {
 
         packages = with pkgs; [
           keepassxc
-          steam
           insync
           telegram-desktop
           simple-scan
@@ -40,7 +39,6 @@ in {
           element-desktop
           etcher
           iotop
-          radeontop
           lsof
           wirelesstools
           thefuck
@@ -53,19 +51,7 @@ in {
           jetbrains.pycharm-professional
           kdiff3
           docker
-          wineWowPackages.stagingFull
-          wineWowPackages.fonts
-          winetricks
           youtube-music
-
-          (lutris.override {
-            extraPkgs = pkgs: [
-              # List package dependencies here
-            ];
-            extraLibraries = pkgs: [
-              # List library dependencies here
-            ];
-          })
         ];
 
         file.".nanorc".text = ''
