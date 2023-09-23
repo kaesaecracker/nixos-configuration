@@ -11,6 +11,7 @@ in {
   config = lib.mkIf isEnabled {
     environment.systemPackages = with pkgs; [
       radeontop
+      amdvlk
     ];
   };
 }

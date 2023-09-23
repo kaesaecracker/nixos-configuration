@@ -6,17 +6,22 @@
 }: let
   isEnabled = config.my.desktop.enableGaming;
 in {
-  imports = [];
-
   options.my.desktop.enableGaming = lib.mkEnableOption "gaming with wine";
 
   config = lib.mkIf isEnabled {
-    hardware.opengl.driSupport32Bit = true;
+    hardware.opengl = {
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [mangohud];
+      extraPackages32 = with pkgs; [mangohud];
+    };
 
     environment.systemPackages = with pkgs; [
       wineWowPackages.stagingFull
       wineWowPackages.fonts
       winetricks
+      dxvk
+      mangohud
+      vulkan-tools
 
       (lutris.override {
         extraPkgs = pkgs: [
@@ -29,10 +34,11 @@ in {
     ];
 
     programs = {
+      xwayland.enable = true;
       steam = {
         enable = true;
-        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
       };
     };
   };
