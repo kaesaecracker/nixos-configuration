@@ -10,6 +10,7 @@
         enable = true;
         gnome.enable = true;
         vinzenz.enable = true;
+        gaming.enable = true;
       };
     };
 
