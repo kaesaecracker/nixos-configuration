@@ -68,6 +68,7 @@ in {
         dircolors.enable = true;
         fzf.enable = true;
         htop.enable = true;
+        mangohud.enable = true;
 
         zsh = {
           enable = true;
@@ -183,7 +184,19 @@ in {
           ];
         };
 
-        # checked https://rycee.gitlab.io/home-manager/options.html until "programs.jq"
+        micro = {
+          enable = true;
+          settings = {
+            colorcolumn = 120;
+            hlsearch = true;
+            savecursor = true;
+            saveundo = true;
+            scrollbar = true;
+            smartpaste = true;
+          };
+        };
+
+        # checked https://rycee.gitlab.io/home-manager/options.html until "programs.notmuch"
       };
 
       editorconfig = {
