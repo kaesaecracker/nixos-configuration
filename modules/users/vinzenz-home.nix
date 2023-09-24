@@ -85,10 +85,15 @@
       enable = true;
       package = pkgs.vscodium;
       enableUpdateCheck = false;
-      extensions = with pkgs; [
-        vscode-extensions.bbenoist.nix
-        vscode-extensions.ms-python.python
-        vscode-extensions.kamadorueda.alejandra
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        ms-python.python
+        kamadorueda.alejandra
+        samuelcolvin.jinjahtml
+        EditorConfig.EditorConfig
+        KnisterPeter.vscode-github
+        yzhang.markdown-all-in-one
+        redhat.vscode-yaml
       ];
       userSettings = {
         "git.autofetch" = true;
