@@ -3,6 +3,7 @@ modulesCfg: {lib, ...}: {
     [
       ./i18n.nix
       ./nixpkgs.nix
+      ./globalinstalls.nix
       ./server.nix
     ]
     ++ (map (path: (import path modulesCfg)) [

@@ -1,12 +1,13 @@
 {...}: {
   config = {
-    my.hardware.enableCommonDesktopSettings = true;
+    my.hardware = {
+      enableCommonDesktopSettings = true;
+      isAmdCpu = true;
+      isAmdGpu = true;
+    };
 
     boot = {
       initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"]; # "usb_storage"
-      initrd.kernelModules = [];
-      kernelModules = ["kvm-amd"];
-      extraModulePackages = [];
       loader.efi.efiSysMountPoint = "/boot";
     };
 
@@ -49,7 +50,5 @@
     };
 
     swapDevices = [];
-
-    hardware.cpu.amd.updateMicrocode = true;
   };
 }

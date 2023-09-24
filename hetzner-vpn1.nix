@@ -2,7 +2,7 @@
   imports = [
     (import ./modules {
       hostName = "hetzner-vpn1";
-      enableDesktop = false;
+      enableHomeManager = false;
     })
   ];
 

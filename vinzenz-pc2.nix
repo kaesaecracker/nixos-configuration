@@ -2,19 +2,18 @@
   imports = [
     (import ./modules {
       hostName = "vinzenz-pc2";
-      enableDesktop = true;
+      enableHomeManager = true;
     })
   ];
 
   config = {
     my.desktop = {
-      kde.enable = true;
+      enableKde = true;
+      enableGaming = true;
+
       vinzenz.enable = true;
       ronja.enable = true;
-      gaming.enable = true;
     };
-
-    environment.systemPackages = [pkgs.radeontop];
 
     users.groups."games" = {
       members = ["vinzenz" "ronja"];

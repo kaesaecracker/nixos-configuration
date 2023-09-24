@@ -5,7 +5,7 @@
   ...
 }: let
   desktopCfg = config.my.desktop;
-  cfg = desktopCfg.kde;
+  isEnabled = desktopCfg.enableKde;
 
   applyKdeUserSettings = {
     home = {
@@ -18,7 +18,9 @@
     };
   };
 in {
-  config = lib.mkIf cfg.enable {
+  options.my.desktop.enableKde = lib.mkEnableOption "KDE desktop";
+
+  config = lib.mkIf isEnabled {
     my.desktop.enable = true;
 
     # flatpak xdg-portal-kde crashes, otherwise this would be global

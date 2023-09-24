@@ -7,6 +7,8 @@
 with lib; let
   cfg = config.my.desktop.ronja;
 in {
+  options.my.desktop.ronja.enable = lib.mkEnableOption "user ronja";
+
   config = lib.mkIf cfg.enable {
     # Define user account
     users.users.ronja = {

@@ -1,12 +1,13 @@
 {...}: {
   config = {
-    my.hardware.enableCommonDesktopSettings = true;
+    my.hardware = {
+      enableCommonDesktopSettings = true;
+      isIntelCpu = true;
+      isAmdGpu = true;
+    };
 
     boot = {
       initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
-      initrd.kernelModules = [];
-      kernelModules = ["kvm-intel"];
-      extraModulePackages = [];
       loader.efi.efiSysMountPoint = "/boot/efi";
     };
 
@@ -26,7 +27,5 @@
     swapDevices = [
       {device = "/dev/disk/by-uuid/f5932f70-60e4-4abe-b23d-2cab3c095c7d";}
     ];
-
-    hardware.cpu.intel.updateMicrocode = true;
   };
 }

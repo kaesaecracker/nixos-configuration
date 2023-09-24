@@ -2,15 +2,16 @@
   imports = [
     (import ./modules {
       hostName = "vinzenz-lpt";
-      enableDesktop = true;
+      enableHomeManager = true;
     })
   ];
 
   config = {
     my.desktop = {
-      gnome.enable = true;
+      enableGnome = true;
+      enableGaming = true;
+
       vinzenz.enable = true;
-      gaming.enable = true;
     };
 
     # flatpak xdg-portal-kde crashes, otherwise this would be global

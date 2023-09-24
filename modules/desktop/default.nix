@@ -4,28 +4,24 @@ modulesCfg: {
   lib,
   ...
 }: let
-  isEnabled = modulesCfg.enableDesktop;
+  enableHomeManager = modulesCfg.enableHomeManager;
   cfg = config.my.desktop;
 in {
-  imports = lib.optionals isEnabled [
-    <home-manager/nixos>
-    ./gnome.nix
-    ./kde.nix
-    ./vinzenz.nix
-    ./ronja.nix
-    ./gaming.nix
-  ];
+  imports =
+    [
+      ./gnome.nix
+      ./kde.nix
+      ./vinzenz.nix
+      ./ronja.nix
+      ./gaming.nix
+    ]
+    ++ lib.optionals enableHomeManager [
+      <home-manager/nixos>
+    ];
 
-  options.my.modulesCfg.enableDesktop = lib.mkEnableOption "enable desktop module";
+  options.my.modulesCfg.enableHomeManager = lib.mkEnableOption "enable home manager";
 
-  options.my.desktop = {
-    enable = lib.mkEnableOption "desktop";
-    gnome.enable = lib.mkEnableOption "gnome desktop";
-    kde.enable = lib.mkEnableOption "KDE desktop";
-    ronja.enable = lib.mkEnableOption "user ronja";
-    vinzenz.enable = lib.mkEnableOption "user vinzenz";
-    gaming.enable = lib.mkEnableOption "gaming with wine";
-  };
+  options.my.desktop.enable = lib.mkEnableOption "desktop";
 
   config = lib.mkIf cfg.enable {
     home-manager.useUserPackages = true;
@@ -114,8 +110,6 @@ in {
 
       systemPackages = with pkgs; [
         lm_sensors
-        tldr
-        ncdu
       ];
     };
 

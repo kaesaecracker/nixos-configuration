@@ -38,12 +38,5 @@ in {
         }
       ];
     };
-
-    environment = {
-      systemPackages = with pkgs; [
-        ncdu
-        htop
-      ];
-    };
   };
 }

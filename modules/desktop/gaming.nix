@@ -4,10 +4,13 @@
   lib,
   ...
 }: let
-  cfg = config.my.desktop.gaming;
+  isEnabled = config.my.desktop.enableGaming;
 in {
   imports = [];
-  config = lib.mkIf cfg.enable {
+
+  options.my.desktop.enableGaming = lib.mkEnableOption "gaming with wine";
+
+  config = lib.mkIf isEnabled {
     hardware.opengl.driSupport32Bit = true;
 
     environment.systemPackages = with pkgs; [

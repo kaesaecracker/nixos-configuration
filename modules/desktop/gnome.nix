@@ -5,7 +5,7 @@
   ...
 }: let
   desktopCfg = config.my.desktop;
-  cfg = desktopCfg.gnome;
+  isEnabled = desktopCfg.enableGnome;
 
   applyGnomeUserSettings = {
     home.packages = with pkgs; [
@@ -19,7 +19,9 @@
     };
   };
 in {
-  config = lib.mkIf cfg.enable {
+  options.my.desktop.enableGnome = lib.mkEnableOption "gnome desktop";
+
+  config = lib.mkIf isEnabled {
     my.desktop.enable = true;
 
     services = {
