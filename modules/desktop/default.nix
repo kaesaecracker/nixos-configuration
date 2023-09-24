@@ -41,7 +41,7 @@ in {
     };
 
     programs = {
-      git.package = pkgs.gitFull;
+      kdeconnect.enable = true;
     };
 
     # unblock kde connect / gsconnect

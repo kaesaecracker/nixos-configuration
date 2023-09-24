@@ -43,6 +43,7 @@ in {
     programs = {
       dconf.enable = true;
       partition-manager.enable = true;
+      kdeconnect.enable = true;
     };
   };
 }
