@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  cfg = config.my.desktop;
+  isEnabled = config.my.desktop.enable;
 in {
   imports = [
     ./gnome.nix
@@ -14,10 +14,7 @@ in {
 
   options.my.desktop.enable = lib.mkEnableOption "desktop";
 
-  config = lib.mkIf cfg.enable {
-    home-manager.useUserPackages = true;
-    home-manager.useGlobalPkgs = true;
-
+  config = lib.mkIf isEnabled {
     services = {
       # Enable the X11 windowing system / wayland depending on DE
       xserver.enable = true;
@@ -49,11 +46,6 @@ in {
 
     programs = {
       git.package = pkgs.gitFull;
-      steam = {
-        enable = true;
-        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      };
     };
 
     # unblock kde connect / gsconnect
@@ -89,8 +81,6 @@ in {
     };
 
     environment = {
-      pathsToLink = ["/share/zsh"];
-
       systemPackages = with pkgs; [
         lm_sensors
       ];

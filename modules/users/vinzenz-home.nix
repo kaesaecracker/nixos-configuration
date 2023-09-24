@@ -70,6 +70,7 @@
 
       aliases = {
         prettylog = "log --pretty=oneline --graph";
+        spring-clean = "!git branch --merged | xargs -n 1 -r git branch -d";
       };
 
       extraConfig = {
