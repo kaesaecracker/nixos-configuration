@@ -89,11 +89,13 @@
         bbenoist.nix
         ms-python.python
         kamadorueda.alejandra
-        samuelcolvin.jinjahtml
-        EditorConfig.EditorConfig
-        KnisterPeter.vscode-github
+        #samuelcolvin.jinjahtml
+        #EditorConfig.EditorConfig
+        #KnisterPeter.vscode-github
         yzhang.markdown-all-in-one
         redhat.vscode-yaml
+        #PKief.material-icon-theme
+        mhutchie.git-graph
       ];
       userSettings = {
         "git.autofetch" = true;
@@ -105,12 +107,13 @@
         "editor.minimap.autohide" = true;
         "diffEditor.diffAlgorithm" = "advanced";
         "explorer.excludeGitIgnore" = true;
-        "workbench.startupEditor" = "readme";
         "markdown.extension.tableFormatter.normalizeIndentation" = true;
         "markdown.extension.toc.orderedList" = false;
         "telemetry.telemetryLevel" = "off";
         "redhat.telemetry.enabled" = false;
+        "workbench.startupEditor" = "readme";
         "workbench.enableExperiments" = false;
+        "workbench.iconTheme" = "material-icon-theme";
       };
     };
 

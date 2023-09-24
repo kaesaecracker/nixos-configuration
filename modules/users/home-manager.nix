@@ -15,7 +15,7 @@
 
       users = {
         ronja = lib.mkIf (builtins.elem "ronja" config.my.enabledUsers) (import ./ronja-home.nix);
-        vinzenz = lib.mkIf (builtins.elem "ronja" config.my.enabledUsers) (import ./vinzenz-home.nix);
+        vinzenz = lib.mkIf (builtins.elem "vinzenz" config.my.enabledUsers) (import ./vinzenz-home.nix);
       };
 
       sharedModules = [
