@@ -1,9 +1,14 @@
 {
   lib,
   pkgs,
+  config,
   ...
-}: {
-  config = {
+}: let
+  isEnabled = config.my.hardware.enableCommonDesktopSettings;
+in {
+  options.my.hardware.enableCommonDesktopSettings = lib.mkEnableOption "common hw settings for desktops";
+
+  config = lib.mkIf isEnabled {
     boot = {
       kernelPackages = pkgs.linuxPackages_zen;
       kernelParams = ["quiet" "udev.log_level=3"];

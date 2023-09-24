@@ -6,10 +6,6 @@
 }: let
   cfg = config.my.server;
 in {
-  imports = [
-    ../_common
-  ];
-
   options.my.server = {
     enable = lib.mkEnableOption "server role";
   };

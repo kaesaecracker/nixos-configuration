@@ -1,12 +1,19 @@
-hostName: {
+modulesCfg: {
   modulesPath,
   lib,
   ...
-}: {
+}: let
+  hostName = modulesCfg.hostName;
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (builtins.toString ./. + "/${hostName}.nix")
+    ./common-desktop.nix
   ];
+
+  options.my.modulesCfg.hostName = lib.mkOption {
+    type = lib.types.str;
+  };
 
   config = {
     networking.hostName = hostName;

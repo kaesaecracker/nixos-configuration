@@ -1,14 +1,14 @@
-{
+modulesCfg: {
   config,
   pkgs,
   lib,
   ...
 }: let
+  isEnabled = modulesCfg.enableDesktop;
   cfg = config.my.desktop;
 in {
-  imports = [
+  imports = lib.optionals isEnabled [
     <home-manager/nixos>
-    ../_common
     ./gnome.nix
     ./kde.nix
     ./vinzenz.nix
@@ -16,9 +16,11 @@ in {
     ./gaming.nix
   ];
 
+  options.my.modulesCfg.enableDesktop = lib.mkEnableOption "enable desktop module";
+
   options.my.desktop = {
     enable = lib.mkEnableOption "desktop";
-    gnome .enable = lib.mkEnableOption "gnome desktop";
+    gnome.enable = lib.mkEnableOption "gnome desktop";
     kde.enable = lib.mkEnableOption "KDE desktop";
     ronja.enable = lib.mkEnableOption "user ronja";
     vinzenz.enable = lib.mkEnableOption "user vinzenz";

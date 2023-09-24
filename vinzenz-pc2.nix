@@ -1,12 +1,13 @@
 {pkgs, ...}: {
   imports = [
-    ./modules/desktop
-    (import ./modules/hardware "vinzenz-pc2")
+    (import ./modules {
+      hostName = "vinzenz-pc2";
+      enableDesktop = true;
+    })
   ];
 
   config = {
     my.desktop = {
-      enable = true;
       kde.enable = true;
       vinzenz.enable = true;
       ronja.enable = true;
