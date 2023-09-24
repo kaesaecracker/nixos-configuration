@@ -5,6 +5,7 @@ modulesCfg: {lib, ...}: {
       ./nixpkgs.nix
       ./globalinstalls.nix
       ./server.nix
+      ./sshd.nix
     ]
     ++ (map (path: (import path modulesCfg)) [
       ./hardware

@@ -75,7 +75,6 @@
 
       extraConfig = {
         pull.ff = "only";
-        init.defaultBranch = "main";
         merge.tool = "kdiff3";
         push.autoSetupRemote = "true";
       };

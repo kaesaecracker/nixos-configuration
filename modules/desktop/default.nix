@@ -27,16 +27,6 @@ in {
 
       # Enable CUPS to print documents.
       printing.enable = true;
-
-      # Enable the OpenSSH daemon.
-      openssh = {
-        enable = true;
-        settings = {
-          PermitRootLogin = "no";
-          PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
-        };
-      };
     };
 
     # Enable sound with pipewire.
