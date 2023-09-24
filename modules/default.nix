@@ -5,10 +5,11 @@ modulesCfg: {lib, ...}: {
       ./nixpkgs.nix
       ./globalinstalls.nix
       ./server.nix
+      ./desktop
     ]
     ++ (map (path: (import path modulesCfg)) [
-      ./desktop
       ./hardware
+      ./users
     ]);
 
   config = {

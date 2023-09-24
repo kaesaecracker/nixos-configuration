@@ -1,25 +1,16 @@
-modulesCfg: {
+{
   config,
   pkgs,
   lib,
   ...
 }: let
-  enableHomeManager = modulesCfg.enableHomeManager;
   cfg = config.my.desktop;
 in {
-  imports =
-    [
-      ./gnome.nix
-      ./kde.nix
-      ./vinzenz.nix
-      ./ronja.nix
-      ./gaming.nix
-    ]
-    ++ lib.optionals enableHomeManager [
-      <home-manager/nixos>
-    ];
-
-  options.my.modulesCfg.enableHomeManager = lib.mkEnableOption "enable home manager";
+  imports = [
+    ./gnome.nix
+    ./kde.nix
+    ./gaming.nix
+  ];
 
   options.my.desktop.enable = lib.mkEnableOption "desktop";
 
@@ -57,6 +48,7 @@ in {
     };
 
     programs = {
+      git.package = pkgs.gitFull;
       steam = {
         enable = true;
         remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -94,15 +86,6 @@ in {
       extraConfig = ''
         DefaultTimeoutStopSec=12s
       '';
-    };
-
-    programs = {
-      zsh.enable = true;
-
-      git = {
-        enable = true;
-        package = pkgs.gitFull;
-      };
     };
 
     environment = {

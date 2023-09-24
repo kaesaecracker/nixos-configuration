@@ -4,62 +4,58 @@
   lib,
   ...
 }: let
-  desktopCfg = config.my.desktop;
-  isEnabled = desktopCfg.enableKde;
-
-  applyKdeUserSettings = {
-    home = {
-      packages = with pkgs; [
-      ];
-    };
-    services.kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
+  isEnabled = config.my.desktop.enableKde;
+  enableHomeManager = config.my.modulesCfg.enableHomeManager;
 in {
   options.my.desktop.enableKde = lib.mkEnableOption "KDE desktop";
 
-  config = lib.mkIf isEnabled {
-    my.desktop.enable = true;
+  config = lib.mkMerge [
+    (lib.mkIf isEnabled {
+      my.desktop.enable = true;
 
-    # flatpak xdg-portal-kde crashes, otherwise this would be global
-    services.flatpak.enable = false;
+      # flatpak xdg-portal-kde crashes, otherwise this would be global
+      services.flatpak.enable = false;
 
-    services = {
-      # Enable the KDE Plasma Desktop Environment.
-      xserver = {
-        desktopManager.plasma5.enable = true;
+      services = {
+        # Enable the KDE Plasma Desktop Environment.
+        xserver = {
+          desktopManager.plasma5.enable = true;
 
-        displayManager = {
-          sddm.enable = true;
-          defaultSession = "plasmawayland";
+          displayManager = {
+            sddm.enable = true;
+            defaultSession = "plasmawayland";
+          };
         };
       };
-    };
 
-    environment = {
-      systemPackages = with pkgs; [
-        libsForQt5.kate
-        libsForQt5.kalk
+      environment = {
+        systemPackages = with pkgs; [
+          libsForQt5.kate
+          libsForQt5.kalk
+        ];
+
+        plasma5.excludePackages = with pkgs.libsForQt5; [
+          elisa
+          gwenview
+          okular
+          khelpcenter
+        ];
+      };
+
+      programs = {
+        dconf.enable = true;
+        partition-manager.enable = true;
+      };
+    })
+    (lib.mkIf (isEnabled && enableHomeManager) {
+      home-manager.sharedModules = [
+        {
+          services.kdeconnect = {
+            enable = true;
+            indicator = true;
+          };
+        }
       ];
-
-      plasma5.excludePackages = with pkgs.libsForQt5; [
-        elisa
-        gwenview
-        okular
-        khelpcenter
-      ];
-    };
-
-    programs = {
-      dconf.enable = true;
-      partition-manager.enable = true;
-    };
-
-    home-manager.users = {
-      vinzenz = lib.mkIf desktopCfg.vinzenz.enable applyKdeUserSettings;
-      ronja = lib.mkIf desktopCfg.ronja.enable applyKdeUserSettings;
-    };
-  };
+    })
+  ];
 }

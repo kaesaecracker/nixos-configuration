@@ -7,8 +7,12 @@
   ];
 
   config = {
-    my.server.enable = true;
+    my = {
+      enabledUsers = ["vinzenz"];
+      server.enable = true;
+    };
 
+    # TODO change to user "vinzenz" when tested
     users.users.root.openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICdYqY3Y1/f1bsAi5Qfyr/UWuX9ixu96IeAlhoQaJkbf''
     ];

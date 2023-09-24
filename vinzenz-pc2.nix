@@ -7,16 +7,12 @@
   ];
 
   config = {
-    my.desktop = {
-      enableKde = true;
-      enableGaming = true;
-
-      vinzenz.enable = true;
-      ronja.enable = true;
-    };
-
-    users.groups."games" = {
-      members = ["vinzenz" "ronja"];
+    my = {
+      enabledUsers = ["vinzenz" "ronja"];
+      desktop = {
+        enableKde = true;
+        enableGaming = true;
+      };
     };
 
     users.users.vinzenz.openssh.authorizedKeys.keys = [

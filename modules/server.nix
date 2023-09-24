@@ -23,11 +23,6 @@ in {
       };
     };
 
-    programs = {
-      git.enable = true;
-      zsh.enable = true;
-    };
-
     networking.firewall = {
       enable = true;
       allowedTCPPortRanges = [

@@ -7,11 +7,12 @@
   ];
 
   config = {
-    my.desktop = {
-      enableGnome = true;
-      enableGaming = true;
-
-      vinzenz.enable = true;
+    my = {
+      enabledUsers = ["vinzenz"];
+      desktop = {
+        enableGnome = true;
+        enableGaming = true;
+      };
     };
 
     # flatpak xdg-portal-kde crashes, otherwise this would be global
