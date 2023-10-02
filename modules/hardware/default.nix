@@ -9,9 +9,8 @@ in {
     (modulesPath + "/installer/scan/not-detected.nix")
     (builtins.toString ./. + "/${hostName}.nix")
     ./common-desktop.nix
-    ./amdcpu.nix
-    ./amdgpu.nix
-    ./intelcpu.nix
+    ./amd.nix
+    ./intel.nix
   ];
 
   options.my.modulesCfg.hostName = lib.mkOption {

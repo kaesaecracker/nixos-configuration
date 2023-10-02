@@ -10,6 +10,7 @@ in {
 
   config = lib.mkIf isEnabled {
     hardware.opengl = {
+      driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [mangohud];
       extraPackages32 = with pkgs; [mangohud];
@@ -41,5 +42,11 @@ in {
         dedicatedServer.openFirewall = true;
       };
     };
+
+    my.allowUnfreePackages = [
+      "steam"
+      "steam-original"
+      "steam-run"
+    ];
   };
 }

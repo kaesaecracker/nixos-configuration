@@ -12,8 +12,6 @@
   programs = {
     home-manager.enable = true;
 
-    firefox.enable = true;
-
     zsh = {
       history = {
         size = 10000;

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     (import ./modules {
       hostName = "hetzner-vpn1";

@@ -38,10 +38,15 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      #jack.enable = true;
     };
 
     programs = {
       kdeconnect.enable = true;
+      firefox = {
+        enable = true;
+        languagePacks = ["en-US" "de"];
+      };
     };
 
     # unblock kde connect / gsconnect
@@ -84,6 +89,14 @@ in {
 
     nixpkgs.config.permittedInsecurePackages = [
       "electron-12.2.3"
+    ];
+
+    my.allowUnfreePackages = [
+      "insync"
+      "insync-pkg"
+
+      "rider"
+      "pycharm-professional"
     ];
 
     fonts = {
