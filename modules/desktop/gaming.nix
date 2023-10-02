@@ -42,5 +42,11 @@ in {
         dedicatedServer.openFirewall = true;
       };
     };
+
+    my.allowUnfreePackages = [
+      "steam"
+      "steam-original"
+      "steam-run"
+    ];
   };
 }

@@ -38,6 +38,7 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      #jack.enable = true;
     };
 
     programs = {
@@ -88,6 +89,14 @@ in {
 
     nixpkgs.config.permittedInsecurePackages = [
       "electron-12.2.3"
+    ];
+
+    my.allowUnfreePackages = [
+      "insync"
+      "insync-pkg"
+
+      "rider"
+      "pycharm-professional"
     ];
 
     fonts = {
