@@ -2,8 +2,11 @@
   config = {
     my.hardware = {
       enableCommonDesktopSettings = true;
-      isIntelCpu = true;
-      isAmdGpu = true;
+      amd.radeon = true;
+      intel = {
+        cpu = true;
+        iGpu = true;
+      };
     };
 
     boot = {

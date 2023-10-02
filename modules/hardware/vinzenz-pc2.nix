@@ -2,8 +2,10 @@
   config = {
     my.hardware = {
       enableCommonDesktopSettings = true;
-      isAmdCpu = true;
-      isAmdGpu = true;
+      amd = {
+        cpu = true;
+        gpu = true;
+      };
     };
 
     boot = {

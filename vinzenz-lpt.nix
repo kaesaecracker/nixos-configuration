@@ -17,5 +17,10 @@
 
     # flatpak xdg-portal-kde crashes, otherwise this would be global
     services.flatpak.enable = true;
+
+    # force rendering on dedicated graphics
+    environment.sessionVariables = rec {
+      DRI_PRIME = "1";
+    };
   };
 }

@@ -42,6 +42,10 @@ in {
 
     programs = {
       kdeconnect.enable = true;
+      firefox = {
+        enable = true;
+        languagePacks = ["en-US" "de"];
+      };
     };
 
     # unblock kde connect / gsconnect
