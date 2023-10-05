@@ -21,6 +21,8 @@ in {
         timeout = 3;
         efi.canTouchEfiVariables = true;
       };
+
+      plymouth.enable = true;
     };
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
