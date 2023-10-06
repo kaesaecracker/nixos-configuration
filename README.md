@@ -1,11 +1,13 @@
 # nixos-configuration
 
+```
 /
 ├── modules
 │  ├── desktop
 │  ├── hardware (includes hostname.nix)
 │  └── users
 └── hostname.nix (imports modules)
+```
 
 When adding a new host: `ln -s ./new-devicename.nix /etc/nixos/configuration.nix`
 
