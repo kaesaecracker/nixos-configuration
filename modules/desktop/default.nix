@@ -52,22 +52,21 @@ in {
       };
     };
 
-    # unblock kde connect / gsconnect
     networking = {
       networkmanager.enable = true;
-      firewall.enable = true;
 
       firewall = {
+        enable = true;
         allowedTCPPortRanges = [
           {
-            # KDE Connect
+            # KDE Connect / gsconnect
             from = 1714;
             to = 1764;
           }
         ];
         allowedUDPPortRanges = [
           {
-            # KDE Connect
+            # KDE Connect / gsconnect
             from = 1714;
             to = 1764;
           }
