@@ -43,6 +43,7 @@
         my-apply = "sudo nixos-rebuild boot";
         my-switch = "sudo nixos-rebuild switch";
         my-update = "sudo nixos-rebuild boot --upgrade";
+        my-pull = "git -C ~/Repos/nixos-configuration pull --rebase";
         my-fmt = "alejandra .";
         my-test = "sudo nixos-rebuild test";
         my-direnvallow = "echo \"use nix\" > .envrc && direnv allow";

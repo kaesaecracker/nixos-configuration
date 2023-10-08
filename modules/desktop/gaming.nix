@@ -23,6 +23,7 @@ in {
       dxvk
       mangohud
       vulkan-tools
+      glxinfo
 
       (lutris.override {
         extraPkgs = pkgs: [
