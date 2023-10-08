@@ -22,11 +22,14 @@ in {
 
   config = lib.mkIf isEnabled {
     services = {
-      # Enable the X11 windowing system / wayland depending on DE
-      xserver.enable = true;
-
       # Enable CUPS to print documents.
       printing.enable = true;
+
+      xserver = {
+        # Enable the X11 windowing system / wayland depending on DE
+        enable = true;
+        libinput.enable = true;
+      };
     };
 
     # Enable sound with pipewire.

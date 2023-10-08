@@ -35,6 +35,8 @@ in {
       })
     ];
 
+    hardware.steam-hardware.enable = true;
+
     programs = {
       xwayland.enable = true;
       steam = {

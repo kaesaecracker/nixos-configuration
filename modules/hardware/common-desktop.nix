@@ -36,5 +36,10 @@ in {
     hardware.enableRedistributableFirmware = true;
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+    hardware.bluetooth = {
+      enable = true;
+      package = pkgs.bluezFull;
+    };
   };
 }
