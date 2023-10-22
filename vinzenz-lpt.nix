@@ -12,6 +12,7 @@
       desktop = {
         enableGnome = true;
         enableGaming = true;
+        enablePrinting = true;
       };
     };
 

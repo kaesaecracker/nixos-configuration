@@ -12,6 +12,7 @@
       desktop = {
         enableKde = true;
         enableGaming = true;
+        enablePrinting = true;
       };
     };
 

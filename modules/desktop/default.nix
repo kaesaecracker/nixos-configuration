@@ -12,6 +12,7 @@ in {
       ./gnome.nix
       ./kde.nix
       ./gaming.nix
+      ./printing.nix
     ]
     ++ lib.optionals isHomeManager [
       ./gnome-home.nix
@@ -22,9 +23,6 @@ in {
 
   config = lib.mkIf isEnabled {
     services = {
-      # Enable CUPS to print documents.
-      printing.enable = true;
-
       xserver = {
         # Enable the X11 windowing system / wayland depending on DE
         enable = true;
@@ -86,6 +84,12 @@ in {
     environment = {
       systemPackages = with pkgs; [
         lm_sensors
+
+        # office
+        libreoffice-qt
+        hunspell
+        hunspellDicts.de-de
+        hunspellDicts.en-us-large
       ];
     };
 
