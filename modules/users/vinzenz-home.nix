@@ -25,6 +25,7 @@
     kdiff3
     docker
     youtube-music
+    rustup
   ];
 
   programs = {
@@ -89,12 +90,13 @@
         ms-python.python
         kamadorueda.alejandra
         #samuelcolvin.jinjahtml
-        #EditorConfig.EditorConfig
+        editorconfig.editorconfig
         #KnisterPeter.vscode-github
         yzhang.markdown-all-in-one
         redhat.vscode-yaml
-        #PKief.material-icon-theme
+        pkief.material-icon-theme
         mhutchie.git-graph
+        rust-lang.rust-analyzer
       ];
       userSettings = {
         "git.autofetch" = true;
