@@ -25,7 +25,13 @@
     kdiff3
     docker
     youtube-music
-    rustup
+
+    cargo
+    rustc
+    gcc
+    rustfmt
+    clippy
+    cargo-generate
   ];
 
   programs = {
@@ -97,6 +103,7 @@
         pkief.material-icon-theme
         mhutchie.git-graph
         rust-lang.rust-analyzer
+        bungcip.better-toml
       ];
       userSettings = {
         "git.autofetch" = true;
@@ -115,6 +122,7 @@
         "workbench.startupEditor" = "readme";
         "workbench.enableExperiments" = false;
         "workbench.iconTheme" = "material-icon-theme";
+        "rust-analyzer.checkOnSave.command" = "clippy";
       };
     };
 
