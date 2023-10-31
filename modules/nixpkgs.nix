@@ -24,6 +24,13 @@ in {
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.my.allowUnfreePackages;
     };
 
+    nix = {
+      settings = {
+        substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org/"];
+        trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
+      };
+    };
+
     system = {
       stateVersion = "22.11";
       # enable auto updates
