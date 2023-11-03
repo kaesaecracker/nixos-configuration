@@ -3,7 +3,8 @@
   lib,
   ...
 }: let
-  unstable-commit-sha = "f5892ddac112a1e9b3612c39af1b72987ee5783a";
+  unstable-commit-sha = "fa804edfb7869c9fb230e174182a8a1a7e512c40";
+  ultrastable-commit-sha = "34bdaaf1f0b7fb6d9091472edc968ff10a8c2857";
 in {
   options.my.allowUnfreePackages = lib.mkOption {
     type = lib.types.listOf lib.types.str;
@@ -16,6 +17,9 @@ in {
       # make nixos-unstable availiable as 'pkgs.unstable'
       packageOverrides = pkgs: {
         unstable = import (fetchTarball "https://github.com/nixos/nixpkgs/tarball/${unstable-commit-sha}") {
+          config = config.nixpkgs.config;
+        };
+        ultrastable = import (fetchTarball "https://github.com/nixos/nixpkgs/tarball/${ultrastable-commit-sha}") {
           config = config.nixpkgs.config;
         };
       };

@@ -5,7 +5,7 @@
 }: {
   home.packages = with pkgs; [
     keepassxc
-    insync
+    unstable.insync
     telegram-desktop
     simple-scan
     wireguard-tools
@@ -16,12 +16,12 @@
     wirelesstools
     thefuck
     dotnet-sdk_7
-    jetbrains.rider
+    ultrastable.jetbrains.rider
     alejandra
     arduino
     uucp
     screen
-    jetbrains.pycharm-professional
+    ultrastable.jetbrains.pycharm-professional
     kdiff3
     docker
     youtube-music

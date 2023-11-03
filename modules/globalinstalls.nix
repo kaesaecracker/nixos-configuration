@@ -6,6 +6,7 @@
         pciutils
         ncdu
         tldr
+        glances
       ];
     };
 
