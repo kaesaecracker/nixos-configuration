@@ -11,9 +11,6 @@ in {
   config = lib.mkIf isEnabled {
     my.desktop.enable = true;
 
-    # flatpak xdg-portal-kde crashes, otherwise this would be global
-    services.flatpak.enable = false;
-
     services = {
       # Enable the KDE Plasma Desktop Environment.
       xserver = {

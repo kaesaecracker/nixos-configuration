@@ -23,11 +23,14 @@ in {
 
   config = lib.mkIf isEnabled {
     services = {
+      # Enable the X11 windowing system / wayland depending on DE
       xserver = {
-        # Enable the X11 windowing system / wayland depending on DE
         enable = true;
         libinput.enable = true;
       };
+
+      # flatpak xdg-portal-kde crashes, otherwise this would be global
+      flatpak.enable = true;
     };
 
     # Enable sound with pipewire.
@@ -76,6 +79,7 @@ in {
       # save some boot time because nothing actually requires network connectivity
       services.NetworkManager-wait-online.enable = false;
 
+      # prevent stuck units from preventing shutdown (default is 120s)
       extraConfig = ''
         DefaultTimeoutStopSec=12s
       '';
