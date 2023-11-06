@@ -123,6 +123,8 @@
         "workbench.enableExperiments" = false;
         "workbench.iconTheme" = "material-icon-theme";
         "rust-analyzer.checkOnSave.command" = "clippy";
+        "extensions.autoUpdate" = false;
+        "extensions.autoCheckUpdates" = false;
       };
     };
 

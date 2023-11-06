@@ -14,17 +14,23 @@ in {
     services = {
       xserver = {
         # Enable the GNOME Desktop Environment.
-        displayManager.gdm.enable = true;
+        displayManager = {
+          gdm.enable = true;
+          defaultSession = "gnome";
+        };
         desktopManager.gnome.enable = true;
       };
 
       gnome = {
         tracker-miners.enable = false;
         tracker.enable = false;
+        sushi.enable = true;
+        #gnome-remote-desktop.enable = true;
       };
     };
 
     programs = {
+      dconf.enable = true;
       gpaste.enable = true;
       kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
     };
