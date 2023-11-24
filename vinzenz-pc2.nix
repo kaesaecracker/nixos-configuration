@@ -10,7 +10,7 @@
     my = {
       enabledUsers = ["vinzenz" "ronja"];
       desktop = {
-        enableKde = true;
+        enableGnome = true;
         enableGaming = true;
         enablePrinting = true;
       };

@@ -47,5 +47,8 @@ in {
       gnome-weather
       gnome-music
     ];
+
+    # RDP connections
+    networking.firewall.allowedTCPPorts = [3389];
   };
 }
