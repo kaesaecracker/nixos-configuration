@@ -21,8 +21,8 @@ in
         lsof
         wirelesstools
         thefuck
-        dotnet-sdk_7
-        ultrastable.jetbrains.rider
+        dotnet-sdk_8
+        unstable.jetbrains.rider
         alejandra
         arduino
         uucp
