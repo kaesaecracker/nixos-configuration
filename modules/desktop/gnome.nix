@@ -25,7 +25,7 @@ in {
         tracker-miners.enable = false;
         tracker.enable = false;
         sushi.enable = true;
-        #gnome-remote-desktop.enable = true;
+        gnome-remote-desktop.enable = true;
       };
     };
 
@@ -41,12 +41,11 @@ in {
       epiphany # web browser
       evince # document viewer
       geary # email client
-      seahorse # password manager
+      #seahorse # password manager
       gnome-clocks
       gnome-maps
       gnome-weather
       gnome-music
-      pkgs.gnome-connections
     ];
   };
 }
