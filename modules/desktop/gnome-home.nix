@@ -49,6 +49,16 @@ in {
             ];
           };
         };
+
+        gtk = {
+          enable = true;
+          iconTheme.name = "Adwaita";
+          cursorTheme.name = "Adwaita";
+          theme = {
+            name = "adw-gtk3";
+            package = pkgs.adw-gtk3;
+          };
+        };
       }
     ];
   };
