@@ -21,16 +21,16 @@ in
         lsof
         wirelesstools
         thefuck
-        dotnet-sdk_8
-        unstable.jetbrains.rider
         alejandra
         arduino
         uucp
         screen
-        ultrastable.jetbrains.pycharm-professional
         kdiff3
         docker
         youtube-music
+
+        unstable.jetbrains-toolbox
+        unstable.dotnet-sdk_8
 
         cargo
         rustc

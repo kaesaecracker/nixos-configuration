@@ -107,6 +107,7 @@ in {
 
       "rider"
       "pycharm-professional"
+      "jetbrains-toolbox"
     ];
 
     fonts = {
