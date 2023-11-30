@@ -42,7 +42,6 @@ in {
       evince # document viewer
       geary # email client
       #seahorse # password manager
-      gnome-clocks
       gnome-maps
       gnome-weather
       gnome-music
