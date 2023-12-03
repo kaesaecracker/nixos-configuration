@@ -12,6 +12,9 @@ in {
         home.packages = with pkgs;
           [
             amberol
+            gitg
+            gnome-builder
+            meld
           ]
           ++ (with gnome; [
             dconf-editor
