@@ -11,7 +11,7 @@ in
     {
       home.packages = with pkgs; [
         keepassxc
-        unstable.insync
+        insync
         telegram-desktop
         simple-scan
         wireguard-tools
@@ -26,11 +26,10 @@ in
         uucp
         screen
         kdiff3
-        docker
         youtube-music
 
-        unstable.jetbrains-toolbox
-        unstable.dotnet-sdk_8
+        jetbrains-toolbox
+        dotnet-sdk_8
 
         cargo
         rustc

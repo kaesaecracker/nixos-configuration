@@ -32,7 +32,7 @@ in {
       };
 
       environment.systemPackages = with pkgs; [
-        unstable.nvtop-amd
+        nvtop-amd
       ];
     })
 
