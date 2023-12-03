@@ -153,7 +153,7 @@ in
           ];
         };
 
-        exa = {
+      eza = {
           enable = true;
           git = true;
           icons = true;

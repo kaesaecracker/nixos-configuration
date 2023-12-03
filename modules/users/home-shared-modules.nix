@@ -21,7 +21,7 @@
 
       zsh = {
         enable = true;
-        enableSyntaxHighlighting = true;
+        syntaxHighlighting.enable = true;
         enableAutosuggestions = true;
         enableVteIntegration = true;
       };
@@ -37,7 +37,7 @@
 
       gh = {
         enable = true;
-        enableGitCredentialHelper = true;
+        gitCredentialHelper.enable = true;
       };
     };
   }

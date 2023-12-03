@@ -14,7 +14,10 @@
       zsh.enable = true;
       htop.enable = true;
       iotop.enable = true;
-      nano.syntaxHighlight = true;
+      nano = {
+        enable = true;
+        syntaxHighlight = true;
+      };
       git = {
         enable = true;
         package = pkgs.gitFull;
