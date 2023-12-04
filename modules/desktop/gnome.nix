@@ -47,7 +47,7 @@ in {
       pkgs.gnome-tour
     ];
 
-    environment.systemPackages = with pkgs.gnome; [ghex];
+    environment.systemPackages = with pkgs; [gnome.ghex impression];
 
     # RDP connections
     networking.firewall.allowedTCPPorts = [3389];

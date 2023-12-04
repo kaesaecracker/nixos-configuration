@@ -16,7 +16,6 @@ in
         simple-scan
         wireguard-tools
         element-desktop
-        etcher
         iotop
         lsof
         wirelesstools
