@@ -63,6 +63,11 @@ in {
           };
         };
       }
+      (lib.mkIf config.my.tailscale.enable
+        {
+          home.packages = with pkgs.gnomeExtensions; [tailscale-qs];
+          dconf.settings."org/gnome/shell".enabled-extensions = ["tailscale@joaophi.github.com"];
+        })
     ];
   };
 }

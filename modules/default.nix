@@ -6,6 +6,7 @@ modulesCfg: {lib, ...}: {
       ./globalinstalls.nix
       ./server.nix
       ./sshd.nix
+      ./tailscale.nix
     ]
     ++ (map (path: (import path modulesCfg)) [
       ./hardware
