@@ -163,18 +163,6 @@ in
           ];
         };
 
-        micro = {
-          enable = true;
-          settings = {
-            colorcolumn = 120;
-            hlsearch = true;
-            savecursor = true;
-            saveundo = true;
-            scrollbar = true;
-            smartpaste = true;
-          };
-        };
-
         # checked https://rycee.gitlab.io/home-manager/options.html until "programs.notmuch"
       };
 

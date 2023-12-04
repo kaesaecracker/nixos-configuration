@@ -38,12 +38,13 @@ in {
     # remove some gnome default apps
     environment.gnome.excludePackages = with pkgs.gnome; [
       cheese # photo booth
-      #epiphany # web browser
+      epiphany # web browser
       evince # document viewer
       geary # email client
       gnome-maps
       gnome-weather
       gnome-music
+      pkgs.gnome-tour
     ];
 
     environment.systemPackages = with pkgs.gnome; [ghex];
