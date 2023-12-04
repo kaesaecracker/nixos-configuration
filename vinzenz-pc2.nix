@@ -9,6 +9,7 @@
   config = {
     my = {
       enabledUsers = ["vinzenz" "ronja"];
+      tailscale.enable = true;
       desktop = {
         enableGnome = true;
         enableGaming = true;

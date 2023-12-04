@@ -10,6 +10,7 @@
     my = {
       enabledUsers = [];
       server.enable = true;
+      tailscale.enable = true;
     };
 
     users.users.root.openssh.authorizedKeys.keys = [
