@@ -7,6 +7,7 @@
         ncdu
         tldr
         glances
+        dig
       ];
     };
 
