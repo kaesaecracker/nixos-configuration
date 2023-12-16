@@ -26,16 +26,7 @@ in
         screen
         kdiff3
         youtube-music
-
         jetbrains-toolbox
-        dotnet-sdk_8
-
-        cargo
-        rustc
-        gcc
-        rustfmt
-        clippy
-        cargo-generate
       ];
 
       programs = {

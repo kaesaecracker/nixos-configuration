@@ -7,6 +7,7 @@ modulesCfg: {lib, ...}: {
       ./server.nix
       ./sshd.nix
       ./tailscale.nix
+      ./buildtools.nix
     ]
     ++ (map (path: (import path modulesCfg)) [
       ./hardware
