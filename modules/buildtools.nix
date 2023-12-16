@@ -20,12 +20,18 @@ in {
           gnumake
           gcc
           gdb
+          llvmPackages_latest.llvm
+          llvmPackages.clangUseLLVM
         ];
       })
     (lib.mkIf cfg.dotnet {
       environment = {
         systemPackages = with pkgs; [
           dotnet-sdk_8
+
+          zlib zlib.dev
+          openssl
+          icu
         ];
         variables = {
           DOTNET_CLI_TELEMETRY_OPTOUT = "1";

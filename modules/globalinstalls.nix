@@ -14,8 +14,6 @@
         screen
 
         tldr
-
-        icu
       ];
     };
 
