@@ -12,20 +12,19 @@ in
       home.packages = with pkgs; [
         keepassxc
         insync
+
         telegram-desktop
-        simple-scan
-        wireguard-tools
         element-desktop
-        iotop
-        lsof
+
+        wireguard-tools
         wirelesstools
-        thefuck
-        alejandra
+
+        alejandra # nix formatter
+
         arduino
         uucp
-        screen
+
         kdiff3
-        youtube-music
         jetbrains-toolbox
       ];
 

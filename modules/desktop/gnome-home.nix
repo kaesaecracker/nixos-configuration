@@ -15,6 +15,7 @@ in {
             gitg
             gnome-builder
             meld
+            simple-scan
           ]
           ++ (with gnome; [
             dconf-editor

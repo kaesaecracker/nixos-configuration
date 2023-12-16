@@ -3,11 +3,19 @@
     environment = {
       pathsToLink = ["/share/zsh"];
       systemPackages = with pkgs; [
-        pciutils
         ncdu
-        tldr
         glances
+        iotop
+
+        pciutils
+        lsof
         dig
+
+        screen
+
+        tldr
+
+        icu
       ];
     };
 
