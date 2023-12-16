@@ -41,4 +41,8 @@
       };
     };
   }
+  # Templates
+  {
+    home.file."Templates/Empty file".text = "";
+  }
 ]
