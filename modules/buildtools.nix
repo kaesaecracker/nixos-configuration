@@ -23,9 +23,14 @@ in {
         ];
       })
     (lib.mkIf cfg.dotnet {
-      environment.systemPackages = with pkgs; [
-        dotnet-sdk_8
-      ];
+      environment = {
+        systemPackages = with pkgs; [
+          dotnet-sdk_8
+        ];
+        variables = {
+          DOTNET_CLI_TELEMETRY_OPTOUT = "1";
+        };
+      };
     })
     (lib.mkIf cfg.rust {
       environment.systemPackages = with pkgs; [
