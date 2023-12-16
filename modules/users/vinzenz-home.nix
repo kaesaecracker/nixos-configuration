@@ -37,7 +37,6 @@ in
         zsh = {
           initExtra = ''
             eval "$(direnv hook zsh)";
-            eval $(thefuck --alias);
           '';
 
           shellAliases = {
@@ -60,7 +59,7 @@ in
           oh-my-zsh = {
             enable = true;
             theme = "agnoster";
-            plugins = ["git" "sudo" "docker" "systemadmin" "thefuck"];
+            plugins = ["git" "sudo" "docker" "systemadmin"];
           };
         };
 
