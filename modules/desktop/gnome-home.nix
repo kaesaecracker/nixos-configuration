@@ -59,14 +59,20 @@ in {
           iconTheme.name = "Adwaita";
           cursorTheme.name = "Adwaita";
           theme = {
-            name = "adw-gtk3";
+            name = "adw-gtk3-dark";
             package = pkgs.adw-gtk3;
           };
         };
       }
       (lib.mkIf config.my.tailscale.enable
         {
-          home.packages = with pkgs.gnomeExtensions; [tailscale-qs];
+          home.packages = with pkgs;
+            [
+              trayscale
+            ]
+            ++ (with gnomeExtensions; [
+              tailscale-qs
+            ]);
           dconf.settings."org/gnome/shell".enabled-extensions = ["tailscale@joaophi.github.com"];
         })
     ];
