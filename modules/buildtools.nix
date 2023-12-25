@@ -10,6 +10,7 @@ in {
     native = lib.mkEnableOption "include native build tools";
     dotnet = lib.mkEnableOption "include dotnet build tools";
     rust = lib.mkEnableOption "include rust build tools";
+    jetbrains-remote-server = lib.mkEnableOption "setup jetbrais IDE installs so -remote-dev-server can be started";
   };
 
   config = lib.mkMerge [
@@ -46,6 +47,19 @@ in {
         clippy
         cargo-generate
       ];
+    })
+    (lib.mkIf cfg.jetbrains-remote-server {
+      environment.systemPackages = with pkgs.jetbrains; [
+        jdk # required for all of them
+        rider
+        clion
+        pycharm-professional
+      ];
+      my.allowUnfreePackages = [
+      "rider"
+      "clion"
+      "pycharm-professional"
+    ];
     })
   ];
 }

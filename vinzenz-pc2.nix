@@ -19,6 +19,7 @@
         native = true;
         dotnet = true;
         rust = true;
+        jetbrains-remote-server = true;
       };
     };
 

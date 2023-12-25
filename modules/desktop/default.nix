@@ -97,9 +97,7 @@ in {
       ];
     };
 
-    nixpkgs.config.permittedInsecurePackages = [
-      "electron-19.1.9"
-    ];
+    nixpkgs.config.permittedInsecurePackages = [];
 
     my.allowUnfreePackages = [
       "insync"
