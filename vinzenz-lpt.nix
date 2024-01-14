@@ -15,6 +15,9 @@
         enableGaming = true;
         enablePrinting = true;
       };
+      buildtools = {
+        dotnet = true;
+      };
     };
 
     users.users.vinzenz.openssh.authorizedKeys.keys = [
