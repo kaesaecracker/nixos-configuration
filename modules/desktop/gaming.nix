@@ -9,11 +9,16 @@ in {
   options.my.desktop.enableGaming = lib.mkEnableOption "gaming with wine";
 
   config = lib.mkIf isEnabled {
-    hardware.opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [mangohud];
-      extraPackages32 = with pkgs; [mangohud];
+    hardware = {
+      opengl = {
+        driSupport = true;
+        driSupport32Bit = true;
+        extraPackages = with pkgs; [mangohud];
+        extraPackages32 = with pkgs; [mangohud];
+      };
+
+      steam-hardware.enable = true;
+      xpadneo.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
@@ -34,8 +39,6 @@ in {
         ];
       })
     ];
-
-    hardware.steam-hardware.enable = true;
 
     programs = {
       xwayland.enable = true;
