@@ -29,15 +29,7 @@ in {
       mangohud
       vulkan-tools
       glxinfo
-
-      (lutris.override {
-        extraPkgs = pkgs: [
-          # List package dependencies here
-        ];
-        extraLibraries = pkgs: [
-          # List library dependencies here
-        ];
-      })
+      lutris
     ];
 
     programs = {

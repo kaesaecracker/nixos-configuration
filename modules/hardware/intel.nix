@@ -9,6 +9,7 @@ in {
   options.my.hardware.intel = {
     cpu = lib.mkEnableOption "intel cpu";
     iGpu = lib.mkEnableOption "intel integrated gpu";
+    xe = lib.mkEnableOption "intel xe gpu";
   };
 
   config = lib.mkMerge [
@@ -25,6 +26,19 @@ in {
           libvdpau-va-gl
         ];
         extraPackages32 = with pkgs.pkgsi686Linux; [
+          intel-media-driver
+          vaapiIntel
+          vaapiVdpau
+          libvdpau-va-gl
+        ];
+      };
+      environment.systemPackages = with pkgs; [
+        nvtop-intel
+      ];
+    })
+    (lib.mkIf cfg.xe {
+      hardware.opengl = {
+        extraPackages = with pkgs; [
           intel-media-driver
           vaapiIntel
           vaapiVdpau

@@ -25,6 +25,7 @@ in {
             caffeine
             appindicator
             gsconnect
+            battery-health-charging
           ]);
 
         dconf.settings = {
