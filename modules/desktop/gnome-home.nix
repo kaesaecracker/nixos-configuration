@@ -34,6 +34,7 @@ in {
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
             clock-show-seconds = true;
+            show-battery-percentage = true;
           };
           "org/gnome/tweaks" = {
             show-extensions-notice = false;
