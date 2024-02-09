@@ -12,7 +12,7 @@ in {
       name = "vinzenz";
       description = "Vinzenz Schroeter";
       home = "/home/vinzenz";
-      extraGroups = ["networkmanager" "wheel" "games" "dialout"];
+      extraGroups = ["networkmanager" "wheel" "games" "dialout" "podman"];
       shell = pkgs.zsh;
     };
   };

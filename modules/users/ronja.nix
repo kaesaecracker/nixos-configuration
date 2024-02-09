@@ -13,7 +13,7 @@ in {
       name = "ronja";
       description = "Ronja Spiegelberg";
       home = "/home/ronja";
-      extraGroups = ["networkmanager" "wheel" "games"];
+      extraGroups = ["networkmanager" "wheel" "games" "podman"];
       shell = pkgs.zsh;
     };
   };
