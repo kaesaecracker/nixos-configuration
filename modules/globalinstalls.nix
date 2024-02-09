@@ -14,6 +14,7 @@
         screen
 
         tldr
+        neofetch
       ];
     };
 

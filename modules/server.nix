@@ -14,11 +14,6 @@ in {
     networking.firewall = {
       enable = true;
       allowedTCPPortRanges = [
-        # {
-        #   # ssh
-        #   from = 22;
-        #   to = 22;
-        # }
       ];
     };
   };
