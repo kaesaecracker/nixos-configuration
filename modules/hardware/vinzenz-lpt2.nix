@@ -31,5 +31,7 @@
     };
 
     swapDevices = [];
+
+    services.thermald.enable = true;
   };
 }

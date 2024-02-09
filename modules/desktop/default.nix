@@ -31,6 +31,8 @@ in {
 
       # flatpak xdg-portal-kde crashes, otherwise this would be global
       flatpak.enable = true;
+
+      fstrim.enable = true;
     };
 
     # Enable sound with pipewire.
@@ -106,6 +108,8 @@ in {
       "rider"
       "pycharm-professional"
       "jetbrains-toolbox"
+
+      "anydesk"
     ];
 
     fonts = {

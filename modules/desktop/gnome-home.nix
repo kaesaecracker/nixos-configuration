@@ -29,19 +29,23 @@ in {
           ]);
 
         dconf.settings = {
-          "org/gnome/desktop/peripherals/keyboard" = {
-            numlock-state = true;
-          };
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
             clock-show-seconds = true;
             show-battery-percentage = true;
           };
+          "org/gnome/mutter" = {
+            edge-tiling = true;
+          };
+          "org/gnome/desktop/peripherals/keyboard" = {
+            numlock-state = true;
+          };
+          "org/gnome/desktop/peripherals/touchpad" = {
+            tap-to-click = true;
+            two-finger-scrolling-enabled = true;
+          };
           "org/gnome/tweaks" = {
             show-extensions-notice = false;
-          };
-          "ca/desrt/dconf-editor" = {
-            show-warning = false;
           };
           "org/gnome/shell" = {
             disable-user-extensions = false;
@@ -53,6 +57,9 @@ in {
               "GPaste@gnome-shell-extensions.gnome.org"
               "gsconnect@andyholmes.github.io"
             ];
+          };
+          "ca/desrt/dconf-editor" = {
+            show-warning = false;
           };
         };
 
