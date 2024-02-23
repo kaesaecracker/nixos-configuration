@@ -30,7 +30,12 @@
       };
     };
 
-    swapDevices = [];
+    swapDevices = [
+      {
+        device = "/var/lib/swapfile";
+        size = 32 * 1024;
+      }
+    ];
 
     services.thermald.enable = true;
   };
