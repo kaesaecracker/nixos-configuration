@@ -11,6 +11,7 @@ in {
     dotnet = lib.mkEnableOption "include dotnet build tools";
     rust = lib.mkEnableOption "include rust build tools";
     jetbrains-remote-server = lib.mkEnableOption "setup jetbrais IDE installs so -remote-dev-server can be started";
+    objective-c = lib.mkEnableOption "Objective-C with GNUStep";
   };
 
   config = lib.mkMerge [
@@ -30,7 +31,8 @@ in {
         systemPackages = with pkgs; [
           dotnet-sdk_8
 
-          zlib zlib.dev
+          zlib
+          zlib.dev
           openssl
           icu
         ];
@@ -56,10 +58,29 @@ in {
         pycharm-professional
       ];
       my.allowUnfreePackages = [
-      "rider"
-      "clion"
-      "pycharm-professional"
-    ];
+        "rider"
+        "clion"
+        "pycharm-professional"
+      ];
+    })
+    (lib.mkIf cfg.objective-c {
+      environment.systemPackages =
+        (with pkgs.gnustep; [
+          gui
+          make
+          gorm
+          base
+          back
+          system_preferences
+          projectcenter
+          libobjc
+          gworkspace
+        ])
+        ++ (with pkgs; [
+          clang-tools
+          clang
+          gnumake
+        ]);
     })
   ];
 }
