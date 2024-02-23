@@ -17,7 +17,7 @@ in {
       boot.kernelModules = ["kvm-intel"];
       hardware.cpu.intel.updateMicrocode = true;
     })
-    (lib.mkIf cfg.iGpu {
+    (lib.mkIf (cfg.iGpu || cfg.xe) {
       hardware.opengl = {
         extraPackages = with pkgs; [
           intel-media-driver
@@ -26,19 +26,6 @@ in {
           libvdpau-va-gl
         ];
         extraPackages32 = with pkgs.pkgsi686Linux; [
-          intel-media-driver
-          vaapiIntel
-          vaapiVdpau
-          libvdpau-va-gl
-        ];
-      };
-      environment.systemPackages = with pkgs; [
-        nvtop-intel
-      ];
-    })
-    (lib.mkIf cfg.xe {
-      hardware.opengl = {
-        extraPackages = with pkgs; [
           intel-media-driver
           vaapiIntel
           vaapiVdpau
