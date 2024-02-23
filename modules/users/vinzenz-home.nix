@@ -172,9 +172,4 @@ in
         };
       };
     }
-    (lib.mkIf isGnomeEnabled {
-      home.packages = with pkgs; [
-        fractal
-      ];
-    })
   ]

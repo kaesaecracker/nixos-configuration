@@ -36,6 +36,7 @@ in {
           };
           "org/gnome/mutter" = {
             edge-tiling = true;
+            dynamic-workspaces = true;
           };
           "org/gnome/desktop/peripherals/keyboard" = {
             numlock-state = true;
@@ -60,6 +61,12 @@ in {
           };
           "ca/desrt/dconf-editor" = {
             show-warning = false;
+          };
+          "org/gnome/desktop/wm/keybindings" = {
+            switch-windows = ["<Alt>Tab"];
+            switch-windows-backward = ["<Shift><Alt>Tab"];
+            switch-applications = ["<Super>Tab"];
+            switch-applications-backward = ["<Shift><Super>Tab"];
           };
         };
 
