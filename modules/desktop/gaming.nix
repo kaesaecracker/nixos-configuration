@@ -41,12 +41,9 @@ in {
       };
     };
 
-    networking.firewall.allowedUDPPortRanges = [
-      {
-        # Factorio
-        from = 34197;
-        to = 34197;
-      }
+    networking.firewall.allowedUDPPorts = [
+      # Factorio
+      34197
     ];
 
     my.allowUnfreePackages = [

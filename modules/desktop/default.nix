@@ -59,7 +59,6 @@ in {
       networkmanager.enable = true;
 
       firewall = {
-        enable = true;
         allowedTCPPortRanges = [
           {
             # KDE Connect / gsconnect

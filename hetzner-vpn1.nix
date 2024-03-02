@@ -9,7 +9,6 @@
   config = {
     my = {
       enabledUsers = [];
-      server.enable = true;
       tailscale.enable = true;
     };
 
@@ -64,15 +63,6 @@
       };
     };
 
-    networking.firewall = {
-      checkReversePath = "loose";
-      allowedTCPPortRanges = [
-        {
-          from = 5000;
-          to = 5005;
-        }
-      ];
-      allowedTCPPorts = [80 443];
-    };
+    networking.firewall.allowedTCPPorts = [80 443];
   };
 }

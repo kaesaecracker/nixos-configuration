@@ -4,7 +4,6 @@ modulesCfg: {lib, ...}: {
       ./i18n.nix
       ./nixpkgs.nix
       ./globalinstalls.nix
-      ./server.nix
       ./sshd.nix
       ./tailscale.nix
       ./buildtools.nix
@@ -17,5 +16,10 @@ modulesCfg: {lib, ...}: {
 
   config = {
     my.modulesCfg = modulesCfg;
+
+    networking.firewall = {
+      enable = true;
+      checkReversePath = "loose";
+    };
   };
 }
