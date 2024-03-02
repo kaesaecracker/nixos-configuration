@@ -1,4 +1,24 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  servicesDomain = "services.zerforschen.plus";
+  mkServiceConfig = port: {
+    addSSL = true;
+    enableACME = true;
+    locations."/" = {
+      extraConfig = ''
+        # bind to tailscale ip
+        proxy_bind 100.88.118.60;
+        # pam auth
+        auth_pam  "Password Required";
+        auth_pam_service_name "nginx";
+      '';
+      proxyPass = "http://vinzenz-lpt2.donkey-pentatonic.ts.net:${toString port}/";
+    };
+  };
+in {
   imports = [
     (import ./modules {
       hostName = "hetzner-vpn1";
@@ -39,36 +59,12 @@
       recommendedOptimisation = true;
 
       virtualHosts = {
-        "vscode.services.zerforschen.plus" = {
-          addSSL = true;
-          enableACME = true;
-          locations."/" = {
-            extraConfig = ''
-              # bind to tailscale ip
-              proxy_bind 100.88.118.60;
-              auth_pam  "Password Required";
-              auth_pam_service_name "nginx";
-            '';
-            proxyPass = "http://vinzenz-lpt2:8542/"; #tailscale magic dns
-            proxyWebsockets = true;
-          };
-        };
-
-        "preon-app.services.zerforschen.plus" = {
-          enableACME = true;
-          addSSL = true;
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:3000/";
-          };
-        };
-
-        "preon-api.services.zerforschen.plus" = {
-          enableACME = true;
-          addSSL = true;
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:3002/";
-          };
-        };
+        "preon-app.${servicesDomain}" = mkServiceConfig 8541;
+        "preon-api.${servicesDomain}" = mkServiceConfig 8542;
+        "vscode.${servicesDomain}" = lib.mkMerge [
+          (mkServiceConfig 8543)
+          {locations."/" .proxyWebsockets = true;}
+        ];
       };
     };
 
