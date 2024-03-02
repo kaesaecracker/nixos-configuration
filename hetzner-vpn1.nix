@@ -4,7 +4,7 @@
   ...
 }: let
   servicesDomain = "services.zerforschen.plus";
-  mkServiceConfig = port: {
+  mkServiceConfig = host: port: {
     addSSL = true;
     enableACME = true;
     locations."/" = {
@@ -15,9 +15,10 @@
         auth_pam  "Password Required";
         auth_pam_service_name "nginx";
       '';
-      proxyPass = "http://vinzenz-lpt2.donkey-pentatonic.ts.net:${toString port}/";
+      proxyPass = "http://${host}:${toString port}/";
     };
   };
+  lpt2 = "vinzenz-lpt2.donkey-pentatonic.ts.net";
 in {
   imports = [
     (import ./modules {
@@ -59,10 +60,10 @@ in {
       recommendedOptimisation = true;
 
       virtualHosts = {
-        "preon-app.${servicesDomain}" = mkServiceConfig 8541;
-        "preon-api.${servicesDomain}" = mkServiceConfig 8542;
+        "preon-app.${servicesDomain}" = mkServiceConfig lpt2 8541;
+        "preon-api.${servicesDomain}" = mkServiceConfig lpt2 8542;
         "vscode.${servicesDomain}" = lib.mkMerge [
-          (mkServiceConfig 8543)
+          (mkServiceConfig lpt2 8543)
           {locations."/" .proxyWebsockets = true;}
         ];
       };
