@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     (import ./modules {
       hostName = "hetzner-vpn1";
@@ -8,7 +8,7 @@
 
   config = {
     my = {
-      enabledUsers = [];
+      enabledUsers = ["ronja" "vinzenz"];
       tailscale.enable = true;
     };
 
