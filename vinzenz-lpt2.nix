@@ -48,6 +48,7 @@
       telemetryLevel = "off";
       port = 8542;
       host = "100.103.93.126"; # tailscale
+      withoutConnectionToken = true;
       extraPackages = with pkgs; [nodejs];
     };
 
