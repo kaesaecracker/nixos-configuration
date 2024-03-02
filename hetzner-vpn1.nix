@@ -37,10 +37,9 @@
           enableACME = true;
           locations."/" = {
             extraConfig = ''
-              #proxy_set_header Host vinzenz-lpt2.donkey-pentatonic.ts.net;
-              proxy_ssl_verify = false;
+              proxy_bind 100.88.118.60;
             '';
-            proxyPass = "https://vinzenz-lpt2.donkey-pentatonic.ts.net:8542/";
+            proxyPass = "http://vinzenz-lpt2:8542/";
             proxyWebsockets = true;
           };
         };
