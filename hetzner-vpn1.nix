@@ -24,8 +24,15 @@
       defaults.email = "acme@zerforschen.plus";
     };
 
+    security.pam.services.nginx.setEnvironment = false;
+    systemd.services.nginx.serviceConfig = {
+      SupplementaryGroups = ["shadow"];
+    };
+
     services.nginx = {
       enable = true;
+      additionalModules = [pkgs.nginxModules.pam];
+
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       recommendedGzipSettings = true;
@@ -37,9 +44,12 @@
           enableACME = true;
           locations."/" = {
             extraConfig = ''
+              # bind to tailscale ip
               proxy_bind 100.88.118.60;
+              auth_pam  "Password Required";
+              auth_pam_service_name "nginx";
             '';
-            proxyPass = "http://vinzenz-lpt2:8542/";
+            proxyPass = "http://vinzenz-lpt2:8542/"; #tailscale magic dns
             proxyWebsockets = true;
           };
         };
