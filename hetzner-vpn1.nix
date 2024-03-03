@@ -60,12 +60,12 @@ in {
       recommendedOptimisation = true;
 
       virtualHosts = {
-        "preon-app.${servicesDomain}" = mkServiceConfig lpt2 8541;
-        "preon-api.${servicesDomain}" = mkServiceConfig lpt2 8542;
         "vscode.${servicesDomain}" = lib.mkMerge [
-          (mkServiceConfig lpt2 8543)
+          (mkServiceConfig lpt2 8542)
           {locations."/" .proxyWebsockets = true;}
         ];
+        "preon-app.${servicesDomain}" = mkServiceConfig lpt2 8543;
+        "preon-api.${servicesDomain}" = mkServiceConfig lpt2 8544;
       };
     };
 

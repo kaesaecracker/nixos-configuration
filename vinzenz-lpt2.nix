@@ -54,7 +54,7 @@
 
     networking.firewall = {
       checkReversePath = "loose";
-      allowedTCPPorts = [8542];
+      allowedTCPPorts = [8542 8543 8544];
     };
   };
 }
