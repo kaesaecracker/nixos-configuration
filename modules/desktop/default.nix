@@ -53,6 +53,25 @@ in {
         enable = true;
         languagePacks = ["en-US" "de"];
       };
+      nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+          stdenv.cc.cc
+          zlib
+          zstd
+          curl
+          openssl
+          attr
+          libssh
+          bzip2
+          libxml2
+          acl
+          libsodium
+          util-linux
+          xz
+          systemd
+        ];
+      };
     };
 
     networking = {
@@ -86,17 +105,15 @@ in {
       '';
     };
 
-    environment = {
-      systemPackages = with pkgs; [
-        lm_sensors
+    environment.systemPackages = with pkgs; [
+      lm_sensors
 
-        # office
-        libreoffice-qt
-        hunspell
-        hunspellDicts.de-de
-        hunspellDicts.en-us-large
-      ];
-    };
+      # office
+      libreoffice-qt
+      hunspell
+      hunspellDicts.de-de
+      hunspellDicts.en-us-large
+    ];
 
     nixpkgs.config.permittedInsecurePackages = [];
 

@@ -18,6 +18,7 @@
       buildtools = {
         dotnet = true;
         #objective-c = true;
+        js = true;
       };
 
       allowUnfreePackages = [

@@ -3,8 +3,8 @@
   lib,
   ...
 }: let
-  unstable-commit-sha = "e92b6015881907e698782c77641aa49298330223";
-  ultrastable-commit-sha = "5de0b32be6e85dc1a9404c75131316e4ffbc634c";
+  unstable-commit-sha = "9df3e30ce24fd28c7b3e2de0d986769db5d6225d";
+  ultrastable-commit-sha = "2be119add7b37dc535da2dd4cba68e2cf8d1517e";
 in {
   options.my.allowUnfreePackages = lib.mkOption {
     type = lib.types.listOf lib.types.str;
