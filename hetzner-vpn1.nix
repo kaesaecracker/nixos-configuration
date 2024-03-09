@@ -13,8 +13,10 @@
         # bind to tailscale ip
         proxy_bind 100.88.118.60;
         # pam auth
-        auth_pam  "Password Required";
-        auth_pam_service_name "nginx";
+        limit_except OPTIONS {
+          auth_pam  "Password Required";
+          auth_pam_service_name "nginx";
+        }
       '';
     };
   };
