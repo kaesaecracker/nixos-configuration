@@ -26,16 +26,11 @@ in {
           gnumake
           gcc
           gdb
-          llvmPackages.llvm
-          llvmPackages.clangUseLLVM
         ];
       })
     (lib.mkIf cfg.dotnet {
       environment = {
         systemPackages = with pkgs; [
-          unstable.jetbrains.jdk
-          unstable.jetbrains.rider
-
           dotnetPackage
 
           zlib
@@ -63,6 +58,14 @@ in {
         icu.dev
         dotnetPackage
       ];
+    })
+    (lib.mkIf (cfg.dotnet || config.my.desktop.enable) {
+      environment = {
+        systemPackages = with pkgs; [
+          unstable.jetbrains.jdk
+          unstable.jetbrains.rider
+        ];
+      };
     })
     (lib.mkIf cfg.rust {
       environment.systemPackages = with pkgs; [
