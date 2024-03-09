@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     (import ./modules {
       hostName = "vinzenz-pc2";
@@ -28,5 +28,18 @@
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCJUpbpB3KEKVoKWsKoar9J4RNah8gmQoSH6jQEw5dY vinzenz-pixel-JuiceSSH''
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPDNpLDmctyqGpow/ElQvdhY4BLBPS/sigDJ1QEcC7wC vinzenz-lpt2-roaming''
     ];
+
+    services.openvscode-server = {
+      enable = true;
+      telemetryLevel = "off";
+      port = 8542;
+      host = "100.125.93.127"; # tailscale
+      withoutConnectionToken = true;
+      extraPackages = with pkgs; [nodejs gitFull gh];
+    };
+
+    networking.firewall = {
+      allowedTCPPorts = [8542 8543 8544];
+    };
   };
 }

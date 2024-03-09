@@ -42,19 +42,5 @@
     users.users.ronja.openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALWKm+d6KL6Vl3grPOcGouiNTkvdhXuWJmcrdEBY2nw ssh-host-key''
     ];
-
-    services.openvscode-server = {
-      enable = true;
-      telemetryLevel = "off";
-      port = 8542;
-      host = "100.103.93.126"; # tailscale
-      withoutConnectionToken = true;
-      extraPackages = with pkgs; [nodejs];
-    };
-
-    networking.firewall = {
-      checkReversePath = "loose";
-      allowedTCPPorts = [8542 8543 8544];
-    };
   };
 }
