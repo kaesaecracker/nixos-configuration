@@ -68,7 +68,7 @@ in {
           {locations."/" .proxyWebsockets = true;}
         ];
         "preon-app.${servicesDomain}" = mkServiceConfig pc2 8543;
-        "preon-api.${servicesDomain}" = mkServiceConfig lpt2 8544;
+        "preon-api.${servicesDomain}" = mkServiceConfig pc2 8544;
       };
     };
 
