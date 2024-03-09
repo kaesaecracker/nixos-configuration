@@ -8,6 +8,7 @@
     addSSL = true;
     enableACME = true;
     locations."/" = {
+      proxyPass = "http://${host}:${toString port}/";
       extraConfig = ''
         # bind to tailscale ip
         proxy_bind 100.88.118.60;
@@ -15,10 +16,10 @@
         auth_pam  "Password Required";
         auth_pam_service_name "nginx";
       '';
-      proxyPass = "http://${host}:${toString port}/";
     };
   };
   lpt2 = "vinzenz-lpt2.donkey-pentatonic.ts.net";
+  pc2 = "vinzenz-pc2.donkey-pentatonic.ts.net";
 in {
   imports = [
     (import ./modules {
@@ -61,10 +62,10 @@ in {
 
       virtualHosts = {
         "vscode.${servicesDomain}" = lib.mkMerge [
-          (mkServiceConfig lpt2 8542)
+          (mkServiceConfig pc2 8542)
           {locations."/" .proxyWebsockets = true;}
         ];
-        "preon-app.${servicesDomain}" = mkServiceConfig lpt2 8543;
+        "preon-app.${servicesDomain}" = mkServiceConfig pc2 8543;
         "preon-api.${servicesDomain}" = mkServiceConfig lpt2 8544;
       };
     };
