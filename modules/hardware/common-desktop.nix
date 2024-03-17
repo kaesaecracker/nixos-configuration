@@ -16,13 +16,16 @@ in {
       initrd.supportedFilesystems = ["btrfs"];
       consoleLogLevel = 0;
       initrd.verbose = false;
+      plymouth.enable = true;
       loader = {
-        systemd-boot.enable = true;
         timeout = 3;
         efi.canTouchEfiVariables = true;
+        systemd-boot = {
+          enable = true;
+          editor = false; # do not allow changing kernel parameters
+          consoleMode = "max";
+        };
       };
-
-      plymouth.enable = true;
     };
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
