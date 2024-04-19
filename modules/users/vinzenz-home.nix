@@ -32,7 +32,6 @@ in
         home-manager.enable = true;
 
         fzf.enable = true;
-        mangohud.enable = true;
 
         zsh = {
           initExtra = ''
@@ -97,6 +96,7 @@ in
             mhutchie.git-graph
             rust-lang.rust-analyzer
             bungcip.better-toml
+            llvm-vs-code-extensions.vscode-clangd
           ];
           userSettings = {
             "git.autofetch" = true;

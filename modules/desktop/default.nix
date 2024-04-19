@@ -113,6 +113,8 @@ in {
       hunspell
       hunspellDicts.de-de
       hunspellDicts.en-us-large
+
+      gnumake
     ];
 
     nixpkgs.config.permittedInsecurePackages = [];

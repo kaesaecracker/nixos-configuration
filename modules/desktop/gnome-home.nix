@@ -16,6 +16,7 @@ in {
             gnome-builder
             meld
             simple-scan
+            pinta
           ]
           ++ (with gnome; [
             dconf-editor
