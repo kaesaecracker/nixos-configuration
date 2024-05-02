@@ -36,10 +36,13 @@ in {
     # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
     # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
-    hardware.enableRedistributableFirmware = true;
+    hardware = {
+      enableRedistributableFirmware = true;
+      bluetooth.enable = true;
+    };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-    hardware.bluetooth.enable = true;
+    services.fwupd.enable = true;
   };
 }
