@@ -39,6 +39,7 @@ in {
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
       };
+      gamemode.enable = true;
     };
 
     networking.firewall.allowedUDPPorts = [
