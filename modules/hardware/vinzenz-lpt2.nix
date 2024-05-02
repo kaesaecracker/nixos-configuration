@@ -38,5 +38,6 @@
     ];
 
     services.thermald.enable = true;
+    services.hardware.bolt.enable = true; # thunderbolt security
   };
 }
