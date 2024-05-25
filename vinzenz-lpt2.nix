@@ -17,8 +17,9 @@
       };
       buildtools = {
         dotnet = true;
-        #objective-c = true;
         js = true;
+        rust = true;
+        native = true;
       };
 
       allowUnfreePackages = [

@@ -5,7 +5,8 @@
   ...
 }: let
   cfg = config.my.buildtools;
-  dotnetPackage = with pkgs; (dotnetCorePackages.combinePackages [
+  isDesktop = config.my.desktop.enable;
+  dotnetPackage = with pkgs.unstable; (dotnetCorePackages.combinePackages [
     dotnet-sdk_8
   ]);
 in {
@@ -16,18 +17,20 @@ in {
     jetbrains-remote-server = lib.mkEnableOption "setup jetbrais IDE installs so -remote-dev-server can be started";
     objective-c = lib.mkEnableOption "Objective-C with GNUStep";
     js = lib.mkEnableOption "node stuff";
+    android = lib.mkEnableOption "android development";
+    python = lib.mkEnableOption "generic python 3";
   };
 
   config = lib.mkMerge [
-    (lib.mkIf cfg.native
-      {
-        environment.systemPackages = with pkgs; [
-          cmake
-          gnumake
-          gcc
-          gdb
-        ];
-      })
+    (lib.mkIf cfg.native {
+      environment.systemPackages = with pkgs; [
+        cmake
+        gnumake
+        gcc
+        gdb
+      ];
+    })
+
     (lib.mkIf cfg.dotnet {
       environment = {
         systemPackages = with pkgs; [
@@ -59,37 +62,28 @@ in {
         dotnetPackage
       ];
     })
-    (lib.mkIf (cfg.dotnet || config.my.desktop.enable) {
-      environment = {
-        systemPackages = with pkgs; [
-          unstable.jetbrains.jdk
-          unstable.jetbrains.rider
-        ];
-      };
+
+    (lib.mkIf cfg.js {
+      environment.systemPackages = with pkgs; [
+        nodejs
+      ];
     })
+
     (lib.mkIf cfg.rust {
       environment.systemPackages = with pkgs; [
-        cargo
-        rustc
-        rustfmt
-        clippy
-        cargo-generate
+        rustup
+        musl
       ];
     })
+
     (lib.mkIf cfg.jetbrains-remote-server {
-      environment.systemPackages = with pkgs.jetbrains; [
-        jdk # required for all of them
-        rider
-        clion
-        pycharm-professional
-      ];
-      my.allowUnfreePackages = [
-        "rider"
-        "clion"
-        "pycharm-professional"
-      ];
+      my.buildtools.dotnet = true;
+      my.buildtools.native = true;
+      my.buildtools.python = true;
     })
+
     (lib.mkIf cfg.objective-c {
+      my.buildtools.native = true;
       environment.systemPackages =
         (with pkgs.gnustep; [
           gui
@@ -105,13 +99,18 @@ in {
         ++ (with pkgs; [
           clang-tools
           clang
-          gnumake
         ]);
     })
-    (lib.mkIf cfg.js {
+
+    (lib.mkIf cfg.android {
       environment.systemPackages = with pkgs; [
-        nodejs
+        android-tools
+        android-udev-rules
       ];
+    })
+
+    (lib.mkIf cfg.python {
+      environment.systemPackages = with pkgs; [python3 python3Packages.pip];
     })
   ];
 }
