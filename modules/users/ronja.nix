@@ -11,7 +11,7 @@ in {
     users.users.ronja = {
       isNormalUser = true;
       name = "ronja";
-      description = "Ronja Spiegelberg";
+      description = "Ronja";
       home = "/home/ronja";
       extraGroups = ["networkmanager" "wheel" "games" "podman"];
       shell = pkgs.zsh;

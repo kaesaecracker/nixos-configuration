@@ -27,6 +27,7 @@ in {
             appindicator
             gsconnect
             battery-health-charging
+            quick-settings-tweaker
           ]);
 
         dconf.settings = {

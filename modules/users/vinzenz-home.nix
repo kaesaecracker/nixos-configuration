@@ -36,6 +36,7 @@ in
         zsh = {
           initExtra = ''
             eval "$(direnv hook zsh)";
+            export PATH=$PATH:/home/vinzenz/.cargo/bin
           '';
 
           shellAliases = {
@@ -87,16 +88,17 @@ in
             bbenoist.nix
             ms-python.python
             kamadorueda.alejandra
-            #samuelcolvin.jinjahtml
             editorconfig.editorconfig
-            #KnisterPeter.vscode-github
             yzhang.markdown-all-in-one
             redhat.vscode-yaml
             pkief.material-icon-theme
             mhutchie.git-graph
             rust-lang.rust-analyzer
-            bungcip.better-toml
+            tamasfe.even-better-toml
             llvm-vs-code-extensions.vscode-clangd
+            mkhl.direnv
+            vadimcn.vscode-lldb
+            ms-dotnettools.csharp
           ];
           userSettings = {
             "git.autofetch" = true;
@@ -218,6 +220,26 @@ in
             indent_size = 2;
           };
         };
+      };
+
+      home.file."policy.json" = {
+        target = ".config/containers/policy.json";
+        text = ''
+          {
+              "default": [
+                  {
+                      "type": "insecureAcceptAnything"
+                  }
+              ],
+              "transports":
+                  {
+                      "docker-daemon":
+                          {
+                              "": [{"type":"insecureAcceptAnything"}]
+                          }
+                  }
+          }
+        '';
       };
     }
   ]

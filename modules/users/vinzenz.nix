@@ -10,10 +10,11 @@ in {
     users.users.vinzenz = {
       isNormalUser = true;
       name = "vinzenz";
-      description = "Vinzenz Schroeter";
+      description = "Vinzenz";
       home = "/home/vinzenz";
-      extraGroups = ["networkmanager" "wheel" "games" "dialout" "podman"];
+      extraGroups = ["networkmanager" "wheel" "games" "dialout" "podman" "nginx"];
       shell = pkgs.zsh;
+      autoSubUidGidRange = true;
     };
   };
 }
