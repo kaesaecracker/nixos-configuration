@@ -29,10 +29,14 @@
       ];
     };
 
-    environment.systemPackages = with pkgs; [anydesk];
-
-    virtualisation.podman = {
+    virtualisation = {
+      containers.enable = true;
+      podman = {
       enable = true;
+        dockerCompat = true;
+        dockerSocket.enable = true;
+        autoPrune.enable = true;
+      };
     };
 
     users.users.vinzenz.openssh.authorizedKeys.keys = [
