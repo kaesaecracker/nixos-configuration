@@ -73,6 +73,10 @@ in {
           systemd
         ];
       };
+appimage = {
+          enable = true;
+          binfmt = true;
+      };
     };
 
     networking = {
