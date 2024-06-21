@@ -120,6 +120,10 @@ in
             "rust-analyzer.checkOnSave.command" = "clippy";
             "extensions.autoUpdate" = false;
             "extensions.autoCheckUpdates" = false;
+            "\[makefile\]" = {
+              "editor.insertSpaces" = false;
+              "editor.detectIndentation" = false;
+            };
           };
         };
 
