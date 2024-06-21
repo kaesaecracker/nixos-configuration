@@ -33,7 +33,7 @@ in {
         ];
       };
       environment.systemPackages = with pkgs; [
-        nvtop-intel
+        nvtopPackages.intel
       ];
     })
   ];

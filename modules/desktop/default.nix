@@ -26,8 +26,9 @@ in {
       # Enable the X11 windowing system / wayland depending on DE
       xserver = {
         enable = true;
-        libinput.enable = true;
-      };
+              };
+
+      libinput.enable = true;
 
       # flatpak xdg-portal-kde crashes, otherwise this would be global
       flatpak.enable = true;

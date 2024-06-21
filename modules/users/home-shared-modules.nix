@@ -22,7 +22,7 @@
       zsh = {
         enable = true;
         syntaxHighlighting.enable = true;
-        enableAutosuggestions = true;
+        autosuggestion.enable = true;
         enableVteIntegration = true;
       };
     };

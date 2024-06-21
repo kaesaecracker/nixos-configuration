@@ -16,10 +16,10 @@
       };
     };
 
-    services.xserver = {
+    services.xserver.xkb = {
       # Configure keymap in X11
       layout = "de";
-      xkbVariant = "";
+      variant = "";
     };
 
     # Configure console keymap

@@ -17,9 +17,10 @@ in {
         desktopManager.gnome.enable = true;
         displayManager = {
           gdm.enable = true;
-          defaultSession = "gnome";
-        };
+                  };
       };
+
+      displayManager.defaultSession = "gnome";
 
       gnome = {
         tracker-miners.enable = false;
