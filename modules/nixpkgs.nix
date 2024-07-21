@@ -15,7 +15,8 @@ in {
   imports = [
     # this switches the nix implementation to lix everywhere, but means recompiling lix every build.
     # https://lix.systems/add-to-config/
-    (let
+    (
+      let
         module = fetchTarball {
           name = "source";
           url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
@@ -26,7 +27,8 @@ in {
           url = "https://git.lix.systems/lix-project/lix/archive/2.90.0.tar.gz";
           sha256 = "sha256-f8k+BezKdJfmE+k7zgBJiohtS3VkkriycdXYsKOm3sc=";
         };
-        in import "${module}/module.nix" { lix = lixSrc; }
+      in
+        import "${module}/module.nix" {lix = lixSrc;}
     )
   ];
 
@@ -51,6 +53,11 @@ in {
         substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org/"];
         trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
       };
+      gc = {
+        automatic = true;
+        dates = "daily";
+        options = "--delete-older-than 7d";
+      };
     };
 
     system = {
@@ -60,12 +67,6 @@ in {
         enable = true;
         dates = "weekly";
       };
-    };
-
-    nix.gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 7d";
     };
 
     documentation = {
