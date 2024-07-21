@@ -13,6 +13,7 @@ in {
       ./kde.nix
       ./gaming.nix
       ./printing.nix
+      ./latex.nix
     ]
     ++ lib.optionals isHomeManager [
       ./gnome-home.nix

@@ -14,12 +14,7 @@
         enableGnome = true;
         enableGaming = true;
         enablePrinting = true;
-      };
-      buildtools = {
-        dotnet = true;
-        js = true;
-        rust = true;
-        native = true;
+        enableLaTeX = true;
       };
 
       allowUnfreePackages = [
@@ -32,7 +27,7 @@
     virtualisation = {
       containers.enable = true;
       podman = {
-      enable = true;
+        enable = true;
         dockerCompat = true;
         dockerSocket.enable = true;
         autoPrune.enable = true;
