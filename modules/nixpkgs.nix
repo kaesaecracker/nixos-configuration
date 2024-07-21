@@ -12,6 +12,24 @@ in {
     example = ["steam"];
   };
 
+  imports = [
+    # this switches the nix implementation to lix everywhere, but means recompiling lix every build.
+    # https://lix.systems/add-to-config/
+    (let
+        module = fetchTarball {
+          name = "source";
+          url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+          sha256 = "sha256-yEO2cGNgzm9x/XxiDQI+WckSWnZX63R8aJLBRSXtYNE=";
+        };
+        lixSrc = fetchTarball {
+          name = "source";
+          url = "https://git.lix.systems/lix-project/lix/archive/2.90.0.tar.gz";
+          sha256 = "sha256-f8k+BezKdJfmE+k7zgBJiohtS3VkkriycdXYsKOm3sc=";
+        };
+        in import "${module}/module.nix" { lix = lixSrc; }
+    )
+  ];
+
   config = {
     nixpkgs.config = {
       # make nixos-unstable availiable as 'pkgs.unstable'
