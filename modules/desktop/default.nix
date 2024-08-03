@@ -27,7 +27,7 @@ in {
       # Enable the X11 windowing system / wayland depending on DE
       xserver = {
         enable = true;
-              };
+      };
 
       libinput.enable = true;
 
@@ -74,9 +74,9 @@ in {
           systemd
         ];
       };
-appimage = {
-          enable = true;
-          binfmt = true;
+      appimage = {
+        enable = true;
+        binfmt = true;
       };
     };
 
@@ -142,6 +142,11 @@ appimage = {
       packages = with pkgs; [
         (nerdfonts.override {fonts = ["FiraCode"];})
       ];
+    };
+
+    hardware.logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
     };
   };
 }

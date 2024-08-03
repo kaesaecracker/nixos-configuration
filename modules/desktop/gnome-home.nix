@@ -28,6 +28,7 @@ in {
             gsconnect
             battery-health-charging
             quick-settings-tweaker
+            solaar-extension
           ]);
 
         dconf.settings = {
@@ -59,6 +60,7 @@ in {
               "caffeine@patapon.info"
               "GPaste@gnome-shell-extensions.gnome.org"
               "gsconnect@andyholmes.github.io"
+              "solaar-extension@sidevesh"
             ];
           };
           "ca/desrt/dconf-editor" = {
