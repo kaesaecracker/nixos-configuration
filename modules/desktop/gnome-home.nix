@@ -21,6 +21,9 @@ in {
           ++ (with gnome; [
             dconf-editor
             gpaste
+
+            # graphical installer for flatpak apps
+            gnome-software
           ])
           ++ (with gnomeExtensions; [
             caffeine
