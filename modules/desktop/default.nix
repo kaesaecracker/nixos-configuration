@@ -35,6 +35,11 @@ in {
       flatpak.enable = true;
 
       fstrim.enable = true;
+
+      earlyoom = {
+        enable = true;
+        freeMemThreshold = 5;
+      };
     };
 
     # Enable sound with pipewire.
