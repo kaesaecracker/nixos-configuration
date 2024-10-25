@@ -3,10 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
-  isUserEnabled = builtins.elem "vinzenz" config.my.enabledUsers;
-in {
-  config = lib.mkIf isUserEnabled {
+}: {
+  config = {
     users.users.vinzenz = {
       isNormalUser = true;
       name = "vinzenz";

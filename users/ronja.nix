@@ -1,12 +1,5 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  isUserEnabled = builtins.elem "ronja" config.my.enabledUsers;
-in {
-  config = lib.mkIf isUserEnabled {
+{pkgs, ...}: {
+  config = {
     # Define user account
     users.users.ronja = {
       isNormalUser = true;

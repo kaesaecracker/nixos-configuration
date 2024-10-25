@@ -3,14 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
-  isEnabled = config.my.desktop.enableGnome;
-in {
-  options.my.desktop.enableGnome = lib.mkEnableOption "gnome desktop";
-
-  config = lib.mkIf isEnabled {
-    my.desktop.enable = true;
-
+}: {
+  config = {
     services = {
       xserver = {
         # Enable the GNOME Desktop Environment.

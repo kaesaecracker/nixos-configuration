@@ -1,28 +1,10 @@
-modulesCfg: {
+{
   config,
   pkgs,
   lib,
   ...
-}: let
-  isEnabled = config.my.desktop.enable;
-  isHomeManager = modulesCfg.enableHomeManager;
-in {
-  imports =
-    [
-      ./gnome.nix
-      ./kde.nix
-      ./gaming.nix
-      ./printing.nix
-      ./latex.nix
-    ]
-    ++ lib.optionals isHomeManager [
-      ./gnome-home.nix
-      ./kde-home.nix
-    ];
-
-  options.my.desktop.enable = lib.mkEnableOption "desktop";
-
-  config = lib.mkIf isEnabled {
+}: {
+  config = {
     services = {
       # Enable the X11 windowing system / wayland depending on DE
       xserver = {

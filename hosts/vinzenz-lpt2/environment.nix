@@ -1,28 +1,17 @@
 {pkgs, ...}: {
   imports = [
-    (import ./modules {
-      hostName = "vinzenz-lpt2";
-      enableHomeManager = true;
-    })
+    ../../home
+    ../../home/gnome-home.nix
+    ../../users/vinzenz.nix
+    ../desktop-environment.nix
+    ../gnome.nix
+    ../gaming.nix
+    ../printing.nix
+    ../latex.nix
   ];
 
   config = {
-    my = {
-      enabledUsers = ["vinzenz" "ronja"];
-      tailscale.enable = true;
-      desktop = {
-        enableGnome = true;
-        enableGaming = true;
-        enablePrinting = true;
-        enableLaTeX = true;
-      };
-
-      allowUnfreePackages = [
-        "rider"
-        "clion"
-        "pycharm-professional"
-      ];
-    };
+    home-manager.users.vinzenz = import ../../home/vinzenz-home.nix;
 
     virtualisation = {
       containers.enable = true;
@@ -38,11 +27,11 @@
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCJUpbpB3KEKVoKWsKoar9J4RNah8gmQoSH6jQEw5dY vinzenz-pixel-JuiceSSH''
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1CRn4yYTL4XUdCebE8Z4ZeuMujBjorTdWifg911EOv vinzenz-pc2 home roaming''
     ];
-
-    users.users.ronja.openssh.authorizedKeys.keys = [
-      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALWKm+d6KL6Vl3grPOcGouiNTkvdhXuWJmcrdEBY2nw ronja-ssh-host-key''
-    ];
-
+    #
+    #users.users.ronja.openssh.authorizedKeys.keys = [
+    #  ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALWKm+d6KL6Vl3grPOcGouiNTkvdhXuWJmcrdEBY2nw ronja-ssh-host-key''
+    #];
+    #
     services.nginx = {
       enable = true;
 
@@ -67,6 +56,5 @@
       allowedTCPPorts = [80 8001 3000];
       allowedUDPPorts = [2342];
     };
-
   };
 }

@@ -3,12 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
-  isEnabled = config.my.desktop.enableGaming;
-in {
-  options.my.desktop.enableGaming = lib.mkEnableOption "gaming with wine";
-
-  config = lib.mkIf isEnabled {
+}: {
+  config = {
     hardware = {
       opengl = {
         driSupport = true;

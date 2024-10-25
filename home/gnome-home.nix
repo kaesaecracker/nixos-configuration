@@ -3,10 +3,8 @@
   config,
   pkgs,
   ...
-}: let
-  isEnabled = config.my.desktop.enableGnome;
-in {
-  config = lib.mkIf isEnabled {
+}: {
+  config = {
     home-manager.sharedModules = [
       {
         home.packages = with pkgs;
@@ -87,17 +85,17 @@ in {
           };
         };
       }
-      (lib.mkIf config.my.tailscale.enable
-        {
-          home.packages = with pkgs;
-            [
-              trayscale
-            ]
-            ++ (with gnomeExtensions; [
-              tailscale-qs
-            ]);
-          dconf.settings."org/gnome/shell".enabled-extensions = ["tailscale@joaophi.github.com"];
-        })
+
+      {
+        home.packages = with pkgs;
+          [
+            trayscale
+          ]
+          ++ (with gnomeExtensions; [
+            tailscale-qs
+          ]);
+        dconf.settings."org/gnome/shell".enabled-extensions = ["tailscale@joaophi.github.com"];
+      }
     ];
   };
 }

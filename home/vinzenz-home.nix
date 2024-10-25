@@ -150,7 +150,7 @@ in
           enable = true;
           git = true;
           icons = true;
-                    extraOptions = [
+          extraOptions = [
             "--group-directories-first"
             "--header"
           ];

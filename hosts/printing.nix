@@ -3,12 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
-  isEnabled = config.my.desktop.enablePrinting;
-in {
-  options.my.desktop.enablePrinting = lib.mkEnableOption "printing";
-
-  config = lib.mkIf isEnabled {
+}: {
+  config = {
     services = {
       # Enable CUPS to print documents.
       printing.enable = true;
