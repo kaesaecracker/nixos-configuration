@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ../../modules/desktop-hardware.nix
     ../../modules/intel-graphics.nix
   ];
   config = {

@@ -22,38 +22,23 @@
         lix-module.nixosModules.default
         ./common
       ];
+      desktop-modules = [
+        home-manager.nixosModules.home-manager
+        ./home
+        ./modules/desktop-environment.nix
+        ./modules/desktop-hardware.nix
+      ];
+      host-params = {
+        inherit nixpkgs;
+        inherit home-manager;
+        inherit lix-module;
+        common-modules = common-modules;
+        desktop-modules = desktop-modules;
+      };
     in {
-      vinzenz-lpt2 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules =
-          common-modules
-          ++ [
-            home-manager.nixosModules.home-manager
-            ./hosts/vinzenz-lpt2
-          ];
-      };
-      vinzenz-pc2 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules =
-          common-modules
-          ++ [
-            home-manager.nixosModules.home-manager
-            ./hosts/vinzenz-pc2
-          ];
-      };
-      hetzner-vpn1 = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules =
-          common-modules
-          ++ [
-            ./hosts/hetzner-vpn1
-
-            {
-              # uncomment for build check on non arm system (requires --impure)
-              # nixpkgs.buildPlatform = builtins.currentSystem;
-            }
-          ];
-      };
+      vinzenz-lpt2 = import ./hosts/vinzenz-lpt2 host-params;
+      vinzenz-pc2 = import ./hosts/vinzenz-pc2 host-params;
+      hetzner-vpn1 = import ./hosts/hetzner-vpn1 host-params;
     };
   };
 }
