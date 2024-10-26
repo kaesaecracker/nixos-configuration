@@ -18,22 +18,20 @@
     ...
   }: {
     nixosConfigurations = let
-      common-modules = [
-        lix-module.nixosModules.default
-        ./common
-      ];
-      desktop-modules = [
-        home-manager.nixosModules.home-manager
-        ./home
-        ./modules/desktop-environment.nix
-        ./modules/desktop-hardware.nix
-      ];
       host-params = {
         inherit nixpkgs;
         inherit home-manager;
         inherit lix-module;
-        common-modules = common-modules;
-        desktop-modules = desktop-modules;
+        common-modules = [
+          lix-module.nixosModules.default
+          ./common
+        ];
+        desktop-modules = [
+          home-manager.nixosModules.home-manager
+          ./home
+          ./modules/desktop-environment.nix
+          ./modules/desktop-hardware.nix
+        ];
       };
     in {
       vinzenz-lpt2 = import ./hosts/vinzenz-lpt2 host-params;
