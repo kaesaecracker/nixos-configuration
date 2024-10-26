@@ -11,6 +11,7 @@ nixpkgs.lib.nixosSystem {
     ++ desktop-modules
     ++ [
       ./hardware.nix
+      ./nginx.nix
 
       ../../home/gnome.nix
       ../../users/vinzenz.nix
@@ -18,6 +19,7 @@ nixpkgs.lib.nixosSystem {
       ../../modules/gaming.nix
       ../../modules/printing.nix
       ../../modules/latex.nix
+      ../../modules/podman.nix
 
       {
         networking.hostName = "vinzenz-lpt2";
@@ -35,45 +37,6 @@ nixpkgs.lib.nixosSystem {
         #users.users.ronja.openssh.authorizedKeys.keys = [
         #  ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALWKm+d6KL6Vl3grPOcGouiNTkvdhXuWJmcrdEBY2nw ronja-ssh-host-key''
         #];
-      }
-
-      {
-        virtualisation = {
-          containers.enable = true;
-          podman = {
-            enable = true;
-            dockerCompat = true;
-            dockerSocket.enable = true;
-            autoPrune.enable = true;
-          };
-        };
-      }
-
-      {
-        services.nginx = {
-          enable = true;
-
-          recommendedProxySettings = true;
-          recommendedTlsSettings = true;
-          recommendedGzipSettings = true;
-          recommendedOptimisation = true;
-
-          virtualHosts = {
-            "vinzenz-lpt2" = {
-              locations."/" = {
-                proxyPass = "http://127.0.0.1:3000/";
-                proxyWebsockets = true;
-              };
-
-              serverAliases = ["172.23.42.96"];
-            };
-          };
-        };
-
-        networking.firewall = {
-          allowedTCPPorts = [80 8001 3000];
-          allowedUDPPorts = [2342];
-        };
       }
     ];
 }

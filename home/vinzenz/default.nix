@@ -18,20 +18,6 @@ inputs @ {
       nix-direnv.enable = true;
     };
 
-    chromium = {
-      enable = true;
-      extensions = [
-        {
-          # ublock origin
-          id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-        }
-        {
-          id = "dcpihecpambacapedldabdbpakmachpb";
-          updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/updates.xml";
-        }
-      ];
-    };
-
     eza = {
       enable = true;
       git = true;
@@ -42,6 +28,8 @@ inputs @ {
       ];
     };
   };
+
+  editorconfig = import ./editorconfig.nix;
 
   home.packages = with pkgs; [
     keepassxc
@@ -61,24 +49,6 @@ inputs @ {
     kdiff3
     jetbrains-toolbox
   ];
-
-  editorconfig = {
-    enable = true;
-    settings = {
-      "*" = {
-        charset = "utf-8";
-        end_of_line = "lf";
-        trim_trailing_whitespace = true;
-        insert_final_newline = true;
-        max_line_width = 120;
-        indent_style = "space";
-        indent_size = 4;
-      };
-      "*.nix" = {
-        indent_size = 2;
-      };
-    };
-  };
 
   home.file."policy.json" = {
     target = ".config/containers/policy.json";

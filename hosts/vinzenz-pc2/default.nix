@@ -11,12 +11,14 @@ nixpkgs.lib.nixosSystem {
     ++ desktop-modules
     ++ [
       ./hardware.nix
+      ./vscode-server.nix
       ../../home/gnome.nix
       ../../users/vinzenz.nix
       ../../users/ronja.nix
       ../../modules/gnome.nix
       ../../modules/gaming.nix
       ../../modules/printing.nix
+      ../../modules/podman.nix
       {
         networking.hostName = "vinzenz-pc2";
       }
@@ -35,26 +37,6 @@ nixpkgs.lib.nixosSystem {
         users.users.ronja.openssh.authorizedKeys.keys = [
           ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALWKm+d6KL6Vl3grPOcGouiNTkvdhXuWJmcrdEBY2nw ssh-host-key''
         ];
-      }
-      {
-        services.openvscode-server = {
-          enable = true;
-          telemetryLevel = "off";
-          port = 8542;
-          host = "100.125.93.127"; # tailscale
-          withoutConnectionToken = true;
-          extraPackages = with pkgs; [nodejs git gh direnv];
-        };
-
-        virtualisation.podman = {
-          enable = true;
-        };
-
-        networking = {
-          firewall = {
-            allowedTCPPorts = [8542 8543 8544 80];
-          };
-        };
       }
     ];
 }
