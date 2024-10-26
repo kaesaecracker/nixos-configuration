@@ -22,13 +22,10 @@
       zsh.enable = true;
       htop.enable = true;
       iotop.enable = true;
+      git.enable = true;
       nano = {
         enable = true;
         syntaxHighlight = true;
-      };
-      git = {
-        enable = true;
-        package = pkgs.gitFull;
       };
     };
   };

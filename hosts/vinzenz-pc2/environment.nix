@@ -1,26 +1,18 @@
 {pkgs, ...}: {
   imports = [
-    (import ./modules {
-      hostName = "vinzenz-pc2";
-      enableHomeManager = true;
-    })
+    ../../home
+    ../../home/gnome.nix
+    ../../users/vinzenz.nix
+    ../../modules/desktop-environment.nix
+    ../../modules/gnome.nix
+    ../../modules/gaming.nix
+    ../../modules/printing.nix
   ];
 
   config = {
-    my = {
-      enabledUsers = ["vinzenz" "ronja"];
-      tailscale.enable = true;
-      desktop = {
-        enableGnome = true;
-        enableGaming = true;
-        enablePrinting = true;
-      };
-      buildtools = {
-        native = true;
-        dotnet = true;
-        rust = true;
-        jetbrains-remote-server = true;
-      };
+    home-manager.users = {
+      vinzenz = import ../../home/vinzenz;
+      ronja = import ../../home/ronja;
     };
 
     users.users.vinzenz.openssh.authorizedKeys.keys = [
@@ -39,7 +31,7 @@
       port = 8542;
       host = "100.125.93.127"; # tailscale
       withoutConnectionToken = true;
-      extraPackages = with pkgs; [nodejs gitFull gh direnv];
+      extraPackages = with pkgs; [nodejs git gh direnv];
     };
 
     virtualisation.podman = {

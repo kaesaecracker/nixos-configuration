@@ -1,12 +1,12 @@
 {...}: {
+  imports = [
+    ../../modules/desktop-hardware.nix
+    ../../modules/amd-graphics.nix
+  ];
   config = {
-    my.hardware = {
-      enableCommonDesktopSettings = true;
-      amd = {
-        cpu = true;
-        gpu = true;
-      };
-    };
+    # amd cpu
+    boot.kernelModules = ["kvm-amd"];
+    hardware.cpu.amd.updateMicrocode = true;
 
     boot = {
       initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"]; # "usb_storage"

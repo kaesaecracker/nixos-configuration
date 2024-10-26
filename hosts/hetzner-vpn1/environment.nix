@@ -24,18 +24,11 @@
   pc2 = "vinzenz-pc2.donkey-pentatonic.ts.net";
 in {
   imports = [
-    (import ./modules {
-      hostName = "hetzner-vpn1";
-      enableHomeManager = false;
-    })
+    ../../users/vinzenz.nix
+    ../../users/ronja.nix
   ];
 
   config = {
-    my = {
-      enabledUsers = ["ronja" "vinzenz"];
-      tailscale.enable = true;
-    };
-
     users.users = {
       root.openssh.authorizedKeys.keys = [
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICdYqY3Y1/f1bsAi5Qfyr/UWuX9ixu96IeAlhoQaJkbf''
