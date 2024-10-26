@@ -6,18 +6,10 @@
 }: {
   config = {
     services = {
-      # Enable the X11 windowing system / wayland depending on DE
-      xserver = {
-        enable = true;
-      };
-
+      xserver.enable = true;
       libinput.enable = true;
-
-      # flatpak xdg-portal-kde crashes, otherwise this would be global
       flatpak.enable = true;
-
       fstrim.enable = true;
-
       earlyoom = {
         enable = true;
         freeMemThreshold = 5;
@@ -106,8 +98,6 @@
       hunspell
       hunspellDicts.de-de
       hunspellDicts.en-us-large
-
-      gnumake
     ];
 
     nixpkgs.config.permittedInsecurePackages = [];

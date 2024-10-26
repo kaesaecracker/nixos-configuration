@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  home .packages = with pkgs; [
+  home.packages = with pkgs; [
     ## Apps
     telegram-desktop
     kdiff3

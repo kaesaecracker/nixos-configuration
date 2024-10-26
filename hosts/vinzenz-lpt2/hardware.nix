@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
-    ../desktop-hardware.nix
-    ../intel-graphics.nix
+    ../../modules/desktop-hardware.nix
+    ../../modules/intel-graphics.nix
   ];
   config = {
     # intel cpu

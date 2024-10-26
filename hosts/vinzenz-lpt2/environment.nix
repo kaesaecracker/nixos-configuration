@@ -1,17 +1,17 @@
 {pkgs, ...}: {
   imports = [
     ../../home
-    ../../home/gnome-home.nix
+    ../../home/gnome.nix
     ../../users/vinzenz.nix
-    ../desktop-environment.nix
-    ../gnome.nix
-    ../gaming.nix
-    ../printing.nix
-    ../latex.nix
+    ../../modules/desktop-environment.nix
+    ../../modules/gnome.nix
+    ../../modules/gaming.nix
+    ../../modules/printing.nix
+    ../../modules/latex.nix
   ];
 
   config = {
-    home-manager.users.vinzenz = import ../../home/vinzenz-home.nix;
+    home-manager.users.vinzenz = import ../../home/vinzenz;
 
     virtualisation = {
       containers.enable = true;

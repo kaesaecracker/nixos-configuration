@@ -4,6 +4,9 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ../modules/gnome.nix
+  ];
   config = {
     home-manager.sharedModules = [
       {

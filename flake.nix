@@ -16,16 +16,21 @@
     home-manager,
     lix-module,
     ...
-  }: {
+  }: let
+    common-modules = [
+      lix-module.nixosModules.default
+      home-manager.nixosModules.home-manager
+      ./common
+    ];
+  in {
     nixosConfigurations = {
       vinzenz-lpt2 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          lix-module.nixosModules.default
-          home-manager.nixosModules.home-manager
-          ./common
-          ./hosts/vinzenz-lpt2
-        ];
+        modules =
+          common-modules
+          ++ [
+            ./hosts/vinzenz-lpt2
+          ];
       };
     };
   };
