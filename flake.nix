@@ -16,13 +16,13 @@
     home-manager,
     lix-module,
     ...
-  }: let
-    common-modules = [
-      lix-module.nixosModules.default
-      ./common
-    ];
-  in {
-    nixosConfigurations = {
+  }: {
+    nixosConfigurations = let
+      common-modules = [
+        lix-module.nixosModules.default
+        ./common
+      ];
+    in {
       vinzenz-lpt2 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =

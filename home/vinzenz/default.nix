@@ -4,9 +4,7 @@ inputs @ {
   pkgs,
   lib,
   ...
-}: let
-  isGnomeEnabled = osConfig.my.desktop.enableGnome;
-in {
+}: {
   programs = {
     home-manager.enable = true;
     fzf.enable = true;

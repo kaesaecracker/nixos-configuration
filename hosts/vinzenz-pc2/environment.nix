@@ -3,6 +3,7 @@
     ../../home
     ../../home/gnome.nix
     ../../users/vinzenz.nix
+    ../../users/ronja.nix
     ../../modules/desktop-environment.nix
     ../../modules/gnome.nix
     ../../modules/gaming.nix
@@ -12,7 +13,7 @@
   config = {
     home-manager.users = {
       vinzenz = import ../../home/vinzenz;
-      ronja = import ../../home/ronja;
+      ronja = import ../../home/ronja.nix;
     };
 
     users.users.vinzenz.openssh.authorizedKeys.keys = [
