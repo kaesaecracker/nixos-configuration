@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.my.allowUnfreePackages = lib.mkOption {
+  options.allowedUnfreePackages = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [];
     example = ["steam"];
@@ -11,7 +11,7 @@
   config = {
     nixpkgs.config = {
       # https://github.com/NixOS/nixpkgs/issues/197325#issuecomment-1579420085
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.my.allowUnfreePackages;
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowedUnfreePackages;
     };
 
     nix = {
@@ -25,6 +25,7 @@
         dates = "daily";
         options = "--delete-older-than 7d";
       };
+      optimise.automatic = true;
     };
 
     system = {

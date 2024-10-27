@@ -34,16 +34,48 @@
         enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+        gamescopeSession.enable = true;
       };
       gamemode.enable = true;
     };
 
-    networking.firewall.allowedUDPPorts = [
-      # Factorio
-      34197
-    ];
+    networking.firewall = {
+      allowedUDPPorts = [
+        # Factorio
+        34197
 
-    my.allowUnfreePackages = [
+        # steam network transfer
+        3478
+      ];
+
+      allowedTCPPorts = [
+        # steam network transfer
+        24070
+      ];
+
+      allowedTCPPortRanges = [
+        # steam network transfer
+        {
+          from = 27015;
+          to = 27050;
+        }
+      ];
+
+      allowedUDPPortRanges = [
+        # steam network transfer
+        {
+          from = 4379;
+          to = 4380;
+        }
+        {
+          from = 27000;
+          to = 27100;
+        }
+      ];
+    };
+
+    allowedUnfreePackages = [
       "steam"
       "steam-original"
       "steam-run"

@@ -17,6 +17,7 @@
     mkhl.direnv
     vadimcn.vscode-lldb
     ms-dotnettools.csharp
+    ms-vscode-remote.remote-ssh
   ];
   userSettings = {
     "git.autofetch" = true;

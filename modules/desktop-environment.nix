@@ -100,19 +100,6 @@
       hunspellDicts.en-us-large
     ];
 
-    nixpkgs.config.permittedInsecurePackages = [];
-
-    my.allowUnfreePackages = [
-      "insync"
-      "insync-pkg"
-
-      "rider"
-      "pycharm-professional"
-      "jetbrains-toolbox"
-
-      "anydesk"
-    ];
-
     fonts = {
       enableDefaultPackages = true;
       fontconfig.defaultFonts.monospace = ["FiraCode Nerd Font"];

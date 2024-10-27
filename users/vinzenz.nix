@@ -9,5 +9,17 @@
       shell = pkgs.zsh;
       autoSubUidGidRange = true;
     };
+
+    allowedUnfreePackages = [
+      "vscode-extension-ms-vscode-remote-remote-ssh"
+      "insync"
+      "insync-pkg"
+
+      "rider"
+      "pycharm-professional"
+      "jetbrains-toolbox"
+
+      "anydesk"
+    ];
   };
 }
