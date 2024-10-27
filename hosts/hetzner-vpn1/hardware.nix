@@ -1,11 +1,6 @@
+{ lib, modulesPath, ... }:
 {
-  lib,
-  modulesPath,
-  ...
-}: {
-  imports = [
-    (modulesPath + "/profiles/qemu-guest.nix")
-  ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
   config = {
     nixpkgs = {
@@ -26,8 +21,12 @@
         };
       };
       initrd = {
-        availableKernelModules = ["ata_piix" "uhci_hcd" "xen_blkfront"];
-        kernelModules = ["nvme"];
+        availableKernelModules = [
+          "ata_piix"
+          "uhci_hcd"
+          "xen_blkfront"
+        ];
+        kernelModules = [ "nvme" ];
       };
     };
 
@@ -48,7 +47,7 @@
     # This file was populated at runtime with the networking
     # details gathered from the active system.
     networking = {
-      nameservers = ["8.8.8.8"];
+      nameservers = [ "8.8.8.8" ];
       defaultGateway = "172.31.1.1";
       defaultGateway6 = {
         address = "fe80::1";

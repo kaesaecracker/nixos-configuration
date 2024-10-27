@@ -2,19 +2,19 @@
   "/" = {
     device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
     fsType = "btrfs";
-    options = ["subvol=@"];
+    options = [ "subvol=@" ];
   };
 
   "/home" = {
     device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
     fsType = "btrfs";
-    options = ["subvol=@home"];
+    options = [ "subvol=@home" ];
   };
 
   "/games" = {
     device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
     fsType = "btrfs";
-    options = ["subvol=@games"];
+    options = [ "subvol=@games" ];
   };
 
   "/boot" = {
@@ -27,7 +27,7 @@
     # this is convenient for managing the flat subvolume hierarchy
     device = "/dev/disk/by-uuid/0e9c983a-e733-447e-8181-f41d6670c4b8";
     fsType = "btrfs";
-    options = ["subvolid=5"];
+    options = [ "subvolid=5" ];
   };
 
   "/mnt/ssd2" = {

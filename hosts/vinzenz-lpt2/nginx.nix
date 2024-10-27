@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   services.nginx = {
     enable = true;
 
@@ -14,13 +15,17 @@
           proxyWebsockets = true;
         };
 
-        serverAliases = ["172.23.42.96"];
+        serverAliases = [ "172.23.42.96" ];
       };
     };
   };
 
   networking.firewall = {
-    allowedTCPPorts = [80 8001 3000];
-    allowedUDPPorts = [2342];
+    allowedTCPPorts = [
+      80
+      8001
+      3000
+    ];
+    allowedUDPPorts = [ 2342 ];
   };
 }

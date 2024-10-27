@@ -20,7 +20,7 @@
   };
   "org/gnome/shell" = {
     disable-user-extensions = false;
-    disabled-extensions = [];
+    disabled-extensions = [ ];
     enabled-extensions = [
       "appindicatorsupport@rgcjonas.gmail.com"
       "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
@@ -34,9 +34,9 @@
     show-warning = false;
   };
   "org/gnome/desktop/wm/keybindings" = {
-    switch-windows = ["<Alt>Tab"];
-    switch-windows-backward = ["<Shift><Alt>Tab"];
-    switch-applications = ["<Super>Tab"];
-    switch-applications-backward = ["<Shift><Super>Tab"];
+    switch-windows = [ "<Alt>Tab" ];
+    switch-windows-backward = [ "<Shift><Alt>Tab" ];
+    switch-applications = [ "<Super>Tab" ];
+    switch-applications-backward = [ "<Shift><Super>Tab" ];
   };
 }

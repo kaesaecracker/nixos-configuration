@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   config = {
     services = {
       # Enable CUPS to print documents.

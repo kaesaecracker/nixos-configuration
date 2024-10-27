@@ -19,9 +19,7 @@ nixpkgs.lib.nixosSystem {
       ../../modules/gaming.nix
       ../../modules/printing.nix
       ../../modules/podman.nix
-      {
-        networking.hostName = "vinzenz-pc2";
-      }
+      { networking.hostName = "vinzenz-pc2"; }
       {
         home-manager.users = {
           vinzenz = import ../../home/vinzenz;

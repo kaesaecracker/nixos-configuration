@@ -1,4 +1,5 @@
-inputs @ {pkgs, ...}: {
+inputs@{ pkgs, ... }:
+{
   programs = {
     home-manager.enable = true;
     fzf.enable = true;

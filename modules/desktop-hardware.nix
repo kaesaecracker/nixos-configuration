@@ -3,13 +3,17 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   config = {
     boot = {
       kernelPackages = pkgs.linuxPackages_zen;
-      kernelParams = ["quiet" "udev.log_level=3"];
-      supportedFilesystems = ["btrfs"];
-      initrd.supportedFilesystems = ["btrfs"];
+      kernelParams = [
+        "quiet"
+        "udev.log_level=3"
+      ];
+      supportedFilesystems = [ "btrfs" ];
+      initrd.supportedFilesystems = [ "btrfs" ];
       consoleLogLevel = 0;
       initrd.verbose = false;
       plymouth.enable = true;

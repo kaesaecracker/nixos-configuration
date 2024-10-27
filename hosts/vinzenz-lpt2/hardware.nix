@@ -1,10 +1,9 @@
-{lib, ...}: {
-  imports = [
-    ../../modules/intel-graphics.nix
-  ];
+{ lib, ... }:
+{
+  imports = [ ../../modules/intel-graphics.nix ];
   config = {
     # intel cpu
-    boot.kernelModules = ["kvm-intel"];
+    boot.kernelModules = [ "kvm-intel" ];
     hardware.cpu.intel.updateMicrocode = true;
 
     boot.loader = {
@@ -23,7 +22,11 @@
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     boot.initrd = {
-      availableKernelModules = ["xhci_pci" "thunderbolt" "nvme"];
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+      ];
       luks.devices = {
         "luks-2c654ff2-3c42-48d3-a1e3-9545679afaa3" = {
           device = "/dev/disk/by-uuid/2c654ff2-3c42-48d3-a1e3-9545679afaa3";
@@ -35,7 +38,7 @@
       "/" = {
         device = "/dev/disk/by-uuid/e4dad0c8-26a1-45e9-bbd9-48565eb6574e";
         fsType = "btrfs";
-        options = ["subvol=@"];
+        options = [ "subvol=@" ];
       };
 
       "/boot" = {

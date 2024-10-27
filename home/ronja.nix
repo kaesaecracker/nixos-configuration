@@ -1,8 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   home.packages = with pkgs; [
     ## Apps
     telegram-desktop
@@ -22,7 +19,11 @@
       oh-my-zsh = {
         enable = true;
         theme = "agnoster";
-        plugins = ["git" "sudo" "systemadmin"];
+        plugins = [
+          "git"
+          "sudo"
+          "systemadmin"
+        ];
       };
     };
 

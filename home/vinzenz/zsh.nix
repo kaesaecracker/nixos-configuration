@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   initExtra = ''
     eval "$(direnv hook zsh)";
     export PATH=$PATH:/home/vinzenz/.cargo/bin
@@ -24,6 +25,11 @@
   oh-my-zsh = {
     enable = true;
     theme = "agnoster";
-    plugins = ["git" "sudo" "docker" "systemadmin"];
+    plugins = [
+      "git"
+      "sudo"
+      "docker"
+      "systemadmin"
+    ];
   };
 }

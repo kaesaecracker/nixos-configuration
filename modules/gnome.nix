@@ -1,8 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   config = {
     services = {
       xserver = {
@@ -41,9 +38,12 @@
       pkgs.gnome-tour
     ];
 
-    environment.systemPackages = with pkgs; [gnome.ghex impression];
+    environment.systemPackages = with pkgs; [
+      gnome.ghex
+      impression
+    ];
 
     # RDP connections
-    networking.firewall.allowedTCPPorts = [3389];
+    networking.firewall.allowedTCPPorts = [ 3389 ];
   };
 }

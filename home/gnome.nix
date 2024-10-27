@@ -1,15 +1,11 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ../modules/gnome.nix
-  ];
+  imports = [ ../modules/gnome.nix ];
   config = {
     home-manager.sharedModules = [
       {
-        home.packages = with pkgs;
+        home.packages =
+          with pkgs;
           [
             amberol
             gitg
@@ -48,14 +44,8 @@
       }
 
       {
-        home.packages = with pkgs;
-          [
-            trayscale
-          ]
-          ++ (with gnomeExtensions; [
-            tailscale-qs
-          ]);
-        dconf.settings."org/gnome/shell".enabled-extensions = ["tailscale@joaophi.github.com"];
+        home.packages = with pkgs; [ trayscale ] ++ (with gnomeExtensions; [ tailscale-qs ]);
+        dconf.settings."org/gnome/shell".enabled-extensions = [ "tailscale@joaophi.github.com" ];
       }
     ];
   };

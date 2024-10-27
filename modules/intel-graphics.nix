@@ -1,8 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   config = {
     hardware.opengl = {
       extraPackages = with pkgs; [
@@ -19,9 +16,7 @@
         libvdpau-va-gl
       ];
     };
-    environment.systemPackages = with pkgs; [
-      nvtopPackages.intel
-    ];
-    allowedUnfreePackages = ["intel-ocl"];
+    environment.systemPackages = with pkgs; [ nvtopPackages.intel ];
+    allowedUnfreePackages = [ "intel-ocl" ];
   };
 }

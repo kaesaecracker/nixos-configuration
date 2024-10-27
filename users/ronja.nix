@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   config = {
     # Define user account
     users.users.ronja = {
@@ -6,7 +7,12 @@
       name = "ronja";
       description = "Ronja";
       home = "/home/ronja";
-      extraGroups = ["networkmanager" "wheel" "games" "podman"];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "games"
+        "podman"
+      ];
       shell = pkgs.zsh;
     };
   };

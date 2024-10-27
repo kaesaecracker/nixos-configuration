@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   config = {
     environment = {
-      pathsToLink = ["/share/zsh"];
+      pathsToLink = [ "/share/zsh" ];
       systemPackages = with pkgs; [
         ncdu
         glances

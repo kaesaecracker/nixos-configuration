@@ -11,32 +11,41 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    lix-module,
-    ...
-  }: {
-    nixosConfigurations = let
-      host-params = {
-        inherit nixpkgs;
-        inherit home-manager;
-        inherit lix-module;
-        common-modules = [
-          lix-module.nixosModules.default
-          ./common
-        ];
-        desktop-modules = [
-          home-manager.nixosModules.home-manager
-          ./home
-          ./modules/desktop-environment.nix
-          ./modules/desktop-hardware.nix
-        ];
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      lix-module,
+      ...
+    }:
+    {
+      nixosConfigurations =
+        let
+          host-params = {
+            inherit nixpkgs;
+            inherit home-manager;
+            inherit lix-module;
+            common-modules = [
+              lix-module.nixosModules.default
+              ./common
+            ];
+            desktop-modules = [
+              home-manager.nixosModules.home-manager
+              ./home
+              ./modules/desktop-environment.nix
+              ./modules/desktop-hardware.nix
+            ];
+          };
+        in
+        {
+          vinzenz-lpt2 = import ./hosts/vinzenz-lpt2 host-params;
+          vinzenz-pc2 = import ./hosts/vinzenz-pc2 host-params;
+          hetzner-vpn1 = import ./hosts/hetzner-vpn1 host-params;
+        };
+
+      formatter = {
+        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+        aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixfmt-rfc-style;
       };
-    in {
-      vinzenz-lpt2 = import ./hosts/vinzenz-lpt2 host-params;
-      vinzenz-pc2 = import ./hosts/vinzenz-pc2 host-params;
-      hetzner-vpn1 = import ./hosts/hetzner-vpn1 host-params;
     };
-  };
 }

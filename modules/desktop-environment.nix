@@ -1,8 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   config = {
     services = {
       xserver.enable = true;
@@ -31,7 +28,10 @@
       kdeconnect.enable = true;
       firefox = {
         enable = true;
-        languagePacks = ["en-US" "de"];
+        languagePacks = [
+          "en-US"
+          "de"
+        ];
       };
       nix-ld = {
         enable = true;
@@ -101,10 +101,8 @@
 
     fonts = {
       enableDefaultPackages = true;
-      fontconfig.defaultFonts.monospace = ["FiraCode Nerd Font"];
-      packages = with pkgs; [
-        (nerdfonts.override {fonts = ["FiraCode"];})
-      ];
+      fontconfig.defaultFonts.monospace = [ "FiraCode Nerd Font" ];
+      packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
     };
 
     hardware.logitech.wireless = {

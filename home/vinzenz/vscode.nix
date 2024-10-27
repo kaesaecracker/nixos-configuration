@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   enable = true;
   package = pkgs.vscodium;
   enableUpdateCheck = false;

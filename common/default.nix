@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./nixpkgs.nix
     ./globalinstalls.nix
