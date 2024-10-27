@@ -1,7 +1,6 @@
 {
   nixpkgs,
   common-modules,
-  desktop-modules,
   ...
 }:
 nixpkgs.lib.nixosSystem {

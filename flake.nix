@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     nixpkgs,
     home-manager,
     lix-module,

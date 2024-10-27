@@ -40,7 +40,6 @@
           '';
         };
       };
-      lpt2 = "vinzenz-lpt2.donkey-pentatonic.ts.net";
       pc2 = "vinzenz-pc2.donkey-pentatonic.ts.net";
     in {
       "vscode.${servicesDomain}" = lib.mkMerge [
