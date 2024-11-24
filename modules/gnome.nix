@@ -13,8 +13,8 @@
       displayManager.defaultSession = "gnome";
 
       gnome = {
-        tracker-miners.enable = false;
-        tracker.enable = false;
+        tinysparql.enable = false;
+        localsearch.enable = false;
         sushi.enable = true;
         gnome-remote-desktop.enable = true;
       };
@@ -27,7 +27,7 @@
     };
 
     # remove some gnome default apps
-    environment.gnome.excludePackages = with pkgs.gnome; [
+    environment.gnome.excludePackages = with pkgs; [
       cheese # photo booth
       epiphany # web browser
       evince # document viewer
@@ -35,11 +35,11 @@
       gnome-maps
       gnome-weather
       gnome-music
-      pkgs.gnome-tour
+      gnome-tour
     ];
 
     environment.systemPackages = with pkgs; [
-      gnome.ghex
+      ghex
       impression
     ];
 

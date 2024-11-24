@@ -2,9 +2,8 @@
 {
   config = {
     hardware = {
-      opengl = {
-        driSupport = true;
-        driSupport32Bit = true;
+      graphics = {
+        enable32Bit = true;
         extraPackages = with pkgs; [ mangohud ];
         extraPackages32 = with pkgs; [ mangohud ];
       };
@@ -75,6 +74,7 @@
       "steam"
       "steam-original"
       "steam-run"
+      "steam-unwrapped"
     ];
   };
 }

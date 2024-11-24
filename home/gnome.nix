@@ -13,14 +13,12 @@
             meld
             simple-scan
             pinta
-          ]
-          ++ (with gnome; [
             dconf-editor
             gpaste
 
             # graphical installer for flatpak apps
             gnome-software
-          ])
+          ]
           ++ (with gnomeExtensions; [
             caffeine
             appindicator

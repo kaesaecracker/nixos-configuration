@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   config = {
-    hardware.opengl = {
+    hardware.graphics = {
       extraPackages = with pkgs; [
         intel-media-driver
         vaapiIntel
