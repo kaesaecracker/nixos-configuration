@@ -1,5 +1,4 @@
-_:
-{
+_: {
   config = {
     services.openssh = {
       enable = true;
