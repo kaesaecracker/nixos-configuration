@@ -23,7 +23,10 @@ nixpkgs.lib.nixosSystem {
 
       {
         networking.hostName = "vinzenz-lpt2";
-        nix.settings.extra-platforms = [ "aarch64-linux" ];
+        nix.settings.extra-platforms = [
+          "aarch64-linux"
+          "i686-linux"
+        ];
       }
 
       {
