@@ -13,4 +13,10 @@
     merge.tool = "kdiff3";
     push.autoSetupRemote = "true";
   };
+
+  ignores = [
+    ".direnv"
+    ".idea"
+    ".envrc"
+  ];
 }
