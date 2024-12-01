@@ -41,12 +41,10 @@
         pc2 = "vinzenz-pc2.donkey-pentatonic.ts.net";
       in
       {
-        "vscode.${servicesDomain}" = lib.mkMerge [
-          (mkServiceConfig pc2 8542)
-          { locations."/".proxyWebsockets = true; }
-        ];
-        "preon-app.${servicesDomain}" = mkServiceConfig pc2 8543;
-        "preon-api.${servicesDomain}" = mkServiceConfig pc2 8544;
+        #"vscode.${servicesDomain}" = lib.mkMerge [
+        #  (mkServiceConfig pc2 8542)
+        #  { locations."/".proxyWebsockets = true; }
+        #];
       };
   };
 
