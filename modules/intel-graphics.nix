@@ -4,16 +4,14 @@
     hardware.graphics = {
       extraPackages = with pkgs; [
         intel-media-driver
-        vaapiIntel
-        vaapiVdpau
-        libvdpau-va-gl
+        intel-vaapi-driver
         intel-ocl
+        intel-compute-runtime
+        vpl-gpu-rt
       ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [
+      extraPackages32 = with pkgs.driversi686Linux; [
+        intel-vaapi-driver
         intel-media-driver
-        vaapiIntel
-        vaapiVdpau
-        libvdpau-va-gl
       ];
     };
     environment.systemPackages = with pkgs; [ nvtopPackages.intel ];

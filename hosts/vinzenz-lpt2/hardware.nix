@@ -3,7 +3,10 @@
   imports = [ ../../modules/intel-graphics.nix ];
   config = {
     # intel cpu
-    boot.kernelModules = [ "kvm-intel" ];
+    boot.kernelModules = [
+      "kvm-intel"
+      "xe"
+    ];
     hardware.cpu.intel.updateMicrocode = true;
 
     boot.loader = {

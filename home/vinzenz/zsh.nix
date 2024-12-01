@@ -6,9 +6,9 @@
   '';
 
   shellAliases = {
-    my-apply = "sudo nixos-rebuild boot";
-    my-switch = "sudo nixos-rebuild switch";
-    my-update = "sudo nixos-rebuild boot --upgrade";
+    my-apply = "sudo nixos-rebuild boot --flake";
+    my-switch = "sudo nixos-rebuild switch --flake";
+    my-update = "sudo nixos-rebuild boot --upgrade --flake";
     my-pull = "git -C ~/Repos/nixos-configuration pull --rebase";
     my-fmt = "alejandra .";
     my-test = "sudo nixos-rebuild test";
@@ -16,7 +16,6 @@
     my-ip4 = "ip addr show | grep 192";
     deadnix = "nix run github:astro/deadnix -- ";
     statix = "nix run git+https://git.peppe.rs/languages/statix -- ";
-    my-nix-fixup = "deadnix -e && statix fix";
   };
 
   history = {
