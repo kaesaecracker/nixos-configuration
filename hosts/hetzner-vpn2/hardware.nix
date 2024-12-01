@@ -26,11 +26,11 @@
 
     fileSystems = {
       "/" = {
-        device = "/dev/disk/by-uuid/24c2f986-1e88-4c26-87eb-0f92aecd6f56";
+        device = "/dev/disk/by-uuid/3263489d-9819-433c-b198-9d2e732a94e4";
         fsType = "ext4";
       };
       "/boot" = {
-        device = "/dev/disk/by-uuid/AZ0B-81C3";
+        device = "/dev/disk/by-uuid/6C25-6BDC";
         fsType = "vfat";
         options = [
           "fmask=0077"
@@ -40,7 +40,7 @@
     };
 
     swapDevices = [
-      { device = "/dev/disk/by-uuid/2531d357-dea5-4212-97e3-d727f7bdbd16"; }
+      { device = "/dev/disk/by-uuid/e147721d-86b5-40d7-a231-c6ea391c563d"; }
     ];
 
     # This file was populated at runtime with the networking
