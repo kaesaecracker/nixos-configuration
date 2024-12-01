@@ -10,6 +10,7 @@
 
     boot = {
       tmp.cleanOnBoot = true;
+      kernelParams = [ "console=tty" ];
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
@@ -19,6 +20,7 @@
           "xhci_pci"
           "virtio_scsi"
           "sr_mod"
+          "virtio_gpu"
         ];
         kernelModules = [ ];
       };
@@ -43,52 +45,19 @@
       { device = "/dev/disk/by-uuid/e147721d-86b5-40d7-a231-c6ea391c563d"; }
     ];
 
-    # This file was populated at runtime with the networking
-    # details gathered from the active system.
-    networking = {
-      useDHCP = true;
-      domain = "";
-      nameservers = [ "8.8.8.8" ];
-      defaultGateway6 = {
-        address = "fe80::1";
-        interface = "enp1s0";
-      };
-      interfaces = {
-        enp1s0 = {
-          #ipv4 = {
-          #  addresses = [
-          #    {
-          #      address = "157.90.146.125";
-          #      prefixLength = 32;
-          #    }
-          #  ];
-          #  routes = [
-          #    {
-          #      address = "172.31.1.1";
-          #      prefixLength = 32;
-          #    }
-          #  ];
-          #};
-          ipv6 = {
-            addresses = [
-              {
-                address = "2a01:4f8:c013:65dd::";
-                prefixLength = 64;
-              }
-            ];
-            routes = [
-              {
-                address = "fe80::1";
-                prefixLength = 128;
-              }
-            ];
-          };
-        };
+    networking.useNetworkd = true;
+    systemd.network = {
+      enable = true;
+      networks."10-wan" = {
+        matchConfig.Name = "enp1s0";
+        networkConfig.DHCP = "ipv4";
+        address = [
+          "2a01:4f8:c013:65dd::1/64"
+        ];
+        routes = [
+          { Gateway = "fe80::1"; }
+        ];
       };
     };
-
-    #services.udev.extraRules = ''
-    #  ATTR{address}=="96:00:02:87:7f:c9", NAME="eth0"
-    #'';
   };
 }
