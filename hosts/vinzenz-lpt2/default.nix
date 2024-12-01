@@ -18,7 +18,6 @@ nixpkgs.lib.nixosSystem {
       ../../modules/gnome.nix
       ../../modules/gaming.nix
       ../../modules/printing.nix
-      ../../modules/latex.nix
       ../../modules/podman.nix
 
       {

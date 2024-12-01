@@ -7,9 +7,7 @@
         home.packages =
           with pkgs;
           [
-            amberol
             gitg
-            gnome-builder
             meld
             simple-scan
             pinta
@@ -23,9 +21,10 @@
             caffeine
             appindicator
             gsconnect
-            battery-health-charging
+            # battery-health-charging
             quick-settings-tweaker
             solaar-extension
+            alphabetical-app-grid
           ]);
 
         dconf.settings = import ./gnome-shared-dconf.nix;

@@ -5,9 +5,8 @@
       xserver = {
         # Enable the GNOME Desktop Environment.
         desktopManager.gnome.enable = true;
-        displayManager = {
-          gdm.enable = true;
-        };
+        displayManager.gdm.enable = true;
+        excludePackages = with pkgs; [ xterm ];
       };
 
       displayManager.defaultSession = "gnome";
@@ -34,8 +33,21 @@
       geary # email client
       gnome-maps
       gnome-weather
-      gnome-music
       gnome-tour
+      gnome-contacts
+      sysprof
+      orca # screen reader
+      gnome-disk-utility
+      gnome-system-monitor
+      gnome-weather
+      gnome-backgrounds
+      gnome-user-docs
+      gnome-calendar
+      yelp # help app
+      # gnome-music
+      # totem # video player
+      # snapshot # camera
+      # baobab # disk usage
     ];
 
     environment.systemPackages = with pkgs; [

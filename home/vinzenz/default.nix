@@ -38,9 +38,6 @@ inputs@{ pkgs, ... }:
 
     alejandra # nix formatter
 
-    arduino
-    uucp
-
     kdiff3
     jetbrains-toolbox
   ];

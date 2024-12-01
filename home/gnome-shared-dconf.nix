@@ -22,12 +22,14 @@
     disable-user-extensions = false;
     disabled-extensions = [ ];
     enabled-extensions = [
+      "tailscale@joaophi.github.com"
       "appindicatorsupport@rgcjonas.gmail.com"
       "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
       "caffeine@patapon.info"
       "GPaste@gnome-shell-extensions.gnome.org"
       "gsconnect@andyholmes.github.io"
       "solaar-extension@sidevesh"
+      "AlphabeticalAppGrid@stuarthayhurst"
     ];
   };
   "ca/desrt/dconf-editor" = {
@@ -38,5 +40,11 @@
     switch-windows-backward = [ "<Shift><Alt>Tab" ];
     switch-applications = [ "<Super>Tab" ];
     switch-applications-backward = [ "<Shift><Super>Tab" ];
+  };
+  "org/gnome/shell/extensions/alphabetical-app-grid" = {
+    folder-order-position = "start";
+  };
+  "org/gnome/shell/extensions/gsconnect" = {
+    enabled = true;
   };
 }
