@@ -2,7 +2,6 @@
 {
   config = {
     environment = {
-      pathsToLink = [ "/share/zsh" ];
       systemPackages = with pkgs; [
         ncdu
         glances

@@ -5,6 +5,8 @@
     export PATH=$PATH:/home/vinzenz/.cargo/bin
   '';
 
+  enableCompletion = true;
+
   shellAliases = {
     my-apply = "sudo nixos-rebuild boot --flake";
     my-switch = "sudo nixos-rebuild switch --flake";
