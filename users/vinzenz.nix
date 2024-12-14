@@ -13,6 +13,7 @@
         "dialout"
         "podman"
         "nginx"
+        "adbusers"
       ];
       shell = pkgs.zsh;
       autoSubUidGidRange = true;
