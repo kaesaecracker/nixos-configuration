@@ -18,7 +18,7 @@
       self,
       nixpkgs,
       home-manager,
-      lix-module
+      lix-module,
     }:
     {
       nixosConfigurations =

@@ -41,7 +41,8 @@
       # enable auto updates
       autoUpgrade = {
         enable = true;
-        dates = "weekly";
+        dates = "daily";
+        flake = "github:kaesaecracker/nixos-configuration";
       };
     };
 

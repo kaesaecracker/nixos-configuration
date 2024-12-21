@@ -33,5 +33,8 @@ nixpkgs.lib.nixosSystem {
         ];
       };
     }
+    {
+      system.autoUpgrade.allowReboot = true;
+    }
   ];
 }
