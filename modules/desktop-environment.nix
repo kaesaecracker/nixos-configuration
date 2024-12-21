@@ -84,7 +84,7 @@
 
       # prevent stuck units from preventing shutdown (default is 120s)
       extraConfig = ''
-        DefaultTimeoutStopSec=12s
+        DefaultTimeoutStopSec=10s
       '';
     };
 
@@ -107,6 +107,11 @@
     hardware.logitech.wireless = {
       enable = true;
       enableGraphical = true;
+    };
+
+    system.autoUpgrade = {
+      allowReboot = false;
+      operation = "boot";
     };
   };
 }
