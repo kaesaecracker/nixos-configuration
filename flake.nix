@@ -43,6 +43,7 @@
           vinzenz-lpt2 = import ./hosts/vinzenz-lpt2 host-params;
           vinzenz-pc2 = import ./hosts/vinzenz-pc2 host-params;
           hetzner-vpn2 = import ./hosts/hetzner-vpn2 host-params;
+          ona-book = import ./hosts/ona-book host-params;
         };
 
       formatter = {

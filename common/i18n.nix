@@ -15,14 +15,5 @@ _: {
         LC_TIME = "de_DE.UTF-8";
       };
     };
-
-    services.xserver.xkb = {
-      # Configure keymap in X11
-      layout = "de";
-      variant = "";
-    };
-
-    # Configure console keymap
-    console.keyMap = "de";
   };
 }

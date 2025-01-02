@@ -25,6 +25,15 @@ nixpkgs.lib.nixosSystem {
           "aarch64-linux"
           "i686-linux"
         ];
+
+        services.xserver.xkb = {
+          # Configure keymap in X11
+          layout = "de";
+          variant = "";
+        };
+
+        # Configure console keymap
+        console.keyMap = "de";
       }
       {
         home-manager.users = {
