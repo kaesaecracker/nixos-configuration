@@ -38,7 +38,7 @@ nixpkgs.lib.nixosSystem {
       {
         home-manager.users = {
           vinzenz = import ../../home/vinzenz;
-          ronja = import ../../home/ronja.nix;
+          ronja = import ../../home/ronja;
         };
 
         users.users.vinzenz.openssh.authorizedKeys.keys = [

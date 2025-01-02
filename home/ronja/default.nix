@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+inputs@{ config, pkgs, ... }:
 {
   home.packages = with pkgs; [
     ## Apps
@@ -8,6 +8,7 @@
 
   programs = {
     home-manager.enable = true;
+    vscode = import ./vscode.nix inputs;
 
     zsh = {
       history = {

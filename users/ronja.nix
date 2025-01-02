@@ -15,5 +15,9 @@
       ];
       shell = pkgs.zsh;
     };
+
+    allowedUnfreePackages = [
+      "vscode-extension-ms-vscode-remote-remote-ssh"
+    ];
   };
 }

@@ -24,7 +24,7 @@ nixpkgs.lib.nixosSystem {
       }
 
       {
-        home-manager.users.ronja = import ../../home/ronja.nix;
+        home-manager.users.ronja = import ../../home/ronja;
 
         users.users.ronja.openssh.authorizedKeys.keys = [
         ];
