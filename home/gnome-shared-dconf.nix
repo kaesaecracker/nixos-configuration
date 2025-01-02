@@ -26,10 +26,6 @@
       "appindicatorsupport@rgcjonas.gmail.com"
       "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
       "caffeine@patapon.info"
-      "GPaste@gnome-shell-extensions.gnome.org"
-      "gsconnect@andyholmes.github.io"
-      "solaar-extension@sidevesh"
-      "AlphabeticalAppGrid@stuarthayhurst"
     ];
   };
   "ca/desrt/dconf-editor" = {

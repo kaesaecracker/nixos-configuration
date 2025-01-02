@@ -20,11 +20,6 @@
           ++ (with gnomeExtensions; [
             caffeine
             appindicator
-            gsconnect
-            # battery-health-charging
-            quick-settings-tweaker
-            solaar-extension
-            alphabetical-app-grid
           ]);
 
         dconf.settings = import ./gnome-shared-dconf.nix;
