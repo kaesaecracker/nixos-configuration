@@ -58,8 +58,6 @@
     };
 
     networking = {
-      networkmanager.enable = true;
-
       firewall = {
         allowedTCPPortRanges = [
           {

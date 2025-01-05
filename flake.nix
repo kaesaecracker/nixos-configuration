@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -19,6 +20,7 @@
       nixpkgs,
       home-manager,
       lix-module,
+      nixos-hardware,
     }:
     {
       nixosConfigurations =
@@ -27,6 +29,7 @@
             inherit nixpkgs;
             inherit home-manager;
             inherit lix-module;
+            inherit nixos-hardware;
             common-modules = [
               lix-module.nixosModules.default
               ./common

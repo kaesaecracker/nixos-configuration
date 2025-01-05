@@ -20,8 +20,24 @@
         "sd_mod"
       ];
       initrd.kernelModules = [ ];
-      kernelModules = [ "kvm-intel" ];
+      kernelModules = [
+        "kvm-intel"
+        "snd_hda_codec_cs8409"
+        "hci_uart"
+        "bluetooth"
+        "btbcm"
+      ];
       extraModulePackages = [ ];
+      blacklistedKernelModules = [ ];
+      kernelParams = [];
+      loader = {
+        efi.canTouchEfiVariables = true;
+        systemd-boot = {
+          enable = true;
+          editor = false; # do not allow changing kernel parameters
+          consoleMode = "max";
+        };
+      };
     };
 
     fileSystems = {
@@ -53,5 +69,11 @@
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    hardware.enableAllFirmware = true;
+    nixpkgs.config.allowUnfree = true;
+    hardware.enableRedistributableFirmware = true;
+
+    hardware.facetimehd.enable = true;
   };
 }

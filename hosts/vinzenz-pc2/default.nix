@@ -20,7 +20,10 @@ nixpkgs.lib.nixosSystem {
       ../../modules/printing.nix
       ../../modules/podman.nix
       {
-        networking.hostName = "vinzenz-pc2";
+        networking = {
+          hostName = "vinzenz-pc2";
+          networkmanager.enable = true;
+        };
         nix.settings.extra-platforms = [
           "aarch64-linux"
           "i686-linux"

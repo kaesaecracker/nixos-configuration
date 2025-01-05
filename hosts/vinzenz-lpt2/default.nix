@@ -21,7 +21,10 @@ nixpkgs.lib.nixosSystem {
       ../../modules/podman.nix
 
       {
-        networking.hostName = "vinzenz-lpt2";
+        networking = {
+          hostName = "vinzenz-lpt2";
+          networkmanager.enable = true;
+        };
         nix.settings.extra-platforms = [
           "aarch64-linux"
           "i686-linux"
