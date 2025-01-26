@@ -42,7 +42,7 @@
     };
 
     swapDevices = [
-      { device = "/dev/disk/by-uuid/bbd18a70-b0bb-4e1a-b45b-3c1f8eccc0c10"; }
+      { device = "/dev/disk/by-uuid/bbd18a70-b0bb-4e1a-b45b-3c1f8ecc0c10"; }
     ];
 
     networking.useNetworkd = true;
