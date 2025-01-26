@@ -39,10 +39,11 @@ inputs@{ pkgs, ... }:
       wireguard-tools
       wirelesstools
 
-      alejandra # nix formatter
-
       kdiff3
       jetbrains-toolbox
+
+      blanket
+      vlc
     ];
 
     home.file."policy.json" = {

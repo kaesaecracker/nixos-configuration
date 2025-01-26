@@ -99,7 +99,7 @@
     fonts = {
       enableDefaultPackages = true;
       fontconfig.defaultFonts.monospace = [ "FiraCode Nerd Font" ];
-      packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+      packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) roboto-mono ];
     };
 
     hardware.logitech.wireless = {
