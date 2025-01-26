@@ -26,38 +26,38 @@
       };
     };
 
-    # fileSystems = {
-    #   "/" = {
-    #     device = "/dev/disk/by-uuid/3263489d-9819-433c-b198-9d2e732a94e4";
-    #     fsType = "ext4";
-    #   };
-    #   "/boot" = {
-    #     device = "/dev/disk/by-uuid/6C25-6BDC";
-    #     fsType = "vfat";
-    #     options = [
-    #       "fmask=0077"
-    #       "dmask=0077"
-    #     ];
-    #   };
-    # };
+    fileSystems = {
+      "/" = {
+        device = "/dev/disk/by-uuid/47bc77ff-12e1-4d39-bb5c-fb100ccd3aab";
+        fsType = "ext4";
+      };
+      "/boot" = {
+        device = "/dev/disk/by-uuid/05F2-8F9A";
+        fsType = "vfat";
+        options = [
+          "fmask=0077"
+          "dmask=0077"
+        ];
+      };
+    };
 
-    # swapDevices = [
-    #   { device = "/dev/disk/by-uuid/e147721d-86b5-40d7-a231-c6ea391c563d"; }
-    # ];
+    swapDevices = [
+      { device = "/dev/disk/by-uuid/bbd18a70-b0bb-4e1a-b45b-3c1f8eccc0c10"; }
+    ];
 
-    # networking.useNetworkd = true;
-    # systemd.network = {
-    #   enable = true;
-    #   networks."10-wan" = {
-    #     matchConfig.Name = "enp1s0";
-    #     networkConfig.DHCP = "ipv4";
-    #     address = [
-    #       "2a01:4f8:c013:65dd::1/64"
-    #     ];
-    #     routes = [
-    #       { Gateway = "fe80::1"; }
-    #     ];
-    #   };
-    # };
+    networking.useNetworkd = true;
+    systemd.network = {
+      enable = true;
+      networks."10-wan" = {
+        matchConfig.Name = "enp1s0";
+        networkConfig.DHCP = "ipv4";
+        address = [
+          "2a01:4f8:c013:a524::1/64"
+        ];
+        routes = [
+          { Gateway = "fe80::1"; }
+        ];
+      };
+    };
   };
 }
