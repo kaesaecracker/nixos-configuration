@@ -48,22 +48,7 @@ inputs@{ pkgs, ... }:
 
     home.file."policy.json" = {
       target = ".config/containers/policy.json";
-      text = ''
-        {
-            "default": [
-                {
-                    "type": "insecureAcceptAnything"
-                }
-            ],
-            "transports":
-                {
-                    "docker-daemon":
-                        {
-                            "": [{"type":"insecureAcceptAnything"}]
-                        }
-                }
-        }
-      '';
+      text = builtins.readFile ./.config/containers/policy.json;
     };
   };
 }
