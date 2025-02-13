@@ -17,7 +17,8 @@
         # tokenFile should be in format TOKEN=<secret>, since it's EnvironmentFile for systemd
         tokenFile = "/etc/forgejo-runner/registration_token";
         labels = [
-          "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:rust-latest"
+          "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:rust-24.04"
+          "ubuntu-24.04:docker://ghcr.io/catthehacker/ubuntu:rust-24.04"
         ];
         settings = {
           container.network = "bridge";
