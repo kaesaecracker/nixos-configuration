@@ -12,6 +12,7 @@
     pull.ff = "only";
     merge.tool = "kdiff3";
     push.autoSetupRemote = "true";
+    credential.credentialStore = "cache";
   };
 
   ignores = [

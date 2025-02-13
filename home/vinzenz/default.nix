@@ -10,6 +10,7 @@ inputs@{ pkgs, ... }:
       git = import ./git.nix;
       vscode = import ./vscode.nix inputs;
       ssh = import ./ssh.nix;
+      git-credential-oauth.enable = true;
 
       direnv = {
         enable = true;
