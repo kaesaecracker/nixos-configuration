@@ -18,6 +18,7 @@
     vadimcn.vscode-lldb
     ms-dotnettools.csharp
     ms-vscode-remote.remote-ssh
+    RoweWilsonFrederiskHolme.wikitext
   ];
   userSettings = {
     "files.autoSave" = "afterDelay";
