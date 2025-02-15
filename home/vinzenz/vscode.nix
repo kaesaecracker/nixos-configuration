@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   enable = true;
   package = pkgs.vscodium;
@@ -43,6 +43,7 @@
     "redhat.telemetry.enabled" = false;
 
     "git.autofetch" = true;
+    "git.path" = "${lib.getBin pkgs.git}/bin/git";
     "diffEditor.diffAlgorithm" = "advanced";
     "explorer.excludeGitIgnore" = true;
     "markdown.extension.tableFormatter.normalizeIndentation" = true;
