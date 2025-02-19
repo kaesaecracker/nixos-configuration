@@ -11,6 +11,13 @@
                     "type": "insecureAcceptAnything"
                 }
             ]
+        },
+        "docker": {
+            "docker.io/library/debian": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
         }
     }
 }
