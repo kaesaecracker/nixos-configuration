@@ -36,7 +36,6 @@
       "dotnet"
       "rust"
       "tailscale"
-      "thefuck"
     ];
   };
 }

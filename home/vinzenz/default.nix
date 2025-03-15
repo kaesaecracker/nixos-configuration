@@ -26,6 +26,11 @@ inputs@{ pkgs, ... }:
           "--header"
         ];
       };
+
+      thefuck = {
+        enable = true;
+        enableZshIntegration = true;
+      };
     };
 
     editorconfig = import ./editorconfig.nix;
