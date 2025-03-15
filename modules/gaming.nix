@@ -75,6 +75,7 @@
       "steam-original"
       "steam-run"
       "steam-unwrapped"
+      "ut1999"
     ];
   };
 }

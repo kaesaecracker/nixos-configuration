@@ -14,6 +14,7 @@
         "podman"
         "nginx"
         "adbusers"
+        "kvm"
       ];
       shell = pkgs.zsh;
       autoSubUidGidRange = true;

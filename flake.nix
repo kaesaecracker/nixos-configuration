@@ -22,33 +22,34 @@
       lix-module,
       nixos-hardware,
     }:
+    let
+      devices = {
+        vinzenz-lpt2 = "x86_64-linux";
+        vinzenz-pc2 = "x86_64-linux";
+        hetzner-vpn2 = "aarch64-linux";
+        forgejo-runner-1 = "aarch64-linux";
+      };
+      forDevice = f: nixpkgs.lib.mapAttrs f devices;
+    in
     {
-      nixosConfigurations =
-        let
-          host-params = {
-            inherit nixpkgs;
-            inherit home-manager;
-            inherit lix-module;
-            inherit nixos-hardware;
-            common-modules = [
-              lix-module.nixosModules.default
-              ./common
-            ];
-            desktop-modules = [
-              home-manager.nixosModules.home-manager
-              ./home
-              ./modules/desktop-environment.nix
-              ./modules/desktop-hardware.nix
-            ];
-          };
-        in
-        {
-          vinzenz-lpt2 = import ./hosts/vinzenz-lpt2 host-params;
-          vinzenz-pc2 = import ./hosts/vinzenz-pc2 host-params;
-          hetzner-vpn2 = import ./hosts/hetzner-vpn2 host-params;
-          forgejo-runner-1 = import ./hosts/forgejo-runner-1 host-params;
-          ona-book = import ./hosts/ona-book host-params;
-        };
+      nixosConfigurations = forDevice (
+        device: system:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            lix-module.nixosModules.default
+            home-manager.nixosModules.home-manager
+
+            { networking.hostName = device; }
+
+            ./common
+
+            ./hosts/${device}/hardware.nix
+            ./hosts/${device}/imports.nix
+            ./hosts/${device}/configuration.nix
+          ];
+        }
+      );
 
       formatter = {
         x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
