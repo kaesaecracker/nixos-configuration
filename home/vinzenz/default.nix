@@ -1,60 +1,66 @@
-inputs@{ pkgs, ... }:
+{ ... }:
 {
-  imports = [ ./gnome.nix ];
+  config.home-manager.users.vinzenz =
+    { pkgs, ... }:
+    {
+      imports = [
+        ./editorconfig.nix
+        ./git.nix
+        ./gnome.nix
+        ./ssh.nix
+        ./vscode.nix
+        ./zsh.nix
+      ];
 
-  config = {
-    programs = {
-      home-manager.enable = true;
-      fzf.enable = true;
-      zsh = import ./zsh.nix inputs;
-      git = import ./git.nix;
-      vscode = import ./vscode.nix inputs;
-      ssh = import ./ssh.nix;
-      git-credential-oauth.enable = true;
+      config = {
 
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-      };
+        programs = {
+          home-manager.enable = true;
+          fzf.enable = true;
+          git-credential-oauth.enable = true;
 
-      eza = {
-        enable = true;
-        git = true;
-        icons = "auto";
-        extraOptions = [
-          "--group-directories-first"
-          "--header"
+          direnv = {
+            enable = true;
+            nix-direnv.enable = true;
+          };
+
+          eza = {
+            enable = true;
+            git = true;
+            icons = "auto";
+            extraOptions = [
+              "--group-directories-first"
+              "--header"
+            ];
+          };
+
+          thefuck = {
+            enable = true;
+            enableZshIntegration = true;
+          };
+        };
+
+        home.packages = with pkgs; [
+          keepassxc
+          insync
+
+          telegram-desktop
+          element-desktop
+
+          wireguard-tools
+          wirelesstools
+
+          kdiff3
+          jetbrains-toolbox
+
+          blanket
+          vlc
         ];
-      };
 
-      thefuck = {
-        enable = true;
-        enableZshIntegration = true;
+        home.file."policy.json" = {
+          target = ".config/containers/policy.json";
+          text = builtins.readFile ./.config/containers/policy.json;
+        };
       };
     };
-
-    editorconfig = import ./editorconfig.nix;
-
-    home.packages = with pkgs; [
-      keepassxc
-      insync
-
-      telegram-desktop
-      element-desktop
-
-      wireguard-tools
-      wirelesstools
-
-      kdiff3
-      jetbrains-toolbox
-
-      blanket
-      vlc
-    ];
-
-    home.file."policy.json" = {
-      target = ".config/containers/policy.json";
-      text = builtins.readFile ./.config/containers/policy.json;
-    };
-  };
 }

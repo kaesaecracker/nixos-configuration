@@ -11,5 +11,7 @@
     ../../home
     ../../modules/desktop-environment.nix
     ../../modules/desktop-hardware.nix
+
+    ../../home/vinzenz
   ];
 }

@@ -42,7 +42,7 @@
       autoUpgrade = {
         enable = true;
         dates = "daily";
-        flake = "github:kaesaecracker/nixos-configuration";
+        flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
       };
     };
 
