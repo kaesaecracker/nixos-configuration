@@ -12,6 +12,12 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,6 +27,7 @@
       home-manager,
       lix-module,
       nixos-hardware,
+      niri,
     }:
     let
       devices = {
@@ -29,6 +36,10 @@
         hetzner-vpn2 = "aarch64-linux";
         forgejo-runner-1 = "aarch64-linux";
       };
+      homeDevices = [
+        "vinzenz-lpt2"
+        "vinzenz-pc2"
+      ];
       forDevice = f: nixpkgs.lib.mapAttrs f devices;
     in
     {
@@ -36,18 +47,30 @@
         device: system:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [
-            lix-module.nixosModules.default
-            home-manager.nixosModules.home-manager
+          modules =
+            [
+              lix-module.nixosModules.default
 
-            { networking.hostName = device; }
+              { networking.hostName = device; }
 
-            ./common
+              ./modules/globalinstalls.nix
+              ./modules/networking.nix
+              ./modules/nixpkgs.nix
 
-            ./hosts/${device}/hardware.nix
-            ./hosts/${device}/imports.nix
-            ./hosts/${device}/configuration.nix
-          ];
+              ./hosts/${device}/hardware.nix
+              ./hosts/${device}/imports.nix
+              ./hosts/${device}/configuration.nix
+            ]
+            ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
+              home-manager.nixosModules.home-manager
+              { home-manager.extraSpecialArgs = { inherit device; }; }
+              ./modules/home-manager.nix
+
+              ./modules/i18n.nix
+
+              niri.nixosModules.niri
+              { nixpkgs.overlays = [ niri.overlays.niri ]; }
+            ]);
         }
       );
 

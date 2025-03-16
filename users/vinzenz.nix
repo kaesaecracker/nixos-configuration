@@ -15,6 +15,7 @@
         "nginx"
         "adbusers"
         "kvm"
+        "input"
       ];
       shell = pkgs.zsh;
       autoSubUidGidRange = true;

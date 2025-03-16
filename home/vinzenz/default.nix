@@ -1,66 +1,14 @@
-{ ... }:
+{ pkgs, config, ... }:
 {
-  config.home-manager.users.vinzenz =
-    { pkgs, ... }:
-    {
-      imports = [
-        ./editorconfig.nix
-        ./git.nix
-        ./gnome.nix
-        ./ssh.nix
-        ./vscode.nix
-        ./zsh.nix
-      ];
-
-      config = {
-
-        programs = {
-          home-manager.enable = true;
-          fzf.enable = true;
-          git-credential-oauth.enable = true;
-
-          direnv = {
-            enable = true;
-            nix-direnv.enable = true;
-          };
-
-          eza = {
-            enable = true;
-            git = true;
-            icons = "auto";
-            extraOptions = [
-              "--group-directories-first"
-              "--header"
-            ];
-          };
-
-          thefuck = {
-            enable = true;
-            enableZshIntegration = true;
-          };
-        };
-
-        home.packages = with pkgs; [
-          keepassxc
-          insync
-
-          telegram-desktop
-          element-desktop
-
-          wireguard-tools
-          wirelesstools
-
-          kdiff3
-          jetbrains-toolbox
-
-          blanket
-          vlc
-        ];
-
-        home.file."policy.json" = {
-          target = ".config/containers/policy.json";
-          text = builtins.readFile ./.config/containers/policy.json;
-        };
-      };
-    };
+  imports = [
+    ./configuration.nix
+    ./editorconfig.nix
+    ./git.nix
+    ./gnome.nix
+    ./niri.nix
+    ./ssh.nix
+    ./vscode.nix
+    ./waybar.nix
+    ./zsh.nix
+  ];
 }
