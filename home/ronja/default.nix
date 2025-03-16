@@ -1,57 +1,28 @@
-inputs@{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
-  imports = [ ./vscode.nix ];
-  config.home-manager.users.ronja = {
-    home.packages = with pkgs; [
-      ## Apps
-      telegram-desktop
-      kdiff3
+  config = {
+    # Define user account
+    users.users.ronja = {
+      isNormalUser = true;
+      name = "ronja";
+      description = "Ronja";
+      home = "/home/ronja";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "games"
+        "podman"
+      ];
+      shell = pkgs.zsh;
+    };
+
+    home-manager.users.ronja.imports = [
+      ./configuration.nix
+      ./vscode.nix
     ];
 
-    programs = {
-      home-manager.enable = true;
-
-      zsh = {
-        history = {
-          size = 10000;
-          path = "${config.xdg.dataHome}/zsh/history";
-          expireDuplicatesFirst = true;
-        };
-
-        oh-my-zsh = {
-          enable = true;
-          theme = "agnoster";
-          plugins = [
-            "git"
-            "sudo"
-            "systemadmin"
-          ];
-        };
-      };
-
-      git = {
-        userName = "Ronja Spiegelberg";
-        userEmail = "ronja.spiegelberg@gmail.com";
-
-        extraConfig = {
-          pull.ff = "only";
-          merge.tool = "kdiff3";
-        };
-      };
-
-      chromium = {
-        enable = true;
-        extensions = [
-          {
-            # ublock origin
-            id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-          }
-          {
-            id = "dcpihecpambacapedldabdbpakmachpb";
-            updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/updates.xml";
-          }
-        ];
-      };
-    };
+    allowedUnfreePackages = [
+      "vscode-extension-ms-vscode-remote-remote-ssh"
+    ];
   };
 }

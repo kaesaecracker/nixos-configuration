@@ -1,14 +1,48 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
-  imports = [
-    ./configuration.nix
-    ./editorconfig.nix
-    ./git.nix
-    ./gnome.nix
-    ./niri.nix
-    ./ssh.nix
-    ./vscode.nix
-    ./waybar.nix
-    ./zsh.nix
-  ];
+  config = {
+    users.users.vinzenz = {
+      isNormalUser = true;
+      name = "vinzenz";
+      description = "Vinzenz";
+      home = "/home/vinzenz";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "games"
+        "dialout"
+        "podman"
+        "nginx"
+        "adbusers"
+        "kvm"
+        "input"
+      ];
+      shell = pkgs.zsh;
+      autoSubUidGidRange = true;
+    };
+
+    home-manager.users.vinzenz.imports = [
+      ./configuration.nix
+      ./editorconfig.nix
+      ./git.nix
+      ./gnome.nix
+      ./niri.nix
+      ./ssh.nix
+      ./vscode.nix
+      ./waybar.nix
+      ./zsh.nix
+    ];
+
+    allowedUnfreePackages = [
+      "vscode-extension-ms-vscode-remote-remote-ssh"
+      "insync"
+      "insync-pkg"
+
+      "rider"
+      "pycharm-professional"
+      "jetbrains-toolbox"
+
+      "anydesk"
+    ];
+  };
 }

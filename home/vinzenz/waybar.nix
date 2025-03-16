@@ -97,7 +97,7 @@
         cpu = {
           "interval" = 1;
           "format" =
-            "{usage}%@{avg_frequency} "
+            "{usage:3}%@{avg_frequency:4} "
             + (builtins.getAttr device {
               "vinzenz-lpt2" =
                 "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}{icon16}{icon17}{icon18}{icon19}";
