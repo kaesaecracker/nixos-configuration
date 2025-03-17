@@ -22,6 +22,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       home-manager,
       lix-module,
