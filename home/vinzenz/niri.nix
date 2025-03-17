@@ -7,7 +7,6 @@
       xwayland-satellite
       alacritty
       fuzzel
-      swaylock
     ];
 
     qt.style = {

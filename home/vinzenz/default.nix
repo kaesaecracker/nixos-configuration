@@ -28,6 +28,7 @@
       ./gnome.nix
       ./niri.nix
       ./ssh.nix
+      ./swaylock.nix
       ./vscode.nix
       ./waybar.nix
       ./zsh.nix

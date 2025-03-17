@@ -15,6 +15,8 @@
 
         tldr
         neofetch
+
+        nix-output-monitor
       ];
     };
 

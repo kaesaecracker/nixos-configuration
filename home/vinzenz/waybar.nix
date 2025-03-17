@@ -3,9 +3,8 @@
   home.packages = with pkgs; [
     waybar
     playerctl
+    cava
   ];
-
-  programs.cava.enable = true;
 
   programs.waybar = {
     enable = true;
