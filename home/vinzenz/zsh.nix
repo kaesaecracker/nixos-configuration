@@ -9,11 +9,9 @@
     enableCompletion = true;
 
     shellAliases = {
-      my-apply = "sudo nixos-rebuild boot --flake";
-      my-switch = "sudo nixos-rebuild switch --flake";
-      my-update = "sudo nixos-rebuild boot --upgrade --flake";
-      my-pull = "git -C ~/Repos/nixos-configuration pull --rebase";
-      my-test = "sudo nixos-rebuild test";
+      myos-rebuild-boot = "sudo nixos-rebuild boot --flake .# --show-trace --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json";
+      myos-rebuild-switch = "sudo nixos-rebuild switch --flake .# --show-trace --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json";
+
       my-direnvallow = "echo \"use nix\" > .envrc && direnv allow";
       my-ip4 = "ip addr show | grep 192";
       deadnix = "nix run github:astro/deadnix -- ";
