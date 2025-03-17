@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # uncomment for build check on non arm system (requires --impure)
   # nixpkgs.buildPlatform = builtins.currentSystem;
