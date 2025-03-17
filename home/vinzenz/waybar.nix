@@ -1,4 +1,9 @@
-{ pkgs, device, ... }:
+{
+  pkgs,
+  device,
+  config,
+  ...
+}:
 {
   home.packages = with pkgs; [
     waybar
@@ -8,6 +13,7 @@
 
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     settings = {
       mainBar = {
         layer = "top";
@@ -105,6 +111,8 @@
         backlight = {
           device = "intel_backlight";
           format = "{percent}% ";
+          on-scroll-down = "light -U 1";
+          on-scroll-up = "light -A 1";
         };
         cpu = {
           interval = 1;

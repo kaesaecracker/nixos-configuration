@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  devices,
+  config,
+  ...
+}:
 {
   config = {
     home.sessionVariables.NIXOS_OZONE_WL = "1";
-
     home.packages = with pkgs; [
       xwayland-satellite
       alacritty
@@ -23,8 +28,6 @@
         enable = true;
       };
     };
-
-    # services.swayidle.enable = true;
 
     programs.niri.settings = {
       input.keyboard.xkb.layout = "de";
@@ -56,7 +59,7 @@
         # Suggested binds for running programs: terminal, app launcher, screen locker.
         "Mod+T".action.spawn = "alacritty";
         "Mod+D".action.spawn = "fuzzel";
-        "Super+Alt+L".action.spawn = "swaylock";
+        "Super+Alt+L".action.spawn = "${config.programs.swaylock.package}/bin/swaylock";
 
         # You can also use a shell. Do this if you need pipes, multiple commands, etc.
         # Note: the entire command goes as a single argument in the end.

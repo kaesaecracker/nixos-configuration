@@ -16,6 +16,7 @@
         "adbusers"
         "kvm"
         "input"
+        "video"
       ];
       shell = pkgs.zsh;
       autoSubUidGidRange = true;

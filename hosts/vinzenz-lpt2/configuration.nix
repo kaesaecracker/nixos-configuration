@@ -27,6 +27,15 @@
     #  ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALWKm+d6KL6Vl3grPOcGouiNTkvdhXuWJmcrdEBY2nw ronja-ssh-host-key''
     #];
 
-    programs.adb.enable = true;
+    programs = {
+      adb.enable = true;
+      light = {
+        enable = true;
+        brightnessKeys = {
+          enable = true;
+          step = 5;
+        };
+      };
+    };
   };
 }
