@@ -10,6 +10,23 @@
       swaylock
     ];
 
+    qt.style = {
+      package = pkgs.adwaita-qt;
+      name = "adwaita-dark";
+    };
+
+    services = {
+      kdeconnect = {
+        enable = true;
+        indicator = true;
+      };
+      mako = {
+        enable = true;
+      };
+    };
+
+    # services.swayidle.enable = true;
+
     programs.niri.settings = {
       input.keyboard.xkb.layout = "de";
 
