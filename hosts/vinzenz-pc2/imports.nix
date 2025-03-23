@@ -9,5 +9,6 @@
     ../../modules/desktop-hardware.nix
 
     ../../home/vinzenz
+    ../../home/ronja
   ];
 }
