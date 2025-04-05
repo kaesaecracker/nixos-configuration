@@ -25,15 +25,26 @@
 
     services.swayidle = {
       enable = true;
+      systemdTarget = "graphical-session.target";
       timeouts = [
         {
-          timeout = 60;
+          timeout = 30;
           command = "${config.programs.swaylock.package}/bin/swaylock";
         }
-        #{
-        #  timeout = 90;
-        #  command = "${pkgs.systemd}/bin/systemctl suspend";
-        #}
+        {
+          timeout = 60 * 10;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        }
+      ];
+      events = [
+        {
+          event = "before-sleep";
+          command = "${pkgs.playerctl}/bin/playerctl pause; ${config.programs.swaylock.package}/bin/swaylock";
+        }
+        {
+          event = "lock";
+          command = "${config.programs.swaylock.package}/bin/swaylock";
+        }
       ];
     };
   };

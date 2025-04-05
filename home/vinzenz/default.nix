@@ -25,6 +25,7 @@
     home-manager.users.vinzenz.imports = [
       ./configuration.nix
       ./editorconfig.nix
+      ./fuzzel.nix
       ./git.nix
       ./gnome.nix
       ./niri.nix
