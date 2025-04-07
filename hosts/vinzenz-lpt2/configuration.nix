@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ ./nginx.nix ];
+  imports = [ ./zerforschen-plus.nix ];
 
   config = {
     networking.networkmanager.enable = true;
@@ -37,5 +37,7 @@
         };
       };
     };
+
+    networking.firewall.allowedTCPPorts = [ 8776 ];
   };
 }
