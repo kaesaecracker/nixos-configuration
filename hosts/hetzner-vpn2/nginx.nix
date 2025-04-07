@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs,... }:
 {
   security.acme = {
     acceptTerms = true;
@@ -45,6 +45,12 @@
         #  (mkServiceConfig pc2 8542)
         #  { locations."/".proxyWebsockets = true; }
         #];
+
+        "zerforschen.plus" = {
+          addSSL = true;
+          enableACME = true;
+          root = inputs.zerforschen-plus.packages."${pkgs.system}".zerforschen-plus-content;
+        };
       };
   };
 
