@@ -20,6 +20,7 @@
       ms-dotnettools.csharp
       ms-vscode-remote.remote-ssh
       RoweWilsonFrederiskHolme.wikitext
+      davidanson.vscode-markdownlint
     ];
     userSettings = {
       "files.autoSave" = "afterDelay";

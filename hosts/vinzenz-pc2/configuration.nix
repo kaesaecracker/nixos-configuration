@@ -5,7 +5,6 @@
     ./vscode-server.nix
   ];
   config = {
-    networking.networkmanager.enable = true;
     nix.settings.extra-platforms = [
       "aarch64-linux"
       "i686-linux"

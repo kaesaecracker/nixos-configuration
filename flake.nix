@@ -37,12 +37,14 @@
       devices = {
         vinzenz-lpt2 = "x86_64-linux";
         vinzenz-pc2 = "x86_64-linux";
+        ronja-pc = "x86_64-linux";
         hetzner-vpn2 = "aarch64-linux";
         forgejo-runner-1 = "aarch64-linux";
       };
       homeDevices = [
         "vinzenz-lpt2"
         "vinzenz-pc2"
+        "ronja-pc"
       ];
       forDevice = f: nixpkgs.lib.mapAttrs f devices;
     in
