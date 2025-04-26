@@ -57,11 +57,6 @@
       # baobab # disk usage
     ];
 
-    environment.systemPackages = with pkgs; [
-      ghex
-      impression
-    ];
-
     # RDP connections
     networking.firewall.allowedTCPPorts = [ 3389 ];
 
@@ -76,6 +71,9 @@
             pinta
             dconf-editor
             gpaste
+            ghex
+            impression
+            papers
 
             # graphical installer for flatpak apps
             gnome-software

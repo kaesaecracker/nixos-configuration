@@ -24,6 +24,8 @@
       enable = true;
       enableZshIntegration = true;
     };
+
+    chromium.enable = true;
   };
 
   home.packages = with pkgs; [
@@ -41,6 +43,12 @@
 
     blanket
     vlc
+
+    arduino
+    arduino-ide
+    arduino-cli
+    kicad
+    kikit
   ];
 
   home.file."policy.json" = {

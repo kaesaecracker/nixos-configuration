@@ -47,7 +47,7 @@
       "git.autofetch" = true;
       "git.path" = "${lib.getBin pkgs.git}/bin/git";
       "diffEditor.diffAlgorithm" = "advanced";
-      "explorer.excludeGitIgnore" = true;
+      "explorer.excludeGitIgnore" = false;
       "markdown.extension.tableFormatter.normalizeIndentation" = true;
       "markdown.extension.toc.orderedList" = false;
       "rust-analyzer.checkOnSave.command" = "clippy";

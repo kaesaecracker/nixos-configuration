@@ -12,6 +12,8 @@
       myos-rebuild-boot = "sudo nixos-rebuild boot --flake .# --show-trace --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json";
       myos-rebuild-switch = "sudo nixos-rebuild switch --flake .# --show-trace --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json";
 
+      s = "nix-shell -p";
+
       my-direnvallow = "echo \"use nix\" > .envrc && direnv allow";
       my-ip4 = "ip addr show | grep 192";
       deadnix = "nix run github:astro/deadnix -- ";
