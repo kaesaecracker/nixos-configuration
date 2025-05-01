@@ -49,6 +49,8 @@
     arduino-cli
     kicad
     kikit
+
+    unstable.ut1999
   ];
 
   home.file."policy.json" = {

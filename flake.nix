@@ -2,6 +2,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +34,7 @@
       lix-module,
       niri,
       zerforschen-plus,
+      nixpkgs-unstable,
     }:
     let
       devices = {
@@ -48,14 +51,15 @@
       ];
       forDevice = f: nixpkgs.lib.mapAttrs f devices;
     in
-    {
+    rec {
       nixosConfigurations = forDevice (
         device: system:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-          };
+        let specialArgs = {
+          inherit inputs device;
+          pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
+        };
+        in nixpkgs.lib.nixosSystem {
+          inherit system specialArgs;
           modules =
             [
               lix-module.nixosModules.default
@@ -69,10 +73,12 @@
               ./hosts/${device}/hardware.nix
               ./hosts/${device}/imports.nix
               ./hosts/${device}/configuration.nix
+
+              { nixpkgs.overlays = [ overlays.unstable-packages ]; }
             ]
             ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
               home-manager.nixosModules.home-manager
-              { home-manager.extraSpecialArgs = { inherit device; }; }
+              { home-manager.extraSpecialArgs = specialArgs; }
               ./modules/home-manager.nix
 
               ./modules/i18n.nix
@@ -82,6 +88,15 @@
             ]);
         }
       );
+
+      overlays = {
+        unstable-packages = final: prev: {
+          unstable = import nixpkgs-unstable {
+            system = prev.system;
+            config = prev.config;
+          };
+        };
+      };
 
       formatter = {
         x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
