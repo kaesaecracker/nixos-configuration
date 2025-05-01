@@ -1,4 +1,4 @@
-{ pkgs, inputs,... }:
+{ pkgs, inputs, ... }:
 {
   security.acme = {
     acceptTerms = true;
@@ -20,31 +20,40 @@
     recommendedOptimisation = true;
 
     virtualHosts =
-      #let
-      #  servicesDomain = "services.zerforschen.plus";
-      #  mkServiceConfig = host: port: {
-      #    addSSL = true;
-      #    enableACME = true;
-      #    locations."/" = {
-      #      proxyPass = "http://${host}:${toString port}/";
-      #      extraConfig = ''
-      #        # bind to tailscale ip
-      #        proxy_bind 100.88.118.60;
-      #        # pam auth
-      #        limit_except OPTIONS {
-      #          auth_pam  "Password Required";
-      #          auth_pam_service_name "nginx";
-      #        }
-      #      '';
-      #    };
-      #  };
-      #  pc2 = "vinzenz-pc2.donkey-pentatonic.ts.net";
-      #in
+      let
+        servicesDomain = "services.zerforschen.plus";
+        mkServiceConfig =
+          { host, port }:
+          {
+            addSSL = true;
+            enableACME = true;
+            locations."/" = {
+              proxyPass = "http://${host}:${toString port}/";
+              extraConfig = ''
+                # bind to tailscale ip
+                proxy_bind 100.88.118.60;
+                # pam auth
+                limit_except OPTIONS {
+                  auth_pam  "Password Required";
+                  auth_pam_service_name "nginx";
+                }
+              '';
+            };
+          };
+        pc2 = "vinzenz-pc2.donkey-pentatonic.ts.net";
+      in
       {
-        #"vscode.${servicesDomain}" = lib.mkMerge [
-        #  (mkServiceConfig pc2 8542)
-        #  { locations."/".proxyWebsockets = true; }
-        #];
+        "code.${servicesDomain}" = lib.mkMerge [
+          (mkServiceConfig {
+            host = pc2;
+            port = 8542;
+          })
+          { locations."/".proxyWebsockets = true; }
+        ];
+        "view.${servicesDomain}" = mkServiceConfig {
+          host = pc2;
+          port = 1313;
+        };
 
         "zerforschen.plus" = {
           addSSL = true;
