@@ -89,6 +89,26 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz"
       }
     },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745925850,
+        "narHash": "sha256-cyAAMal0aPrlb1NgzMxZqeN1mAJ2pJseDhm2m6Um8T0=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "38bc60bbc157ae266d4a0c96671c6c742ee17a5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -149,6 +169,36 @@
         "type": "github"
       }
     },
+    "nix-filter": {
+      "locked": {
+        "lastModified": 1731533336,
+        "narHash": "sha256-oRam5PS1vcrr5UPgALW0eo1m/5/pls27Z/pabHNy2Ms=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "f7653272fd234696ae94229839a99b73c9ab7de0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
+    "nix-filter_2": {
+      "locked": {
+        "lastModified": 1731533336,
+        "narHash": "sha256-oRam5PS1vcrr5UPgALW0eo1m/5/pls27Z/pabHNy2Ms=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "f7653272fd234696ae94229839a99b73c9ab7de0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1746055187,
@@ -185,10 +235,61 @@
       "inputs": {
         "home-manager": "home-manager",
         "lix-module": "lix-module",
+        "naersk": "naersk",
         "niri": "niri",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "servicepoint-cli": "servicepoint-cli",
+        "servicepoint-simulator": "servicepoint-simulator",
         "zerforschen-plus": "zerforschen-plus"
+      }
+    },
+    "servicepoint-cli": {
+      "inputs": {
+        "naersk": [
+          "naersk"
+        ],
+        "nix-filter": "nix-filter",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1746866001,
+        "narHash": "sha256-6jqzJyBRXdwmd5SKIJTfbJ5pRVNshVNPzCtFqobRgTE=",
+        "ref": "refs/heads/main",
+        "rev": "e9d3b32f57674e06db1ebf0762bfd736e1f5ea31",
+        "revCount": 41,
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git"
+      }
+    },
+    "servicepoint-simulator": {
+      "inputs": {
+        "naersk": [
+          "naersk"
+        ],
+        "nix-filter": "nix-filter_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1746268672,
+        "narHash": "sha256-IIgxxA5Fk1iLwXiCGbCLrVdduTDAA54DJ2gnfvCOMLQ=",
+        "ref": "refs/heads/main",
+        "rev": "33301a51bf501a6886ec2e1c6ad8111247141d2f",
+        "revCount": 108,
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git"
       }
     },
     "systems": {

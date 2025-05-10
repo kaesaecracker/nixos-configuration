@@ -51,6 +51,9 @@
     kikit
 
     unstable.ut1999
+
+    servicepoint-cli
+    servicepoint-simulator
   ];
 
   home.file."policy.json" = {

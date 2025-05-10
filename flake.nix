@@ -24,6 +24,23 @@
       url = "git+https://git.berlin.ccc.de/vinzenz/zerforschen.plus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    naersk = {
+      url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    servicepoint-cli = {
+      url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.naersk.follows = "naersk";
+    };
+
+    servicepoint-simulator = {
+      url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.naersk.follows = "naersk";
+    };
   };
 
   outputs =
@@ -35,6 +52,9 @@
       niri,
       zerforschen-plus,
       nixpkgs-unstable,
+      servicepoint-cli,
+      servicepoint-simulator,
+      naersk,
     }:
     let
       devices = {
@@ -54,11 +74,12 @@
     rec {
       nixosConfigurations = forDevice (
         device: system:
-        let specialArgs = {
-          inherit inputs device;
-          pkgs-unstable = nixpkgs-unstable.legacyPackages."${system}";
-        };
-        in nixpkgs.lib.nixosSystem {
+        let
+          specialArgs = {
+            inherit inputs device;
+          };
+        in
+        nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules =
             [
@@ -74,7 +95,11 @@
               ./hosts/${device}/imports.nix
               ./hosts/${device}/configuration.nix
 
-              { nixpkgs.overlays = [ overlays.unstable-packages ]; }
+              {
+                nixpkgs.overlays = [
+                  overlays.unstable-packages
+                ];
+              }
             ]
             ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
               home-manager.nixosModules.home-manager
@@ -84,7 +109,12 @@
               ./modules/i18n.nix
 
               niri.nixosModules.niri
-              { nixpkgs.overlays = [ niri.overlays.niri ]; }
+              {
+                nixpkgs.overlays = [
+                  niri.overlays.niri
+                  overlays.servicepoint-packages
+                ];
+              }
             ]);
         }
       );
@@ -95,6 +125,11 @@
             system = prev.system;
             config = prev.config;
           };
+        };
+        servicepoint-packages = final: prev: {
+          servicepoint-cli = servicepoint-cli.legacyPackages."${prev.system}".servicepoint-cli;
+          servicepoint-simulator =
+            servicepoint-simulator.legacyPackages."${prev.system}".servicepoint-simulator;
         };
       };
 
