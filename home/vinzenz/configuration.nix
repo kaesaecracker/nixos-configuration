@@ -56,8 +56,11 @@
     servicepoint-simulator
   ];
 
-  home.file."policy.json" = {
-    target = ".config/containers/policy.json";
-    text = builtins.readFile ./.config/containers/policy.json;
+  home.file = {
+    "policy.json" = {
+      target = ".config/containers/policy.json";
+      text = builtins.readFile ./.config/containers/policy.json;
+    };
+    "idea.properties".text = "idea.filewatcher.executable.path = ${pkgs.fsnotifier}/bin/fsnotifier";
   };
 }
