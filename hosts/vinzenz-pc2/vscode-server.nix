@@ -4,7 +4,7 @@
     enable = true;
     telemetryLevel = "off";
     port = 8542;
-    host = "100.125.93.127"; # tailscale
+    host = "127.0.0.1";
     withoutConnectionToken = true;
     extraPackages = with pkgs; [
       nodejs
