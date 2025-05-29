@@ -20,9 +20,5 @@
       ./configuration.nix
       ./vscode.nix
     ];
-
-    allowedUnfreePackages = [
-      "vscode-extension-ms-vscode-remote-remote-ssh"
-    ];
   };
 }

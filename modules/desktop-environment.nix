@@ -13,14 +13,16 @@
     };
 
     # Enable sound with pipewire.
-    hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      #jack.enable = true;
+    services = {
+      pulseaudio.enable = false;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        #jack.enable = true;
+      };
     };
 
     programs = {
@@ -100,7 +102,7 @@
       enableDefaultPackages = true;
       fontconfig.defaultFonts.monospace = [ "FiraCode Nerd Font" ];
       packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" ]; })
+        nerd-fonts.fira-code
         roboto-mono
         recursive
       ];

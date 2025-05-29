@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 {
   config.programs.zsh = {
-    initExtra = ''
-      eval "$(direnv hook zsh)";
+    initContent = ''
+      # eval "$(direnv hook zsh)";
       export PATH=$PATH:/home/vinzenz/.cargo/bin
     '';
 

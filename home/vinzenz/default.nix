@@ -37,7 +37,6 @@
     ];
 
     allowedUnfreePackages = [
-      "vscode-extension-ms-vscode-remote-remote-ssh"
       "insync"
       "insync-pkg"
 

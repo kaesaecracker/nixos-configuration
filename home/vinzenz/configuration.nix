@@ -8,6 +8,7 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+      enableZshIntegration = true;
     };
 
     eza = {
@@ -44,6 +45,8 @@
     blanket
     vlc
 
+    ptyxis
+
     arduino
     arduino-ide
     arduino-cli
@@ -54,6 +57,8 @@
 
     servicepoint-cli
     servicepoint-simulator
+
+    anydesk
   ];
 
   home.file = {
