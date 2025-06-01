@@ -2,6 +2,7 @@
 {
   services.openvscode-server = {
     enable = true;
+    package = pkgs.unstable.openvscode-server;
     telemetryLevel = "off";
     port = 8542;
     host = "127.0.0.1";

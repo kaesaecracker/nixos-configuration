@@ -53,7 +53,7 @@
     kicad
     kikit
 
-    unstable.ut1999
+    ut1999
 
     servicepoint-cli
     servicepoint-simulator
