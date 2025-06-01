@@ -22,6 +22,8 @@
       autoSubUidGidRange = true;
     };
 
+    nix.settings.trusted-users = [ "vinzenz" ];
+
     home-manager.users.vinzenz.imports = [
       ./configuration.nix
       ./editorconfig.nix
