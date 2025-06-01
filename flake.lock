@@ -347,11 +347,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748387402,
-        "narHash": "sha256-5hae2UmVd42S/U6vp0+JQmjkgJrdKkp4vKM9+oEoQDQ=",
+        "lastModified": 1748777873,
+        "narHash": "sha256-sDyp1LeP+BOiG4AvpX28bPPxLUpXwlredK+uqxguTPs=",
         "ref": "refs/heads/main",
-        "rev": "fe4068c9ec1a8f4184d632d47916580edc2f9c17",
-        "revCount": 15,
+        "rev": "da2b589ad01d79a02985511fd5dce31731abad5a",
+        "revCount": 17,
         "type": "git",
         "url": "https://git.berlin.ccc.de/vinzenz/zerforschen.plus"
       },
