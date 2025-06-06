@@ -50,6 +50,10 @@
         hostname = "avd.club.berlin.ccc.de";
         user = "vinzenz";
       };
+      "builder.berlin.ccc.de" = {
+        hostname = "195.160.172.36";
+        user = "root";
+      };
     };
   };
 }
