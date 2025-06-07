@@ -54,6 +54,15 @@
         hostname = "195.160.172.36";
         user = "root";
       };
+      "cccb.zerforschen.plus" = {
+        hostname = "2a01:4f8:c013:cbdd::1";
+        user = "root";
+      };
+      "berlin.ccc.de" = {
+        hostname = "195.160.173.9";
+        user = "deploy";
+        port = 31337;
+      };
     };
   };
 }
