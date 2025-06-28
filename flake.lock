@@ -270,11 +270,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1746866001,
-        "narHash": "sha256-6jqzJyBRXdwmd5SKIJTfbJ5pRVNshVNPzCtFqobRgTE=",
+        "lastModified": 1751117291,
+        "narHash": "sha256-iOeiPypZkl6uPL5mQ4aFG4wYVs9w9BJZ2/5XHlLgyIk=",
         "ref": "refs/heads/main",
-        "rev": "e9d3b32f57674e06db1ebf0762bfd736e1f5ea31",
-        "revCount": 41,
+        "rev": "2a4818dc2158cbdad34a701ab12d0b1cf7f52c46",
+        "revCount": 45,
         "type": "git",
         "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git"
       },
@@ -296,11 +296,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1746268672,
-        "narHash": "sha256-IIgxxA5Fk1iLwXiCGbCLrVdduTDAA54DJ2gnfvCOMLQ=",
+        "lastModified": 1751118401,
+        "narHash": "sha256-tVLbgLaJQzu/wicqVHkeBGyM8U4TvpIw8NykBaeKy6A=",
         "ref": "refs/heads/main",
-        "rev": "33301a51bf501a6886ec2e1c6ad8111247141d2f",
-        "revCount": 108,
+        "rev": "86c9c20b499da9c7c203d4e982e49ddd5a8aad46",
+        "revCount": 110,
         "type": "git",
         "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git"
       },
