@@ -7,23 +7,27 @@
       package = pkgs.vscodium;
       profiles.default = {
         enableUpdateCheck = false;
-        extensions = with pkgs.vscode-extensions; [
-          jnoortheen.nix-ide
-          ms-python.python
-          editorconfig.editorconfig
-          yzhang.markdown-all-in-one
-          redhat.vscode-yaml
-          pkief.material-icon-theme
-          rust-lang.rust-analyzer
-          tamasfe.even-better-toml
-          llvm-vs-code-extensions.vscode-clangd
-          mkhl.direnv
-          vadimcn.vscode-lldb
-          # ms-dotnettools.csharp
-          # ms-vscode-remote.remote-ssh
-          RoweWilsonFrederiskHolme.wikitext
-          davidanson.vscode-markdownlint
-        ];
+        extensions =
+          with pkgs.nix-vscode-extensions.open-vsx;
+          [
+            jnoortheen.nix-ide
+            ms-python.python
+            editorconfig.editorconfig
+            yzhang.markdown-all-in-one
+            redhat.vscode-yaml
+            pkief.material-icon-theme
+            rust-lang.rust-analyzer
+            tamasfe.even-better-toml
+            llvm-vs-code-extensions.vscode-clangd
+            mkhl.direnv
+            muhammad-sammy.csharp
+            davidanson.vscode-markdownlint
+          ]
+          ++ (with pkgs.vscode-extensions; [
+            vadimcn.vscode-lldb
+            RoweWilsonFrederiskHolme.wikitext
+            ms-dotnettools.csharp
+          ]);
         userSettings = {
           "files.autoSave" = "afterDelay";
           "files.autoSaveWhenNoErrors" = true;
@@ -65,6 +69,8 @@
               };
             };
           };
+
+          "dotnetAcquisitionExtension.sharedExistingDotnetPath" = "${lib.getBin pkgs.dotnet-sdk}/bin/dotnet";
 
           "\[makefile\]" = {
             "editor.insertSpaces" = false;

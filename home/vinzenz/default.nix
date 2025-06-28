@@ -47,6 +47,8 @@
       "jetbrains-toolbox"
 
       "anydesk"
+
+      "vscode-extension-ms-dotnettools-csharp"
     ];
   };
 }
