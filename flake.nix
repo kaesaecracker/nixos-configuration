@@ -11,7 +11,10 @@
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
 
     niri = {
@@ -32,15 +35,33 @@
 
     servicepoint-cli = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.naersk.follows = "naersk";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        naersk.follows = "naersk";
+        nix-filter.follows = "nix-filter";
+      };
     };
 
     servicepoint-simulator = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.naersk.follows = "naersk";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        naersk.follows = "naersk";
+        nix-filter.follows = "nix-filter";
+      };
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    # this is used to pin transitive dependencies to the same version
+    flake-utils.url = "github:numtide/flake-utils";
+    nix-filter.url = "github:numtide/nix-filter";
   };
 
   outputs =
@@ -55,6 +76,8 @@
       servicepoint-cli,
       servicepoint-simulator,
       naersk,
+      nix-vscode-extensions,
+      ...
     }:
     let
       devices = {
@@ -113,6 +136,7 @@
                 nixpkgs.overlays = [
                   niri.overlays.niri
                   overlays.servicepoint-packages
+                  nix-vscode-extensions.overlays.default
                 ];
               }
             ]);
