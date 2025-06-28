@@ -3,19 +3,9 @@
   config.programs.ssh = {
     enable = true;
     matchBlocks = {
-      "vpn1" = {
-        host = "vpn1 hetzner-vpn1";
-        hostname = "157.90.146.125"; # 2a01:4f8:c012:7137::/64
-        user = "root";
-      };
       "vpn2" = {
         host = "vpn2 hetzner-vpn2";
         hostname = "2a01:4f8:c013:65dd::1";
-        user = "root";
-      };
-      "vpn1-ts" = {
-        host = "vpn1-ts hetzner-vpn1.donkey-pentatonic.ts.net";
-        hostname = "hetzner-vpn1.donkey-pentatonic.ts.net";
         user = "root";
       };
       "openwrt" = {
@@ -62,6 +52,10 @@
         hostname = "195.160.173.9";
         user = "deploy";
         port = 31337;
+      };
+      "forgejo-runner-1" = {
+        hostname = "forgejo-runner-1.dev.zerforschen.plus";
+        user = "root";
       };
     };
   };
