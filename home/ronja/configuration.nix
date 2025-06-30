@@ -26,6 +26,10 @@
             "systemadmin"
           ];
         };
+        shellAliases = {
+          myos-update = ''echo "Enter sudo password" && sudo nixos-rebuild boot --flake git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git --show-trace --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json'';
+          myos-apply = ''echo "Enter sudo password" && sudo nixos-rebuild switch --flake .# --show-trace --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json'';
+        };
       };
 
       git = {
