@@ -12,6 +12,7 @@
         "wheel"
         "games"
         "podman"
+        "openvscode-server"
       ];
       shell = pkgs.zsh;
     };
