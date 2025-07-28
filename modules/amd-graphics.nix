@@ -13,6 +13,7 @@
           # enable = true;
           # support32Bit.enable = config.hardware.graphics.enable32Bit;
         };
+        overdrive.enable = true;
       };
     };
 
