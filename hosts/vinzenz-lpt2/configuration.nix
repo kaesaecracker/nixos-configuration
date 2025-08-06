@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ ./zerforschen-plus.nix ];
+  imports = [ ./nginx.nix ];
 
   config = {
     nix.settings.extra-platforms = [
@@ -37,6 +37,6 @@
       };
     };
 
-    networking.firewall.allowedTCPPorts = [ 8776 ];
+    networking.firewall.allowedTCPPorts = [ 8776 1337 ];
   };
 }

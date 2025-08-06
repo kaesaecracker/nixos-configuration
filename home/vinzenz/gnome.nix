@@ -7,7 +7,7 @@
       quick-settings-tweaker
       solaar-extension
       alphabetical-app-grid
-    ];
+    ] ++ (with pkgs; [foliate]);
 
     dconf.settings = {
       "org/gnome/shell" = {

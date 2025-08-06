@@ -50,15 +50,13 @@
     arduino
     arduino-ide
     arduino-cli
-    kicad
-    kikit
-
-    ut1999
 
     servicepoint-cli
     servicepoint-simulator
 
-    anydesk
+    icu
+
+    nextcloud-client
   ];
 
   home.file = {
