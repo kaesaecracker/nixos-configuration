@@ -41,15 +41,11 @@
       gnome-maps
       gnome-weather
       gnome-tour
-      gnome-contacts
       sysprof
       orca # screen reader
-      gnome-disk-utility
-      gnome-system-monitor
       gnome-weather
       gnome-backgrounds
       gnome-user-docs
-      gnome-calendar
       yelp # help app
       # gnome-music
       # totem # video player
