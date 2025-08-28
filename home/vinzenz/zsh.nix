@@ -4,8 +4,11 @@
     initContent = ''
       # eval "$(direnv hook zsh)";
       export PATH=$PATH:/home/vinzenz/.cargo/bin
-    '';
 
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+
+      source ${./.zsh/p10k.zsh}
+    '';
     enableCompletion = true;
 
     shellAliases = {
