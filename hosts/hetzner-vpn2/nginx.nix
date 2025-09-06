@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{ inputs, pkgs, ... }:
+let
+  blog-domain-socket = "/run/nginx/blog.sock";
+  anubis-domain-socket = "/run/anubis/anubis-blog.sock";
+in
 {
   security.acme = {
     acceptTerms = true;
@@ -6,8 +10,16 @@
   };
 
   security.pam.services.nginx.setEnvironment = false;
-  systemd.services.nginx.serviceConfig = {
-    SupplementaryGroups = [ "shadow" ];
+  systemd.services = {
+    nginx.serviceConfig = {
+      SupplementaryGroups = [
+        "shadow"
+        "anubis"
+      ];
+    };
+    anubis-main.serviceConfig = {
+      SupplementaryGroups = [ "nginx" ];
+    };
   };
 
   services.nginx = {
@@ -58,13 +70,34 @@
         "zerforschen.plus" = {
           addSSL = true;
           enableACME = true;
+          locations."/" = {
+            proxyPass = ("http://unix:" + anubis-domain-socket);
+          };
+        };
+
+        "vinzenz-lpt2-in-anubis" = {
           root = inputs.zerforschen-plus.packages."${pkgs.system}".zerforschen-plus-content;
+          listen = [
+            {
+              addr = ("unix:" + blog-domain-socket);
+            }
+          ];
         };
       };
-  };
 
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
+    anubis = {
+      instances.main = {
+        enable = true;
+        settings = {
+          BIND = anubis-domain-socket;
+          TARGET = "unix://" + blog-domain-socket;
+        };
+      };
+    };
+
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
+  };
 }
