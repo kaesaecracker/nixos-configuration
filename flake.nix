@@ -13,7 +13,6 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
 
@@ -38,7 +37,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         naersk.follows = "naersk";
-        nix-filter.follows = "nix-filter";
       };
     };
 
@@ -47,7 +45,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         naersk.follows = "naersk";
-        nix-filter.follows = "nix-filter";
       };
     };
 
@@ -55,13 +52,8 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
-
-    # this is used to pin transitive dependencies to the same version
-    flake-utils.url = "github:numtide/flake-utils";
-    nix-filter.url = "github:numtide/nix-filter";
   };
 
   outputs =
@@ -104,42 +96,41 @@
         in
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
-          modules =
-            [
-              lix-module.nixosModules.default
+          modules = [
+            lix-module.nixosModules.default
 
-              { networking.hostName = device; }
+            { networking.hostName = device; }
 
-              ./modules/globalinstalls.nix
-              ./modules/networking.nix
-              ./modules/nixpkgs.nix
+            ./modules/globalinstalls.nix
+            ./modules/networking.nix
+            ./modules/nixpkgs.nix
 
-              ./hosts/${device}/hardware.nix
-              ./hosts/${device}/imports.nix
-              ./hosts/${device}/configuration.nix
+            ./hosts/${device}/hardware.nix
+            ./hosts/${device}/imports.nix
+            ./hosts/${device}/configuration.nix
 
-              {
-                nixpkgs.overlays = [
-                  overlays.unstable-packages
-                ];
-              }
-            ]
-            ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
-              home-manager.nixosModules.home-manager
-              { home-manager.extraSpecialArgs = specialArgs; }
-              ./modules/home-manager.nix
+            {
+              nixpkgs.overlays = [
+                overlays.unstable-packages
+              ];
+            }
+          ]
+          ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
+            home-manager.nixosModules.home-manager
+            { home-manager.extraSpecialArgs = specialArgs; }
+            ./modules/home-manager.nix
 
-              ./modules/i18n.nix
+            ./modules/i18n.nix
 
-              niri.nixosModules.niri
-              {
-                nixpkgs.overlays = [
-                  niri.overlays.niri
-                  overlays.servicepoint-packages
-                  nix-vscode-extensions.overlays.default
-                ];
-              }
-            ]);
+            niri.nixosModules.niri
+            {
+              nixpkgs.overlays = [
+                niri.overlays.niri
+                overlays.servicepoint-packages
+                nix-vscode-extensions.overlays.default
+              ];
+            }
+          ]);
         }
       );
 

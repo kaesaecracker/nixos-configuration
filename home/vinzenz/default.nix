@@ -30,7 +30,7 @@
       ./fuzzel.nix
       ./git.nix
       ./gnome.nix
-      ./niri.nix
+      #./niri.nix
       ./ssh.nix
       ./swaylock.nix
       ./vscode.nix
