@@ -31,7 +31,6 @@
 
   home.packages = with pkgs; [
     keepassxc
-    insync
 
     telegram-desktop
     element-desktop

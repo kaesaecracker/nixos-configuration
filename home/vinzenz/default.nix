@@ -39,9 +39,6 @@
     ];
 
     allowedUnfreePackages = [
-      "insync"
-      "insync-pkg"
-
       "rider"
       "pycharm-professional"
       "jetbrains-toolbox"
