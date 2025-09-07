@@ -76,7 +76,7 @@ in
             };
           };
 
-          "vinzenz-lpt2-in-anubis" = {
+          "blog-in-anubis" = {
             root = inputs.zerforschen-plus.packages."${pkgs.system}".zerforschen-plus-content;
             listen = [
               {
