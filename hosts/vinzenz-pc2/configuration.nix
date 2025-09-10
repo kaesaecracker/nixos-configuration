@@ -3,6 +3,7 @@
   imports = [
     ./hardware.nix
     ./vscode-server.nix
+    ./hass.nix
   ];
   config = {
     nix.settings.extra-platforms = [
