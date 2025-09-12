@@ -9,13 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +54,6 @@
       self,
       nixpkgs,
       home-manager,
-      lix-module,
       niri,
       zerforschen-plus,
       nixpkgs-unstable,
@@ -110,13 +102,12 @@
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
-            lix-module.nixosModules.default
-
             { networking.hostName = device; }
 
             ./modules/globalinstalls.nix
             ./modules/networking.nix
             ./modules/nixpkgs.nix
+            ./modules/lix.nix
 
             ./hosts/${device}/hardware.nix
             ./hosts/${device}/imports.nix
