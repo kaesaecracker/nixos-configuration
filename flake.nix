@@ -85,6 +85,19 @@
         "ronja-pc"
       ];
       forDevice = f: nixpkgs.lib.mapAttrs f devices;
+      supported-systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs supported-systems (
+          system:
+          f rec {
+            inherit system;
+            pkgs = nixpkgs.legacyPackages.${system};
+          }
+        );
     in
     rec {
       nixosConfigurations = forDevice (
@@ -148,9 +161,6 @@
         };
       };
 
-      formatter = {
-        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-        aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixfmt-rfc-style;
-      };
+      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
 }

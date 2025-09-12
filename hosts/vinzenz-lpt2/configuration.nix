@@ -37,6 +37,9 @@
       };
     };
 
-    networking.firewall.allowedTCPPorts = [ 8776 1337 ];
+    networking.firewall.allowedTCPPorts = [
+      8776
+      1337
+    ];
   };
 }

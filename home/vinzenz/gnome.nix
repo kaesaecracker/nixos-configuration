@@ -1,13 +1,16 @@
 { pkgs, ... }:
 {
   config = {
-    home.packages = with pkgs.gnomeExtensions; [
-      gsconnect
-      # battery-health-charging
-      quick-settings-tweaker
-      solaar-extension
-      alphabetical-app-grid
-    ] ++ (with pkgs; [foliate]);
+    home.packages =
+      with pkgs.gnomeExtensions;
+      [
+        gsconnect
+        # battery-health-charging
+        quick-settings-tweaker
+        solaar-extension
+        alphabetical-app-grid
+      ]
+      ++ (with pkgs; [ foliate ]);
 
     dconf.settings = {
       "org/gnome/shell" = {
