@@ -1,6 +1,7 @@
+{ nixosModules, ... }:
 {
   imports = [
-    ../../modules/podman.nix
+    nixosModules.podman
     ./forgejo-runner.nix
   ];
 }

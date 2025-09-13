@@ -4,8 +4,7 @@
     ../../modules/gnome.nix
     ../../modules/gaming.nix
     nixosModules.printing
-    ../../modules/podman.nix
-    #../../modules/niri.nix
+    nixosModules.podman
     ../../modules/desktop-environment.nix
     ../../modules/desktop-hardware.nix
 
