@@ -145,43 +145,41 @@
         };
       };
 
-      nixosModules = {
-        lix = (import ./nixosModules/lix.nix);
-        kdeconnect = (import ./nixosModules/kdeconnect.nix);
-        globalinstalls = (import ./nixosModules/globalinstalls.nix);
-        autoupdate = (import ./nixosModules/autoupdate.nix);
-        en-de =  (import ./nixosModules/en-de.nix);
-        niri = {
-          imports = [ niri.nixosModules.niri ];
-          nixpkgs.overlays = [ niri.overlays.niri ];
-        };
-        pkgs-unstable = {
-          nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
-        };
-        desktopDefault = {
-          imports = [
-            self.nixosModules.pkgs-unstable
-            self.nixosModules.niri
-            self.nixosModules.kdeconnect
-            self.nixosModules.en-de
+      nixosModules =
+        (builtins.mapAttrs (m: _: import ./nixosModules/${m}) (builtins.readDir ./nixosModules))
+        // {
+          niri = {
+            imports = [ niri.nixosModules.niri ];
+            nixpkgs.overlays = [ niri.overlays.niri ];
+          };
+          pkgs-unstable = {
+            nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          desktopDefault = {
+            imports = [
+              self.nixosModules.pkgs-unstable
+              self.nixosModules.niri
+              self.nixosModules.kdeconnect
+              self.nixosModules.en-de
 
-            home-manager.nixosModules.home-manager
-            servicepoint-simulator.nixosModules.default
-            servicepoint-cli.nixosModules.default
+              home-manager.nixosModules.home-manager
+              servicepoint-simulator.nixosModules.default
+              servicepoint-cli.nixosModules.default
 
-            ./modules/home-manager.nix
-          ];
+              ./modules/home-manager.nix
+            ];
+          };
+          default = {
+            imports = with self.nixosModules; [
+              lix
+              globalinstalls
+              autoupdate
+              openssh
+              ./modules/networking.nix
+              ./modules/nixpkgs.nix
+            ];
+          };
         };
-        default = {
-          imports = with self.nixosModules; [
-            lix
-            globalinstalls
-            autoupdate
-            ./modules/networking.nix
-            ./modules/nixpkgs.nix
-          ];
-        };
-      };
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
