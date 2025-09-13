@@ -100,7 +100,13 @@
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
-            { networking.hostName = device; }
+            {
+              networking.hostName = device;
+              system = {
+                stateVersion = "22.11";
+                autoUpgrade.flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
+              };
+            }
 
             self.nixosModules.default
 
@@ -117,7 +123,11 @@
           ]
           ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
             self.nixosModules.desktopDefault
-            { home-manager.extraSpecialArgs = specialArgs; }
+            {
+              home-manager.extraSpecialArgs = specialArgs;
+
+              time.timeZone = "Europe/Berlin";
+            }
           ]);
         }
       );
@@ -138,6 +148,9 @@
       nixosModules = {
         lix = (import ./nixosModules/lix.nix);
         kdeconnect = (import ./nixosModules/kdeconnect.nix);
+        globalinstalls = (import ./nixosModules/globalinstalls.nix);
+        autoupdate = (import ./nixosModules/autoupdate.nix);
+        en-de =  (import ./nixosModules/en-de.nix);
         niri = {
           imports = [ niri.nixosModules.niri ];
           nixpkgs.overlays = [ niri.overlays.niri ];
@@ -150,17 +163,20 @@
             self.nixosModules.pkgs-unstable
             self.nixosModules.niri
             self.nixosModules.kdeconnect
+            self.nixosModules.en-de
+
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default
             servicepoint-cli.nixosModules.default
+
             ./modules/home-manager.nix
-            ./modules/i18n.nix
           ];
         };
         default = {
-          imports = [
-            self.nixosModules.lix
-            ./modules/globalinstalls.nix
+          imports = with self.nixosModules; [
+            lix
+            globalinstalls
+            autoupdate
             ./modules/networking.nix
             ./modules/nixpkgs.nix
           ];
