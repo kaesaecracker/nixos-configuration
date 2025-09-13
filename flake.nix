@@ -123,7 +123,7 @@
             self.nixosModules.globalinstalls
             self.nixosModules.autoupdate
             self.nixosModules.openssh
-            ./modules/networking.nix
+            self.nixosModules.tailscale
             ./modules/nixpkgs.nix
 
             {
