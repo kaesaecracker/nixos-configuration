@@ -1,36 +1,6 @@
 { pkgs, ... }:
 {
   config = {
-    services = {
-      xserver = {
-        # Enable the GNOME Desktop Environment.
-        desktopManager.gnome = {
-          enable = true;
-          extraGSettingsOverridePackages = [ pkgs.mutter ];
-          extraGSettingsOverrides = ''
-            [org.gnome.mutter]
-            experimental-features=['scale-monitor-framebuffer']
-          '';
-        };
-        displayManager.gdm.enable = true;
-        excludePackages = with pkgs; [ xterm ];
-      };
-
-      displayManager.defaultSession = "gnome";
-
-      gnome = {
-        tinysparql.enable = false;
-        localsearch.enable = false;
-        sushi.enable = true;
-        gnome-remote-desktop.enable = true;
-      };
-    };
-
-    programs = {
-      dconf.enable = true;
-      gpaste.enable = true;
-    };
-
     # remove some gnome default apps
     environment.gnome.excludePackages = with pkgs; [
       cheese # photo booth
@@ -53,6 +23,7 @@
     ];
 
     # RDP connections
+    services.gnome.gnome-remote-desktop.enable = true;
     networking.firewall.allowedTCPPorts = [ 3389 ];
 
     home-manager.sharedModules = [
@@ -79,16 +50,6 @@
           ]);
 
         dconf.settings = import ./gnome-shared-dconf.nix;
-
-        gtk = {
-          enable = true;
-          iconTheme.name = "Adwaita";
-          cursorTheme.name = "Adwaita";
-          theme = {
-            name = "adw-gtk3-dark";
-            package = pkgs.adw-gtk3;
-          };
-        };
       }
 
       {

@@ -144,12 +144,13 @@
             self.nixosModules.niri
             self.nixosModules.kdeconnect
             self.nixosModules.en-de
+            self.nixosModules.adwaita
+            self.nixosModules.gnome
             ./modules/home-manager.nix
 
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default
             servicepoint-cli.nixosModules.default
-
           ]);
         }
       );
