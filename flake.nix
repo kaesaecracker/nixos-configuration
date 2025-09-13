@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
@@ -104,10 +103,7 @@
           modules = [
             { networking.hostName = device; }
 
-            ./modules/globalinstalls.nix
-            ./modules/networking.nix
-            ./modules/nixpkgs.nix
-            ./modules/lix.nix
+            self.nixosModules.default
 
             ./hosts/${device}/hardware.nix
             ./hosts/${device}/imports.nix
@@ -120,20 +116,8 @@
             }
           ]
           ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
-            home-manager.nixosModules.home-manager
+            self.nixosModules.desktopDefault
             { home-manager.extraSpecialArgs = specialArgs; }
-            ./modules/home-manager.nix
-
-            ./modules/i18n.nix
-
-            niri.nixosModules.niri
-            {
-              nixpkgs.overlays = [
-                niri.overlays.niri
-                overlays.servicepoint-packages
-                nix-vscode-extensions.overlays.default
-              ];
-            }
           ]);
         }
       );
@@ -145,10 +129,35 @@
             config = prev.config;
           };
         };
-        servicepoint-packages = final: prev: {
-          servicepoint-cli = servicepoint-cli.legacyPackages."${prev.system}".servicepoint-cli;
-          servicepoint-simulator =
-            servicepoint-simulator.legacyPackages."${prev.system}".servicepoint-simulator;
+      };
+
+      nixosModules = {
+        lix = (import ./nixosModules/lix.nix);
+        niri = {
+          imports = [ niri.nixosModules.niri ];
+          nixpkgs.overlays = [ niri.overlays.niri ];
+        };
+        pkgs-unstable = {
+          nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
+        };
+        desktopDefault = {
+          imports = [
+            self.nixosModules.pkgs-unstable
+            self.nixosModules.niri
+            home-manager.nixosModules.home-manager
+            servicepoint-simulator.nixosModules.default
+            servicepoint-cli.nixosModules.default
+            ./modules/home-manager.nix
+            ./modules/i18n.nix
+          ];
+        };
+        default = {
+          imports = [
+            self.nixosModules.lix
+            ./modules/globalinstalls.nix
+            ./modules/networking.nix
+            ./modules/nixpkgs.nix
+          ];
         };
       };
 
