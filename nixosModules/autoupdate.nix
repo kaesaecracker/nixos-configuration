@@ -11,5 +11,6 @@
   system.autoUpgrade = {
     enable = true;
     dates = "daily";
+    # do not forget to set `flake` when using this module!
   };
 }

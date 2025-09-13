@@ -74,20 +74,26 @@
         "vinzenz-pc2"
         "ronja-pc"
       ];
-      forDevice = f: nixpkgs.lib.mapAttrs f devices;
+      lib = nixpkgs.lib;
+      forDevice = f: lib.mapAttrs f devices;
       supported-systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
       forAllSystems =
         f:
-        nixpkgs.lib.genAttrs supported-systems (
+        lib.genAttrs supported-systems (
           system:
           f rec {
             inherit system;
             pkgs = nixpkgs.legacyPackages.${system};
           }
         );
+      importDir =
+        dir:
+        (lib.attrsets.mapAttrs' (
+          m: _: lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) (import "${dir}/${m}")
+        ) (builtins.readDir dir));
     in
     rec {
       nixosConfigurations = forDevice (
@@ -109,11 +115,16 @@
               };
             }
 
-            self.nixosModules.default
-
             ./hosts/${device}/hardware.nix
             ./hosts/${device}/imports.nix
             ./hosts/${device}/configuration.nix
+
+            self.nixosModules.lix-is-nix
+            self.nixosModules.globalinstalls
+            self.nixosModules.autoupdate
+            self.nixosModules.openssh
+            ./modules/networking.nix
+            ./modules/nixpkgs.nix
 
             {
               nixpkgs.overlays = [
@@ -123,12 +134,22 @@
             }
           ]
           ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
-            self.nixosModules.desktopDefault
             {
               home-manager.extraSpecialArgs = specialArgs;
 
               time.timeZone = "Europe/Berlin";
             }
+
+            self.nixosModules.pkgs-unstable
+            self.nixosModules.niri
+            self.nixosModules.kdeconnect
+            self.nixosModules.en-de
+            ./modules/home-manager.nix
+
+            home-manager.nixosModules.home-manager
+            servicepoint-simulator.nixosModules.default
+            servicepoint-cli.nixosModules.default
+
           ]);
         }
       );
@@ -146,46 +167,15 @@
         };
       };
 
-      nixosModules =
-        let
-          lib = nixpkgs.lib;
-        in
-        (lib.attrsets.mapAttrs' (
-          m: _: lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) (import ./nixosModules/${m})
-        ) (builtins.readDir ./nixosModules))
-        // {
-          niri = {
-            imports = [ niri.nixosModules.niri ];
-            nixpkgs.overlays = [ niri.overlays.niri ];
-          };
-          pkgs-unstable = {
-            nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
-          };
-          desktopDefault = {
-            imports = [
-              self.nixosModules.pkgs-unstable
-              self.nixosModules.niri
-              self.nixosModules.kdeconnect
-              self.nixosModules.en-de
-
-              home-manager.nixosModules.home-manager
-              servicepoint-simulator.nixosModules.default
-              servicepoint-cli.nixosModules.default
-
-              ./modules/home-manager.nix
-            ];
-          };
-          default = {
-            imports = with self.nixosModules; [
-              lix
-              globalinstalls
-              autoupdate
-              openssh
-              ./modules/networking.nix
-              ./modules/nixpkgs.nix
-            ];
-          };
+      nixosModules = (importDir ./nixosModules) // {
+        niri = {
+          imports = [ niri.nixosModules.niri ];
+          nixpkgs.overlays = [ niri.overlays.niri ];
         };
+        pkgs-unstable = {
+          nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
+        };
+      };
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
