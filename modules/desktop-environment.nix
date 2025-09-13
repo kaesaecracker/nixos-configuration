@@ -26,7 +26,6 @@
     };
 
     programs = {
-      kdeconnect.enable = true;
       firefox = {
         enable = true;
         languagePacks = [
@@ -56,25 +55,6 @@
       appimage = {
         enable = true;
         binfmt = true;
-      };
-    };
-
-    networking = {
-      firewall = {
-        allowedTCPPortRanges = [
-          {
-            # KDE Connect / gsconnect
-            from = 1714;
-            to = 1764;
-          }
-        ];
-        allowedUDPPortRanges = [
-          {
-            # KDE Connect / gsconnect
-            from = 1714;
-            to = 1764;
-          }
-        ];
       };
     };
 

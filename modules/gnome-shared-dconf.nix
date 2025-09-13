@@ -40,7 +40,4 @@
   "org/gnome/shell/extensions/alphabetical-app-grid" = {
     folder-order-position = "start";
   };
-  "org/gnome/shell/extensions/gsconnect" = {
-    enabled = true;
-  };
 }

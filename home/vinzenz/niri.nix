@@ -16,16 +16,7 @@
       name = "adwaita-dark";
     };
 
-    services = {
-      kdeconnect = {
-        enable = true;
-        # this still shows up in gnome session starting with 25.05
-        # indicator = true;
-      };
-      mako = {
-        enable = true;
-      };
-    };
+    services.mako.enable = true;
 
     programs.niri.settings = {
       input.keyboard.xkb.layout = "de";

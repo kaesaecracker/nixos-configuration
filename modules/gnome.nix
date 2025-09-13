@@ -29,7 +29,6 @@
     programs = {
       dconf.enable = true;
       gpaste.enable = true;
-      kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
     };
 
     # remove some gnome default apps

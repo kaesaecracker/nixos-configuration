@@ -133,6 +133,7 @@
 
       nixosModules = {
         lix = (import ./nixosModules/lix.nix);
+        kdeconnect = (import ./nixosModules/kdeconnect.nix);
         niri = {
           imports = [ niri.nixosModules.niri ];
           nixpkgs.overlays = [ niri.overlays.niri ];
@@ -144,6 +145,7 @@
           imports = [
             self.nixosModules.pkgs-unstable
             self.nixosModules.niri
+            self.nixosModules.kdeconnect
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default
             servicepoint-cli.nixosModules.default
