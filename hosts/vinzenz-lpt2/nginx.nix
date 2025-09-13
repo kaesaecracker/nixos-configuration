@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 let
   blog-domain-socket = "/run/nginx/blog.sock";
   anubis-domain-socket = "/run/anubis/anubis-blog.sock";
@@ -34,7 +34,7 @@ in
         };
 
         "vinzenz-lpt2-in-anubis" = {
-          root = inputs.zerforschen-plus.packages."${pkgs.system}".zerforschen-plus-content;
+          root = pkgs.zerforschen-plus-content;
           listen = [
             {
               addr = ("unix:" + blog-domain-socket);

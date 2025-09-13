@@ -49,7 +49,7 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nixpkgs,
       home-manager,
@@ -58,7 +58,6 @@
       nixpkgs-unstable,
       servicepoint-cli,
       servicepoint-simulator,
-      naersk,
       nix-vscode-extensions,
       ...
     }:
@@ -95,7 +94,7 @@
         device: system:
         let
           specialArgs = {
-            inherit inputs device;
+            inherit device;
           };
         in
         nixpkgs.lib.nixosSystem {
@@ -112,6 +111,7 @@
             {
               nixpkgs.overlays = [
                 overlays.unstable-packages
+                overlays.zerforschen
               ];
             }
           ]
@@ -128,6 +128,10 @@
             system = prev.system;
             config = prev.config;
           };
+        };
+
+        zerforschen = final: prev: {
+          zerforschen-plus-content = zerforschen-plus.packages."${prev.system}".zerforschen-plus-content;
         };
       };
 

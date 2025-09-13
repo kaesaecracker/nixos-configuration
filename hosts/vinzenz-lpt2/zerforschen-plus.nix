@@ -1,7 +1,5 @@
 {
   pkgs,
-  system,
-  inputs,
   ...
 }:
 {
@@ -28,7 +26,7 @@
       "zerforschen.plus" = {
         #addSSL = true;
         #enableACME = true;
-        root = inputs.zerforschen-plus.packages."${pkgs.system}".zerforschen-plus-content;
+        root = pkgs.zerforschen-plus-content;
       };
     };
   };
