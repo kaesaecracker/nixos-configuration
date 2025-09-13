@@ -1,8 +1,9 @@
+{ nixosModules, ... }:
 {
   imports = [
     ../../modules/gnome.nix
     ../../modules/gaming.nix
-    ../../modules/printing.nix
+    nixosModules.printing
     ../../modules/podman.nix
     #../../modules/niri.nix
     ../../modules/desktop-environment.nix

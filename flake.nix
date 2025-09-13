@@ -95,6 +95,7 @@
         let
           specialArgs = {
             inherit device;
+            inherit (self) nixosModules;
           };
         in
         nixpkgs.lib.nixosSystem {
@@ -146,7 +147,12 @@
       };
 
       nixosModules =
-        (builtins.mapAttrs (m: _: import ./nixosModules/${m}) (builtins.readDir ./nixosModules))
+        let
+          lib = nixpkgs.lib;
+        in
+        (lib.attrsets.mapAttrs' (
+          m: _: lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) (import ./nixosModules/${m})
+        ) (builtins.readDir ./nixosModules))
         // {
           niri = {
             imports = [ niri.nixosModules.niri ];
