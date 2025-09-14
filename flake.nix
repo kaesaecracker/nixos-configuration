@@ -129,6 +129,11 @@
                 "nix-command"
                 "flakes"
               ];
+
+              documentation = {
+                info.enable = false; # info pages and the info command
+                doc.enable = false; # documentation distributed in packages' /share/doc
+              };
             }
 
             ./nixosConfigurations/${device}
@@ -140,7 +145,6 @@
             self.nixosModules.tailscale
             self.nixosModules.allowed-unfree-list
             self.nixosModules.extra-caches
-            ./modules/nixpkgs.nix
 
             zerforschen-plus.nixosModules.default
           ]

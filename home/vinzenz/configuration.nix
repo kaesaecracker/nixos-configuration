@@ -56,6 +56,8 @@
     icu
 
     nextcloud-client
+
+    lutris
   ];
 
   home.file = {

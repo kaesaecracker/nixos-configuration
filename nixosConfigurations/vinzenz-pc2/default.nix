@@ -3,6 +3,8 @@
   imports = [
     ./configuration.nix
     ./hardware.nix
+    ./vscode-server.nix
+    ./hass.nix
 
     ../../modules/gnome.nix
     ../../modules/gaming.nix

@@ -15,16 +15,12 @@
     ];
   };
 
-  networking = {
-    firewall = {
-      allowedTCPPorts = [
-        8542
-        8543
-        8544
-        80
-        1313
-        5201
-      ];
-    };
-  };
+  networking.firewall.allowedTCPPorts = [
+    8542
+    8543
+    8544
+    80
+    1313
+    5201
+  ];
 }

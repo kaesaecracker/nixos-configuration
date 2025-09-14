@@ -1,6 +1,6 @@
-{ ... }:
+{ vinzenzNixosModules, ... }:
 {
-  imports = [ ../../modules/amd-graphics.nix ];
+  imports = [ vinzenzNixosModules.amd-graphics ];
   config = {
     # amd cpu
     boot.kernelModules = [ "kvm-amd" ];

@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ lib, vinzenzNixosModules, ... }:
 {
-  imports = [ ../../modules/intel-graphics.nix ];
+  imports = [ vinzenzNixosModules.intel-graphics ];
   config = {
     # intel cpu
     boot.kernelModules = [

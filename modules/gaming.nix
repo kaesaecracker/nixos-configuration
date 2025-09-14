@@ -19,12 +19,7 @@
       mangohud
       vulkan-tools
       glxinfo
-      lutris
     ];
 
-    networking.firewall.allowedUDPPorts = [
-      # Factorio
-      34197
-    ];
   };
 }
