@@ -128,9 +128,9 @@
               ];
             }
 
-            ./hosts/${device}/hardware.nix
-            ./hosts/${device}/imports.nix
-            ./hosts/${device}/configuration.nix
+            ./nixosConfigurations/${device}/hardware.nix
+            ./nixosConfigurations/${device}/imports.nix
+            ./nixosConfigurations/${device}/configuration.nix
 
             self.nixosModules.lix-is-nix
             self.nixosModules.globalinstalls
@@ -150,7 +150,7 @@
               time.timeZone = "Europe/Berlin";
 
               home-manager.sharedModules = [
-                self.homeManagerModules.adwaita
+                self.homeModules.adwaita
               ];
             }
 

@@ -73,10 +73,10 @@
       lm_sensors
 
       # office
-      libreoffice-qt
-      hunspell
-      hunspellDicts.de-de
-      hunspellDicts.en-us-large
+      #libreoffice-qt
+      #hunspell
+      #hunspellDicts.de-de
+      #hunspellDicts.en-us-large
     ];
 
     fonts = {
