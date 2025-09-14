@@ -1,10 +1,14 @@
-{ vinzenzNixosModules, pkgs, ... }:
+{
+  vinzenzNixosModules,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [ vinzenzNixosModules.amd-graphics ];
   config = {
     # amd cpu
     boot.kernelModules = [ "kvm-amd" ];
-    hardware.cpu.amd.updateMicrocode = true;
 
     boot = {
       initrd.availableKernelModules = [
@@ -23,6 +27,12 @@
     fileSystems = import ./fstab.nix;
     swapDevices = [ ];
 
-    networking.interfaces.eno1.wakeOnLan.enable = true;
+    networking = {
+      networkmanager.enable = true;
+      useDHCP = lib.mkDefault true;
+      interfaces.eno1.wakeOnLan.enable = true;
+    };
+
+    hardware.bluetooth.enable = true;
   };
 }

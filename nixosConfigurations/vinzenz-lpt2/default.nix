@@ -10,7 +10,6 @@
     vinzenzNixosModules.printing
     vinzenzNixosModules.podman
     ../../modules/desktop-environment.nix
-    ../../modules/desktop-hardware.nix
 
     ../../home/vinzenz
     ../../home/ronja

@@ -8,7 +8,6 @@
     ../../modules/gaming.nix
     vinzenzNixosModules.steam
     ../../modules/desktop-environment.nix
-    ../../modules/desktop-hardware.nix
 
     ../../home/ronja
   ];

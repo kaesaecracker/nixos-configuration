@@ -149,6 +149,7 @@
             self.nixosModules.tailscale
             self.nixosModules.allowed-unfree-list
             self.nixosModules.extra-caches
+            self.nixosModules.systemd-boot
 
             zerforschen-plus.nixosModules.default
           ]
@@ -181,7 +182,7 @@
             self.nixosModules.modern-desktop
             self.nixosModules.nix-ld
             self.nixosModules.quiet-boot
-            self.nixosModules.systemd-boot
+            self.nixosModules.firmware-updates
 
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default

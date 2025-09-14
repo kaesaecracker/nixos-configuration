@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   boot = {
     supportedFilesystems = [ "btrfs" ];
@@ -38,5 +39,10 @@
     { device = "/dev/disk/by-uuid/bf9d19fb-499b-4bfb-b67d-131fa5bf8259"; }
   ];
 
-  hardware.cpu.intel.updateMicrocode = true;
+  hardware.bluetooth.enable = true;
+
+  networking = {
+    networkmanager.enable = true;
+    useDHCP = lib.mkDefault true;
+  };
 }
