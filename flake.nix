@@ -116,6 +116,10 @@
           modules = [
             {
               networking.hostName = device;
+              nixpkgs = {
+                inherit system;
+                hostPlatform = lib.mkDefault system;
+              };
               system = {
                 stateVersion = "22.11";
                 autoUpgrade.flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
@@ -176,6 +180,8 @@
             self.nixosModules.gnome
             self.nixosModules.modern-desktop
             self.nixosModules.nix-ld
+            self.nixosModules.quiet-boot
+            self.nixosModules.systemd-boot
 
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default

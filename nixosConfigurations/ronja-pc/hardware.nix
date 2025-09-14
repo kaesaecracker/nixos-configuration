@@ -1,6 +1,7 @@
-{ lib, ... }:
 {
   boot = {
+    supportedFilesystems = [ "btrfs" ];
+    initrd.supportedFilesystems = [ "btrfs" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     initrd = {
@@ -37,6 +38,5 @@
     { device = "/dev/disk/by-uuid/bf9d19fb-499b-4bfb-b67d-131fa5bf8259"; }
   ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = true;
 }

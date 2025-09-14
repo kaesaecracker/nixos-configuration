@@ -1,4 +1,4 @@
-{ vinzenzNixosModules, ... }:
+{ vinzenzNixosModules, pkgs, ... }:
 {
   imports = [ vinzenzNixosModules.amd-graphics ];
   config = {
@@ -14,6 +14,9 @@
         "usbhid"
         "sd_mod"
       ]; # "usb_storage"
+      kernelPackages = pkgs.linuxPackages_zen;
+      supportedFilesystems = [ "btrfs" ];
+      initrd.supportedFilesystems = [ "btrfs" ];
       loader.efi.efiSysMountPoint = "/boot";
     };
 

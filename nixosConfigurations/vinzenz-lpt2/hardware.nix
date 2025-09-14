@@ -1,4 +1,9 @@
-{ lib, vinzenzNixosModules, ... }:
+{
+  lib,
+  vinzenzNixosModules,
+  pkgs,
+  ...
+}:
 {
   imports = [ vinzenzNixosModules.intel-graphics ];
   config = {
@@ -9,11 +14,6 @@
     ];
     hardware.cpu.intel.updateMicrocode = true;
 
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
     # still possible to use this option, but it's recommended to use it in conjunction
@@ -22,17 +22,20 @@
 
     hardware.enableRedistributableFirmware = true;
 
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
-    boot.initrd = {
-      availableKernelModules = [
-        "xhci_pci"
-        "thunderbolt"
-        "nvme"
-      ];
-      luks.devices = {
-        "luks-2c654ff2-3c42-48d3-a1e3-9545679afaa3" = {
-          device = "/dev/disk/by-uuid/2c654ff2-3c42-48d3-a1e3-9545679afaa3";
+    boot = {
+      kernelPackages = pkgs.linuxPackages_zen;
+      supportedFilesystems = [ "btrfs" ];
+      initrd = {
+        supportedFilesystems = [ "btrfs" ];
+        availableKernelModules = [
+          "xhci_pci"
+          "thunderbolt"
+          "nvme"
+        ];
+        luks.devices = {
+          "luks-2c654ff2-3c42-48d3-a1e3-9545679afaa3" = {
+            device = "/dev/disk/by-uuid/2c654ff2-3c42-48d3-a1e3-9545679afaa3";
+          };
         };
       };
     };
