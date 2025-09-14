@@ -56,6 +56,7 @@
         enable = true;
         binfmt = true;
       };
+      xwayland.enable = true;
     };
 
     systemd = {

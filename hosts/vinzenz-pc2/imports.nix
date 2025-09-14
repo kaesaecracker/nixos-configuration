@@ -3,6 +3,7 @@
   imports = [
     ../../modules/gnome.nix
     ../../modules/gaming.nix
+    nixosModules.steam
     nixosModules.printing
     nixosModules.podman
     #../../modules/niri.nix

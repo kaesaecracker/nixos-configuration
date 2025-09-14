@@ -92,7 +92,8 @@
       importDir =
         dir:
         (lib.attrsets.mapAttrs' (
-          m: _: lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) (import "${dir}/${m}")
+          m: _:
+          lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) { imports = [ "${dir}/${m}" ]; }
         ) (builtins.readDir dir));
     in
     rec {
@@ -113,6 +114,16 @@
                 stateVersion = "22.11";
                 autoUpgrade.flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
               };
+
+              nixpkgs.overlays = [
+                overlays.unstable-packages
+                overlays.zerforschen
+              ];
+
+              nix.settings.experimental-features = [
+                "nix-command"
+                "flakes"
+              ];
             }
 
             ./hosts/${device}/hardware.nix
@@ -124,27 +135,25 @@
             self.nixosModules.autoupdate
             self.nixosModules.openssh
             self.nixosModules.tailscale
+            self.nixosModules.allowed-unfree-list
+            self.nixosModules.extra-caches
             ./modules/nixpkgs.nix
-
-            {
-              nixpkgs.overlays = [
-                overlays.unstable-packages
-                overlays.zerforschen
-              ];
-            }
           ]
           ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
             {
               home-manager.extraSpecialArgs = specialArgs;
 
               time.timeZone = "Europe/Berlin";
+
+              home-manager.sharedModules = [
+                self.homeModules.adwaita
+              ];
             }
 
             self.nixosModules.pkgs-unstable
             self.nixosModules.niri
             self.nixosModules.kdeconnect
             self.nixosModules.en-de
-            self.nixosModules.adwaita
             self.nixosModules.gnome
             ./modules/home-manager.nix
 
@@ -177,6 +186,8 @@
           nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
         };
       };
+
+      homeModules = importDir ./homeModules;
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
