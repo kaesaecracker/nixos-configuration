@@ -120,7 +120,6 @@
 
               nixpkgs.overlays = [
                 self.overlays.unstable-packages
-                self.overlays.zerforschen
               ];
 
               nix.settings.experimental-features = [
@@ -141,6 +140,8 @@
             self.nixosModules.allowed-unfree-list
             self.nixosModules.extra-caches
             ./modules/nixpkgs.nix
+
+            zerforschen-plus.nixosModules.default
           ]
           ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
             {
@@ -154,6 +155,7 @@
             }
 
             self.nixosModules.pkgs-unstable
+            self.nixosModules.pkgs-vscode-extensions
             self.nixosModules.niri
             self.nixosModules.kdeconnect
             self.nixosModules.en-de
@@ -174,10 +176,6 @@
             config = prev.config;
           };
         };
-
-        zerforschen = final: prev: {
-          zerforschen-plus-content = zerforschen-plus.packages."${prev.system}".zerforschen-plus-content;
-        };
       };
 
       nixosModules = (self.lib.importDir ./nixosModules) // {
@@ -186,11 +184,14 @@
           nixpkgs.overlays = [ niri.overlays.niri ];
         };
         pkgs-unstable = {
+          nixpkgs.overlays = [ self.overlays.unstable-packages ];
+        };
+        pkgs-vscode-extensions = {
           nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
         };
       };
 
-      homeManagerModules = self.lib.importDir ./homeManagerModules;
+      homeModules = self.lib.importDir ./homeModules;
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
