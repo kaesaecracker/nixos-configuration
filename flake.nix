@@ -103,13 +103,16 @@
       nixosConfigurations = forDevice (
         device: system:
         let
-          specialArgs = {
+          commonSpecialArgs = {
             inherit device;
-            inherit (self) nixosModules;
+            vinzenzHomeModules = self.homeModules;
           };
         in
         nixpkgs.lib.nixosSystem {
-          inherit system specialArgs;
+          inherit system;
+          specialArgs = commonSpecialArgs // {
+            vinzenzNixosModules = self.nixosModules;
+          };
           modules = [
             {
               networking.hostName = device;
@@ -143,12 +146,21 @@
           ]
           ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
             {
-              home-manager.extraSpecialArgs = specialArgs;
+              home-manager = {
+                extraSpecialArgs = commonSpecialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+              };
 
               time.timeZone = "Europe/Berlin";
 
               home-manager.sharedModules = [
+                { home.stateVersion = "22.11"; }
                 self.homeModules.adwaita
+                self.homeModules.git
+                self.homeModules.templates
+                self.homeModules.zsh-basics
+                self.homeModules.nano
               ];
             }
 
@@ -158,7 +170,8 @@
             self.nixosModules.kdeconnect
             self.nixosModules.en-de
             self.nixosModules.gnome
-            ./modules/home-manager.nix
+            self.nixosModules.modern-desktop
+            self.nixosModules.nix-ld
 
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default

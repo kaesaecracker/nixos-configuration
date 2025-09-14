@@ -1,10 +1,10 @@
-{ nixosModules, ... }:
+{ vinzenzNixosModules, ... }:
 {
   imports = [
     ./configuration.nix
     ./hardware.nix
 
-    nixosModules.podman
+    vinzenzNixosModules.podman
     ./forgejo-runner.nix
   ];
 }

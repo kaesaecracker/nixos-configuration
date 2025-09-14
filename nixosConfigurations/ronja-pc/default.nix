@@ -1,4 +1,4 @@
-{ nixosModules, ... }:
+{ vinzenzNixosModules, ... }:
 {
   imports = [
     ./configuration.nix
@@ -6,7 +6,7 @@
 
     ../../modules/gnome.nix
     ../../modules/gaming.nix
-    nixosModules.steam
+    vinzenzNixosModules.steam
     ../../modules/desktop-environment.nix
     ../../modules/desktop-hardware.nix
 

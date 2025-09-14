@@ -16,4 +16,9 @@
       LC_TIME = "de_DE.UTF-8";
     };
   };
+
+  programs.firefox.languagePacks = [
+    "en-US"
+    "de"
+  ];
 }

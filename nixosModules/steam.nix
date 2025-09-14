@@ -1,6 +1,6 @@
-{ nixosModules, ... }:
+{ vinzenzNixosModules, ... }:
 {
-  imports = [ nixosModules.allowed-unfree-list ];
+  imports = [ vinzenzNixosModules.allowed-unfree-list ];
 
   hardware.steam-hardware.enable = true;
 
