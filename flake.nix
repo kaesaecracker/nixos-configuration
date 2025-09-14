@@ -128,9 +128,7 @@
               ];
             }
 
-            ./nixosConfigurations/${device}/hardware.nix
-            ./nixosConfigurations/${device}/imports.nix
-            ./nixosConfigurations/${device}/configuration.nix
+            ./nixosConfigurations/${device}
 
             self.nixosModules.lix-is-nix
             self.nixosModules.globalinstalls
