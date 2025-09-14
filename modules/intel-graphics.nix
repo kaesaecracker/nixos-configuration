@@ -1,5 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, nixosModules, ... }:
 {
+  imports = [ nixosModules.allowed-unfree-list ];
+
   config = {
     hardware.graphics = {
       extraPackages = with pkgs; [

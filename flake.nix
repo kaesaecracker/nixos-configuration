@@ -89,14 +89,17 @@
             pkgs = nixpkgs.legacyPackages.${system};
           }
         );
-      importDir =
-        dir:
-        (lib.attrsets.mapAttrs' (
-          m: _:
-          lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) { imports = [ "${dir}/${m}" ]; }
-        ) (builtins.readDir dir));
     in
-    rec {
+    {
+      lib = {
+        importDir =
+          dir:
+          (lib.attrsets.mapAttrs' (
+            m: _:
+            lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) { imports = [ "${dir}/${m}" ]; }
+          ) (builtins.readDir dir));
+      };
+
       nixosConfigurations = forDevice (
         device: system:
         let
@@ -116,8 +119,8 @@
               };
 
               nixpkgs.overlays = [
-                overlays.unstable-packages
-                overlays.zerforschen
+                self.overlays.unstable-packages
+                self.overlays.zerforschen
               ];
 
               nix.settings.experimental-features = [
@@ -146,7 +149,7 @@
               time.timeZone = "Europe/Berlin";
 
               home-manager.sharedModules = [
-                self.homeModules.adwaita
+                self.homeManagerModules.adwaita
               ];
             }
 
@@ -177,7 +180,7 @@
         };
       };
 
-      nixosModules = (importDir ./nixosModules) // {
+      nixosModules = (self.lib.importDir ./nixosModules) // {
         niri = {
           imports = [ niri.nixosModules.niri ];
           nixpkgs.overlays = [ niri.overlays.niri ];
@@ -187,7 +190,7 @@
         };
       };
 
-      homeModules = importDir ./homeModules;
+      homeManagerModules = self.lib.importDir ./homeManagerModules;
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
