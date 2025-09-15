@@ -113,6 +113,7 @@
           inherit system;
           specialArgs = commonSpecialArgs // {
             vinzenzNixosModules = self.nixosModules;
+            vinzenzHomeConfigurations = self.homeConfigurations;
           };
           modules = [
             {
@@ -216,6 +217,7 @@
       };
 
       homeModules = self.lib.importDir ./homeModules;
+      homeConfigurations = self.lib.importDir ./homeConfigurations;
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };

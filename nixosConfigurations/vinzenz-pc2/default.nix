@@ -1,4 +1,4 @@
-{ vinzenzNixosModules, ... }:
+{ vinzenzNixosModules, vinzenzHomeConfigurations, ... }:
 {
   imports = [
     ./configuration.nix
@@ -13,7 +13,7 @@
     vinzenzNixosModules.podman
     vinzenzNixosModules.vinzenz-desktop-settings
 
-    ../../home/vinzenz
-    ../../home/ronja
+    vinzenzHomeConfigurations.vinzenz
+    vinzenzHomeConfigurations.ronja
   ];
 }

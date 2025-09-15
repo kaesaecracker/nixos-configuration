@@ -1,4 +1,4 @@
-{ vinzenzNixosModules, ... }:
+{ vinzenzNixosModules, vinzenzHomeConfigurations, ... }:
 {
   imports = [
     ./configuration.nix
@@ -9,6 +9,6 @@
     vinzenzNixosModules.wine-gaming
     vinzenzNixosModules.vinzenz-desktop-settings
 
-    ../../home/ronja
+    vinzenzHomeConfigurations.ronja
   ];
 }
