@@ -4,10 +4,10 @@
     ./configuration.nix
     ./hardware.nix
 
-    ../../modules/gnome.nix
-    ../../modules/gaming.nix
+    vinzenzNixosModules.gnome
     vinzenzNixosModules.steam
-    ../../modules/desktop-environment.nix
+    vinzenzNixosModules.wine-gaming
+    vinzenzNixosModules.vinzenz-desktop-settings
 
     ../../home/ronja
   ];

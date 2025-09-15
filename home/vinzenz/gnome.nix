@@ -1,8 +1,17 @@
 { pkgs, ... }:
 {
   config = {
-    home.packages = with pkgs.gnomeExtensions; [
-      solaar-extension
+    home.packages = with pkgs; [
+      gitg
+      meld
+      simple-scan
+      pinta
+      dconf-editor
+      impression # usb image writer
+      papers # pdf viewer
+      gnome-software # for flatpak apps
+      gnomeExtensions.solaar-extension
+      snapshot
     ];
 
     dconf.settings = {

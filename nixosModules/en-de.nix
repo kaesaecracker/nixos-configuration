@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -20,5 +21,11 @@
   programs.firefox.languagePacks = [
     "en-US"
     "de"
+  ];
+
+  environment.systemPackages = [
+    pkgs.hunspell
+    pkgs.hunspellDicts.de-de
+    pkgs.hunspellDicts.en-us
   ];
 }
