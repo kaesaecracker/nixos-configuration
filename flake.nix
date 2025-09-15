@@ -132,17 +132,14 @@
             pkgs = nixpkgs.legacyPackages.${system};
           }
         );
+      importModuleDir =
+        directory:
+        nixpkgs.lib.packagesFromDirectoryRecursive {
+          inherit directory;
+          callPackage = path: _args: path;
+        };
     in
     {
-      lib = {
-        importDir =
-          dir:
-          (lib.attrsets.mapAttrs' (
-            m: _:
-            lib.attrsets.nameValuePair (lib.strings.removeSuffix ".nix" m) { imports = [ "${dir}/${m}" ]; }
-          ) (builtins.readDir dir));
-      };
-
       overlays = {
         unstable-packages = final: prev: {
           unstable = import nixpkgs-unstable {
@@ -151,7 +148,7 @@
         };
       };
 
-      nixosModules = (self.lib.importDir ./nixosModules) // {
+      nixosModules = (importModuleDir ./nixosModules) // {
         niri = {
           imports = [ niri.nixosModules.niri ];
           nixpkgs.overlays = [ niri.overlays.niri ];
@@ -168,8 +165,11 @@
         };
       };
 
-      homeModules = self.lib.importDir ./homeModules;
-      homeConfigurations = self.lib.importDir ./homeConfigurations;
+      homeModules = importModuleDir ./homeModules;
+      homeConfigurations = {
+        vinzenz = ./homeConfigurations/vinzenz;
+        ronja = ./homeConfigurations/ronja;
+      };
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
 

@@ -3,4 +3,4 @@ set -euxo pipefail
 
 nix fmt
 
-nix flake check --all-systems --show-trace
+nix flake check --show-trace
