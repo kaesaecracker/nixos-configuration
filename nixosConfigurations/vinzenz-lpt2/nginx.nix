@@ -29,7 +29,7 @@ in
 
         "vinzenz-lpt2" = {
           locations."/" = {
-            proxyPass = ("http://unix:" + anubis-domain-socket);
+            proxyPass = "http://unix:" + anubis-domain-socket;
           };
         };
 
@@ -37,7 +37,7 @@ in
           root = pkgs.zerforschen-plus-content;
           listen = [
             {
-              addr = ("unix:" + blog-domain-socket);
+              addr = "unix:" + blog-domain-socket;
             }
           ];
         };

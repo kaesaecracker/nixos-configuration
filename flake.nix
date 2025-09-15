@@ -120,7 +120,7 @@
           additional-modules = [ self.nixosModules.podman ];
         };
       };
-      lib = nixpkgs.lib;
+      inherit (nixpkgs) lib;
       forDevice = f: lib.mapAttrs (device: value: f (value // { inherit device; })) devices;
       supported-systems = lib.attrsets.mapAttrsToList (k: v: v.system) devices;
       forAllSystems =
@@ -143,6 +143,36 @@
           ) (builtins.readDir dir));
       };
 
+      overlays = {
+        unstable-packages = final: prev: {
+          unstable = import nixpkgs-unstable {
+            inherit (prev) system config;
+          };
+        };
+      };
+
+      nixosModules = (self.lib.importDir ./nixosModules) // {
+        niri = {
+          imports = [ niri.nixosModules.niri ];
+          nixpkgs.overlays = [ niri.overlays.niri ];
+        };
+        pkgs-unstable = {
+          nixpkgs.overlays = [ self.overlays.unstable-packages ];
+        };
+        pkgs-vscode-extensions = {
+          nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
+        };
+        # required modules to use other modules, should not do anything on their own
+        default = {
+          imports = [ self.nixosModules.allowed-unfree-list ];
+        };
+      };
+
+      homeModules = self.lib.importDir ./homeModules;
+      homeConfigurations = self.lib.importDir ./homeConfigurations;
+
+      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
+
       nixosConfigurations = forDevice (
         {
           device,
@@ -153,8 +183,6 @@
         let
           specialArgs = {
             inherit device;
-            vinzenzHomeModules = self.homeModules;
-            vinzenzLib = self.lib;
           };
         in
         nixpkgs.lib.nixosSystem {
@@ -178,7 +206,6 @@
               nix.settings.experimental-features = [
                 "nix-command"
                 "flakes"
-                "repl-flake"
               ];
 
               documentation = {
@@ -242,36 +269,5 @@
           ++ additional-modules;
         }
       );
-
-      overlays = {
-        unstable-packages = final: prev: {
-          unstable = import nixpkgs-unstable {
-            system = prev.system;
-            config = prev.config;
-          };
-        };
-      };
-
-      nixosModules = (self.lib.importDir ./nixosModules) // {
-        niri = {
-          imports = [ niri.nixosModules.niri ];
-          nixpkgs.overlays = [ niri.overlays.niri ];
-        };
-        pkgs-unstable = {
-          nixpkgs.overlays = [ self.overlays.unstable-packages ];
-        };
-        pkgs-vscode-extensions = {
-          nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
-        };
-        # required modules to use other modules, should not do anything on their own
-        default = {
-          imports = [ self.nixosModules.allowed-unfree-list ];
-        };
-      };
-
-      homeModules = self.lib.importDir ./homeModules;
-      homeConfigurations = self.lib.importDir ./homeConfigurations;
-
-      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
 }

@@ -20,7 +20,7 @@
       my-direnvallow = "echo \"use nix\" > .envrc && direnv allow";
       my-ip4 = "ip addr show | grep 192";
       deadnix = "nix run github:astro/deadnix -- ";
-      statix = "nix run git+https://git.peppe.rs/languages/statix -- ";
+      statix = "nix run github:oppiliappan/statix -- ";
     };
 
     history = {
