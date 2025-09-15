@@ -58,6 +58,8 @@
     nextcloud-client
 
     lutris
+
+    foliate
   ];
 
   home.file = {

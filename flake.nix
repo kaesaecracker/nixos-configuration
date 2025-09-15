@@ -106,6 +106,7 @@
           commonSpecialArgs = {
             inherit device;
             vinzenzHomeModules = self.homeModules;
+            vinzenzLib = self.lib;
           };
         in
         nixpkgs.lib.nixosSystem {
@@ -170,6 +171,7 @@
                 self.homeModules.templates
                 self.homeModules.zsh-basics
                 self.homeModules.nano
+                self.homeModules.gnome-extensions
               ];
             }
 

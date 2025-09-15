@@ -1,25 +1,22 @@
 { pkgs, ... }:
 {
-  config = {
-    hardware = {
-      graphics = {
-        enable32Bit = true;
-        extraPackages = with pkgs; [ mangohud ];
-        extraPackages32 = with pkgs; [ mangohud ];
-      };
-
-      xpadneo.enable = true;
+  hardware = {
+    graphics = {
+      enable32Bit = true;
+      extraPackages = with pkgs; [ mangohud ];
+      extraPackages32 = with pkgs; [ mangohud ];
     };
 
-    environment.systemPackages = with pkgs; [
-      wineWowPackages.stagingFull
-      wineWowPackages.fonts
-      winetricks
-      dxvk
-      mangohud
-      vulkan-tools
-      glxinfo
-    ];
-
+    xpadneo.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    wineWowPackages.stagingFull
+    wineWowPackages.fonts
+    winetricks
+    dxvk
+    mangohud
+    vulkan-tools
+    glxinfo
+  ];
 }
