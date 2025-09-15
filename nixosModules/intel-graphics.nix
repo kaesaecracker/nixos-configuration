@@ -1,7 +1,5 @@
-{ pkgs, vinzenzNixosModules, ... }:
+{ pkgs, ... }:
 {
-  imports = [ vinzenzNixosModules.allowed-unfree-list ];
-
   config = {
     hardware.graphics = {
       extraPackages = with pkgs; [

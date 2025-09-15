@@ -9,7 +9,9 @@
   config = {
     nixpkgs.config = {
       # https://github.com/NixOS/nixpkgs/issues/197325#issuecomment-1579420085
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowedUnfreePackages;
+      allowUnfreePredicate = lib.mkDefault (
+        pkg: builtins.elem (lib.getName pkg) config.allowedUnfreePackages
+      );
     };
   };
 }

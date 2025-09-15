@@ -63,23 +63,66 @@
     }:
     let
       devices = {
-        vinzenz-lpt2 = "x86_64-linux";
-        vinzenz-pc2 = "x86_64-linux";
-        ronja-pc = "x86_64-linux";
-        hetzner-vpn2 = "aarch64-linux";
-        forgejo-runner-1 = "aarch64-linux";
+        vinzenz-lpt2 = {
+          system = "x86_64-linux";
+          additional-modules = [
+            self.nixosModules.user-vinzenz
+
+            self.nixosModules.gnome
+            self.nixosModules.wine-gaming
+            self.nixosModules.steam
+            self.nixosModules.printing
+            self.nixosModules.podman
+            self.nixosModules.vinzenz-desktop-settings
+            self.nixosModules.intel-graphics
+          ];
+          home-manager-users = {
+            inherit (self.homeConfigurations) vinzenz;
+          };
+        };
+        vinzenz-pc2 = {
+          system = "x86_64-linux";
+          additional-modules = [
+            self.nixosModules.user-vinzenz
+            self.nixosModules.user-ronja
+
+            self.nixosModules.gnome
+            self.nixosModules.wine-gaming
+            self.nixosModules.steam
+            self.nixosModules.printing
+            self.nixosModules.podman
+            self.nixosModules.vinzenz-desktop-settings
+            self.nixosModules.amd-graphics
+          ];
+          home-manager-users = {
+            inherit (self.homeConfigurations) vinzenz ronja;
+          };
+        };
+        ronja-pc = {
+          system = "x86_64-linux";
+          additional-modules = [
+            self.nixosModules.user-ronja
+
+            self.nixosModules.gnome
+            self.nixosModules.steam
+            self.nixosModules.wine-gaming
+            self.nixosModules.vinzenz-desktop-settings
+          ];
+          home-manager-users = {
+            inherit (self.homeConfigurations) ronja;
+          };
+        };
+        hetzner-vpn2 = {
+          system = "aarch64-linux";
+        };
+        forgejo-runner-1 = {
+          system = "aarch64-linux";
+          additional-modules = [ self.nixosModules.podman ];
+        };
       };
-      homeDevices = [
-        "vinzenz-lpt2"
-        "vinzenz-pc2"
-        "ronja-pc"
-      ];
       lib = nixpkgs.lib;
-      forDevice = f: lib.mapAttrs f devices;
-      supported-systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
+      forDevice = f: lib.mapAttrs (device: value: f (value // { inherit device; })) devices;
+      supported-systems = lib.attrsets.mapAttrsToList (k: v: v.system) devices;
       forAllSystems =
         f:
         lib.genAttrs supported-systems (
@@ -101,20 +144,21 @@
       };
 
       nixosConfigurations = forDevice (
-        device: system:
+        {
+          device,
+          system,
+          home-manager-users ? { },
+          additional-modules ? [ ],
+        }:
         let
-          commonSpecialArgs = {
+          specialArgs = {
             inherit device;
             vinzenzHomeModules = self.homeModules;
             vinzenzLib = self.lib;
           };
         in
         nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = commonSpecialArgs // {
-            vinzenzNixosModules = self.nixosModules;
-            vinzenzHomeConfigurations = self.homeConfigurations;
-          };
+          inherit system specialArgs;
           modules = [
             {
               networking.hostName = device;
@@ -134,6 +178,7 @@
               nix.settings.experimental-features = [
                 "nix-command"
                 "flakes"
+                "repl-flake"
               ];
 
               documentation = {
@@ -144,6 +189,7 @@
 
             ./nixosConfigurations/${device}
 
+            self.nixosModules.default
             self.nixosModules.lix-is-nix
             self.nixosModules.globalinstalls
             self.nixosModules.autoupdate
@@ -155,10 +201,10 @@
 
             zerforschen-plus.nixosModules.default
           ]
-          ++ (nixpkgs.lib.optionals (builtins.elem device homeDevices) [
+          ++ (nixpkgs.lib.optionals (home-manager-users != { }) [
             {
               home-manager = {
-                extraSpecialArgs = commonSpecialArgs;
+                extraSpecialArgs = specialArgs;
                 useGlobalPkgs = true;
                 useUserPackages = true;
               };
@@ -174,6 +220,8 @@
                 self.homeModules.nano
                 self.homeModules.gnome-extensions
               ];
+
+              home-manager.users = home-manager-users;
             }
 
             self.nixosModules.pkgs-unstable
@@ -190,7 +238,8 @@
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default
             servicepoint-cli.nixosModules.default
-          ]);
+          ])
+          ++ additional-modules;
         }
       );
 
@@ -213,6 +262,10 @@
         };
         pkgs-vscode-extensions = {
           nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
+        };
+        # required modules to use other modules, should not do anything on their own
+        default = {
+          imports = [ self.nixosModules.allowed-unfree-list ];
         };
       };
 

@@ -1,64 +1,56 @@
+{ pkgs, lib, ... }:
 {
-  vinzenzNixosModules,
-  pkgs,
-  lib,
-  ...
-}:
-{
-  imports = [ vinzenzNixosModules.intel-graphics ];
-  config = {
-    # intel cpu
-    boot.kernelModules = [
-      "kvm-intel"
-      "xe"
-    ];
+  # intel cpu
+  boot.kernelModules = [
+    "kvm-intel"
+    "xe"
+  ];
 
-    networking = {
-      networkmanager.enable = true;
-      useDHCP = lib.mkDefault true;
-    };
+  networking = {
+    networkmanager.enable = true;
+    useDHCP = lib.mkDefault true;
+  };
 
-    boot = {
-      kernelPackages = pkgs.linuxPackages_zen;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
+    supportedFilesystems = [ "btrfs" ];
+    initrd = {
       supportedFilesystems = [ "btrfs" ];
-      initrd = {
-        supportedFilesystems = [ "btrfs" ];
-        availableKernelModules = [
-          "xhci_pci"
-          "thunderbolt"
-          "nvme"
-        ];
-        luks.devices = {
-          "luks-2c654ff2-3c42-48d3-a1e3-9545679afaa3" = {
-            device = "/dev/disk/by-uuid/2c654ff2-3c42-48d3-a1e3-9545679afaa3";
-          };
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+      ];
+      luks.devices = {
+        "luks-2c654ff2-3c42-48d3-a1e3-9545679afaa3" = {
+          device = "/dev/disk/by-uuid/2c654ff2-3c42-48d3-a1e3-9545679afaa3";
         };
       };
     };
+  };
 
-    fileSystems = {
-      "/" = {
-        device = "/dev/disk/by-uuid/e4dad0c8-26a1-45e9-bbd9-48565eb6574e";
-        fsType = "btrfs";
-        options = [ "subvol=@" ];
-      };
-
-      "/boot" = {
-        device = "/dev/disk/by-uuid/E2B7-2BC1";
-        fsType = "vfat";
-      };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/e4dad0c8-26a1-45e9-bbd9-48565eb6574e";
+      fsType = "btrfs";
+      options = [ "subvol=@" ];
     };
 
-    swapDevices = [
-      {
-        device = "/var/lib/swapfile";
-        size = 32 * 1024;
-      }
-    ];
-
-    services.thermald.enable = true;
-    services.hardware.bolt.enable = true; # thunderbolt security
-
-    hardware.bluetooth.enable = true;
+    "/boot" = {
+      device = "/dev/disk/by-uuid/E2B7-2BC1";
+      fsType = "vfat";
+    };
   };
+
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024;
+    }
+  ];
+
+  services.thermald.enable = true;
+  services.hardware.bolt.enable = true; # thunderbolt security
+
+  hardware.bluetooth.enable = true;
 }

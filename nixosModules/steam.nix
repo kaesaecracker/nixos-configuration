@@ -1,7 +1,4 @@
-{ vinzenzNixosModules, ... }:
 {
-  imports = [ vinzenzNixosModules.allowed-unfree-list ];
-
   hardware.steam-hardware.enable = true;
 
   programs = {
