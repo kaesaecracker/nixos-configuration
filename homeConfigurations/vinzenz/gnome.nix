@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   config = {
     home.packages = with pkgs; [
@@ -26,6 +26,8 @@
         switch-applications = [ "<Super>Tab" ];
         switch-applications-backward = [ "<Shift><Super>Tab" ];
       };
+      "org/gnome/desktop/session".idle-delay = lib.hm.gvariant.mkUint32 300;
+      "org/gnome/Connections".first-run = false;
     };
   };
 }
