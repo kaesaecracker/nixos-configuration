@@ -19,32 +19,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    naersk = {
-      url = "github:nix-community/naersk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     servicepoint-cli = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        naersk.follows = "naersk";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     servicepoint-simulator = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        naersk.follows = "naersk";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
