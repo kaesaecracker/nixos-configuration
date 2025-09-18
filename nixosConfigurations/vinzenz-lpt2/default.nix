@@ -1,7 +1,6 @@
 {
   imports = [
     ./hardware.nix
-    ./nginx.nix
   ];
 
   config = {
