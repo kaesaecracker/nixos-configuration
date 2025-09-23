@@ -58,7 +58,6 @@
             self.nixosModules.gnome
             self.nixosModules.wine-gaming
             self.nixosModules.steam
-            self.nixosModules.printing
             self.nixosModules.podman
             self.nixosModules.vinzenz-desktop-settings
             self.nixosModules.intel-graphics
@@ -76,7 +75,6 @@
             self.nixosModules.gnome
             self.nixosModules.wine-gaming
             self.nixosModules.steam
-            self.nixosModules.printing
             self.nixosModules.podman
             self.nixosModules.vinzenz-desktop-settings
             self.nixosModules.amd-graphics

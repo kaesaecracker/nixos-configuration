@@ -5,12 +5,12 @@
     ./fuzzel.nix
     ./git.nix
     ./gnome.nix
-    #./niri.nix
     ./ssh.nix
-    ./swaylock.nix
     ./vscode.nix
-    ./waybar.nix
     ./zsh.nix
+    #./niri.nix
+    #./swaylock.nix
+    #./waybar.nix
   ];
 
   config = {
