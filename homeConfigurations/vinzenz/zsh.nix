@@ -2,10 +2,7 @@
 {
   config.programs.zsh = {
     initContent = ''
-      # eval "$(direnv hook zsh)";
       export PATH=$PATH:/home/vinzenz/.cargo/bin
-
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
       source ${./.zsh/p10k.zsh}
     '';
@@ -28,19 +25,6 @@
       path = "${config.xdg.dataHome}/zsh/history";
       expireDuplicatesFirst = true;
     };
-
-    oh-my-zsh = {
-      enable = true;
-      theme = "agnoster";
-      plugins = [
-        "git"
-        "sudo"
-        "systemadmin"
-        "battery"
-        "dotnet"
-        "rust"
-        "tailscale"
-      ];
-    };
   };
+  config.programs.zsh-powerlevel10k.enable = true;
 }

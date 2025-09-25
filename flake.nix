@@ -231,6 +231,7 @@
                 self.homeModules.zsh-basics
                 self.homeModules.nano
                 self.homeModules.gnome-extensions
+                self.homeModules.zsh-powerlevel10k
               ];
 
               home-manager.users = home-manager-users;
