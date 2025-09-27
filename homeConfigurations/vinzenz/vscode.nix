@@ -59,13 +59,13 @@
 
           "rust-analyzer.checkOnSave.command" = "clippy";
 
-          "nix.formatterPath" = "${lib.getBin pkgs.nixfmt-rfc-style}/bin/nixfmt";
+          "nix.formatterPath" = "${lib.getBin pkgs.nixfmt-tree}/bin/nixfmt-tree";
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "${lib.getBin pkgs.nil}/bin/nil";
           "nix.serverSettings" = {
             "nil" = {
               "formatting" = {
-                "command" = [ "${lib.getBin pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+                "command" = [ "${lib.getBin pkgs.nixfmt-tree}/bin/nixfmt-tree" ];
               };
             };
           };
