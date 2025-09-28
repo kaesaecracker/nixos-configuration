@@ -16,7 +16,7 @@
       p10k = if (cfg.package != null) then cfg.package else pkgs.zsh-powerlevel10k;
     in
     lib.mkIf cfg.enable {
-      programs.zsh.initContent =  ''
+      programs.zsh.initContent = ''
         source ${p10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       '';
     };

@@ -8,6 +8,7 @@
     ./ssh.nix
     ./vscode.nix
     ./zsh.nix
+    ./starship.nix
     #./niri.nix
     #./swaylock.nix
     #./waybar.nix

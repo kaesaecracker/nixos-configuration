@@ -3,8 +3,6 @@
   config.programs.zsh = {
     initContent = ''
       export PATH=$PATH:/home/vinzenz/.cargo/bin
-
-      source ${./.zsh/p10k.zsh}
     '';
     enableCompletion = true;
 
@@ -26,5 +24,4 @@
       expireDuplicatesFirst = true;
     };
   };
-  config.programs.zsh-powerlevel10k.enable = true;
 }
