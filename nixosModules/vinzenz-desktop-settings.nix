@@ -7,15 +7,7 @@
     libreoffice-qt6
   ];
 
-  fonts = {
-    enableDefaultPackages = true;
-    fontconfig.defaultFonts.monospace = [ "FiraCode Nerd Font" ];
-    packages = with pkgs; [
-      nerd-fonts.fira-code
-      roboto-mono
-      recursive
-    ];
-  };
+  fonts.enableDefaultPackages = true;
 
   hardware.logitech.wireless = {
     enable = true;
