@@ -8,37 +8,45 @@
 
       add_newline = true;
       format =
-        "[](fg:color_a)[$username ](bg:color_a fg:text_a)[ ](fg:color_a bg:color_b)"
-        + "[$os $hostname ($container )](bg:color_b fg:text_b)[ ](fg:color_b bg:color_c)"
-        + "[$directory ](bg:color_c fg:text_c)[ ](fg:color_c bg:color_d)"
-        + "([$all ](bg:color_d fg:text_d))"
-        + "[ ](fg:color_d)"
+        "[](fg:color_r)[$username $os $hostname ($container )](bg:color_r fg:text_r)[ ](fg:color_r bg:color_g)"
+        + "[$directory ](bg:color_g fg:text_g)[ ](fg:color_g bg:color_b)"
+        + "([($git_state$git_branch$git_commit$git_status)$all](bg:color_b fg:text_b))[ ](fg:color_b)"
         + "$cmd_duration"
         + "$line_break$character$status > ";
 
       palette = "color_me_surprised";
       palettes.color_me_surprised = {
-        "color_a" = "red";
-        "color_b" = "yellow";
-        "color_c" = "green";
-        "color_d" = "blue";
-        "text" = "white";
-        "text_a" = "white";
-        "text_b" = "black";
-        "text_c" = "black";
-        "text_d" = "white";
+        "color_r" = "red";
+        "color_g" = "green";
+        "color_b" = "blue";
+        "text_r" = "white";
+        "text_g" = "black";
+        "text_b" = "white";
       };
 
-      character = {
-        success_symbol = "[](bold fg:green)";
-        error_symbol = "[✗](bold fg:color_a)";
+      username = {
+        format = "[$user]($style)";
+        style_user = "bg:color_r fg:text_r";
+        style_root = "bold bg:color_r fg:text_r";
+        show_always = true;
       };
+      os = {
+        disabled = false;
+        format = "$symbol";
+      };
+      hostname = {
+        disabled = false;
+        ssh_only = false;
+        format = "$hostname";
+        ssh_symbol = "";
+      };
+      container = { };
       directory = {
         format = "$path[$read_only]($read_only_style)";
         truncate_to_repo = true;
         truncation_symbol = ".../";
         read_only = "󰌾";
-        read_only_style = "fg:color_a bg:green";
+        read_only_style = "fg:color_r bg:green";
         home_symbol = "";
         substitutions = {
           "Documents" = "󰈙";
@@ -48,21 +56,26 @@
           "Developer" = "󰲋";
         };
       };
-      hostname = {
-        disabled = false;
-        ssh_only = false;
-        format = "$hostname";
-        ssh_symbol = "";
+
+      git_state = {
+        style = "fg:white bg:color_b";
       };
-      username = {
-        format = "$user";
-        show_always = true;
+      git_branch = {
+        style = "fg:white bg:color_b";
+      };
+      git_commit = {
+        style = "fg:white bg:color_b";
       };
       git_status = {
+        style = "fg:white bg:color_b";
         ahead = "⇡$count";
         behind = "⇣$count";
-        deleted = "x";
         diverged = "⇕⇡$ahead_count⇣$behind_count";
+      };
+
+      character = {
+        success_symbol = "[](bold fg:green)";
+        error_symbol = "[✗](bold fg:color_r)";
       };
       status = {
         disabled = false;
@@ -70,10 +83,6 @@
         map_symbol = true;
         pipestatus = true;
         symbol = "🔴";
-      };
-      os = {
-        disabled = false;
-        format = "$symbol";
       };
       cmd_duration = {
         format = "[󱦟 $duration]($style)";
