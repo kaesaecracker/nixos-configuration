@@ -10,7 +10,8 @@
       format =
         "[](fg:color_r)[$username $os $hostname ($container )](bg:color_r fg:text_r)[ ](fg:color_r bg:color_g)"
         + "[$directory ](bg:color_g fg:text_g)[ ](fg:color_g bg:color_b)"
-        + "([($git_state$git_branch$git_commit$git_status)$all](bg:color_b fg:text_b))[ ](fg:color_b)"
+        + "([($git_state$git_branch$git_commit$git_status)"
+        + "$all](bg:color_b fg:text_b))[ ](fg:color_b)"
         + "$cmd_duration"
         + "$line_break$character$status > ";
 
@@ -39,12 +40,18 @@
         ssh_only = false;
         format = "$hostname";
         ssh_symbol = "";
+        aliases = {
+          "vinzenz-lpt2" = "lpt";
+          "vinzenz-pc2" = "pc";
+        };
       };
-      container = { };
+      container = {
+        format = "\[$symbol$name\]";
+      };
       directory = {
-        format = "$path[$read_only]($read_only_style)";
+        format = "$path[( $read_only)]($read_only_style)";
         truncate_to_repo = true;
-        truncation_symbol = ".../";
+        truncation_symbol = "…/";
         read_only = "󰌾";
         read_only_style = "fg:color_r bg:green";
         home_symbol = "";
@@ -62,15 +69,33 @@
       };
       git_branch = {
         style = "fg:white bg:color_b";
+        format = "[$symbol $branch(:$remote_branch) ]($style)";
       };
       git_commit = {
+        format = "[$hash$tag ]($style)";
         style = "fg:white bg:color_b";
       };
       git_status = {
+        format = "[$all_status$ahead_behind ]($style)";
         style = "fg:white bg:color_b";
         ahead = "⇡$count";
         behind = "⇣$count";
         diverged = "⇕⇡$ahead_count⇣$behind_count";
+      };
+
+      package = {
+        symbol = "󰏗";
+        format = "$symbol$version ";
+        version_format = "$\{raw\}";
+      };
+      rust = {
+        symbol = "󱘗";
+        format = "$symbol$version ";
+        version_format = "$\{raw\}";
+      };
+      nix_shell = {
+        symbol = "";
+        format = "$symbol( \($name\))";
       };
 
       character = {
@@ -119,7 +144,6 @@
       memory_usage.symbol = "󰍛";
       meson.symbol = "󰔷";
       nim.symbol = "󰆥";
-      nix_shell.symbol = "";
       nodejs.symbol = "";
       ocaml.symbol = "";
       os.symbols = {
@@ -169,7 +193,6 @@
         Void = "";
         Windows = "󰍲";
       };
-      package.symbol = "󰏗";
       perl.symbol = "";
       php.symbol = "";
       pijul_channel.symbol = "";
@@ -177,7 +200,6 @@
       python.symbol = "";
       rlang.symbol = "󰟔";
       ruby.symbol = "";
-      rust.symbol = "󱘗";
       scala.symbol = "";
       swift.symbol = "";
       zig.symbol = "";
