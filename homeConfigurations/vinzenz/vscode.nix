@@ -22,6 +22,7 @@
             mkhl.direnv
             muhammad-sammy.csharp
             davidanson.vscode-markdownlint
+            #mermaidchart.vscode-mermaid-chart
           ]
           ++ (with pkgs.vscode-extensions; [
             vadimcn.vscode-lldb

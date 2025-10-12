@@ -1,5 +1,49 @@
 {
   "nodes": {
+    "binding": {
+      "inputs": {
+        "binding": "binding_2",
+        "nixpkgs": [
+          "servicepoint-tanks",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759096792,
+        "narHash": "sha256-CW4D1yJecw7Id6AxIEJOW3OpcX3Y4Ehng76/YlR1I9w=",
+        "ref": "refs/heads/main",
+        "rev": "8df2996504866f3193fbe51860ab173d25724e5e",
+        "revCount": 307,
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-binding-csharp.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-binding-csharp.git"
+      }
+    },
+    "binding_2": {
+      "inputs": {
+        "nixpkgs": [
+          "servicepoint-tanks",
+          "binding",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759093963,
+        "narHash": "sha256-nis9Xps/P1f/v9FC3LoMLGGCOMMbdrOniDSklqLsH8o=",
+        "ref": "refs/heads/main",
+        "rev": "44ef4bb6d707c46af1bed6244f17a16f26f246c1",
+        "revCount": 304,
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-binding-uniffi.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-binding-uniffi.git"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -281,6 +325,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "servicepoint-cli": "servicepoint-cli",
         "servicepoint-simulator": "servicepoint-simulator",
+        "servicepoint-tanks": "servicepoint-tanks",
         "zerforschen-plus": "zerforschen-plus"
       }
     },
@@ -360,6 +405,27 @@
       "original": {
         "type": "git",
         "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git"
+      }
+    },
+    "servicepoint-tanks": {
+      "inputs": {
+        "binding": "binding",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760271116,
+        "narHash": "sha256-cdQwPsIryhPrv3Cr99Wupmlj7zycJWk+tDH24TbpqFY=",
+        "ref": "refs/heads/main",
+        "rev": "f814eeedc16455c0c9c2c83e28e227633ae4b52a",
+        "revCount": 217,
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/vinzenz/servicepoint-tanks.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.berlin.ccc.de/vinzenz/servicepoint-tanks.git"
       }
     },
     "systems": {

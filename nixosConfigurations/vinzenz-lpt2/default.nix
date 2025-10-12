@@ -42,5 +42,13 @@
       8776
       1337
     ];
+
+    services.servicepoint-tanks = {
+      enable = true;
+      urls = [
+        "http://localhost:5666"
+        "http://localhost:5667"
+      ];
+    };
   };
 }

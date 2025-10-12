@@ -14,6 +14,11 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zerforschen-plus = {
       url = "git+https://git.berlin.ccc.de/vinzenz/zerforschen.plus";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,8 +34,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
+    servicepoint-tanks = {
+      url = "git+https://git.berlin.ccc.de/vinzenz/servicepoint-tanks.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -43,10 +48,10 @@
       niri,
       zerforschen-plus,
       nixpkgs-unstable,
+      nix-vscode-extensions,
       servicepoint-cli,
       servicepoint-simulator,
-      nix-vscode-extensions,
-      ...
+      servicepoint-tanks,
     }:
     let
       devices = {
@@ -247,10 +252,12 @@
             self.nixosModules.nix-ld
             self.nixosModules.quiet-boot
             self.nixosModules.firmware-updates
+            self.nixosModules.servicepoint-tanks
 
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default
             servicepoint-cli.nixosModules.default
+            servicepoint-tanks.nixosModules.default
           ])
           ++ additional-modules;
         }
