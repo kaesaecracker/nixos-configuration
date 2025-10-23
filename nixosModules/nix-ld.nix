@@ -17,6 +17,7 @@
       util-linux
       xz
       systemd
+      icu
     ];
   };
 }

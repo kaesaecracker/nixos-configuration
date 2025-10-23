@@ -35,7 +35,7 @@
     };
 
     servicepoint-tanks = {
-      url = "git+https://git.berlin.ccc.de/vinzenz/servicepoint-tanks.git";
+      url = "git+https://git.berlin.ccc.de/vinzenz/servicepoint-tanks.git?ref=service-improvements";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -252,7 +252,6 @@
             self.nixosModules.nix-ld
             self.nixosModules.quiet-boot
             self.nixosModules.firmware-updates
-            self.nixosModules.servicepoint-tanks
 
             home-manager.nixosModules.home-manager
             servicepoint-simulator.nixosModules.default
