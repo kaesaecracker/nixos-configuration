@@ -3,7 +3,7 @@
   users.users.vinzenz = {
     isNormalUser = true;
     name = "vinzenz";
-    description = "Vinzenz";
+    description = "müde";
     home = "/home/vinzenz";
     extraGroups = [
       "networkmanager"
