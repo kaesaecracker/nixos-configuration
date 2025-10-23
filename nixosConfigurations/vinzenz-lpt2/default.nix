@@ -44,7 +44,7 @@
     ];
 
     services.servicepoint-tanks = {
-      enable = true;
+      enable = false;
       urls = [
         "http://localhost:5666"
         "http://localhost:5667"
