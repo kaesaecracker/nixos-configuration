@@ -71,7 +71,8 @@
             };
           };
 
-          "dotnetAcquisitionExtension.sharedExistingDotnetPath" = "${lib.getBin pkgs.dotnet-sdk}/bin/dotnet";
+          "dotnetAcquisitionExtension.sharedExistingDotnetPath" =
+            "${lib.getBin pkgs.dotnetCorePackages.sdk_9_0}/bin/dotnet";
 
           "\[makefile\]" = {
             "editor.insertSpaces" = false;

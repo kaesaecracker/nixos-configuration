@@ -50,5 +50,8 @@
         "http://localhost:5667"
       ];
     };
+    nixpkgs.config.permittedInsecurePackages = [
+      "mbedtls-2.28.10"
+    ];
   };
 }
