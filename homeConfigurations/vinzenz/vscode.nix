@@ -39,6 +39,8 @@
           "editor.formatOnSave" = true;
           "editor.formatOnSaveMode" = "modificationsIfAvailable";
           "editor.minimap.autohide" = true;
+          "editor.mouseWheelZoom" = true;
+          "terminal.integrated.mouseWheelZoom" = true;
 
           "workbench.startupEditor" = "readme";
           "workbench.enableExperiments" = false;
