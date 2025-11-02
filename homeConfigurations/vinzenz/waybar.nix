@@ -1,13 +1,11 @@
 {
   pkgs,
   device,
-  config,
   ...
 }:
 {
   home.packages = with pkgs; [
     playerctl
-    cava
   ];
 
   programs.waybar = {
@@ -36,7 +34,6 @@
         modules-right = [
           "mpris"
           "image"
-          "cava"
           "gamemode"
 
           "temperature"
@@ -135,30 +132,6 @@
             "<span color='#ff9977'>▇</span>"
             "<span color='#dd532e'>█</span>"
           ];
-        };
-        cava = {
-          framerate = 15;
-          autosens = 1;
-          method = "pipewire";
-          sleep_timer = 3;
-          source = "auto";
-          bar_delimiter = 0;
-          bars = 12;
-          input_delay = 2;
-          hide_on_silence = true;
-          format-icons = [
-            "<span font-family='monospace'>▁</span>"
-            "<span font-family='monospace'>▂</span>"
-            "<span font-family='monospace'>▃</span>"
-            "<span font-family='monospace'>▄</span>"
-            "<span font-family='monospace'>▅</span>"
-            "<span font-family='monospace'>▆</span>"
-            "<span font-family='monospace'>▇</span>"
-            "<span font-family='monospace'>█</span>"
-          ];
-          actions = {
-            "on-click-right" = "mode";
-          };
         };
         disk = {
           format = "{free}/{total}";

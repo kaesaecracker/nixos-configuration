@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 {
@@ -19,15 +20,113 @@
     services.mako.enable = true;
 
     programs.niri.settings = {
-      input.keyboard.xkb.layout = "de";
-
       outputs."eDP-1" = {
         scale = 1.0;
         variable-refresh-rate = true;
         background-color = "#000000";
       };
 
-      layout.gaps = 8;
+      layout =
+        let
+          pink_light = "#d162a4";
+          pink_dark = "#a30262";
+          blue_light = "#5BCEFA";
+          blue_dark = "#4a6bb1";
+          gradient-active = {
+            from = pink_light;
+            to = blue_light;
+            angle = 45;
+            in' = "oklab";
+          };
+          gradient-inactive = {
+            from = pink_dark;
+            to = blue_dark;
+            angle = 45;
+            in' = "oklab";
+          };
+          gradient-urgent = {
+            from = pink_dark;
+            to = pink_light;
+            angle = 45;
+            in' = "oklab";
+          };
+        in
+        {
+          gaps = 18;
+          #default-column-display = "tabbed";
+          border = {
+            enable = true;
+            width = 6;
+            active.gradient = gradient-active;
+            inactive.gradient = gradient-inactive;
+            urgent.gradient = gradient-urgent;
+          };
+          focus-ring = {
+            enable = true;
+            active.gradient = gradient-active;
+            inactive.gradient = gradient-inactive;
+            urgent.gradient = gradient-urgent;
+          };
+          shadow = {
+            enable = false;
+            color = "white";
+            inactive-color = pink_dark;
+            draw-behind-window = true;
+            spread = 5;
+            softness = 10;
+            offset = {
+              x = 0;
+              y = 0;
+            };
+          };
+          insert-hint = {
+            enable = true;
+            display.color = pink_dark;
+          };
+          struts = {
+            left = 3;
+            right = 3;
+            top = 3;
+            bottom = 3;
+          };
+          tab-indicator = {
+            place-within-column = true;
+            active.gradient = gradient-inactive;
+            inactive.gradient = gradient-inactive;
+            urgent.gradient = gradient-inactive;
+          };
+        };
+
+      cursor.theme = "Adwaita";
+
+      input = {
+        touchpad.tap = true;
+        keyboard = {
+          xkb = {
+            layout = "de";
+            options = "compose:caps";
+          };
+          numlock = true;
+        };
+      };
+
+      prefer-no-csd = true;
+
+      window-rules = [
+        {
+          clip-to-geometry = true;
+          geometry-corner-radius =
+            let
+              radius = 4.;
+            in
+            {
+              top-left = radius;
+              bottom-left = radius;
+              top-right = radius;
+              bottom-right = radius;
+            };
+        }
+      ];
 
       # defaults taken from https://github.com/sodiboo/niri-flake/issues/483
       binds = {
@@ -46,9 +145,9 @@
         "Mod+Shift+Numbersign".action.show-hotkey-overlay = { };
 
         # Suggested binds for running programs: terminal, app launcher, screen locker.
-        "Mod+T".action.spawn = "alacritty";
+        "Mod+T".action.spawn = "${lib.getBin pkgs.gnome-terminal}/bin/gnome-terminal";
         "Mod+D".action.spawn = "fuzzel";
-        "Super+Alt+L".action.spawn = "${config.programs.swaylock.package}/bin/swaylock";
+        "Super+Alt+L".action.spawn = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
 
         # You can also use a shell. Do this if you need pipes, multiple commands, etc.
         # Note: the entire command goes as a single argument in the end.
@@ -99,19 +198,11 @@
         "Mod+Down".action.focus-window-down = { };
         "Mod+Up".action.focus-window-up = { };
         "Mod+Right".action.focus-column-right = { };
-        "Mod+H".action.focus-column-left = { };
-        "Mod+J".action.focus-window-down = { };
-        "Mod+K".action.focus-window-up = { };
-        "Mod+L".action.focus-column-right = { };
 
         "Mod+Ctrl+Left".action.move-column-left = { };
         "Mod+Ctrl+Down".action.move-window-down = { };
         "Mod+Ctrl+Up".action.move-window-up = { };
         "Mod+Ctrl+Right".action.move-column-right = { };
-        "Mod+Ctrl+H".action.move-column-left = { };
-        "Mod+Ctrl+J".action.move-window-down = { };
-        "Mod+Ctrl+K".action.move-window-up = { };
-        "Mod+Ctrl+L".action.move-column-right = { };
 
         # Alternative commands that move across workspaces when reaching
         # the first or last window in a column.
@@ -129,19 +220,11 @@
         "Mod+Shift+Down".action.focus-monitor-down = { };
         "Mod+Shift+Up".action.focus-monitor-up = { };
         "Mod+Shift+Right".action.focus-monitor-right = { };
-        "Mod+Shift+H".action.focus-monitor-left = { };
-        "Mod+Shift+J".action.focus-monitor-down = { };
-        "Mod+Shift+K".action.focus-monitor-up = { };
-        "Mod+Shift+L".action.focus-monitor-right = { };
 
         "Mod+Shift+Ctrl+Left".action.move-column-to-monitor-left = { };
         "Mod+Shift+Ctrl+Down".action.move-column-to-monitor-down = { };
         "Mod+Shift+Ctrl+Up".action.move-column-to-monitor-up = { };
         "Mod+Shift+Ctrl+Right".action.move-column-to-monitor-right = { };
-        "Mod+Shift+Ctrl+H".action.move-column-to-monitor-left = { };
-        "Mod+Shift+Ctrl+J".action.move-column-to-monitor-down = { };
-        "Mod+Shift+Ctrl+K".action.move-column-to-monitor-up = { };
-        "Mod+Shift+Ctrl+L".action.move-column-to-monitor-right = { };
 
         # Alternatively, there are commands to move just a single window:
         # Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -292,6 +375,8 @@
         # Powers off the monitors. To turn them back on, do any input like
         # moving the mouse or pressing any other key.
         "Mod+Shift+P".action.power-off-monitors = { };
+
+        "Mod+W".action.toggle-column-tabbed-display = { };
       };
     };
   };

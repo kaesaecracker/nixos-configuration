@@ -20,11 +20,11 @@
         "color_r" = "#a30262";
         "color_g" = "#d162a4";
         "color_b" = "#5BCEFA";
-        "color_y" = "white";
+        "color_y" = "#4a6bb1";
         "text_r" = "white";
         "text_g" = "black";
         "text_b" = "black";
-        "text_y" = "black";
+        "text_y" = "white";
       };
 
       username = {

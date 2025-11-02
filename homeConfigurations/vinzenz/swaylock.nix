@@ -17,7 +17,7 @@
         indicator-radius = 400;
         show-failed-attempts = true;
         ignore-empty-password = true;
-        grace = 2;
+        grace = 3.5;
         color = "000000";
         indicator-thickness = 20;
       };
@@ -28,7 +28,7 @@
       systemdTarget = "graphical-session.target";
       timeouts = [
         {
-          timeout = 30;
+          timeout = 60;
           command = "${config.programs.swaylock.package}/bin/swaylock";
         }
         {

@@ -10,9 +10,9 @@
     ./zsh.nix
     ./starship.nix
     ./fonts.nix
-    #./niri.nix
-    #./swaylock.nix
-    #./waybar.nix
+    ./niri.nix
+    ./swaylock.nix
+    ./waybar.nix
   ];
 
   config = {

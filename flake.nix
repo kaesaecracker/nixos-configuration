@@ -139,10 +139,17 @@
       };
 
       nixosModules = (importModuleDir ./nixosModules) // {
-        niri = {
-          imports = [ niri.nixosModules.niri ];
-          nixpkgs.overlays = [ niri.overlays.niri ];
-        };
+        niri =
+          { pkgs, ... }:
+          {
+            imports = [ niri.nixosModules.niri ];
+            nixpkgs.overlays = [ niri.overlays.niri ];
+
+            programs.niri = {
+              enable = true;
+              #package = pkgs.niri-stable;
+            };
+          };
         pkgs-unstable = {
           nixpkgs.overlays = [ self.overlays.unstable-packages ];
         };
