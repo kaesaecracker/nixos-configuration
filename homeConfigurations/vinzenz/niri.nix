@@ -122,7 +122,7 @@
         };
       };
 
-      prefer-no-csd = true;
+      #prefer-no-csd = true;
       hotkey-overlay.skip-at-startup = true;
 
       window-rules = [
@@ -130,7 +130,7 @@
           clip-to-geometry = true;
           geometry-corner-radius =
             let
-              radius = 4.;
+              radius = 15.;
             in
             {
               top-left = radius;
@@ -406,6 +406,7 @@
         "Mod+Shift+P".action.power-off-monitors = { };
 
         "Mod+W".action.toggle-column-tabbed-display = { };
+        "Mod+O".action.toggle-overview = {};
       };
     };
   };
