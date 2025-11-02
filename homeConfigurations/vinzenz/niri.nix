@@ -32,31 +32,30 @@
           pink_dark = "#a30262";
           blue_light = "#5BCEFA";
           blue_dark = "#4a6bb1";
-          gradient-active = {
+          gradient-common = {
+            angle = 90;
+            in' = "oklab";
+          };
+          gradient-active = gradient-common // {
             from = pink_light;
             to = blue_light;
-            angle = 45;
-            in' = "oklab";
           };
-          gradient-inactive = {
+          gradient-inactive = gradient-common // {
             from = pink_dark;
             to = blue_dark;
-            angle = 45;
-            in' = "oklab";
           };
-          gradient-urgent = {
+          gradient-urgent = gradient-common // {
             from = pink_dark;
             to = pink_light;
-            angle = 45;
-            in' = "oklab";
           };
+          gap-size = 10;
         in
         {
-          gaps = 18;
+          gaps = gap-size;
           #default-column-display = "tabbed";
           border = {
             enable = true;
-            width = 6;
+            width = gap-size / 2;
             active.gradient = gradient-active;
             inactive.gradient = gradient-inactive;
             urgent.gradient = gradient-urgent;
@@ -83,12 +82,16 @@
             enable = true;
             display.color = pink_dark;
           };
-          struts = {
-            left = 3;
-            right = 3;
-            top = 3;
-            bottom = 3;
-          };
+          struts =
+            let
+              strut-inset = 4;
+            in
+            {
+              left = strut-inset;
+              right = strut-inset;
+              top = strut-inset;
+              bottom = strut-inset;
+            };
           tab-indicator = {
             place-within-column = true;
             active.gradient = gradient-inactive;
@@ -125,6 +128,19 @@
               top-right = radius;
               bottom-right = radius;
             };
+        }
+        {
+          matches = [
+            {
+              app-id = "steam";
+              title = "^notificationtoasts_\\d+_desktop$";
+            }
+          ];
+          default-floating-position = {
+            x = 10;
+            y = 10;
+            relative-to = "bottom-right";
+          };
         }
       ];
 
