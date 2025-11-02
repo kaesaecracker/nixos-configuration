@@ -170,7 +170,7 @@
         "Mod+Shift+Numbersign".action.show-hotkey-overlay = { };
 
         # Suggested binds for running programs: terminal, app launcher, screen locker.
-        "Mod+T".action.spawn = "${lib.getBin pkgs.gnome-terminal}/bin/gnome-terminal";
+        "Mod+T".action.spawn = "${lib.getBin pkgs.gnome-console}/bin/kgx";
         "Mod+D".action.spawn = "fuzzel";
         "Super+Alt+L".action.spawn = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
 

@@ -1,13 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   config.programs.fuzzel = {
     enable = true;
     settings = {
       main = {
-        terminal = "${pkgs.alacritty}/bin/alacritty";
+        terminal = "${lib.getBin pkgs.gnome-console}/bin/kgx";
         icon-theme = "Adwaita";
         counter = true;
-        font = "sans:size=10";
+        font = "sans:size=11";
+        launch-prefix = "niri msg action spawn --";
       };
       colors = {
         border = "0003B3FF";
