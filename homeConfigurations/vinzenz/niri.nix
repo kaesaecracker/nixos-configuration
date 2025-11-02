@@ -20,10 +20,18 @@
     services.mako.enable = true;
 
     programs.niri.settings = {
-      outputs."eDP-1" = {
-        scale = 1.0;
-        variable-refresh-rate = true;
-        background-color = "#000000";
+      outputs = {
+        "BOE 0x0A3B Unknown" = {
+          scale = 1.0;
+          variable-refresh-rate = true;
+        };
+        "Dell Inc. DELL P2719H 39VHKS2" = {
+          scale = 1.0;
+        };
+        "LG Electronics LG ULTRAGEAR 106NTYT27386" = {
+          scale = 1.0;
+          variable-refresh-rate = true;
+        };
       };
 
       layout =
@@ -51,6 +59,7 @@
           gap-size = 10;
         in
         {
+          background-color = "#000000";
           gaps = gap-size;
           #default-column-display = "tabbed";
           border = {
