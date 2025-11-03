@@ -47,6 +47,9 @@
 
     home.packages = with pkgs; [
       keepassxc
+      nextcloud-client
+      thunderbird
+      fractal
 
       telegram-desktop
       element-desktop
@@ -57,10 +60,8 @@
       kdiff3
       jetbrains-toolbox
 
-      blanket
       vlc
-
-      ptyxis
+      lutris
 
       arduino
       arduino-ide
@@ -70,10 +71,6 @@
       servicepoint-simulator
 
       icu
-
-      nextcloud-client
-
-      lutris
 
       foliate
 
