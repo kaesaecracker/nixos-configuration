@@ -3,6 +3,9 @@
   config.programs.zsh = {
     initContent = ''
       export PATH=$PATH:/home/vinzenz/.cargo/bin
+
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
     '';
     enableCompletion = true;
 
