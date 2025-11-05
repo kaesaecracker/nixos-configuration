@@ -12,6 +12,7 @@
     enable = true;
     systemd.enable = true;
     systemd.target = "graphical-session.target";
+    style = ./waybar.css;
     settings = {
       mainBar = {
         layer = "top";
