@@ -1,6 +1,7 @@
 {
   pkgs,
-  device,
+  lib,
+  config,
   ...
 }:
 {
@@ -34,7 +35,7 @@
         ];
         modules-right = [
           "mpris"
-          "image"
+          #"image"
           "gamemode"
 
           "temperature"
@@ -48,7 +49,7 @@
           "power-profiles-daemon"
           "battery"
           "idle_inhibitor"
-          #"group/group-power"
+          "group/group-power"
         ];
         "niri/workspaces" = {
           format = "{icon}";
@@ -114,25 +115,7 @@
         };
         cpu = {
           interval = 1;
-          format =
-            "{usage:3}%@{avg_frequency:4} "
-            + (builtins.getAttr device {
-              "vinzenz-lpt2" =
-                "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}{icon16}{icon17}{icon18}{icon19}";
-              "vinzenz-pc2" =
-                "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}";
-            })
-            + " ";
-          format-icons = [
-            "<span color='#69ff94'>▁</span>"
-            "<span color='#2aa9ff'>▂</span>"
-            "<span color='#f8f8f2'>▃</span>"
-            "<span color='#f8f8f2'>▄</span>"
-            "<span color='#ffffa5'>▅</span>"
-            "<span color='#ffffa5'>▆</span>"
-            "<span color='#ff9977'>▇</span>"
-            "<span color='#dd532e'>█</span>"
-          ];
+          format = "{usage:3}%@{avg_frequency:4}";
         };
         disk = {
           format = "{free}/{total}";
@@ -152,25 +135,28 @@
           ];
         };
         "custom/quit" = {
-          "format" = "󰗼";
+          "format" = "󰗼 ";
           "tooltip" = false;
-          "on-click" = "hyprctl dispatch exit";
+          "on-click" = "niri msg action quit";
           min-width = 20;
         };
         "custom/lock" = {
-          "format" = "󰍁";
+          "format" = "󰍁 ";
           "tooltip" = false;
-          "on-click" = "swaylock";
+          "on-click" = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
+          min-width = 20;
         };
         "custom/reboot" = {
-          "format" = "󰜉";
+          "format" = "󰜉 ";
           "tooltip" = false;
-          "on-click" = "reboot";
+          "on-click" = "systemctl reboot";
+          min-width = 20;
         };
         "custom/power" = {
-          "format" = "";
+          "format" = " ";
           "tooltip" = false;
-          "on-click" = "shutdown now";
+          "on-click" = "systemctl shutdown";
+          min-width = 20;
         };
         idle_inhibitor = {
           format = "{icon}";
@@ -179,24 +165,24 @@
             deactivated = "";
           };
         };
-        image =
-          let
-            albumArtScript = pkgs.writeShellScriptBin "album-art.sh" ''
-              #!${pkgs.bash}/bin/bash
-              album_art=$(playerctl metadata mpris:artUrl)
-              if [[ -z $album_art ]]
-              then
-                 exit
-              fi
-              curl -s "''${album_art}" --output "/tmp/cover.jpeg"
-              echo "/tmp/cover.jpeg"
-            '';
-          in
-          {
-            exec = "${albumArtScript}/bin/album-art.sh";
-            interval = 15;
-            on-click = "playerctl play-pause";
-          };
+        #image =
+        #  let
+        #    albumArtScript = pkgs.writeShellScriptBin "album-art.sh" ''
+        #      #!${pkgs.bash}/bin/bash
+        #      album_art=$(playerctl metadata mpris:artUrl)
+        #      if [[ -z $album_art ]]
+        #      then
+        #         exit
+        #      fi
+        #      curl -s "''${album_art}" --output "/tmp/cover.jpeg"
+        #      echo "/tmp/cover.jpeg"
+        #    '';
+        #  in
+        #  {
+        #    exec = "${albumArtScript}/bin/album-art.sh";
+        #    interval = 15;
+        #    on-click = "playerctl play-pause";
+        #  };
         mpris = {
           format = "{title} ";
           tooltip-format = "{player} ({status}) {dynamic}";
