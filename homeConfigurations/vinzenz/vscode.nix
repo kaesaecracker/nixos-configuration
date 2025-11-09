@@ -87,6 +87,10 @@
           "\[nix\]" = {
             "editor.formatOnSave" = false;
           };
+
+          "\[css\]" = {
+            "editor.formatOnSave" = false;
+          };
         };
       };
     };

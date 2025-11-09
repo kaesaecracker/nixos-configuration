@@ -307,6 +307,7 @@
         "servicepoint-cli": "servicepoint-cli",
         "servicepoint-simulator": "servicepoint-simulator",
         "servicepoint-tanks": "servicepoint-tanks",
+        "treefmt-nix": "treefmt-nix",
         "zerforschen-plus": "zerforschen-plus"
       }
     },
@@ -408,6 +409,26 @@
         "ref": "service-improvements",
         "type": "git",
         "url": "https://git.berlin.ccc.de/vinzenz/servicepoint-tanks.git"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762410071,
+        "narHash": "sha256-aF5fvoZeoXNPxT0bejFUBXeUjXfHLSL7g+mjR/p5TEg=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "97a30861b13c3731a84e09405414398fbf3e109f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
       }
     },
     "xwayland-satellite-stable": {

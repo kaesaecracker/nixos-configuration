@@ -1,31 +1,31 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, sans-serif;
-    font-size: 13px;
-    color: #dcdfe1;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: FontAwesome, sans-serif;
+  font-size: 13px;
+  color: #dcdfe1;
 }
 
 window#waybar {
-    background: black;
-    /* border: none; */
-    box-shadow: none;
+  background: black;
+  /* border: none; */
+  box-shadow: none;
 
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 window#waybar.termite {
-    background-color: #3F3F3F;
+  background-color: #3f3f3f;
 }
 
 window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+  background-color: #000000;
+  border: none;
 }
 /*
 window#waybar .modules-left,
@@ -37,62 +37,62 @@ window#waybar .modules-right {
 }
  */
 box.horizontal {
-    padding: 4px 4px 0px 4px;
+  padding: 4px 4px 0px 4px;
 }
 
 #workspaces,
 #window,
 #tray {
-    background-color: rgba(15, 27, 53, 0.9);
-    padding: 4px 6px;
-    margin-left: 6px;
-    margin-right: 6px;
-    border-radius: 15px;
-    border-width: 0px;
+  background-color: rgba(15, 27, 53, 0.9);
+  padding: 4px 6px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-radius: 15px;
+  border-width: 0px;
 }
 
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+  background: inherit;
+  box-shadow: inset 0 -3px #ffffff;
 }
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #a37800;
+  background-color: #a37800;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-    border-radius: 15px;
+  padding: 0 5px;
+  background-color: transparent;
+  color: #ffffff;
+  border-radius: 15px;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.focused,
 #workspaces button.active {
-    background-color: #64727D;
+  background-color: #64727d;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+  background-color: #eb4d4b;
 }
 
 #mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+  background-color: #64727d;
+  box-shadow: inset 0 -3px #ffffff;
 }
 
 #clock,
@@ -111,23 +111,23 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0 10px;
-    color: #ffffff;
+  padding: 0 10px;
+  color: #ffffff;
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
 }
 /*
 #clock {
@@ -146,37 +146,37 @@ button:hover {
 }
  */
 @keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #power-profiles-daemon {
-    padding-right: 15px;
+  padding-right: 15px;
 }
 
 #power-profiles-daemon.performance {
-    color:  #f53c3c;
+  color: #f53c3c;
 }
 
 #power-profiles-daemon.balanced {
-    color: #2980b9;
+  color: #2980b9;
 }
 
 #power-profiles-daemon.power-saver {
-    color: #2ecc71;
+  color: #2ecc71;
 }
 /*
 label:focus {
@@ -253,13 +253,13 @@ label:focus {
 }
 
  */
-#tray>.passive {
-    -gtk-icon-effect: dim;
+#tray > .passive {
+  -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
 }
 /*
 #idle_inhibitor {
@@ -289,55 +289,57 @@ label:focus {
 }
 */
 
-#language {/*
+#language {
+  /*
     background: #00b093;
     color: #740864; */
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
+  padding: 0 5px;
+  margin: 0 5px;
+  min-width: 16px;
 }
 
-#keyboard-state {/*
+#keyboard-state {
+  /*
     background: #97e1ad;
     color: #000000; */
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
+  padding: 0 0px;
+  margin: 0 5px;
+  min-width: 16px;
 }
 
-#keyboard-state>label {
-    padding: 0 5px;
+#keyboard-state > label {
+  padding: 0 5px;
 }
 
-#keyboard-state>label.locked {
-    background: rgba(0, 0, 0, 0.2);
+#keyboard-state > label.locked {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #scratchpad {
-    background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #scratchpad.empty {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #privacy {
-    padding: 0;
+  padding: 0;
 }
 
 #privacy-item {
-    padding: 0 5px;
-    color: white;
+  padding: 0 5px;
+  color: white;
 }
 
 #privacy-item.screenshare {
-    background-color: #cf5700;
+  background-color: #cf5700;
 }
 
 #privacy-item.audio-in {
-    background-color: #1ca000;
+  background-color: #1ca000;
 }
 
 #privacy-item.audio-out {
-    background-color: #0069d4;
+  background-color: #0069d4;
 }

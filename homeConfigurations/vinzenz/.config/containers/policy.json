@@ -1,23 +1,23 @@
 {
-    "default": [
-        {
-            "type": "reject"
-        }
-    ],
-    "transports": {
-        "docker-daemon": {
-            "": [
-                {
-                    "type": "insecureAcceptAnything"
-                }
-            ]
-        },
-        "docker": {
-            "docker.io/library/debian": [
-                {
-                    "type": "insecureAcceptAnything"
-                }
-            ]
-        }
+  "default": [
+    {
+      "type": "reject"
     }
+  ],
+  "transports": {
+    "docker-daemon": {
+      "": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ]
+    },
+    "docker": {
+      "docker.io/library/debian": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ]
+    }
+  }
 }

@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zerforschen-plus = {
       url = "git+https://git.berlin.ccc.de/vinzenz/zerforschen.plus";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +54,7 @@
       zerforschen-plus,
       nixpkgs-unstable,
       nix-vscode-extensions,
+      treefmt-nix,
       servicepoint-cli,
       servicepoint-simulator,
       servicepoint-tanks,
@@ -113,6 +119,14 @@
       inherit (nixpkgs) lib;
       forDevice = f: lib.mapAttrs (device: value: f (value // { inherit device; })) devices;
       supported-systems = lib.attrsets.mapAttrsToList (k: v: v.system) devices;
+      treefmt-config = {
+        projectRootFile = "flake.nix";
+        programs = {
+          nixfmt.enable = true;
+          jsonfmt.enable = true;
+          prettier.enable = true;
+        };
+      };
       forAllSystems =
         f:
         lib.genAttrs supported-systems (
@@ -120,6 +134,7 @@
           f rec {
             inherit system;
             pkgs = nixpkgs.legacyPackages.${system};
+            treefmt-eval = treefmt-nix.lib.evalModule pkgs treefmt-config;
           }
         );
       importModuleDir =
@@ -167,8 +182,6 @@
         vinzenz = ./homeConfigurations/vinzenz;
         ronja = ./homeConfigurations/ronja;
       };
-
-      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
 
       nixosConfigurations = forDevice (
         {
@@ -266,6 +279,15 @@
             servicepoint-tanks.nixosModules.default
           ])
           ++ additional-modules;
+        }
+      );
+
+      formatter = forAllSystems ({ treefmt-eval, ... }: treefmt-eval.config.build.wrapper);
+
+      checks = forAllSystems (
+        { treefmt-eval, ... }:
+        {
+          formatting = treefmt-eval.config.build.check self;
         }
       );
     };
