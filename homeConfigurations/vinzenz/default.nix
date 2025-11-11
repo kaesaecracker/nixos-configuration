@@ -7,11 +7,11 @@
     ./fuzzel.nix
     ./git.nix
     ./gnome.nix
-    ./mako.nix
     ./niri.nix
     ./ssh.nix
     ./starship.nix
     ./swaylock.nix
+    ./swaync.nix
     ./vscode.nix
     ./waybar.nix
     ./zsh.nix

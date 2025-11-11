@@ -38,19 +38,29 @@
           #"image"
           "gamemode"
 
-          "temperature"
-          "cpu"
-          "memory"
-          "disk"
+          "group/status-infos"
+
           "wireplumber"
           "bluetooth"
           "backlight"
           "network"
           "power-profiles-daemon"
-          "battery"
+          "custom/swaync"
           "idle_inhibitor"
           "group/group-power"
+
         ];
+
+        "group/status-infos" = {
+          orientation = "inherit";
+          modules = [
+            "battery"
+            "temperature"
+            "cpu"
+            "memory"
+            "disk"
+          ];
+        };
         "niri/workspaces" = {
           format = "{icon}";
         };
@@ -225,6 +235,29 @@
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
         };
+        "custom/swaync" =
+          let
+            swaync-client = "${lib.getBin config.services.swaync.package}/bin/swaync-client";
+          in
+          {
+            tooltip = true;
+            format = "{0}{icon} ";
+            format-icons = {
+              notification = "󱅫";
+              none = "󰂜";
+              dnd-notification = "󰂠";
+              dnd-none = "󰪓";
+              inhibited-notification = "󰂛";
+              inhibited-none = "󰪑";
+              dnd-inhibited-notification = "󰂛";
+              dnd-inhibited-none = "󰪑";
+            };
+            return-type = "json";
+            exec = "${swaync-client} --subscribe-waybar";
+            on-click = "${swaync-client} --toggle-panel --skip-wait";
+            on-click-right = "${swaync-client} --toggle-dnd --skip-wait";
+            escape = true;
+          };
       };
     };
   };
