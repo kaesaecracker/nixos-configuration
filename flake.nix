@@ -125,6 +125,7 @@
           nixfmt.enable = true;
           jsonfmt.enable = true;
           prettier.enable = true;
+          keep-sorted.enable = true;
         };
       };
       forAllSystems =
@@ -226,17 +227,18 @@
 
             ./nixosConfigurations/${device}
 
-            self.nixosModules.default
-            self.nixosModules.lix-is-nix
-            self.nixosModules.globalinstalls
-            self.nixosModules.autoupdate
-            self.nixosModules.openssh
-            self.nixosModules.tailscale
+            # keep-sorted start
             self.nixosModules.allowed-unfree-list
+            self.nixosModules.autoupdate
+            self.nixosModules.default
             self.nixosModules.extra-caches
+            self.nixosModules.globalinstalls
+            self.nixosModules.lix-is-nix
+            self.nixosModules.openssh
             self.nixosModules.systemd-boot
-
+            self.nixosModules.tailscale
             zerforschen-plus.nixosModules.default
+            # keep-sorted end
           ]
           ++ (nixpkgs.lib.optionals (home-manager-users != { }) [
             {
@@ -250,33 +252,37 @@
 
               home-manager.sharedModules = [
                 { home.stateVersion = "22.11"; }
+                # keep-sorted start
                 self.homeModules.adwaita
                 self.homeModules.git
+                self.homeModules.gnome-extensions
+                self.homeModules.nano
                 self.homeModules.templates
                 self.homeModules.zsh-basics
-                self.homeModules.nano
-                self.homeModules.gnome-extensions
                 self.homeModules.zsh-powerlevel10k
+                # keep-sorted end
               ];
 
               home-manager.users = home-manager-users;
             }
 
-            self.nixosModules.pkgs-unstable
-            self.nixosModules.pkgs-vscode-extensions
-            self.nixosModules.niri
-            self.nixosModules.kdeconnect
-            self.nixosModules.en-de
-            self.nixosModules.gnome
-            self.nixosModules.modern-desktop
-            self.nixosModules.nix-ld
-            self.nixosModules.quiet-boot
-            self.nixosModules.firmware-updates
+            # keep-sorted start
 
             home-manager.nixosModules.home-manager
-            servicepoint-simulator.nixosModules.default
+            self.nixosModules.en-de
+            self.nixosModules.firmware-updates
+            self.nixosModules.gnome
+            self.nixosModules.kdeconnect
+            self.nixosModules.modern-desktop
+            self.nixosModules.niri
+            self.nixosModules.nix-ld
+            self.nixosModules.pkgs-unstable
+            self.nixosModules.pkgs-vscode-extensions
+            self.nixosModules.quiet-boot
             servicepoint-cli.nixosModules.default
+            servicepoint-simulator.nixosModules.default
             servicepoint-tanks.nixosModules.default
+            # keep-sorted end
           ])
           ++ additional-modules;
         }

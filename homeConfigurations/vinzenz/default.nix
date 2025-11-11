@@ -1,18 +1,21 @@
 { pkgs, ... }:
 {
   imports = [
+    # keep-sorted start
     ./editorconfig.nix
+    ./fonts.nix
     ./fuzzel.nix
     ./git.nix
     ./gnome.nix
-    ./ssh.nix
-    ./vscode.nix
-    ./zsh.nix
-    ./starship.nix
-    ./fonts.nix
+    ./mako.nix
     ./niri.nix
+    ./ssh.nix
+    ./starship.nix
     ./swaylock.nix
+    ./vscode.nix
     ./waybar.nix
+    ./zsh.nix
+    # keep-sorted end
   ];
 
   config = {
@@ -56,6 +59,7 @@
 
       wireguard-tools
       wirelesstools
+      tailscale
 
       kdiff3
       jetbrains-toolbox

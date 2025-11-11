@@ -9,15 +9,12 @@
     home.sessionVariables.NIXOS_OZONE_WL = "1";
     home.packages = with pkgs; [
       xwayland-satellite
-      alacritty
     ];
 
     qt.style = {
       package = pkgs.adwaita-qt;
       name = "adwaita-dark";
     };
-
-    services.mako.enable = true;
 
     programs.niri.settings = {
       outputs = {
@@ -61,7 +58,6 @@
         {
           background-color = "#000000";
           gaps = gap-size;
-          #default-column-display = "tabbed";
           border = {
             enable = true;
             width = gap-size / 2;
