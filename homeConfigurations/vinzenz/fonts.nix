@@ -1,12 +1,9 @@
 { pkgs, ... }:
 {
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts.monospace = [ "FiraCode Nerd Font Mono" ];
-  };
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    nerd-fonts.fira-code
     roboto-mono
     recursive
+    font-awesome
   ];
 }

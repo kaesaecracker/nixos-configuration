@@ -285,7 +285,6 @@
               home-manager.sharedModules = [
                 { home.stateVersion = "22.11"; }
                 # keep-sorted start
-                self.homeModules.adwaita
                 self.homeModules.git
                 self.homeModules.gnome-extensions
                 self.homeModules.nano
@@ -297,32 +296,6 @@
 
               home-manager.users = home-manager-users;
             }
-
-            (
-              { pkgs, ... }:
-              {
-                stylix = {
-                  enable = true;
-                  base16Scheme = "${pkgs.base16-schemes}/share/themes/edge-dark.yaml";
-                  polarity = "dark";
-                  targets = {
-                    gnome.enable = false;
-                  };
-                  fonts = {
-                    monospace = {
-                      name = "FiraCode Nerd Font Mono";
-                      package = pkgs.nerd-fonts.fira-code;
-                    };
-                  };
-                  /*
-                    homeManagerIntegration = {
-                      autoImport = false;
-                      followSystem = false;
-                    };
-                  */
-                };
-              }
-            )
 
             # keep-sorted start
             home-manager.nixosModules.home-manager
@@ -336,6 +309,7 @@
             self.nixosModules.pkgs-unstable
             self.nixosModules.pkgs-vscode-extensions
             self.nixosModules.quiet-boot
+            self.nixosModules.stylix
             servicepoint-cli.nixosModules.default
             servicepoint-simulator.nixosModules.default
             servicepoint-tanks.nixosModules.default

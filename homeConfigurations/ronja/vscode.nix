@@ -27,7 +27,6 @@
           "files.autoSaveWhenNoErrors" = true;
           "files.autoSaveWorkspaceFilesOnly" = true;
 
-          "editor.fontFamily" = "'Fira Code', 'Droid Sans Mono', 'monospace', monospace";
           "editor.fontLigatures" = true;
           "editor.formatOnSave" = true;
           "editor.formatOnSaveMode" = "modificationsIfAvailable";
