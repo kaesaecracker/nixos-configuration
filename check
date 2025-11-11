@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euxo pipefail
-
-nix fmt
-
-nix flake check --show-trace
