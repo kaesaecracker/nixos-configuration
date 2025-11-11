@@ -8,41 +8,69 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    #keep-sorted start block=yes
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+    naersk = {
+      url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
-
+    nix-filter.url = "github:numtide/nix-filter";
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
-
-    zerforschen-plus = {
-      url = "git+https://git.berlin.ccc.de/vinzenz/zerforschen.plus";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     servicepoint-cli = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        naersk.follows = "naersk";
+        nix-filter.follows = "nix-filter";
+      };
     };
-
     servicepoint-simulator = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        naersk.follows = "naersk";
+        nix-filter.follows = "nix-filter";
+      };
     };
-
     servicepoint-tanks = {
       url = "git+https://git.berlin.ccc.de/vinzenz/servicepoint-tanks.git?ref=service-improvements";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nur.follows = "nur";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zerforschen-plus = {
+      url = "git+https://git.berlin.ccc.de/vinzenz/zerforschen.plus";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    #keep-sorted end
   };
 
   outputs =
@@ -50,14 +78,18 @@
       self,
       nixpkgs,
       home-manager,
+      # keep-sorted start
       niri,
-      zerforschen-plus,
-      nixpkgs-unstable,
       nix-vscode-extensions,
-      treefmt-nix,
+      nixpkgs-unstable,
       servicepoint-cli,
       servicepoint-simulator,
       servicepoint-tanks,
+      stylix,
+      treefmt-nix,
+      zerforschen-plus,
+      # keep-sorted end
+      ...
     }:
     let
       devices = {
@@ -266,8 +298,33 @@
               home-manager.users = home-manager-users;
             }
 
-            # keep-sorted start
+            (
+              { pkgs, ... }:
+              {
+                stylix = {
+                  enable = true;
+                  base16Scheme = "${pkgs.base16-schemes}/share/themes/edge-dark.yaml";
+                  polarity = "dark";
+                  targets = {
+                    gnome.enable = false;
+                  };
+                  fonts = {
+                    monospace = {
+                      name = "FiraCode Nerd Font Mono";
+                      package = pkgs.nerd-fonts.fira-code;
+                    };
+                  };
+                  /*
+                    homeManagerIntegration = {
+                      autoImport = false;
+                      followSystem = false;
+                    };
+                  */
+                };
+              }
+            )
 
+            # keep-sorted start
             home-manager.nixosModules.home-manager
             self.nixosModules.en-de
             self.nixosModules.firmware-updates
@@ -282,6 +339,7 @@
             servicepoint-cli.nixosModules.default
             servicepoint-simulator.nixosModules.default
             servicepoint-tanks.nixosModules.default
+            stylix.nixosModules.stylix
             # keep-sorted end
           ])
           ++ additional-modules;
