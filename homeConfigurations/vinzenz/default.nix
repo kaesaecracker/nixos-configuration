@@ -88,5 +88,7 @@
       };
       "idea.properties".text = "idea.filewatcher.executable.path = ${pkgs.fsnotifier}/bin/fsnotifier";
     };
+
+    services.trayscale.enable = true;
   };
 }
