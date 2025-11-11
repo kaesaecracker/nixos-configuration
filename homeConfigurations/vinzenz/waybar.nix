@@ -26,7 +26,6 @@
         spacing = "8";
         modules-left = [
           "niri/workspaces"
-          "tray"
           "niri/window"
         ];
         modules-center = [
@@ -34,23 +33,26 @@
           "clock"
         ];
         modules-right = [
-          "mpris"
           #"image"
-          "gamemode"
-
           "group/status-infos"
-
-          "wireplumber"
-          "bluetooth"
-          "backlight"
-          "network"
-          "power-profiles-daemon"
-          "custom/swaync"
-          "idle_inhibitor"
+          "tray"
+          "group/system-tray"
           "group/group-power"
-
         ];
 
+        "group/system-tray" = {
+          orientation = "inherit";
+          modules = [
+            "mpris"
+            "wireplumber"
+            "bluetooth"
+            "backlight"
+            "network"
+            "power-profiles-daemon"
+            "custom/swaync"
+            "idle_inhibitor"
+          ];
+        };
         "group/status-infos" = {
           orientation = "inherit";
           modules = [
@@ -61,10 +63,10 @@
             "disk"
           ];
         };
+
         "niri/workspaces" = {
           format = "{icon}";
         };
-
         "niri/window" = {
           separate-outputs = true;
           icon = true;
