@@ -196,8 +196,13 @@
         #    on-click = "playerctl play-pause";
         #  };
         mpris = {
-          format = "{title} ";
-          tooltip-format = "{player} ({status}) {dynamic}";
+          format = "{status_icon} {player} ";
+          tooltip-format = "{player} ({status_icon} {status}) {dynamic}";
+          status-icons = {
+            playing = "";
+            paused = "󰏤";
+            stopped = "󰓛";
+          };
         };
         memory = {
           format = "{}% ";
@@ -227,6 +232,7 @@
         };
         tray = {
           spacing = 4;
+          show-passive-items = true;
         };
         bluetooth = {
           format = "  {status} ";
