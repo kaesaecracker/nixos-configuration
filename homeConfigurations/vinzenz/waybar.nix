@@ -112,12 +112,50 @@
         battery = {
           format = "{capacity}% {icon}";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            "󰂎" # 0%
+            "󰁺" # 10%
+            "󰁻" # 20%
+            "󰁼" # 30%
+            "󰁽" # 40%
+            "󰁾" # 50%
+            "󰁿" # 60%
+            "󰂀" # 70%
+            "󰂁" # 80%
+            "󰂂" # 90%
+            "󱟢" # 100%
           ];
+          states = {
+            warning = 25;
+            critical = 15;
+          };
+          events =
+            let
+              mkNotifySendCommand =
+                {
+                  summary,
+                  urgency ? null,
+                  body ? null,
+                  icon ? null,
+                }:
+                let
+                  body-part = if body != null then "'${body}'" else "";
+                  urgency-part = if urgency != null then "--urgency ${urgency}" else "";
+                  icon-part = if icon != null then "--icon ${icon}" else "";
+                in
+                "${lib.getBin pkgs.libnotify}/bin/notify-send ${urgency-part} ${icon-part} '${summary}' ${body-part}";
+            in
+            {
+              on-discharging-warning = mkNotifySendCommand {
+                summary = "Low Battery";
+                icon = "battery-caution";
+              };
+              on-discharging-critical = mkNotifySendCommand {
+                urgency = "critical";
+                summary = "Very Low Battery";
+                body = "Connect to power <i>now</i>!";
+                icon = "battery-low";
+              };
+            };
         };
         backlight = {
           device = "intel_backlight";
