@@ -12,8 +12,8 @@
     };
     fonts = {
       sansSerif = {
-        name = "Inter";
-        package = pkgs.inter;
+        name = "Inter Nerd Font";
+        package = pkgs.inter-nerdfont;
       };
       monospace = {
         name = "FiraCode Nerd Font Mono";

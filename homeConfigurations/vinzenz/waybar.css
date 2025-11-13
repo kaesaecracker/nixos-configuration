@@ -1,7 +1,7 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome, sans-serif;
-  font-size: 13px;
+  font-family: sans-serif;
+  font-size: 10pt;
   color: #dcdfe1;
 }
 
