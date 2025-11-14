@@ -66,7 +66,7 @@
             urgent.gradient = gradient-urgent;
           };
           focus-ring = {
-            enable = true;
+            enable = false;
             active.gradient = gradient-active;
             inactive.gradient = gradient-inactive;
             urgent.gradient = gradient-urgent;
