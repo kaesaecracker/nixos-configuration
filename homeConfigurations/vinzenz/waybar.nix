@@ -26,16 +26,17 @@
         spacing = "8";
         modules-left = [
           "niri/workspaces"
+          "tray"
           "niri/window"
         ];
         modules-center = [
           "privacy"
           "clock"
+          "custom/swaync"
         ];
         modules-right = [
           #"image"
           "group/status-infos"
-          "tray"
           "group/system-tray"
           "group/group-power"
         ];
@@ -49,7 +50,6 @@
             "backlight"
             "network"
             "power-profiles-daemon"
-            "custom/swaync"
             "idle_inhibitor"
           ];
         };
@@ -136,24 +136,28 @@
                   urgency ? null,
                   body ? null,
                   icon ? null,
+                  category ? null,
                 }:
                 let
                   body-part = if body != null then "'${body}'" else "";
                   urgency-part = if urgency != null then "--urgency ${urgency}" else "";
                   icon-part = if icon != null then "--icon ${icon}" else "";
+                  category-part = if category != null then "--category ${category}" else "";
                 in
-                "${lib.getBin pkgs.libnotify}/bin/notify-send ${urgency-part} ${icon-part} '${summary}' ${body-part}";
+                "${lib.getBin pkgs.libnotify}/bin/notify-send ${urgency-part} ${icon-part} ${category-part} '${summary}' ${body-part}";
             in
             {
               on-discharging-warning = mkNotifySendCommand {
                 summary = "Low Battery";
                 icon = "battery-caution";
+                category = "device";
               };
               on-discharging-critical = mkNotifySendCommand {
                 urgency = "critical";
                 summary = "Very Low Battery";
                 body = "Connect to power <i>now</i>!";
                 icon = "battery-low";
+                category = "device";
               };
             };
         };
@@ -287,7 +291,7 @@
           in
           {
             tooltip = true;
-            format = "{0}{icon} ";
+            format = "{icon}  {0} ";
             format-icons = {
               notification = "󱅫";
               none = "󰂜";

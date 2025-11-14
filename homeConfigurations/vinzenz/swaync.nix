@@ -1,6 +1,8 @@
 {
   services.swaync = {
     enable = true;
-    settings = { };
+    settings = {
+      positionX = "center";
+    };
   };
 }
