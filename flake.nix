@@ -13,6 +13,10 @@
       url = "github:hercules-ci/flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     naersk = {
       url = "github:nix-community/naersk";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,6 +83,7 @@
       nixpkgs,
       home-manager,
       # keep-sorted start
+      lanzaboote,
       niri,
       nix-vscode-extensions,
       nixpkgs-unstable,
@@ -104,6 +109,7 @@
             self.nixosModules.podman
             self.nixosModules.vinzenz-desktop-settings
             self.nixosModules.intel-graphics
+            self.nixosModules.secure-boot
           ];
           home-manager-users = {
             inherit (self.homeConfigurations) vinzenz;
@@ -260,6 +266,7 @@
             ./nixosConfigurations/${device}
 
             # keep-sorted start
+            lanzaboote.nixosModules.lanzaboote
             self.nixosModules.allowed-unfree-list
             self.nixosModules.autoupdate
             self.nixosModules.default
