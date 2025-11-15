@@ -26,8 +26,6 @@
           excludePackages = [ pkgs.xterm ];
         };
 
-        displayManager.defaultSession = "gnome";
-
         gnome = {
           tinysparql.enable = false;
           localsearch.enable = false;
