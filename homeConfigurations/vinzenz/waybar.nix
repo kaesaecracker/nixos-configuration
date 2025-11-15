@@ -38,7 +38,7 @@
           #"image"
           "group/status-infos"
           "group/system-tray"
-          "group/group-power"
+          "custom/wlogout"
         ];
 
         "group/system-tray" = {
@@ -57,6 +57,7 @@
           orientation = "inherit";
           modules = [
             "battery"
+            "custom/weather"
             "temperature"
             "cpu"
             "memory"
@@ -163,7 +164,7 @@
         };
         backlight = {
           device = "intel_backlight";
-          format = "{percent}% ";
+          format = "{percent}%  ";
           on-scroll-down = "light -U 1";
           on-scroll-up = "light -A 1";
         };
@@ -174,46 +175,14 @@
         disk = {
           format = "{free}/{total}";
         };
-        "group/group-power" = {
-          "orientation" = "inherit";
-          "drawer" = {
-            "transition-duration" = 500;
-            "children-class" = "not-power";
-            "transition-left-to-right" = false;
-          };
-          "modules" = [
-            "custom/power" # First element is the "group leader" and won't ever be hidden
-            "custom/quit"
-            "custom/lock"
-            "custom/reboot"
-          ];
-        };
-        "custom/quit" = {
-          "format" = "󰗼 ";
-          "tooltip" = false;
-          "on-click" = "niri msg action quit";
-          min-width = 20;
-        };
-        "custom/lock" = {
-          "format" = "󰍁 ";
-          "tooltip" = false;
-          "on-click" = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
-          min-width = 20;
-        };
-        "custom/reboot" = {
-          "format" = "󰜉 ";
-          "tooltip" = false;
-          "on-click" = "systemctl reboot";
-          min-width = 20;
-        };
-        "custom/power" = {
-          "format" = " ";
-          "tooltip" = false;
-          "on-click" = "systemctl shutdown";
+        "custom/wlogout" = {
+          format = " ";
+          tooltip = false;
+          on-click = "wlogout";
           min-width = 20;
         };
         idle_inhibitor = {
-          format = "{icon}";
+          format = "{icon} ";
           format-icons = {
             activated = "";
             deactivated = "";
@@ -247,7 +216,7 @@
           };
         };
         memory = {
-          format = "{}% ";
+          format = "{}%  ";
         };
         power-profiles-daemon = {
           format = "{icon}";
@@ -308,6 +277,13 @@
             on-click-right = "${swaync-client} --toggle-dnd --skip-wait";
             escape = true;
           };
+        "custom/weather" = {
+          format = "{}°";
+          tooltip = true;
+          interval = 3600;
+          exec = "${lib.getBin pkgs.wttrbar}/bin/wttrbar --nerd";
+          return-type = "json";
+        };
       };
     };
   };

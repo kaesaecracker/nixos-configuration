@@ -14,6 +14,7 @@
     ./swaync.nix
     ./vscode.nix
     ./waybar.nix
+    ./wlogout.nix
     ./zsh.nix
     # keep-sorted end
   ];
