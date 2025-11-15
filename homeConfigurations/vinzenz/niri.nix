@@ -16,6 +16,8 @@
       name = "adwaita-dark";
     };
 
+    services.wpaperd.enable = true;
+
     programs.niri.settings = {
       outputs = {
         "BOE 0x0A3B Unknown" = {
@@ -53,10 +55,10 @@
             from = pink_dark;
             to = pink_light;
           };
-          gap-size = 10;
+          gap-size = 8;
         in
         {
-          background-color = "#000000";
+          background-color = "transparent";
           gaps = gap-size;
           border = {
             enable = true;
