@@ -9,6 +9,7 @@
       gtk.enable = false;
       gtksourceview.enable = false;
       fontconfig.enable = true;
+      plymouth.enable = false;
     };
     fonts = {
       sansSerif = {
