@@ -35,10 +35,11 @@
 
       layout =
         let
-          pink_light = "#d162a4";
-          pink_dark = "#a30262";
-          blue_light = "#5BCEFA";
-          blue_dark = "#4a6bb1";
+          colors = config.lib.stylix.colors.withHashtag;
+          pink_light = colors.base0A;
+          pink_dark = colors.base0C;
+          blue_light = colors.base0B;
+          blue_dark = colors.base09;
           gradient-common = {
             angle = 90;
             in' = "oklab";
