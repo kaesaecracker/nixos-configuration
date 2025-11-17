@@ -13,19 +13,20 @@
         extensions =
           with pkgs.nix-vscode-extensions.open-vsx;
           [
-            jnoortheen.nix-ide
-            ms-python.python
+            # keep-sorted start
+            catppuccin.catppuccin-vsc-icons
+            davidanson.vscode-markdownlint
             editorconfig.editorconfig
-            yzhang.markdown-all-in-one
-            redhat.vscode-yaml
-            pkief.material-icon-theme
-            rust-lang.rust-analyzer
-            tamasfe.even-better-toml
+            jnoortheen.nix-ide
             llvm-vs-code-extensions.vscode-clangd
             mkhl.direnv
+            ms-python.python
             muhammad-sammy.csharp
-            davidanson.vscode-markdownlint
-            #mermaidchart.vscode-mermaid-chart
+            redhat.vscode-yaml
+            rust-lang.rust-analyzer
+            tamasfe.even-better-toml
+            yzhang.markdown-all-in-one
+            # keep-sorted end
           ]
           ++ (with pkgs.vscode-extensions; [
             vadimcn.vscode-lldb
@@ -46,7 +47,7 @@
 
           "workbench.startupEditor" = "readme";
           "workbench.enableExperiments" = false;
-          "workbench.iconTheme" = "material-icon-theme";
+          "workbench.iconTheme" = "catppuchin-mocha";
 
           "update.mode" = "none";
           "extensions.autoUpdate" = false;
