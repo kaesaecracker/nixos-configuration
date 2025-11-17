@@ -2,9 +2,9 @@
 {
   # https://github.com/nix-community/lanzaboote/blob/70be03ab23d0988224e152f5b52e2fbf44a6d8ee/docs/QUICK_START.md
   # To enroll:
-  # 1. Put Secure Boot in Setup mode
-  # 2. sudo sbctl create-keys
-  # 3. import this module, rebuild
+  # 1. sudo sbctl create-keys
+  # 2. import this module, rebuild
+  # 3. Put Secure Boot in Setup mode
   # 4. sudo sbctl verify
   # 5. sudo sbctl enroll-keys --microsoft
   # 6, reboot

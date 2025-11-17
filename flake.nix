@@ -127,6 +127,7 @@
             self.nixosModules.podman
             self.nixosModules.vinzenz-desktop-settings
             self.nixosModules.amd-graphics
+            self.nixosModules.secure-boot
           ];
           home-manager-users = {
             inherit (self.homeConfigurations) vinzenz ronja;
