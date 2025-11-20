@@ -11,8 +11,10 @@
 
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
-    systemd.target = "graphical-session.target";
+    systemd = {
+      enable = true;
+      target = "graphical-session.target";
+    };
     style = lib.mkAfter (builtins.readFile ./waybar.css);
     settings = {
       mainBar = {
@@ -35,9 +37,9 @@
           "custom/swaync"
         ];
         modules-right = [
+          "group/system-tray"
           #"image"
           "group/status-infos"
-          "group/system-tray"
           "custom/wlogout"
         ];
 
@@ -56,12 +58,13 @@
         "group/status-infos" = {
           orientation = "inherit";
           modules = [
-            "battery"
             "custom/weather"
             "temperature"
             "cpu"
             "memory"
             "disk"
+            # "battery"
+            "upower"
           ];
         };
 
@@ -109,6 +112,9 @@
             on-scroll-up = "shift_down";
             on-scroll-down = "shift_up";
           };
+        };
+        upower = {
+          icon-size = 14;
         };
         battery = {
           format = "{capacity}% {icon}";
