@@ -3,6 +3,7 @@
   imports = [
     # keep-sorted start
     ./editorconfig.nix
+    ./element.nix
     ./fonts.nix
     ./fuzzel.nix
     ./git.nix
@@ -54,9 +55,7 @@
       nextcloud-client
       thunderbird
       fractal
-
       telegram-desktop
-      element-desktop
 
       wireguard-tools
       wirelesstools
@@ -80,6 +79,8 @@
       foliate
 
       dconf2nix
+
+      gnome-terminal
     ];
 
     home.file = {
