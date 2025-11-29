@@ -19,6 +19,10 @@
         "inhibitors"
         "notifications"
       ];
+
+      widget-config = {
+        mpris.autohide = true;
+      };
     };
   };
 }
