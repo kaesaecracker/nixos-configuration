@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   blog-domain-socket = "/run/nginx/blog.sock";
-  anubis-domain-socket = "/run/anubis/anubis-blog.sock";
+  anubis-domain-socket = "/run/anubis/anubis-blog/anubis.sock";
 in
 {
   security.acme = {
@@ -42,7 +42,7 @@ in
       };
     };
 
-    anubis.instances.main = {
+    anubis.instances.blog = {
       enable = true;
       settings = {
         BIND = anubis-domain-socket;

@@ -12,18 +12,17 @@
   config = lib.mkMerge [
     {
       services = {
-        xserver = {
-          # Enable the GNOME Desktop Environment.
-          desktopManager.gnome = {
-            enable = true;
-            extraGSettingsOverridePackages = [ pkgs.mutter ];
-            extraGSettingsOverrides = ''
-              [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer']
-            '';
-          };
-          displayManager.gdm.enable = true;
-          excludePackages = [ pkgs.xterm ];
+        xserver.excludePackages = [ pkgs.xterm ];
+
+        # Enable the GNOME Desktop Environment.
+        displayManager.gdm.enable = true;
+        desktopManager.gnome = {
+          enable = true;
+          extraGSettingsOverridePackages = [ pkgs.mutter ];
+          extraGSettingsOverrides = ''
+            [org.gnome.mutter]
+            experimental-features=['scale-monitor-framebuffer']
+          '';
         };
 
         gnome = {

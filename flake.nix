@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -41,7 +41,8 @@
     servicepoint-cli = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # TODO: update flake to 25.11
+        # nixpkgs.follows = "nixpkgs";
         naersk.follows = "naersk";
         nix-filter.follows = "nix-filter";
       };
@@ -49,7 +50,8 @@
     servicepoint-simulator = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-simulator.git";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # TODO: update flake to 25.11
+        # nixpkgs.follows = "nixpkgs";
         naersk.follows = "naersk";
         nix-filter.follows = "nix-filter";
       };
@@ -59,7 +61,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:nix-community/stylix/release-25.05";
+      url = "github:nix-community/stylix/release-25.11";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nur.follows = "nur";

@@ -1,6 +1,7 @@
 {
   config.programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
       "vpn2" = {
         host = "vpn2 hetzner-vpn2";

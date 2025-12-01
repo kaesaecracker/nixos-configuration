@@ -28,9 +28,7 @@
     services.NetworkManager-wait-online.enable = false;
 
     # prevent stuck units from preventing shutdown (default is 120s)
-    extraConfig = ''
-      DefaultTimeoutStopSec=10s
-    '';
+    settings.Manager.DefaultTimeoutStopSec = "10s";
   };
 
   programs = {

@@ -31,7 +31,7 @@
       ];
     }
 
-    (lib.mkIf config.services.xserver.desktopManager.gnome.enable {
+    (lib.mkIf config.services.desktopManager.gnome.enable {
       # replace kdeconnect with gsconnect
       programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
 

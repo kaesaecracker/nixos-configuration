@@ -17,6 +17,6 @@
     dxvk
     mangohud
     vulkan-tools
-    glxinfo
+    mesa-demos
   ];
 }
