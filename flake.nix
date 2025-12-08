@@ -277,6 +277,7 @@
             self.nixosModules.globalinstalls
             self.nixosModules.lix-is-nix
             self.nixosModules.openssh
+            self.nixosModules.prometheus-node
             self.nixosModules.systemd-boot
             self.nixosModules.tailscale
             zerforschen-plus.nixosModules.default
