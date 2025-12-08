@@ -2,6 +2,7 @@
 let
   blog-domain-socket = "/run/nginx/blog.sock";
   anubis-domain-socket = "/run/anubis/anubis-blog/anubis.sock";
+  anubis-metrics-socket = "/run/anubis/anubis-blog/anubis-metrics.sock";
 in
 {
   security.acme = {
@@ -26,8 +27,9 @@ in
         "zerforschen.plus" = {
           addSSL = true;
           enableACME = true;
-          locations."/" = {
-            proxyPass = "http://unix:" + anubis-domain-socket;
+          locations = {
+            "/".proxyPass = "http://unix:" + anubis-domain-socket;
+            "/_metrics".proxyPass = "http://unix:" + anubis-metrics-socket;
           };
         };
 
@@ -47,6 +49,7 @@ in
       settings = {
         BIND = anubis-domain-socket;
         TARGET = "unix://" + blog-domain-socket;
+        METRICS_BIND = anubis-metrics-socket;
       };
     };
   };
