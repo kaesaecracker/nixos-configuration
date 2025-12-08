@@ -503,22 +503,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1764560356,
-        "narHash": "sha256-M5aFEFPppI4UhdOxwdmceJ9bDJC4T6C6CzCK1E2FZyo=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "6c8f0cca84510cc79e09ea99a299c9bc17d03cb6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -634,14 +618,19 @@
         "nix-filter": [
           "nix-filter"
         ],
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
       },
       "locked": {
-        "lastModified": 1757763404,
-        "narHash": "sha256-a1h+58wDOtbQXrHoZwLwB7PhXwFhBXRHhNRhAQGq/oY=",
+        "lastModified": 1764875421,
+        "narHash": "sha256-ZO9wiokPhropwsU3BfIgjm1bc59SIyqrfjfnFCM2Q68=",
         "ref": "refs/heads/main",
-        "rev": "07a5fbca27ec941c841ad93f2ac65bc529225a51",
-        "revCount": 46,
+        "rev": "fa892558f123c5d5395663fa666466c73b997245",
+        "revCount": 48,
         "type": "git",
         "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git"
       },
@@ -658,7 +647,7 @@
         "nix-filter": [
           "nix-filter"
         ],
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1757763091,

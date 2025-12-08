@@ -41,10 +41,10 @@
     servicepoint-cli = {
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git";
       inputs = {
-        # TODO: update flake to 25.11
-        # nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs";
         naersk.follows = "naersk";
         nix-filter.follows = "nix-filter";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
     servicepoint-simulator = {
