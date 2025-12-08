@@ -28,8 +28,8 @@ in
           addSSL = true;
           enableACME = true;
           locations = {
+            "/_metrics".proxyPass = "http://unix:" + anubis-metrics-socket + ":/metrics";
             "/".proxyPass = "http://unix:" + anubis-domain-socket;
-            "/_metrics".proxyPass = "http://unix:" + anubis-metrics-socket;
           };
         };
 
