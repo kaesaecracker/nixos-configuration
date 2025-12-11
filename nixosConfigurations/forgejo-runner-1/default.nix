@@ -1,7 +1,9 @@
+{ my-nixos-modules, ... }:
 {
   imports = [
     ./hardware.nix
     ./forgejo-runner.nix
+    my-nixos-modules.podman
   ];
 
   config = {

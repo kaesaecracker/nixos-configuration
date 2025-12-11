@@ -102,49 +102,18 @@
       devices = {
         vinzenz-lpt2 = {
           system = "x86_64-linux";
-          additional-modules = [
-            self.nixosModules.user-vinzenz
-
-            self.nixosModules.gnome
-            self.nixosModules.wine-gaming
-            self.nixosModules.steam
-            self.nixosModules.podman
-            self.nixosModules.vinzenz-desktop-settings
-            self.nixosModules.intel-graphics
-            self.nixosModules.secure-boot
-          ];
           home-manager-users = {
             inherit (self.homeConfigurations) vinzenz;
           };
         };
         vinzenz-pc2 = {
           system = "x86_64-linux";
-          additional-modules = [
-            self.nixosModules.user-vinzenz
-            self.nixosModules.user-ronja
-
-            self.nixosModules.gnome
-            self.nixosModules.wine-gaming
-            self.nixosModules.steam
-            self.nixosModules.podman
-            self.nixosModules.vinzenz-desktop-settings
-            self.nixosModules.amd-graphics
-            self.nixosModules.secure-boot
-          ];
           home-manager-users = {
-            inherit (self.homeConfigurations) vinzenz ronja;
+            inherit (self.homeConfigurations) vinzenz;
           };
         };
         ronja-pc = {
           system = "x86_64-linux";
-          additional-modules = [
-            self.nixosModules.user-ronja
-
-            self.nixosModules.gnome
-            self.nixosModules.steam
-            self.nixosModules.wine-gaming
-            self.nixosModules.vinzenz-desktop-settings
-          ];
           home-manager-users = {
             inherit (self.homeConfigurations) ronja;
           };
@@ -154,7 +123,6 @@
         };
         forgejo-runner-1 = {
           system = "aarch64-linux";
-          additional-modules = [ self.nixosModules.podman ];
         };
       };
       inherit (nixpkgs) lib;
@@ -230,11 +198,11 @@
           device,
           system,
           home-manager-users ? { },
-          additional-modules ? [ ],
         }:
         let
           specialArgs = {
             inherit device;
+            my-nixos-modules = self.nixosModules;
           };
         in
         nixpkgs.lib.nixosSystem {
@@ -326,8 +294,7 @@
             servicepoint-tanks.nixosModules.default
             stylix.nixosModules.stylix
             # keep-sorted end
-          ])
-          ++ additional-modules;
+          ]);
         }
       );
 
