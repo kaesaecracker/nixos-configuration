@@ -1,15 +1,15 @@
-{ my-nixos-modules, ... }:
+{ self, ... }:
 {
   imports = [
     ./hardware.nix
-    my-nixos-modules.user-vinzenz
-    my-nixos-modules.gnome
-    my-nixos-modules.wine-gaming
-    my-nixos-modules.steam
-    my-nixos-modules.podman
-    my-nixos-modules.vinzenz-desktop-settings
-    my-nixos-modules.intel-graphics
-    my-nixos-modules.secure-boot
+    self.nixosModules.user-vinzenz
+    self.nixosModules.gnome
+    self.nixosModules.wine-gaming
+    self.nixosModules.steam
+    self.nixosModules.podman
+    self.nixosModules.vinzenz-desktop-settings
+    self.nixosModules.intel-graphics
+    self.nixosModules.secure-boot
   ];
 
   config = {

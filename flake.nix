@@ -80,7 +80,7 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       home-manager,
@@ -122,6 +122,9 @@
           system = "aarch64-linux";
         };
         forgejo-runner-1 = {
+          system = "aarch64-linux";
+        };
+        epimetheus = {
           system = "aarch64-linux";
         };
       };
@@ -200,101 +203,28 @@
           home-manager-users ? { },
         }:
         let
-          specialArgs = {
-            inherit device;
-            my-nixos-modules = self.nixosModules;
+          specialArgs = inputs // {
+            inherit device home-manager-users;
           };
         in
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
             {
-              networking.hostName = device;
+              imports = [
+                ./nixosConfigurations/${device}
+                self.nixosModules.global-settings
+              ]
+              ++ (lib.optionals (home-manager-users != { }) [
+                self.nixosModules.global-settings-desktop
+              ]);
+
               nixpkgs = {
                 inherit system;
                 hostPlatform = lib.mkDefault system;
               };
-              system = {
-                stateVersion = "22.11";
-                autoUpgrade.flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
-              };
-
-              nixpkgs.overlays = [
-                self.overlays.unstable-packages
-              ];
-
-              nix.settings.experimental-features = [
-                "nix-command"
-                "flakes"
-              ];
-
-              documentation = {
-                info.enable = false; # info pages and the info command
-                doc.enable = false; # documentation distributed in packages' /share/doc
-              };
             }
-
-            ./nixosConfigurations/${device}
-
-            # keep-sorted start
-            lanzaboote.nixosModules.lanzaboote
-            self.nixosModules.allowed-unfree-list
-            self.nixosModules.autoupdate
-            self.nixosModules.default
-            self.nixosModules.extra-caches
-            self.nixosModules.globalinstalls
-            self.nixosModules.lix-is-nix
-            self.nixosModules.openssh
-            self.nixosModules.prometheus-node
-            self.nixosModules.systemd-boot
-            self.nixosModules.tailscale
-            zerforschen-plus.nixosModules.default
-            # keep-sorted end
-          ]
-          ++ (nixpkgs.lib.optionals (home-manager-users != { }) [
-            {
-              home-manager = {
-                extraSpecialArgs = specialArgs;
-                useGlobalPkgs = true;
-                useUserPackages = true;
-              };
-
-              time.timeZone = "Europe/Berlin";
-
-              home-manager.sharedModules = [
-                { home.stateVersion = "22.11"; }
-                # keep-sorted start
-                self.homeModules.git
-                self.homeModules.gnome-extensions
-                self.homeModules.nano
-                self.homeModules.templates
-                self.homeModules.zsh-basics
-                self.homeModules.zsh-powerlevel10k
-                # keep-sorted end
-              ];
-
-              home-manager.users = home-manager-users;
-            }
-
-            # keep-sorted start
-            home-manager.nixosModules.home-manager
-            self.nixosModules.en-de
-            self.nixosModules.firmware-updates
-            self.nixosModules.gnome
-            self.nixosModules.kdeconnect
-            self.nixosModules.modern-desktop
-            self.nixosModules.niri
-            self.nixosModules.nix-ld
-            self.nixosModules.pkgs-unstable
-            self.nixosModules.pkgs-vscode-extensions
-            self.nixosModules.quiet-boot
-            self.nixosModules.stylix
-            servicepoint-cli.nixosModules.default
-            servicepoint-simulator.nixosModules.default
-            servicepoint-tanks.nixosModules.default
-            stylix.nixosModules.stylix
-            # keep-sorted end
-          ]);
+          ];
         }
       );
 

@@ -3,7 +3,7 @@
     enable = true;
     openFirewall = true;
     settings = {
-      PermitRootLogin = "without-password";
+      PermitRootLogin = "prohibit-password";
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
     };

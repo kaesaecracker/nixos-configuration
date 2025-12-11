@@ -1,18 +1,18 @@
-{ pkgs, my-nixos-modules, ... }:
+{ pkgs, self, ... }:
 {
   imports = [
     ./hardware.nix
     ./vscode-server.nix
     ./hass.nix
 
-    my-nixos-modules.user-vinzenz
-    my-nixos-modules.gnome
-    my-nixos-modules.wine-gaming
-    my-nixos-modules.steam
-    my-nixos-modules.podman
-    my-nixos-modules.vinzenz-desktop-settings
-    my-nixos-modules.amd-graphics
-    my-nixos-modules.secure-boot
+    self.nixosModules.user-vinzenz
+    self.nixosModules.gnome
+    self.nixosModules.wine-gaming
+    self.nixosModules.steam
+    self.nixosModules.podman
+    self.nixosModules.vinzenz-desktop-settings
+    self.nixosModules.amd-graphics
+    self.nixosModules.secure-boot
   ];
 
   config = {

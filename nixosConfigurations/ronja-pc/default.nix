@@ -1,17 +1,17 @@
 {
   config,
   pkgs,
-  my-nixos-modules,
+  self,
   ...
 }:
 {
   imports = [
     ./hardware.nix
-    my-nixos-modules.user-ronja
-    my-nixos-modules.gnome
-    my-nixos-modules.steam
-    my-nixos-modules.wine-gaming
-    my-nixos-modules.vinzenz-desktop-settings
+    self.nixosModules.user-ronja
+    self.nixosModules.gnome
+    self.nixosModules.steam
+    self.nixosModules.wine-gaming
+    self.nixosModules.vinzenz-desktop-settings
   ];
 
   config = {
