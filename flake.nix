@@ -31,6 +31,10 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs = {
@@ -88,6 +92,7 @@
       lanzaboote,
       niri,
       nix-vscode-extensions,
+      nixos-generators,
       nixpkgs-unstable,
       servicepoint-cli,
       servicepoint-simulator,
@@ -234,6 +239,23 @@
         { treefmt-eval, ... }:
         {
           formatting = treefmt-eval.config.build.check self;
+        }
+      );
+
+      packages = forAllSystems (
+        { ... }:
+        {
+          nixos-aarch64-pxvirt-lxc-template = nixos-generators.nixosGenerate {
+            system = "aarch64-linux";
+            format = "proxmox-lxc";
+            specialArgs = inputs // {
+              device = "nixos-aarch64-pxvirt-lxc-template";
+            };
+            modules = [
+              self.nixosModules.global-settings
+              self.nixosModules.pxvirt-guest
+            ];
+          };
         }
       );
     };
