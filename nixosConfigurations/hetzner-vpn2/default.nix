@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ./nginx.nix
+    ./headscale.nix
   ];
 
   config = {
