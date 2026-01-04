@@ -3,6 +3,7 @@
     ./hardware.nix
     ./nginx.nix
     ./headscale.nix
+    ./blog.nix
   ];
 
   config = {
