@@ -2,6 +2,8 @@ let
   headscale-port = 8668;
 in
 {
+  # sudo tailscale up --reset --force-reauth --login-server https://uplink.darkest.space --operator=$USER
+
   services = {
     headscale = {
       enable = true;
@@ -13,8 +15,19 @@ in
           override_local_dns = false;
           base_domain = "high-gravity.space";
         };
+        derp = {
+          server = {
+            enabled = true;
+            verify_clients = true;
+            stun_listen_addr = "0.0.0.0:3478";
+            ipv4 = "78.46.242.90";
+            ipv6 = "2a01:4f8:c013:65dd::1";
+          };
+          urls = [ ];
+        };
       };
     };
+
     nginx.virtualHosts."uplink.darkest.space" = {
       enableACME = true;
       forceSSL = true;
@@ -24,4 +37,7 @@ in
       };
     };
   };
+
+  # for DERP
+  networking.firewall.allowedUDPPorts = [ 3478 ];
 }
