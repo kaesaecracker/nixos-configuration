@@ -13,8 +13,8 @@ in
   services = {
     nginx.virtualHosts = {
       "zerforschen.plus" = {
-        addSSL = true;
         enableACME = true;
+        forceSSL = true;
         locations = {
           "/_metrics".proxyPass = "http://unix:" + anubis-metrics-socket + ":/metrics";
           "/".proxyPass = "http://unix:" + anubis-domain-socket;

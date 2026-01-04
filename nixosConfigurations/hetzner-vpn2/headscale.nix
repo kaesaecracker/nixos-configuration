@@ -8,7 +8,7 @@ in
       address = "localhost";
       port = headscale-port;
       settings = {
-        server_url = "https://headscale.zerforschen.plus";
+        server_url = "https://uplink.darkest.space/";
         dns = {
           override_local_dns = false;
           base_domain = "high-gravity.space";
@@ -16,10 +16,11 @@ in
       };
     };
     nginx.virtualHosts."uplink.darkest.space" = {
-      addSSL = true;
       enableACME = true;
-      locations = {
-        "/".proxyPass = "http://localhost:${builtins.toString headscale-port}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${builtins.toString headscale-port}";
+        proxyWebsockets = true;
       };
     };
   };
