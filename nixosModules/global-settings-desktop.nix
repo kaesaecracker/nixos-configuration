@@ -11,30 +11,6 @@
 }:
 {
   imports = [
-    {
-      home-manager = {
-        extraSpecialArgs = specialArgs;
-        useGlobalPkgs = true;
-        useUserPackages = true;
-      };
-
-      time.timeZone = "Europe/Berlin";
-
-      home-manager.sharedModules = [
-        { home.stateVersion = "22.11"; }
-        # keep-sorted start
-        self.homeModules.git
-        self.homeModules.gnome-extensions
-        self.homeModules.nano
-        self.homeModules.templates
-        self.homeModules.zsh-basics
-        self.homeModules.zsh-powerlevel10k
-        # keep-sorted end
-      ];
-
-      home-manager.users = home-manager-users;
-    }
-
     # keep-sorted start
     home-manager.nixosModules.home-manager
     self.nixosModules.en-de
@@ -54,4 +30,27 @@
     stylix.nixosModules.stylix
     # keep-sorted end
   ];
+
+  config = {
+    home-manager = {
+      extraSpecialArgs = specialArgs;
+      useGlobalPkgs = true;
+      useUserPackages = true;
+    };
+
+    time.timeZone = "Europe/Berlin";
+
+    home-manager.sharedModules = [
+      { home.stateVersion = "22.11"; }
+      # keep-sorted start
+      self.homeModules.git
+      self.homeModules.gnome-extensions
+      self.homeModules.nano
+      self.homeModules.templates
+      self.homeModules.zsh-basics
+      # keep-sorted end
+    ];
+
+    home-manager.users = home-manager-users;
+  };
 }
