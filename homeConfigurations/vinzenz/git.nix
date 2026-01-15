@@ -3,8 +3,8 @@
     enable = true;
     settings = {
       user = {
-        name = "Vinzenz Schroeter";
-        email = "vinzenz.f.s@gmail.com";
+        name = "müde";
+        email = "git@darkest.space";
       };
 
       aliases = {
