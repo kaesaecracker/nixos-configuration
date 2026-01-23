@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.openvscode-server = {
-    enable = true;
+    enable = false;
     package = pkgs.unstable.openvscode-server;
     telemetryLevel = "off";
     port = 8542;
