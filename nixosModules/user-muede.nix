@@ -1,10 +1,9 @@
 { pkgs, ... }:
 {
-  users.users.vinzenz = {
+  users.users.muede = {
     isNormalUser = true;
-    name = "vinzenz";
+    name = "muede";
     description = "müde";
-    home = "/home/vinzenz";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -21,7 +20,7 @@
     autoSubUidGidRange = true;
   };
 
-  nix.settings.trusted-users = [ "vinzenz" ];
+  nix.settings.trusted-users = [ "muede" ];
 
   allowedUnfreePackages = [
     "rider"

@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.vinzenz = {
+  options.muede = {
     keep-gnome-default-apps = lib.mkEnableOption "keep gnome default apps";
   };
 
@@ -37,7 +37,7 @@
         gpaste.enable = true;
       };
     }
-    (lib.mkIf (!config.vinzenz.keep-gnome-default-apps) {
+    (lib.mkIf (!config.muede.keep-gnome-default-apps) {
       environment.gnome.excludePackages = with pkgs; [
         cheese # photo booth
         epiphany # web browser

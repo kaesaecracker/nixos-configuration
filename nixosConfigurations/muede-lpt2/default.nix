@@ -2,12 +2,12 @@
 {
   imports = [
     ./hardware.nix
-    self.nixosModules.user-vinzenz
+    self.nixosModules.user-muede
     self.nixosModules.gnome
     self.nixosModules.wine-gaming
     self.nixosModules.steam
     self.nixosModules.podman
-    self.nixosModules.vinzenz-desktop-settings
+    self.nixosModules.muede-desktop-settings
     self.nixosModules.intel-graphics
     self.nixosModules.secure-boot
   ];
@@ -27,9 +27,9 @@
     # Configure console keymap
     console.keyMap = "de";
 
-    users.users.vinzenz.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCJUpbpB3KEKVoKWsKoar9J4RNah8gmQoSH6jQEw5dY vinzenz-pixel-JuiceSSH"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1CRn4yYTL4XUdCebE8Z4ZeuMujBjorTdWifg911EOv vinzenz-pc2 home roaming"
+    users.users.muede.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCJUpbpB3KEKVoKWsKoar9J4RNah8gmQoSH6jQEw5dY pixel-JuiceSSH"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1CRn4yYTL4XUdCebE8Z4ZeuMujBjorTdWifg911EOv pc2 home roaming"
     ];
 
     programs = {
@@ -60,5 +60,7 @@
     ];
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+    users.users.muede.home = "/home/vinzenz";
   };
 }

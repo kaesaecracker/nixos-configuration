@@ -11,7 +11,7 @@
     self.nixosModules.gnome
     self.nixosModules.steam
     self.nixosModules.wine-gaming
-    self.nixosModules.vinzenz-desktop-settings
+    self.nixosModules.muede-desktop-settings
   ];
 
   config = {

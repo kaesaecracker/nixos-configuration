@@ -33,9 +33,6 @@
         style_user = "bg:color_r fg:text_r";
         style_root = "bold bg:color_r fg:text_r";
         show_always = true;
-        aliases = {
-          "vinzenz" = "müde";
-        };
       };
       os = {
         disabled = false;
@@ -47,8 +44,8 @@
         format = "$hostname";
         ssh_symbol = "";
         aliases = {
-          "vinzenz-lpt2" = "lpt";
-          "vinzenz-pc2" = "pc";
+          "muede-lpt2" = "lpt";
+          "muede-pc2" = "pc";
         };
       };
       container = {

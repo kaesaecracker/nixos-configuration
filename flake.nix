@@ -105,16 +105,16 @@
     }:
     let
       devices = {
-        vinzenz-lpt2 = {
+        muede-lpt2 = {
           system = "x86_64-linux";
           home-manager-users = {
-            inherit (self.homeConfigurations) vinzenz;
+            inherit (self.homeConfigurations) muede;
           };
         };
-        vinzenz-pc2 = {
+        muede-pc2 = {
           system = "x86_64-linux";
           home-manager-users = {
-            inherit (self.homeConfigurations) vinzenz;
+            inherit (self.homeConfigurations) muede;
           };
         };
         ronja-pc = {
@@ -197,7 +197,7 @@
 
       homeModules = importModuleDir ./homeModules;
       homeConfigurations = {
-        vinzenz = ./homeConfigurations/vinzenz;
+        muede = ./homeConfigurations/muede;
         ronja = ./homeConfigurations/ronja;
       };
 

@@ -2,7 +2,7 @@
 {
   config.programs.zsh = {
     initContent = ''
-      export PATH=$PATH:/home/vinzenz/.cargo/bin
+      export PATH=$PATH:$HOME/.cargo/bin
 
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word

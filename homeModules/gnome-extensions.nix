@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.vinzenz.gnome-extensions =
+  options.muede.gnome-extensions =
     let
       mkDefaultEnabledOption =
         name:
@@ -40,7 +40,7 @@
 
   config =
     let
-      cfg = config.vinzenz.gnome-extensions;
+      cfg = config.muede.gnome-extensions;
     in
     lib.mkIf cfg.enable (
       lib.mkMerge [
