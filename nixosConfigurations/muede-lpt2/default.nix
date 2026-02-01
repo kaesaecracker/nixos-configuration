@@ -60,7 +60,5 @@
     ];
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-    users.users.muede.home = "/home/vinzenz";
   };
 }
