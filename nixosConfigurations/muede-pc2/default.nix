@@ -2,8 +2,8 @@
 {
   imports = [
     ./hardware.nix
-    ./vscode-server.nix
-    ./hass.nix
+#    ./vscode-server.nix
+#    ./hass.nix
 
     self.nixosModules.user-muede
     self.nixosModules.gnome
