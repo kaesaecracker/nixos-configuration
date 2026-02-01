@@ -2,6 +2,7 @@
 {
   users.users.muede = {
     isNormalUser = true;
+    uid = 1000;
     name = "muede";
     description = "müde";
     extraGroups = [
