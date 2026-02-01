@@ -42,7 +42,5 @@
       # Factorio
       34197
     ];
-
-    users.users.muede.home = "/home/vinzenz";
   };
 }
