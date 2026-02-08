@@ -13,27 +13,20 @@
 /* #endregion */
 
 * {
-  font-family: monospace sans-serif;
-  font-size: 12px;
-
+  font-family: monospace;
+  font-size: 13px;
 }
 
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   /* Gradient border spanning the entire waybar window */
-  border-bottom: 4px solid transparent;
+  border-bottom: 3px solid transparent;
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
   background-image:
-    linear-gradient(90deg, @base01, @base00, @base01, @base00, @base01),
-    linear-gradient(90deg, @base0C, @base0D, @base0A, @base0D, @base0C);
-}
-
-.modules-left,
-.modules-center,
-.modules-right {
-  padding: 0px 4px 8px 4px;
+    linear-gradient(135deg, @base00, @base01),
+    linear-gradient(135deg, @base0C, @base09);
 }
 
 /* Common pill styling for all widgets */
@@ -60,22 +53,27 @@ window#waybar {
 #upower,
 #workspaces,
 #window,
-#tray {
-  margin: 0px 4px;
-  padding: 0px 6px;
+#tray,
+#custom-wlogout,
+#privacy-item {
+  margin: 0px 4px 6px;
+  padding: 0px 8px;
   background: linear-gradient(135deg, @base02, @base01);
-  border-radius: 16px;
-  border: 1px solid;
+  border-radius: 15px;
+  border: 2px solid;
   transition: all 0.3s ease;
 }
 
 /* special treatment for weird sized widgets */
-#custom-wlogout {
-  padding: 0px 10px 0px 8px;
-}
+#custom-wlogout,
 #power-profiles-daemon,
 #idle_inhibitor {
-  padding: 0px 14px 0px 8px;
+  padding: 0px 10px 0px 8px;
+}
+
+#workspaces {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* Individual widget colors */
@@ -89,7 +87,7 @@ window#waybar {
   padding: 0 6px;
   background-color: transparent;
   color: @base05;
-  border-radius: 12px;
+  border-radius: 15px;
   border: none;
   transition: all 0.3s ease;
 }
@@ -210,13 +208,13 @@ window#waybar {
 
 /* Battery states with colored glows */
 #battery.charging {
-  box-shadow: 0 0 10px rgba(168, 201, 255, 0.6);
+  box-shadow: 0 0 6px rgba(168, 201, 255, 0.6);
   border-color: @base0B;
   color: @base0B;
 }
 
 #battery.warning:not(.charging) {
-  box-shadow: 0 0 10px rgba(209, 98, 164, 0.6);
+  box-shadow: 0 0 6px rgba(209, 98, 164, 0.6);
   border-color: @base0A;
   color: @base0A;
 }
@@ -229,7 +227,7 @@ window#waybar {
 }
 
 #battery.critical:not(.charging) {
-  box-shadow: 0 0 10px rgba(243, 139, 168, 0.8);
+  box-shadow: 0 0 6px rgba(243, 139, 168, 0.8);
   border-color: @base08;
   color: @base08;
   animation-name: blink;
@@ -242,44 +240,44 @@ window#waybar {
 
 /* Bluetooth connected state */
 #bluetooth.connected {
-  box-shadow: 0 0 10px rgba(137, 180, 250, 0.5);
+  box-shadow: 0 0 6px rgba(137, 180, 250, 0.5);
 }
 
 /* Power profiles with state-appropriate glows */
 #power-profiles-daemon.performance {
-  box-shadow: 0 0 10px rgba(243, 139, 168, 0.6);
+  box-shadow: 0 0 6px rgba(243, 139, 168, 0.6);
   border-color: @base08;
   color: @base08;
 }
 
 #power-profiles-daemon.balanced {
-  box-shadow: 0 0 10px rgba(137, 180, 250, 0.6);
+  box-shadow: 0 0 6px rgba(137, 180, 250, 0.6);
   border-color: @base0D;
   color: @base0D;
 }
 
 #power-profiles-daemon.power-saver {
-  box-shadow: 0 0 10px rgba(168, 201, 255, 0.6);
+  box-shadow: 0 0 6px rgba(168, 201, 255, 0.6);
   border-color: @base0B;
   color: @base0B;
 }
 
 /* Idle inhibitor with state glow */
 #idle_inhibitor.activated {
-  box-shadow: 0 0 10px rgba(137, 180, 250, 0.6);
+  box-shadow: 0 0 6px rgba(137, 180, 250, 0.6);
   border-color: @base0D;
   color: @base0D;
 }
 
 /* MPD states with glows */
 #mpd.playing {
-  box-shadow: 0 0 10px rgba(168, 201, 255, 0.5);
+  box-shadow: 0 0 6px rgba(168, 201, 255, 0.5);
   border-color: @base0B;
   color: @base0B;
 }
 
 #mpd.paused {
-  box-shadow: 0 0 10px rgba(203, 166, 247, 0.5);
+  box-shadow: 0 0 6px rgba(203, 166, 247, 0.5);
   border-color: @base0E;
   color: @base0E;
 }
@@ -295,7 +293,7 @@ window#waybar {
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  box-shadow: 0 0 10px rgba(243, 139, 168, 0.8);
+  box-shadow: 0 0 6px rgba(243, 139, 168, 0.8);
   border-color: @base08;
 }
 
@@ -303,29 +301,20 @@ window#waybar {
   padding: 0;
 }
 
-#privacy-item {
-  /*padding: 4px 10px;
-  margin: 4px 6px 6px 6px;*/
-  color: @base05;
-  background: linear-gradient(135deg, @base02, @base01);
-  border-radius: 16px;
-  transition: all 0.3s ease;
-}
-
 #privacy-item.screenshare {
-  box-shadow: 0 0 10px rgba(209, 98, 164, 0.6);
+  box-shadow: 0 0 6px rgba(209, 98, 164, 0.6);
   border-color: @base0A;
   color: @base0A;
 }
 
 #privacy-item.audio-in {
-  box-shadow: 0 0 10px rgba(168, 201, 255, 0.6);
+  box-shadow: 0 0 6px rgba(168, 201, 255, 0.6);
   border-color: @base0B;
   color: @base0B;
 }
 
 #privacy-item.audio-out {
-  box-shadow: 0 0 10px rgba(137, 180, 250, 0.6);
+  box-shadow: 0 0 6px rgba(137, 180, 250, 0.6);
   border-color: @base0D;
   color: @base0D;
 }
@@ -333,13 +322,9 @@ window#waybar {
 /* Custom wlogout button */
 #custom-wlogout {
   color: @base08;
-  background: linear-gradient(135deg, @base02, @base01);
-  border-radius: 16px;
-  border: 1px solid @base08;
-  transition: all 0.3s ease;
+  border-color: @base08;
 }
 
 #custom-wlogout:hover {
-  box-shadow: 0 0 10px rgba(243, 139, 168, 0.5);
-  border-color: @base08;
+  box-shadow: 0 0 6px rgba(243, 139, 168, 0.5);
 }

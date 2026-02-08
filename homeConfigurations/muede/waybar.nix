@@ -63,17 +63,17 @@
           icon = true;
         };
         network = {
-          interface = "wlo1";
+          #interface = "wlo1";
           format = "{ifname}";
-          format-wifi = " ";
-          format-ethernet = "󰈀 ";
-          format-linked = "󱘖 ";
-          format-disconnected = "󰣽 ";
+          format-wifi = " {essid}";
+          format-ethernet = "󰈀";
+          format-linked = "󱘖";
+          format-disconnected = "󰣽";
           tooltip-format = "{ifname} via {gwaddr}";
           tooltip-format-wifi = "{essid} ({signalStrength}%)";
           tooltip-format-ethernet = "{ifname} {ipaddr}/{cidr}";
           tooltip-format-disconnected = "Disconnected";
-          max-length = 50;
+          max-length = 20;
         };
         clock = {
           format = "{:%a, %d. %b  %H:%M}";
@@ -163,10 +163,11 @@
         };
         cpu = {
           interval = 1;
-          format = " {usage:>3}%@{avg_frequency:>3.2f}";
+          format = " {usage:>2}%@{avg_frequency:>3.2f}";
         };
         disk = {
-          format = "{free}/{total}";
+          format = " {percentage_free}% {specific_total:>2.1f}";
+          unit = "TB";
         };
         "custom/wlogout" = {
           format = "";
@@ -209,7 +210,7 @@
           };
         };
         memory = {
-          format = " {}%";
+          format = " {}%";
         };
         power-profiles-daemon = {
           format = "{icon}";
@@ -239,9 +240,9 @@
           show-passive-items = true;
         };
         bluetooth = {
-          format = "  {status} ";
-          format-connected = "  {device_alias} ";
-          format-connected-battery = "  {device_alias} {device_battery_percentage}% ";
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
           tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
           tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -271,7 +272,7 @@
             escape = true;
           };
         "custom/weather" = {
-          format = "{}°";
+          format = "{}";
           tooltip = true;
           interval = 3600;
           exec = "${lib.getBin pkgs.wttrbar}/bin/wttrbar --nerd";

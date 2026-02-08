@@ -56,7 +56,7 @@
             from = pink_dark;
             to = pink_light;
           };
-          gap-size = 8;
+          gap-size = 6;
         in
         {
           background-color = "transparent";
