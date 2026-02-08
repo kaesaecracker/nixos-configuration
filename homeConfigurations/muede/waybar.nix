@@ -37,36 +37,23 @@
           "custom/swaync"
         ];
         modules-right = [
-          "group/system-tray"
+          "mpris"
+          "wireplumber"
+          "bluetooth"
+          "backlight"
+          "network"
+          "power-profiles-daemon"
+          "idle_inhibitor"
           #"image"
-          "group/status-infos"
+          "custom/weather"
+          "temperature"
+          "cpu"
+          "memory"
+          "disk"
+          # "battery"
+          "upower"
           "custom/wlogout"
         ];
-
-        "group/system-tray" = {
-          orientation = "inherit";
-          modules = [
-            "mpris"
-            "wireplumber"
-            "bluetooth"
-            "backlight"
-            "network"
-            "power-profiles-daemon"
-            "idle_inhibitor"
-          ];
-        };
-        "group/status-infos" = {
-          orientation = "inherit";
-          modules = [
-            "custom/weather"
-            "temperature"
-            "cpu"
-            "memory"
-            "disk"
-            # "battery"
-            "upower"
-          ];
-        };
 
         "niri/workspaces" = {
           format = "{icon}";
@@ -117,7 +104,7 @@
           icon-size = 14;
         };
         battery = {
-          format = "{capacity}% {icon}";
+          format = "{icon} {capacity}%";
           format-icons = [
             "󰂎" # 0%
             "󰁺" # 10%
@@ -176,19 +163,19 @@
         };
         cpu = {
           interval = 1;
-          format = "{usage:3}%@{avg_frequency:4}";
+          format = " {usage:>3}%@{avg_frequency:>3.2f}";
         };
         disk = {
           format = "{free}/{total}";
         };
         "custom/wlogout" = {
-          format = " ";
+          format = "";
           tooltip = false;
           on-click = "wlogout";
           min-width = 20;
         };
         idle_inhibitor = {
-          format = "{icon} ";
+          format = "{icon}";
           format-icons = {
             activated = "";
             deactivated = "";
@@ -213,7 +200,7 @@
         #    on-click = "playerctl play-pause";
         #  };
         mpris = {
-          format = "{status_icon} {player} ";
+          format = "{status_icon} {player}";
           tooltip-format = "{player} ({status_icon} {status}) {dynamic}";
           status-icons = {
             playing = "";
@@ -222,7 +209,7 @@
           };
         };
         memory = {
-          format = "{}%  ";
+          format = " {}%";
         };
         power-profiles-daemon = {
           format = "{icon}";
@@ -236,7 +223,7 @@
           };
         };
         wireplumber = {
-          format = "{volume}% {icon}";
+          format = "{icon} {volume}%";
           format-muted = "";
           format-icons = [
             ""
@@ -245,7 +232,7 @@
           ];
         };
         temperature = {
-          format = "{temperatureC}°C ";
+          format = " {temperatureC}°C";
         };
         tray = {
           spacing = 4;
@@ -266,7 +253,7 @@
           in
           {
             tooltip = true;
-            format = "{icon}  {0} ";
+            format = "{icon} {0}";
             format-icons = {
               notification = "󱅫";
               none = "󰂜";
