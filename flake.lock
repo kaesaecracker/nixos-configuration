@@ -663,11 +663,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764875421,
-        "narHash": "sha256-ZO9wiokPhropwsU3BfIgjm1bc59SIyqrfjfnFCM2Q68=",
+        "lastModified": 1771709842,
+        "narHash": "sha256-zbKj2waitgCFE/I4DcV4lWMRkQ7gDOa9QgPXVTao5+g=",
         "ref": "refs/heads/main",
-        "rev": "fa892558f123c5d5395663fa666466c73b997245",
-        "revCount": 48,
+        "rev": "6c731e3f5ac0fc63e3cf1e727856f3a3327fddfb",
+        "revCount": 52,
         "type": "git",
         "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git"
       },
