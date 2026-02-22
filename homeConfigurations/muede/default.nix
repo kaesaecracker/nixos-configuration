@@ -24,7 +24,6 @@
     programs = {
       home-manager.enable = true;
       fzf.enable = true;
-      git-credential-oauth.enable = true;
 
       direnv = {
         enable = true;
