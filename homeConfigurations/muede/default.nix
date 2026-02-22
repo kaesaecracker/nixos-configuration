@@ -9,6 +9,7 @@
     ./git.nix
     ./gnome.nix
     ./niri.nix
+    ./podman.nix
     ./ssh.nix
     ./starship.nix
     ./swaylock.nix
@@ -83,10 +84,6 @@
     ];
 
     home.file = {
-      "policy.json" = {
-        target = ".config/containers/policy.json";
-        text = builtins.readFile ./.config/containers/policy.json;
-      };
       "idea.properties".text = "idea.filewatcher.executable.path = ${pkgs.fsnotifier}/bin/fsnotifier";
     };
 
