@@ -48,6 +48,12 @@
       };
 
       chromium.enable = true;
+
+      quickshell = {
+        enable = true;
+        systemd.enable = true;
+        #activeConfig = "~/.config/";
+      };
     };
 
     home.packages = with pkgs; [
@@ -85,6 +91,17 @@
 
     home.file = {
       "idea.properties".text = "idea.filewatcher.executable.path = ${pkgs.fsnotifier}/bin/fsnotifier";
+      ".config/quickshell" = {
+        source = ./.config/quickshell;
+        recursive = true;
+      };
+    };
+
+    home.sessionVariables = {
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_STATE_HOME = "$HOME/.local/state";
     };
 
     services = {

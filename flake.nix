@@ -139,10 +139,13 @@
       treefmt-config = {
         projectRootFile = "flake.nix";
         programs = {
-          nixfmt.enable = true;
+          # keep-sorted start
           jsonfmt.enable = true;
-          prettier.enable = true;
           keep-sorted.enable = true;
+          nixfmt.enable = true;
+          prettier.enable = true;
+          qmlformat.enable = true;
+          # keep-sorted end
         };
       };
       forAllSystems =

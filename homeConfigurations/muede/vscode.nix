@@ -25,6 +25,7 @@
             redhat.vscode-yaml
             rust-lang.rust-analyzer
             tamasfe.even-better-toml
+            theqtcompany.qt-qml
             yzhang.markdown-all-in-one
             # keep-sorted end
           ]
