@@ -37,6 +37,10 @@
           "files.autoSave" = "afterDelay";
           "files.autoSaveWhenNoErrors" = true;
           "files.autoSaveWorkspaceFilesOnly" = true;
+          "files.exclude" = [
+            ".git"
+            ".direnv"
+          ];
 
           "editor.fontLigatures" = true;
           "editor.formatOnSave" = true;
