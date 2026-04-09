@@ -1,11 +1,11 @@
 # based on https://codeberg.org/kiara/cfg/src/commit/b9c472acd78c9c08dfe8b6a643c5c82cc5828433/home-manager/kiara/swaylock.nix#
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 {
-  config = {
     stylix.targets.swaylock = {
       enable = true;
       useWallpaper = true;
     };
+
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
@@ -50,5 +50,10 @@
         }
       ];
     };
-  };
+
+
+       programs.niri.settings.binds."Super+Alt+L" = {
+          action.spawn = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
+          allow-when-locked = true;
+        };
 }

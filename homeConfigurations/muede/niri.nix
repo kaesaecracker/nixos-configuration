@@ -172,10 +172,6 @@
         # Suggested binds for running programs: terminal, app launcher, screen locker.
         "Mod+T".action.spawn = "${lib.getBin pkgs.gnome-console}/bin/kgx";
         "Mod+D".action.spawn = "${lib.getBin config.programs.fuzzel.package}/bin/fuzzel";
-        "Super+Alt+L" = {
-          action.spawn = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
-          allow-when-locked = true;
-        };
 
         # You can also use a shell. Do this if you need pipes, multiple commands, etc.
         # Note: the entire command goes as a single argument in the end.
