@@ -132,6 +132,9 @@
         epimetheus = {
           system = "aarch64-linux";
         };
+        damocles = {
+          system = "x86_64-linux";
+        };
       };
       inherit (nixpkgs) lib;
       forDevice = f: lib.mapAttrs (device: value: f (value // { inherit device; })) devices;

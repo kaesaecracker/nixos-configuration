@@ -60,5 +60,11 @@
     ];
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+    containers.damocles = {
+      autoStart = false;
+      privateNetwork = false;
+      path = self.nixosConfigurations.damocles.config.system.build.toplevel;
+    };
   };
 }
