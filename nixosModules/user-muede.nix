@@ -31,5 +31,7 @@
     "anydesk"
 
     "vscode-extension-ms-dotnettools-csharp"
+
+    "claude-code"
   ];
 }

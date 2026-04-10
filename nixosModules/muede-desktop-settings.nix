@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [
     lm_sensors
     libreoffice-qt6
+    usbutils
   ];
 
   fonts.enableDefaultPackages = true;

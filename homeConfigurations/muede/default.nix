@@ -81,6 +81,12 @@
       dconf2nix
 
       gnome-terminal
+
+      gparted
+
+      geary
+
+      claude-code
     ];
 
     home.file = {
