@@ -8,6 +8,7 @@
     screen
     tldr
     nix-output-monitor
+    git-credential-oauth
   ];
 
   programs = {
@@ -20,4 +21,10 @@
       syntaxHighlight = true;
     };
   };
+
+  environment.etc."gitconfig".text = ''
+    [credential]
+      helper = oauth
+      credentialStore = cache
+  '';
 }
