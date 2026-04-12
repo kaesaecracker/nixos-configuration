@@ -15,8 +15,8 @@
     ./swaylock.nix
     ./swaync.nix
     ./vscode.nix
-# ./waybar.nix
-# ./wlogout.nix
+    # ./waybar.nix
+    # ./wlogout.nix
     ./zsh.nix
     self.inputs.nova-shell.homeModules.default
     # keep-sorted end
@@ -58,42 +58,34 @@
     };
 
     home.packages = with pkgs; [
-      keepassxc
-      nextcloud-client
-      thunderbird
-      fractal
-      telegram-desktop
-
-      wireguard-tools
-      wirelesstools
-      tailscale
-
-      kdiff3
-      jetbrains-toolbox
-
-      vlc
-      lutris
+      # keep-sorted start
 
       arduino
-      arduino-ide
       arduino-cli
-
+      arduino-ide
+      claude-code
+      dconf2nix
+      foliate
+      fractal
+      geary
+      gnome-terminal
+      gparted
+      icu
+      jetbrains-toolbox
+      kdiff3
+      keepassxc
+      lutris
+      nextcloud-client
+      onefetch
       servicepoint-cli
       servicepoint-simulator
-
-      icu
-
-      foliate
-
-      dconf2nix
-
-      gnome-terminal
-
-      gparted
-
-      geary
-
-      claude-code
+      tailscale
+      telegram-desktop
+      thunderbird
+      vlc
+      wireguard-tools
+      wirelesstools
+      # keep-sorted end
     ];
 
     home.file = {

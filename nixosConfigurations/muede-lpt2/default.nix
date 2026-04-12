@@ -66,5 +66,8 @@
       privateNetwork = false;
       path = self.nixosConfigurations.damocles.config.system.build.toplevel;
     };
+
+    boot.enableContainers = true;
+    virtualisation.containers.enable = true;
   };
 }
