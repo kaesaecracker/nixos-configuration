@@ -20,7 +20,6 @@
     self.nixosModules.modern-desktop
     self.nixosModules.niri
     self.nixosModules.nix-ld
-    self.nixosModules.pkgs-unstable
     self.nixosModules.pkgs-vscode-extensions
     self.nixosModules.quiet-boot
     self.nixosModules.stylix

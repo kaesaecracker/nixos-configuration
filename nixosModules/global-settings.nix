@@ -30,10 +30,6 @@
       autoUpgrade.flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
     };
 
-    nixpkgs.overlays = [
-      self.overlays.unstable-packages
-    ];
-
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
