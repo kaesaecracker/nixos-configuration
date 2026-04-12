@@ -1,0 +1,295 @@
+diff --git a/flake.lock b/flake.lock
+index e1d289b..2ae403c 100644
+--- a/flake.lock
++++ b/flake.lock
+@@ -539,6 +539,28 @@
+         "type": "github"
+       }
+     },
++    "nova-shell": {
++      "inputs": {
++        "nixpkgs": [
++          "nixpkgs-unstable"
++        ],
++        "quickshell": "quickshell",
++        "treefmt-nix": "treefmt-nix"
++      },
++      "locked": {
++        "lastModified": 1775855370,
++        "narHash": "sha256-HCTOC6tSXvRNoZl/CQjjvZ63iMlYgH4HSPsqn25zFJA=",
++        "ref": "refs/heads/main",
++        "rev": "3c9f6e78cc8a0af240a5ac7a0ed0cb517f2bbb5a",
++        "revCount": 8,
++        "type": "git",
++        "url": "https://git.berlin.ccc.de/vinzenz/nova-shell"
++      },
++      "original": {
++        "type": "git",
++        "url": "https://git.berlin.ccc.de/vinzenz/nova-shell"
++      }
++    },
+     "nur": {
+       "inputs": {
+         "flake-parts": [
+@@ -588,6 +610,27 @@
+         "type": "github"
+       }
+     },
++    "quickshell": {
++      "inputs": {
++        "nixpkgs": [
++          "nova-shell",
++          "nixpkgs"
++        ]
++      },
++      "locked": {
++        "lastModified": 1775720097,
++        "narHash": "sha256-p+vqkCuFfVNyQBo370wr6MebNUvz55RZiC0m8YKUhvQ=",
++        "ref": "refs/heads/master",
++        "rev": "d4c92973b53d9fa34cc110d3b974eb6bde5b3027",
++        "revCount": 800,
++        "type": "git",
++        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
++      },
++      "original": {
++        "type": "git",
++        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
++      }
++    },
+     "root": {
+       "inputs": {
+         "flake-parts": "flake-parts",
+@@ -600,12 +643,13 @@
+         "nixos-generators": "nixos-generators",
+         "nixpkgs": "nixpkgs",
+         "nixpkgs-unstable": "nixpkgs-unstable",
++        "nova-shell": "nova-shell",
+         "nur": "nur",
+         "servicepoint-cli": "servicepoint-cli",
+         "servicepoint-simulator": "servicepoint-simulator",
+         "servicepoint-tanks": "servicepoint-tanks",
+         "stylix": "stylix",
+-        "treefmt-nix": "treefmt-nix",
++        "treefmt-nix": "treefmt-nix_2",
+         "zerforschen-plus": "zerforschen-plus"
+       }
+     },
+@@ -858,6 +902,27 @@
+       }
+     },
+     "treefmt-nix": {
++      "inputs": {
++        "nixpkgs": [
++          "nova-shell",
++          "nixpkgs"
++        ]
++      },
++      "locked": {
++        "lastModified": 1775636079,
++        "narHash": "sha256-pc20NRoMdiar8oPQceQT47UUZMBTiMdUuWrYu2obUP0=",
++        "owner": "numtide",
++        "repo": "treefmt-nix",
++        "rev": "790751ff7fd3801feeaf96d7dc416a8d581265ba",
++        "type": "github"
++      },
++      "original": {
++        "owner": "numtide",
++        "repo": "treefmt-nix",
++        "type": "github"
++      }
++    },
++    "treefmt-nix_2": {
+       "inputs": {
+         "nixpkgs": [
+           "nixpkgs"
+diff --git a/flake.nix b/flake.nix
+index 2a7ad86..87683fe 100644
+--- a/flake.nix
++++ b/flake.nix
+@@ -35,6 +35,10 @@
+       url = "github:nix-community/nixos-generators";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
++    nova-shell = {
++      url = "git+https://git.berlin.ccc.de/vinzenz/nova-shell";
++      inputs.nixpkgs.follows = "nixpkgs-unstable";
++    };
+     nur = {
+       url = "github:nix-community/NUR";
+       inputs = {
+diff --git a/homeConfigurations/muede/default.nix b/homeConfigurations/muede/default.nix
+index 9face22..5f12afb 100644
+--- a/homeConfigurations/muede/default.nix
++++ b/homeConfigurations/muede/default.nix
+@@ -1,4 +1,4 @@
+-{ pkgs, ... }:
++{ pkgs, self,... }:
+ {
+   imports = [
+     # keep-sorted start
++    self.inputs.nova-shell.homeModules.default
+@@ -18,6 +18,7 @@
+     ./waybar.nix
+     ./wlogout.nix
+     ./zsh.nix
+     # keep-sorted end
+   ];
+ 
+@@ -48,6 +49,7 @@
+       };
+ 
+       chromium.enable = true;
++      nova-shell.enable = true;
+     };
+ 
+     home.packages = with pkgs; [
+diff --git a/homeConfigurations/muede/swaylock.nix b/homeConfigurations/muede/swaylock.nix
+index 8ff6747..55d7f91 100644
+--- a/homeConfigurations/muede/swaylock.nix
++++ b/homeConfigurations/muede/swaylock.nix
+@@ -1,59 +1,63 @@
+ # based on https://codeberg.org/kiara/cfg/src/commit/b9c472acd78c9c08dfe8b6a643c5c82cc5828433/home-manager/kiara/swaylock.nix#
+-{ pkgs, config, lib, ... }:
+ {
+-    stylix.targets.swaylock = {
+-      enable = true;
+-      useWallpaper = true;
+-    };
+-
+-    programs.swaylock = {
+-      enable = true;
+-      package = pkgs.swaylock-effects;
+-      # https://github.com/jirutka/swaylock-effects/blob/master/swaylock.1.scd
+-      settings = {
+-        screenshot = false;
+-        effect-blur = "9x9";
+-        effect-vignette = "0.2:0.2";
+-        fade-in = 0.5;
+-        font-size = 75;
+-        indicator-caps-lock = true;
+-        clock = true;
+-        indicator-radius = 400;
+-        show-failed-attempts = true;
+-        ignore-empty-password = true;
+-        grace = 3.5;
+-        indicator-thickness = 20;
+-      };
+-    };
++  pkgs,
++  config,
++  lib,
++  ...
++}:
++{
++  stylix.targets.swaylock = {
++    enable = true;
++    useWallpaper = true;
++  };
+ 
+-    services.swayidle = {
+-      enable = true;
+-      systemdTarget = "graphical-session.target";
+-      timeouts = [
+-        {
+-          timeout = 60;
+-          command = "${config.programs.swaylock.package}/bin/swaylock";
+-        }
+-        {
+-          timeout = 60 * 10;
+-          command = "${pkgs.systemd}/bin/systemctl suspend";
+-        }
+-      ];
+-      events = [
+-        {
+-          event = "before-sleep";
+-          command = "${pkgs.playerctl}/bin/playerctl pause; ${config.programs.swaylock.package}/bin/swaylock";
+-        }
+-        {
+-          event = "lock";
+-          command = "${config.programs.swaylock.package}/bin/swaylock";
+-        }
+-      ];
++  programs.swaylock = {
++    enable = true;
++    package = pkgs.swaylock-effects;
++    # https://github.com/jirutka/swaylock-effects/blob/master/swaylock.1.scd
++    settings = {
++      screenshot = false;
++      effect-blur = "9x9";
++      effect-vignette = "0.2:0.2";
++      fade-in = 0.5;
++      font-size = 75;
++      indicator-caps-lock = true;
++      clock = true;
++      indicator-radius = 400;
++      show-failed-attempts = true;
++      ignore-empty-password = true;
++      grace = 3.5;
++      indicator-thickness = 20;
+     };
++  };
+ 
++  services.swayidle = {
++    enable = true;
++    systemdTarget = "graphical-session.target";
++    timeouts = [
++      {
++        timeout = 60;
++        command = "${config.programs.swaylock.package}/bin/swaylock";
++      }
++      {
++        timeout = 60 * 10;
++        command = "${pkgs.systemd}/bin/systemctl suspend";
++      }
++    ];
++    events = [
++      {
++        event = "before-sleep";
++        command = "${pkgs.playerctl}/bin/playerctl pause; ${config.programs.swaylock.package}/bin/swaylock";
++      }
++      {
++        event = "lock";
++        command = "${config.programs.swaylock.package}/bin/swaylock";
++      }
++    ];
++  };
+ 
+-       programs.niri.settings.binds."Super+Alt+L" = {
+-          action.spawn = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
+-          allow-when-locked = true;
+-        };
++  programs.niri.settings.binds."Super+Alt+L" = {
++    action.spawn = "${lib.getBin config.programs.swaylock.package}/bin/swaylock";
++    allow-when-locked = true;
++  };
+ }
+diff --git a/homeConfigurations/muede/waybar.css b/homeConfigurations/muede/waybar.css
+index 79e7671..0f1d38a 100644
+--- a/homeConfigurations/muede/waybar.css
++++ b/homeConfigurations/muede/waybar.css
+@@ -72,8 +72,8 @@ window#waybar {
+ }
+ 
+ #workspaces {
+-    padding-left: 0;
+-    padding-right: 0;
++  padding-left: 0;
++  padding-right: 0;
+ }
+ 
+ /* Individual widget colors */
+diff --git a/nixosConfigurations/muede-pc2/default.nix b/nixosConfigurations/muede-pc2/default.nix
+index 742fa9f..dd97b00 100644
+--- a/nixosConfigurations/muede-pc2/default.nix
++++ b/nixosConfigurations/muede-pc2/default.nix
+@@ -2,8 +2,8 @@
+ {
+   imports = [
+     ./hardware.nix
+-#    ./vscode-server.nix
+-#    ./hass.nix
++    #    ./vscode-server.nix
++    #    ./hass.nix
+ 
+     self.nixosModules.user-muede
+     self.nixosModules.gnome

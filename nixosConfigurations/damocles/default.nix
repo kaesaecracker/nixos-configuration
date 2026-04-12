@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     unstable.claude-code
     git
+    python3
   ];
 
   users.users.muede = {

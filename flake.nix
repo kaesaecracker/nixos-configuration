@@ -23,8 +23,10 @@
     };
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
     };
     nix-filter.url = "github:numtide/nix-filter";
     nix-vscode-extensions = {
@@ -34,6 +36,10 @@
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nova-shell = {
+      url = "git+https://git.berlin.ccc.de/vinzenz/nova-shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nur = {
       url = "github:nix-community/NUR";

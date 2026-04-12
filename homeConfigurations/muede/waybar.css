@@ -72,8 +72,8 @@ window#waybar {
 }
 
 #workspaces {
-    padding-left: 0;
-    padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* Individual widget colors */

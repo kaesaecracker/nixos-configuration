@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 {
   imports = [
     # keep-sorted start
@@ -15,9 +15,10 @@
     ./swaylock.nix
     ./swaync.nix
     ./vscode.nix
-    ./waybar.nix
-    ./wlogout.nix
+# ./waybar.nix
+# ./wlogout.nix
     ./zsh.nix
+    self.inputs.nova-shell.homeModules.default
     # keep-sorted end
   ];
 
@@ -48,6 +49,12 @@
       };
 
       chromium.enable = true;
+      nova-shell = {
+        enable = true;
+        theme = {
+          fontSize = 13;
+        };
+      };
     };
 
     home.packages = with pkgs; [
