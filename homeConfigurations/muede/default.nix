@@ -13,7 +13,7 @@
     ./ssh.nix
     ./starship.nix
     ./swaylock.nix
-    ./swaync.nix
+    #./swaync.nix
     ./vscode.nix
     # ./waybar.nix
     # ./wlogout.nix
@@ -59,7 +59,6 @@
 
     home.packages = with pkgs; [
       # keep-sorted start
-
       arduino
       arduino-cli
       arduino-ide
