@@ -175,7 +175,8 @@
       overlays = {
         unstable-packages = final: prev: {
           unstable = import nixpkgs-unstable {
-            inherit (prev) system config;
+            localSystem = prev.stdenv.hostPlatform;
+            inherit (prev) config;
           };
         };
       };
@@ -222,7 +223,7 @@
           };
         in
         nixpkgs.lib.nixosSystem {
-          inherit system specialArgs;
+          inherit specialArgs;
           modules = [
             {
               imports = [
@@ -234,7 +235,6 @@
               ]);
 
               nixpkgs = {
-                inherit system;
                 hostPlatform = lib.mkDefault system;
               };
             }
