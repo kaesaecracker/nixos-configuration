@@ -12,7 +12,8 @@
     ./podman.nix
     ./ssh.nix
     ./starship.nix
-    ./swaylock.nix
+    ./swayidle.nix
+    #./swaylock.nix
     #./swaync.nix
     ./vscode.nix
     # ./waybar.nix
@@ -52,8 +53,10 @@
       nova-shell = {
         enable = true;
         theme = {
-          fontSize = 13;
+          fontSize = 14;
         };
+        #modules.backgroundOverlay.enable = false;
+        #modules.screenCorners.enable = false;
       };
     };
 

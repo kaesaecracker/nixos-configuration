@@ -402,6 +402,11 @@
 
         "Mod+W".action.toggle-column-tabbed-display = { };
         "Mod+O".action.toggle-overview = { };
+
+        "Super+Alt+L" = {
+          action.spawn = "${pkgs.systemd}/bin/loginctl lock-session";
+          allow-when-locked = true;
+        };
       };
     };
   };
