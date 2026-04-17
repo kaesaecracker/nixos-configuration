@@ -67,6 +67,10 @@
       path = self.nixosConfigurations.damocles.config.system.build.toplevel;
     };
 
+    # Global DefaultTimeoutStopSec is 10s (modern-desktop.nix), which kills systemd-nspawn
+    # before it finishes halting, leaving cgroups busy and breaking restarts.
+    systemd.services."container@damocles".serviceConfig.TimeoutStopSec = "60s";
+
     boot.enableContainers = true;
     virtualisation.containers.enable = true;
   };
