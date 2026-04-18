@@ -509,11 +509,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1776255774,
-        "narHash": "sha256-psVTpH6PK3q1htMJpmdz1hLF5pQgEshu7gQWgKO6t6Y=",
+        "lastModified": 1776329215,
+        "narHash": "sha256-a8BYi3mzoJ/AcJP8UldOx8emoPRLeWqALZWu4ZvjPXw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "566acc07c54dc807f91625bb286cb9b321b5f42a",
+        "rev": "b86751bc4085f48661017fa226dee99fab6c651b",
         "type": "github"
       },
       "original": {
@@ -548,11 +548,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1776422982,
-        "narHash": "sha256-H4TfZRvGyWHzY/o0JiSYj/0UOxLv4mOM38xQKUKFW6Q=",
+        "lastModified": 1776522593,
+        "narHash": "sha256-HqQ8XQGv14TehBKL1IXF28wvbC6OCoHWvTOI/IdCA/8=",
         "ref": "refs/heads/main",
-        "rev": "1a78b5808d49131aa13371235172f31587f4af3f",
-        "revCount": 398,
+        "rev": "d821500db7375ebb346aaa17c80dc25214165584",
+        "revCount": 479,
         "type": "git",
         "url": "https://git.berlin.ccc.de/vinzenz/nova-shell"
       },
@@ -618,11 +618,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775720097,
-        "narHash": "sha256-p+vqkCuFfVNyQBo370wr6MebNUvz55RZiC0m8YKUhvQ=",
+        "lastModified": 1776066068,
+        "narHash": "sha256-SwKVkgEsqsp5ki9m7fqvhncb5MjvH1hlZqbn3s+x/Uk=",
         "ref": "refs/heads/master",
-        "rev": "d4c92973b53d9fa34cc110d3b974eb6bde5b3027",
-        "revCount": 800,
+        "rev": "fb08eced449e87e47321e95beeb890a63d2c67bd",
+        "revCount": 801,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
