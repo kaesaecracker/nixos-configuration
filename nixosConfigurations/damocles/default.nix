@@ -10,6 +10,9 @@
     unstable.claude-code
     git
     python3
+    coreutils-full
+    gawk
+    gnugrep
   ];
 
   users.users.muede = {
