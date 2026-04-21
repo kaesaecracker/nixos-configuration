@@ -35,21 +35,25 @@
       extraSpecialArgs = specialArgs;
       useGlobalPkgs = true;
       useUserPackages = true;
+      users = home-manager-users;
+      sharedModules = [
+        { home.stateVersion = "22.11"; }
+        # keep-sorted start
+        self.homeModules.git
+        self.homeModules.gnome-extensions
+        self.homeModules.nano
+        self.homeModules.templates
+        self.homeModules.zsh-basics
+        # keep-sorted end
+      ];
     };
 
     time.timeZone = "Europe/Berlin";
 
-    home-manager.sharedModules = [
-      { home.stateVersion = "22.11"; }
-      # keep-sorted start
-      self.homeModules.git
-      self.homeModules.gnome-extensions
-      self.homeModules.nano
-      self.homeModules.templates
-      self.homeModules.zsh-basics
-      # keep-sorted end
-    ];
-
-    home-manager.users = home-manager-users;
+    # on desktops, keep the device useable interactively during expensive builds
+    nix = {
+      daemonCPUSchedPolicy = "idle";
+      daemonIOSchedClass = "idle";
+    };
   };
 }
