@@ -1,5 +1,7 @@
 { pkgs, self, ... }:
 {
+  imports = [ ./android-dev.nix ];
+
   nixpkgs.overlays = [ self.overlays.unstable-packages ];
 
   boot.isContainer = true;
@@ -21,4 +23,12 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib
+      zlib
+    ];
+  };
 }
