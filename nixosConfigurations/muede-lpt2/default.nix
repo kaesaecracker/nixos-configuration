@@ -69,7 +69,12 @@
 
     # Global DefaultTimeoutStopSec is 10s (modern-desktop.nix), which kills systemd-nspawn
     # before it finishes halting, leaving cgroups busy and breaking restarts.
-    systemd.services."container@damocles".serviceConfig.TimeoutStopSec = "60s";
+    systemd.services."container@damocles".serviceConfig = {
+      TimeoutStopSec = "60s";
+      # After a SIGKILL of nspawn, the kernel needs a moment to reap its cgroups.
+      # Without this, the immediate restart attempt fails with "Device or resource busy".
+      RestartSec = "5s";
+    };
 
     boot.enableContainers = true;
     virtualisation.containers.enable = true;
