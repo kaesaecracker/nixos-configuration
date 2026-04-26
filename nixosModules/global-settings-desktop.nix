@@ -7,12 +7,14 @@
   servicepoint-tanks,
   stylix,
   specialArgs,
+  nova-shell,
   ...
 }:
 {
   imports = [
     # keep-sorted start
     home-manager.nixosModules.home-manager
+    nova-shell.nixosModules.default
     self.nixosModules.en-de
     self.nixosModules.firmware-updates
     self.nixosModules.gnome

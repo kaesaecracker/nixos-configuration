@@ -19,7 +19,6 @@
     # ./waybar.nix
     # ./wlogout.nix
     ./zsh.nix
-    self.inputs.nova-shell.homeModules.default
     # keep-sorted end
   ];
 
