@@ -9,6 +9,7 @@
     };
 
     #keep-sorted start block=yes
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +37,9 @@
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-raspberrypi = {
+      url = "github:nvmd/nixos-raspberrypi/main";
     };
     nova-shell = {
       url = "git+https://git.berlin.ccc.de/vinzenz/nova-shell";
@@ -99,6 +103,7 @@
       niri,
       nix-vscode-extensions,
       nixos-generators,
+      nixos-raspberrypi,
       nixpkgs-unstable,
       servicepoint-cli,
       servicepoint-simulator,
@@ -111,6 +116,28 @@
     }:
     let
       devices = {
+        # keep-sorted start block=yes
+        aur0ra = {
+          system = "aarch64-linux";
+          nixosSystem = nixos-raspberrypi.lib.nixosSystem;
+        };
+        aur0ra-installer = {
+          # build with nix build .\#nixosConfigurations.aur0ra-installer.config.system.build.sdImage
+          system = "aarch64-linux";
+          nixosSystem = nixos-raspberrypi.lib.nixosInstaller;
+        };
+        damocles = {
+          system = "x86_64-linux";
+        };
+        epimetheus = {
+          system = "aarch64-linux";
+        };
+        forgejo-runner-1 = {
+          system = "aarch64-linux";
+        };
+        hetzner-vpn2 = {
+          system = "aarch64-linux";
+        };
         muede-lpt2 = {
           system = "x86_64-linux";
           home-manager-users = {
@@ -129,18 +156,7 @@
             inherit (self.homeConfigurations) ronja;
           };
         };
-        hetzner-vpn2 = {
-          system = "aarch64-linux";
-        };
-        forgejo-runner-1 = {
-          system = "aarch64-linux";
-        };
-        epimetheus = {
-          system = "aarch64-linux";
-        };
-        damocles = {
-          system = "x86_64-linux";
-        };
+        # keep-sorted end
       };
       inherit (nixpkgs) lib;
       forDevice = f: lib.mapAttrs (device: value: f (value // { inherit device; })) devices;
@@ -216,18 +232,19 @@
           device,
           system,
           home-manager-users ? { },
+          nixosSystem ? nixpkgs.lib.nixosSystem
         }:
         let
           specialArgs = inputs // {
             inherit device home-manager-users;
           };
         in
-        nixpkgs.lib.nixosSystem {
+        nixosSystem {
           inherit specialArgs;
           modules = [
             {
               imports = [
-                ./nixosConfigurations/${device}
+                 ./nixosConfigurations/${device}
                 self.nixosModules.global-settings
               ]
               ++ (lib.optionals (home-manager-users != { }) [
@@ -248,23 +265,6 @@
         { treefmt-eval, ... }:
         {
           formatting = treefmt-eval.config.build.check self;
-        }
-      );
-
-      packages = forAllSystems (
-        { ... }:
-        {
-          nixos-aarch64-pxvirt-lxc-template = nixos-generators.nixosGenerate {
-            system = "aarch64-linux";
-            format = "proxmox-lxc";
-            specialArgs = inputs // {
-              device = "nixos-aarch64-pxvirt-lxc-template";
-            };
-            modules = [
-              self.nixosModules.global-settings
-              self.nixosModules.pxvirt-guest
-            ];
-          };
         }
       );
     };
