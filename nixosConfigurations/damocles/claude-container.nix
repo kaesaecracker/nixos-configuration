@@ -1,4 +1,10 @@
-{ pkgs,self,lib, ... }: {
+{
+  pkgs,
+  self,
+  lib,
+  ...
+}:
+{
 
   nixpkgs.overlays = [ self.overlays.unstable-packages ];
   allowedUnfreePackages = [ "claude-code" ];
@@ -11,9 +17,6 @@
     gawk
     gnugrep
     curl
-    cargo
-    rustc
-    clippy
   ];
 
   boot.isContainer = true;

@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [../damocles/claude-container.nix];
+  imports = [ ../damocles/claude-container.nix ];
 
   services.openssh = {
     enable = true;

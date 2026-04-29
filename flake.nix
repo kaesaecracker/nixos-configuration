@@ -235,7 +235,7 @@
           device,
           system,
           home-manager-users ? { },
-          nixosSystem ? nixpkgs.lib.nixosSystem
+          nixosSystem ? nixpkgs.lib.nixosSystem,
         }:
         let
           specialArgs = inputs // {
@@ -247,7 +247,7 @@
           modules = [
             {
               imports = [
-                 ./nixosConfigurations/${device}
+                ./nixosConfigurations/${device}
                 self.nixosModules.global-settings
               ]
               ++ (lib.optionals (home-manager-users != { }) [
