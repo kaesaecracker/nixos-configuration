@@ -643,11 +643,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1777295064,
-        "narHash": "sha256-A+Ooli4ckGyiT+zh10Ybj3nY2ql4QX1p6q6HrKCDvpA=",
+        "lastModified": 1777479755,
+        "narHash": "sha256-rKha1HlZIYn+nhptqOSaSPGywXXdM5S462oiXh64EWM=",
         "ref": "refs/heads/main",
-        "rev": "adb6c21135c93e0c57517ba90a32dd8f6bf2704d",
-        "revCount": 578,
+        "rev": "7ab784e101b69f35f65e300d5779888624f7a7a5",
+        "revCount": 596,
         "type": "git",
         "url": "https://git.berlin.ccc.de/vinzenz/nova-shell"
       },
