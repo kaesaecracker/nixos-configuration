@@ -129,6 +129,9 @@
         damocles = {
           system = "x86_64-linux";
         };
+        damocles-lab = {
+          system = "x86_64-linux";
+        };
         epimetheus = {
           system = "aarch64-linux";
         };
