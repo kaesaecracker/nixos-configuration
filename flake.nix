@@ -153,25 +153,10 @@
           };
         };
         vscodeExtensions = nix-vscode-extensions.overlays.default;
+        niri = niri.overlays.niri;
       };
 
-      nixosModules = (importModuleDir ./nixosModules) // {
-        niri =
-          { lib, config, ... }:
-          {
-            imports = [ niri.nixosModules.niri ];
-
-            options.my.niri.enable = lib.mkEnableOption "niri wayland compositor";
-
-            config = lib.mkIf config.my.niri.enable {
-              nixpkgs.overlays = [ niri.overlays.niri ];
-              programs.niri = {
-                enable = true;
-                #package = pkgs.niri-stable;
-              };
-            };
-          };
-      };
+      nixosModules = importModuleDir ./nixosModules;
 
       homeModules = importModuleDir ./homeModules;
       homeConfigurations = {
@@ -202,7 +187,6 @@
             home-manager.nixosModules.home-manager
             lanzaboote.nixosModules.lanzaboote
             nova-shell.nixosModules.default
-            self.nixosModules.niri
             servicepoint-cli.nixosModules.default
             servicepoint-simulator.nixosModules.default
             servicepoint-tanks.nixosModules.default
@@ -236,7 +220,7 @@
                 globalinstalls.enable = true;
                 lixIsNix.enable = true;
                 openssh.enable = true;
-                prometheusNode.enable = true;
+                # prometheusNode.enable = true;
                 systemdBoot.enable = true;
                 tailscale.enable = true;
               };
@@ -276,7 +260,6 @@
                 gnome.enable = true;
                 kdeconnect.enable = true;
                 modernDesktop.enable = true;
-                niri.enable = true;
                 nixLd.enable = true;
                 quietBoot.enable = true;
                 stylix.enable = true;
