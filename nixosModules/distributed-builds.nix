@@ -10,8 +10,8 @@ let
 
   # Collect all per-device public keys that have been registered.
   authorizedPublicKeys = lib.pipe devices [
-    (lib.filterAttrs (_: v: (v.distributedBuilds or { }) ? publicKey))
-    (lib.mapAttrsToList (_: v: v.distributedBuilds.publicKey))
+    (lib.filterAttrs (_: v: (v.distributedBuilds or { }) ? clientPublicKey))
+    (lib.mapAttrsToList (_: v: v.distributedBuilds.clientPublicKey))
   ];
 
   # === Onboarding a device as a build client ===
@@ -21,7 +21,7 @@ let
   #    (owned by root, mode 0600)
   #
   # 2. Add the public key to the device entry in flake.nix:
-  #      distributedBuilds.publicKey = "ssh-ed25519 AAAA... <hostname>-nix-builds";
+  #      distributedBuilds.clientPublicKey = "ssh-ed25519 AAAA... <hostname>-nix-builds";
   #
   # 3. Rebuild all machines so they pick up the new authorized key.
   #
@@ -29,9 +29,17 @@ let
   #
   # Add to its entry in flake.nix:
   #   distributedBuilds.isBuilder = true;
+  #   distributedBuilds.hostPublicKey = "ssh-ed25519 AAAA...";  # from: ssh-keyscan -t ed25519 <hostname>
   # All machines automatically discover and use it after the next rebuild.
 
   buildServerDevices = lib.filterAttrs (_: v: (v.distributedBuilds or { }).isBuilder or false) devices;
+
+  knownHosts = lib.pipe buildServerDevices [
+    (lib.filterAttrs (_: v: v.distributedBuilds ? hostPublicKey))
+    (lib.mapAttrs (hostName: v: {
+      publicKey = v.distributedBuilds.hostPublicKey;
+    }))
+  ];
 
   buildMachineList = lib.mapAttrsToList (hostName: v: {
     inherit hostName;
@@ -39,6 +47,9 @@ let
     sshUser = buildUser;
     sshKey = sshKeyPath;
     protocol = "ssh-ng";
+  } // lib.optionalAttrs (v.distributedBuilds ? speedFactor) {
+    speedFactor = v.distributedBuilds.speedFactor;
+  } // {
     supportedFeatures = [
       "nixos-test"
       "big-parallel"
@@ -51,11 +62,13 @@ let
 in
 {
   # Dedicated user for receiving distributed build connections
+  programs.ssh.knownHosts = knownHosts;
+
   users.users.${buildUser} = {
     isSystemUser = true;
     group = buildUser;
     useDefaultShell = true;
-    openssh.authorizedKeys.keys = authorizedPublicKeys;
+    openssh.authorizedKeys.keys = map (k: ''command="nix daemon --stdio",restrict ${k}'') authorizedPublicKeys;
   };
   users.groups.${buildUser} = { };
 
