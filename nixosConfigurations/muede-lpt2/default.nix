@@ -65,6 +65,10 @@
       autoStart = false;
       privateNetwork = false;
       path = self.nixosConfigurations.damocles.config.system.build.toplevel;
+      bindMounts."/etc/nix/distributed-build-key" = {
+        hostPath = "/etc/nix/distributed-build-key";
+        isReadOnly = true;
+      };
       bindMounts."/persist/damocles-ssh" = {
         hostPath = "/persist/damocles-ssh";
         isReadOnly = true;
@@ -79,6 +83,10 @@
       autoStart = false;
       privateNetwork = false;
       path = self.nixosConfigurations.damocles-lab.config.system.build.toplevel;
+      bindMounts."/etc/nix/distributed-build-key" = {
+        hostPath = "/etc/nix/distributed-build-key";
+        isReadOnly = true;
+      };
       bindMounts."/workspace" = {
         hostPath = "/persist/damocles-lab";
         isReadOnly = false;

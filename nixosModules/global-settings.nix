@@ -12,6 +12,7 @@
     self.nixosModules.allowed-unfree-list
     self.nixosModules.autoupdate
     self.nixosModules.default
+    self.nixosModules.distributed-builds
     self.nixosModules.extra-caches
     self.nixosModules.globalinstalls
     self.nixosModules.lix-is-nix

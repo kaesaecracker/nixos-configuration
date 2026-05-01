@@ -128,9 +128,11 @@
         };
         damocles = {
           system = "x86_64-linux";
+          distributedBuilds.maxJobs = 0;
         };
         damocles-lab = {
           system = "x86_64-linux";
+          distributedBuilds.maxJobs = 0;
         };
         epimetheus = {
           system = "aarch64-linux";
@@ -146,11 +148,16 @@
           home-manager-users = {
             inherit (self.homeConfigurations) muede;
           };
+          distributedBuilds.isBuilder = true;
         };
         muede-pc2 = {
           system = "x86_64-linux";
           home-manager-users = {
             inherit (self.homeConfigurations) muede;
+          };
+          distributedBuilds = {
+            isBuilder = true;
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAbojdhb3PfazSRmudvo381Y+zUFVLMa7AbWbfK/Zp2 muede-pc2-nix-builds";
           };
         };
         ronja-pc = {
@@ -236,10 +243,11 @@
           system,
           home-manager-users ? { },
           nixosSystem ? nixpkgs.lib.nixosSystem,
+          ...
         }:
         let
           specialArgs = inputs // {
-            inherit device home-manager-users;
+            inherit device home-manager-users devices;
           };
         in
         nixosSystem {
