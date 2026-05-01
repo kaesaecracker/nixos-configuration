@@ -148,7 +148,10 @@
           home-manager-users = {
             inherit (self.homeConfigurations) muede;
           };
-          distributedBuilds.isBuilder = true;
+          distributedBuilds = {
+            isBuilder = true;
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAbojdhb3PfazSRmudvo381Y+zUFVLMa7AbWbfK/Zp2 muede-lpt2-nix-builds";
+          };
         };
         muede-pc2 = {
           system = "x86_64-linux";
@@ -157,7 +160,7 @@
           };
           distributedBuilds = {
             isBuilder = true;
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAbojdhb3PfazSRmudvo381Y+zUFVLMa7AbWbfK/Zp2 muede-pc2-nix-builds";
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmnyhP6L+kGHV15cb/d31AQr50wSEaQhkUBwy2+OEKk muede-pc2-nix-builds";
           };
         };
         ronja-pc = {

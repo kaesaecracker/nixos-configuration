@@ -17,7 +17,7 @@ let
   # === Onboarding a device as a build client ===
   #
   # 1. Generate a key pair on the device:
-  #      sudo ssh-keygen -t ed25519 -f /etc/nix/distributed-build-key -N "" -C "<hostname>-nix-builds"
+  #      sudo ssh-keygen -t ed25519 -f /etc/nix/distributed-build-key -N "" -C "$(hostname)-nix-builds"
   #    (owned by root, mode 0600)
   #
   # 2. Add the public key to the device entry in flake.nix:
