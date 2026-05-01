@@ -146,7 +146,11 @@
         niri = niri.overlays.niri;
       };
 
-      nixosModules = importModuleDir ./nixosModules;
+      nixosModules = (importModuleDir ./nixosModules) // {
+        default = {
+          imports = builtins.attrValues (builtins.removeAttrs self.nixosModules [ "default" ]);
+        };
+      };
 
       homeModules = importModuleDir ./homeModules;
       homeConfigurations = {
