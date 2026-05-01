@@ -96,20 +96,11 @@
     inputs@{
       self,
       nixpkgs,
-      home-manager,
       # keep-sorted start
-      lanzaboote,
       niri,
       nix-vscode-extensions,
-      nixos-generators,
       nixpkgs-unstable,
-      nova-shell,
-      servicepoint-cli,
-      servicepoint-simulator,
-      servicepoint-tanks,
-      stylix,
       treefmt-nix,
-      zerforschen-plus,
       # keep-sorted end
       ...
     }:

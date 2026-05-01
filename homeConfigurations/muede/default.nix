@@ -1,4 +1,4 @@
-{ pkgs, self, ... }:
+{ pkgs, ... }:
 {
   imports = [
     # keep-sorted start
