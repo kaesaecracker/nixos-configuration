@@ -1,8 +1,6 @@
-{ self, ... }:
+{ ... }:
 {
-  imports = [ self.nixosModules.pxvirt-guest ];
-
   config = {
-
+    my.pxvirtGuest.enable = true;
   };
 }

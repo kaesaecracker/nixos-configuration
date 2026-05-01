@@ -1,8 +1,13 @@
+{ lib, config, ... }:
 {
-  services.tailscale = {
-    enable = true;
-    openFirewall = true;
-  };
+  options.my.tailscale.enable = lib.mkEnableOption "Tailscale VPN";
 
-  networking.firewall.checkReversePath = "loose";
+  config = lib.mkIf config.my.tailscale.enable {
+    services.tailscale = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    networking.firewall.checkReversePath = "loose";
+  };
 }

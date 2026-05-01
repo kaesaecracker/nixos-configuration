@@ -1,21 +1,20 @@
-{ pkgs, self, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware.nix
     #    ./vscode-server.nix
     #    ./hass.nix
-
-    self.nixosModules.user-muede
-    self.nixosModules.gnome
-    self.nixosModules.wine-gaming
-    self.nixosModules.steam
-    self.nixosModules.podman
-    self.nixosModules.muede-desktop-settings
-    self.nixosModules.amd-graphics
-    self.nixosModules.secure-boot
   ];
 
   config = {
+    my.users.muede.enable = true;
+    my.wineGaming.enable = true;
+    my.steam.enable = true;
+    my.podman.enable = true;
+    my.muedeDesktopSettings.enable = true;
+    my.amdGraphics.enable = true;
+    my.secureBoot.enable = true;
+
     nix.settings.extra-platforms = [
       "aarch64-linux"
       "i686-linux"

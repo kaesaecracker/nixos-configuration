@@ -9,7 +9,6 @@
     };
 
     #keep-sorted start block=yes
-
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -103,8 +102,8 @@
       niri,
       nix-vscode-extensions,
       nixos-generators,
-      nixos-raspberrypi,
       nixpkgs-unstable,
+      nova-shell,
       servicepoint-cli,
       servicepoint-simulator,
       servicepoint-tanks,
@@ -157,14 +156,18 @@
 
       nixosModules = (importModuleDir ./nixosModules) // {
         niri =
-          { pkgs, ... }:
+          { lib, config, ... }:
           {
             imports = [ niri.nixosModules.niri ];
-            nixpkgs.overlays = [ niri.overlays.niri ];
 
-            programs.niri = {
-              enable = true;
-              #package = pkgs.niri-stable;
+            options.my.niri.enable = lib.mkEnableOption "niri wayland compositor";
+
+            config = lib.mkIf config.my.niri.enable {
+              nixpkgs.overlays = [ niri.overlays.niri ];
+              programs.niri = {
+                enable = true;
+                #package = pkgs.niri-stable;
+              };
             };
           };
         pkgs-unstable = {
@@ -172,10 +175,6 @@
         };
         pkgs-vscode-extensions = {
           nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
-        };
-        # required modules to use other modules, should not do anything on their own
-        default = {
-          imports = [ self.nixosModules.allowed-unfree-list ];
         };
       };
 
@@ -201,18 +200,87 @@
         nixosSystem {
           inherit specialArgs;
           modules = [
-            {
-              imports = [
-                ./nixosConfigurations/${device}
-                self.nixosModules.global-settings
-              ]
-              ++ (lib.optionals (home-manager-users != { }) [
-                self.nixosModules.global-settings-desktop
-              ]);
+            ./nixosConfigurations/${device}
+            self.nixosModules.default
 
-              nixpkgs = {
-                hostPlatform = lib.mkDefault system;
+            # keep-sorted start
+            home-manager.nixosModules.home-manager
+            lanzaboote.nixosModules.lanzaboote
+            nova-shell.nixosModules.default
+            self.nixosModules.niri
+            self.nixosModules.pkgs-vscode-extensions
+            servicepoint-cli.nixosModules.default
+            servicepoint-simulator.nixosModules.default
+            servicepoint-tanks.nixosModules.default
+            stylix.nixosModules.stylix
+            zerforschen-plus.nixosModules.default
+            # keep-sorted end
+
+            # Base config (replaces global-settings.nix)
+            {
+              nixpkgs.hostPlatform = lib.mkDefault system;
+              networking.hostName = device;
+              system = {
+                stateVersion = "22.11";
+                autoUpgrade.flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
               };
+              nix.settings.experimental-features = [
+                "nix-command"
+                "flakes"
+              ];
+              documentation = {
+                info.enable = false;
+                doc.enable = false;
+              };
+
+              my.autoupdate.enable = true;
+              my.distributedBuilds.enable = true;
+              my.extraCaches.enable = true;
+              my.globalinstalls.enable = true;
+              my.lixIsNix.enable = true;
+              my.openssh.enable = true;
+              my.prometheusNode.enable = true;
+              my.systemdBoot.enable = true;
+              my.tailscale.enable = true;
+            }
+          ]
+          ++ lib.optionals (home-manager-users != { }) [
+            # Desktop config (replaces global-settings-desktop.nix)
+            {
+              home-manager = {
+                extraSpecialArgs = specialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users = home-manager-users;
+                sharedModules = [
+                  { home.stateVersion = "22.11"; }
+                  # keep-sorted start
+                  self.homeModules.git
+                  self.homeModules.gnome-extensions
+                  self.homeModules.nano
+                  self.homeModules.templates
+                  self.homeModules.zsh-basics
+                  # keep-sorted end
+                ];
+              };
+
+              time.timeZone = "Europe/Berlin";
+
+              # on desktops, keep the device useable interactively during expensive builds
+              nix = {
+                daemonCPUSchedPolicy = "idle";
+                daemonIOSchedClass = "idle";
+              };
+
+              my.enDe.enable = true;
+              my.firmwareUpdates.enable = true;
+              my.gnome.enable = true;
+              my.kdeconnect.enable = true;
+              my.modernDesktop.enable = true;
+              my.niri.enable = true;
+              my.nixLd.enable = true;
+              my.quietBoot.enable = true;
+              my.stylix.enable = true;
             }
           ];
         }

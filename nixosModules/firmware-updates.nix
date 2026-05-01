@@ -1,11 +1,16 @@
+{ lib, config, ... }:
 {
-  hardware = {
-    enableRedistributableFirmware = true;
-    cpu = {
-      amd.updateMicrocode = true;
-      intel.updateMicrocode = true;
-    };
-  };
+  options.my.firmwareUpdates.enable = lib.mkEnableOption "firmware updates and microcode";
 
-  services.fwupd.enable = true;
+  config = lib.mkIf config.my.firmwareUpdates.enable {
+    hardware = {
+      enableRedistributableFirmware = true;
+      cpu = {
+        amd.updateMicrocode = true;
+        intel.updateMicrocode = true;
+      };
+    };
+
+    services.fwupd.enable = true;
+  };
 }

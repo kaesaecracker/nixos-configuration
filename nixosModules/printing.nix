@@ -1,12 +1,17 @@
+{ lib, config, ... }:
 {
-  services = {
-    # Enable CUPS to print documents.
-    printing.enable = true;
+  options.my.printing.enable = lib.mkEnableOption "printing (CUPS + Avahi)";
 
-    avahi = {
-      enable = true; # runs the Avahi daemon
-      nssmdns4 = true; # enables the mDNS NSS plug-in
-      openFirewall = true; # opens the firewall for UDP port 5353
+  config = lib.mkIf config.my.printing.enable {
+    services = {
+      # Enable CUPS to print documents.
+      printing.enable = true;
+
+      avahi = {
+        enable = true; # runs the Avahi daemon
+        nssmdns4 = true; # enables the mDNS NSS plug-in
+        openFirewall = true; # opens the firewall for UDP port 5353
+      };
     };
   };
 }

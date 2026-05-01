@@ -1,8 +1,16 @@
-{ modulesPath, lib, ... }:
 {
+  modulesPath,
+  lib,
+  config,
+  ...
+}:
+{
+  # Import unconditionally — the module only defines options, activating nothing by default.
   imports = [ (modulesPath + "/virtualisation/proxmox-lxc.nix") ];
 
-  config = {
+  options.my.pxvirtGuest.enable = lib.mkEnableOption "Proxmox LXC guest configuration";
+
+  config = lib.mkIf config.my.pxvirtGuest.enable {
     # TODO is this needed?
     # nix.settings.sandbox = false;
 

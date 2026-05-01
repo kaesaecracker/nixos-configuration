@@ -1,21 +1,30 @@
-{ pkgs, ... }:
 {
-  programs.firefox.enable = true;
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options.my.muedeDesktopSettings.enable = lib.mkEnableOption "muede desktop settings (Firefox, Logitech, RDP)";
 
-  environment.systemPackages = with pkgs; [
-    lm_sensors
-    libreoffice-qt6
-    usbutils
-  ];
+  config = lib.mkIf config.my.muedeDesktopSettings.enable {
+    programs.firefox.enable = true;
 
-  fonts.enableDefaultPackages = true;
+    environment.systemPackages = with pkgs; [
+      lm_sensors
+      libreoffice-qt6
+      usbutils
+    ];
 
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
+    fonts.enableDefaultPackages = true;
+
+    hardware.logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
+
+    # RDP connections
+    services.gnome.gnome-remote-desktop.enable = true;
+    networking.firewall.allowedTCPPorts = [ 3389 ];
   };
-
-  # RDP connections
-  services.gnome.gnome-remote-desktop.enable = true;
-  networking.firewall.allowedTCPPorts = [ 3389 ];
 }

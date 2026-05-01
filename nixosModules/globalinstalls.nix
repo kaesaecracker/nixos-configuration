@@ -1,30 +1,39 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    ncdu
-    glances
-    lsof
-    dig
-    screen
-    tldr
-    nix-output-monitor
-    git-credential-oauth
-  ];
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options.my.globalinstalls.enable = lib.mkEnableOption "global system packages and tools";
 
-  programs = {
-    zsh.enable = true;
-    htop.enable = true;
-    iotop.enable = true;
-    git.enable = true;
-    nano = {
-      enable = true;
-      syntaxHighlight = true;
+  config = lib.mkIf config.my.globalinstalls.enable {
+    environment.systemPackages = with pkgs; [
+      ncdu
+      glances
+      lsof
+      dig
+      screen
+      tldr
+      nix-output-monitor
+      git-credential-oauth
+    ];
+
+    programs = {
+      zsh.enable = true;
+      htop.enable = true;
+      iotop.enable = true;
+      git.enable = true;
+      nano = {
+        enable = true;
+        syntaxHighlight = true;
+      };
     };
-  };
 
-  environment.etc."gitconfig".text = ''
-    [credential]
-      helper = oauth
-      credentialStore = cache
-  '';
+    environment.etc."gitconfig".text = ''
+      [credential]
+        helper = oauth
+        credentialStore = cache
+    '';
+  };
 }

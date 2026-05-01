@@ -1,45 +1,50 @@
+{ lib, config, ... }:
 {
-  hardware.steam-hardware.enable = true;
+  options.my.steam.enable = lib.mkEnableOption "Steam gaming platform";
 
-  programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-      gamescopeSession.enable = false;
+  config = lib.mkIf config.my.steam.enable {
+    hardware.steam-hardware.enable = true;
+
+    programs = {
+      steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+        gamescopeSession.enable = false;
+      };
+      gamemode.enable = true;
     };
-    gamemode.enable = true;
-  };
 
-  # steam network transfer
-  networking.firewall = {
-    allowedUDPPorts = [ 3478 ];
-    allowedTCPPorts = [ 24070 ];
+    # steam network transfer
+    networking.firewall = {
+      allowedUDPPorts = [ 3478 ];
+      allowedTCPPorts = [ 24070 ];
 
-    allowedTCPPortRanges = [
-      {
-        from = 27015;
-        to = 27050;
-      }
+      allowedTCPPortRanges = [
+        {
+          from = 27015;
+          to = 27050;
+        }
+      ];
+
+      allowedUDPPortRanges = [
+        {
+          from = 4379;
+          to = 4380;
+        }
+        {
+          from = 27000;
+          to = 27100;
+        }
+      ];
+    };
+
+    allowedUnfreePackages = [
+      "steam"
+      "steam-original"
+      "steam-run"
+      "steam-unwrapped"
     ];
-
-    allowedUDPPortRanges = [
-      {
-        from = 4379;
-        to = 4380;
-      }
-      {
-        from = 27000;
-        to = 27100;
-      }
-    ];
   };
-
-  allowedUnfreePackages = [
-    "steam"
-    "steam-original"
-    "steam-run"
-    "steam-unwrapped"
-  ];
 }

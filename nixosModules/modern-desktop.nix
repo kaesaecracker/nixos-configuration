@@ -1,47 +1,52 @@
+{ lib, config, ... }:
 {
-  services = {
-    xserver.enable = true;
-    libinput.enable = true;
-    flatpak.enable = true;
-    fstrim.enable = true;
-    earlyoom = {
-      enable = true;
-      freeMemThreshold = 5;
+  options.my.modernDesktop.enable = lib.mkEnableOption "modern desktop base (pipewire, flatpak, earlyoom)";
+
+  config = lib.mkIf config.my.modernDesktop.enable {
+    services = {
+      xserver.enable = true;
+      libinput.enable = true;
+      flatpak.enable = true;
+      fstrim.enable = true;
+      earlyoom = {
+        enable = true;
+        freeMemThreshold = 5;
+      };
     };
-  };
 
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  services = {
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      #jack.enable = true;
+    # Enable sound with pipewire.
+    security.rtkit.enable = true;
+    services = {
+      pulseaudio.enable = false;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        #jack.enable = true;
+      };
     };
-  };
 
-  systemd = {
-    # save some boot time because nothing actually requires network connectivity
-    services.NetworkManager-wait-online.enable = false;
+    systemd = {
+      # save some boot time because nothing actually requires network connectivity
+      services.NetworkManager-wait-online.enable = false;
 
-    # prevent stuck units from preventing shutdown (default is 120s)
-    settings.Manager.DefaultTimeoutStopSec = "10s";
-  };
-
-  programs = {
-    xwayland.enable = true;
-
-    appimage = {
-      enable = true;
-      binfmt = true;
+      # prevent stuck units from preventing shutdown (default is 120s)
+      settings.Manager.DefaultTimeoutStopSec = "10s";
     };
-  };
 
-  system.autoUpgrade = {
-    allowReboot = false;
-    operation = "boot";
+    programs = {
+      xwayland.enable = true;
+
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+    };
+
+    system.autoUpgrade = {
+      allowReboot = false;
+      operation = "boot";
+    };
   };
 }

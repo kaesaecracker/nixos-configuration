@@ -1,6 +1,13 @@
-{ pkgs, ... }:
 {
-  config = {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options.my.intelGraphics.enable = lib.mkEnableOption "Intel graphics drivers";
+
+  config = lib.mkIf config.my.intelGraphics.enable {
     hardware.graphics = {
       extraPackages = with pkgs; [
         intel-media-driver

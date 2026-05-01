@@ -32,62 +32,77 @@ let
   #   distributedBuilds.hostPublicKey = "ssh-ed25519 AAAA...";  # from: ssh-keyscan -t ed25519 <hostname>
   # All machines automatically discover and use it after the next rebuild.
 
-  buildServerDevices = lib.filterAttrs (_: v: (v.distributedBuilds or { }).isBuilder or false) devices;
+  buildServerDevices = lib.filterAttrs (
+    _: v: (v.distributedBuilds or { }).isBuilder or false
+  ) devices;
 
   knownHosts = lib.pipe buildServerDevices [
     (lib.filterAttrs (_: v: v.distributedBuilds ? hostPublicKey))
-    (lib.mapAttrs (hostName: v: {
-      publicKey = v.distributedBuilds.hostPublicKey;
-    }))
+    (lib.mapAttrs (
+      _: v: {
+        publicKey = v.distributedBuilds.hostPublicKey;
+      }
+    ))
   ];
 
-  buildMachineList = lib.mapAttrsToList (hostName: v: {
-    inherit hostName;
-    systems = [ v.system ];
-    sshUser = buildUser;
-    sshKey = sshKeyPath;
-    protocol = "ssh-ng";
-  } // lib.optionalAttrs (v.distributedBuilds ? speedFactor) {
-    speedFactor = v.distributedBuilds.speedFactor;
-  } // {
-    supportedFeatures = [
-      "nixos-test"
-      "big-parallel"
-      "kvm"
-      "benchmark"
-    ];
-  }) buildServerDevices;
+  buildMachineList = lib.mapAttrsToList (
+    hostName: v:
+    {
+      inherit hostName;
+      systems = [ v.system ];
+      sshUser = buildUser;
+      sshKey = sshKeyPath;
+      protocol = "ssh-ng";
+    }
+    // lib.optionalAttrs (v.distributedBuilds ? speedFactor) {
+      speedFactor = v.distributedBuilds.speedFactor;
+    }
+    // {
+      supportedFeatures = [
+        "nixos-test"
+        "big-parallel"
+        "kvm"
+        "benchmark"
+      ];
+    }
+  ) buildServerDevices;
 
   remoteMachines = builtins.filter (m: m.hostName != config.networking.hostName) buildMachineList;
 in
 {
-  # Dedicated user for receiving distributed build connections
-  programs.ssh.knownHosts = knownHosts;
+  options.my.distributedBuilds.enable = lib.mkEnableOption "distributed Nix builds";
 
-  users.users.${buildUser} = {
-    isSystemUser = true;
-    group = buildUser;
-    useDefaultShell = true;
-    openssh.authorizedKeys.keys = map (k: ''command="nix daemon --stdio",restrict ${k}'') authorizedPublicKeys;
-  };
-  users.groups.${buildUser} = { };
+  config = lib.mkIf config.my.distributedBuilds.enable {
+    programs.ssh.knownHosts = knownHosts;
 
-  nix = {
-    distributedBuilds = remoteMachines != [ ];
-    buildMachines = remoteMachines;
-    settings = {
-      trusted-users = [ buildUser ];
-      builders-use-substitutes = true;
-      max-jobs = (devices.${config.networking.hostName}.distributedBuilds or { }).maxJobs or "auto";
-      cores = 0;
-      min-free = 10 * 1024 * 1024;
-      max-free = 200 * 1024 * 1024;
+    # Dedicated user for receiving distributed build connections
+    users.users.${buildUser} = {
+      isSystemUser = true;
+      group = buildUser;
+      useDefaultShell = true;
+      openssh.authorizedKeys.keys = map (
+        k: ''command="nix daemon --stdio",restrict ${k}''
+      ) authorizedPublicKeys;
     };
-  };
+    users.groups.${buildUser} = { };
 
-  systemd.services.nix-daemon.serviceConfig = {
-    MemoryAccounting = true;
-    MemoryMax = "90%";
-    OOMScoreAdjust = 500;
+    nix = {
+      distributedBuilds = remoteMachines != [ ];
+      buildMachines = remoteMachines;
+      settings = {
+        trusted-users = [ buildUser ];
+        builders-use-substitutes = true;
+        max-jobs = (devices.${config.networking.hostName}.distributedBuilds or { }).maxJobs or "auto";
+        cores = 0;
+        min-free = 10 * 1024 * 1024;
+        max-free = 200 * 1024 * 1024;
+      };
+    };
+
+    systemd.services.nix-daemon.serviceConfig = {
+      MemoryAccounting = true;
+      MemoryMax = "90%";
+      OOMScoreAdjust = 500;
+    };
   };
 }

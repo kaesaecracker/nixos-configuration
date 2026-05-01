@@ -1,12 +1,13 @@
-{ self, ... }:
+{ ... }:
 {
   imports = [
     ./hardware.nix
     ./forgejo-runner.nix
-    self.nixosModules.podman
   ];
 
   config = {
+    my.podman.enable = true;
+
     # uncomment for build check on non arm system (requires --impure)
     # nixpkgs.buildPlatform = builtins.currentSystem;
     services.tailscale.useRoutingFeatures = "both";
