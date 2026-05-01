@@ -146,12 +146,13 @@
     in
     {
       overlays = {
-        unstable-packages = final: prev: {
+        unstable = final: prev: {
           unstable = import nixpkgs-unstable {
             localSystem = prev.stdenv.hostPlatform;
             inherit (prev) config;
           };
         };
+        vscodeExtensions = nix-vscode-extensions.overlays.default;
       };
 
       nixosModules = (importModuleDir ./nixosModules) // {
@@ -170,12 +171,6 @@
               };
             };
           };
-        pkgs-unstable = {
-          nixpkgs.overlays = [ self.overlays.unstable-packages ];
-        };
-        pkgs-vscode-extensions = {
-          nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
-        };
       };
 
       homeModules = importModuleDir ./homeModules;
@@ -208,7 +203,6 @@
             lanzaboote.nixosModules.lanzaboote
             nova-shell.nixosModules.default
             self.nixosModules.niri
-            self.nixosModules.pkgs-vscode-extensions
             servicepoint-cli.nixosModules.default
             servicepoint-simulator.nixosModules.default
             servicepoint-tanks.nixosModules.default
@@ -233,15 +227,19 @@
                 doc.enable = false;
               };
 
-              my.autoupdate.enable = true;
-              my.distributedBuilds.enable = true;
-              my.extraCaches.enable = true;
-              my.globalinstalls.enable = true;
-              my.lixIsNix.enable = true;
-              my.openssh.enable = true;
-              my.prometheusNode.enable = true;
-              my.systemdBoot.enable = true;
-              my.tailscale.enable = true;
+              my = {
+                autoupdate.enable = true;
+                distributedBuilds.enable = true;
+                overlays.unstable.enable = true;
+                overlays.vscodeExtensions.enable = true;
+                extraCaches.enable = true;
+                globalinstalls.enable = true;
+                lixIsNix.enable = true;
+                openssh.enable = true;
+                prometheusNode.enable = true;
+                systemdBoot.enable = true;
+                tailscale.enable = true;
+              };
             }
           ]
           ++ lib.optionals (home-manager-users != { }) [
@@ -272,15 +270,17 @@
                 daemonIOSchedClass = "idle";
               };
 
-              my.enDe.enable = true;
-              my.firmwareUpdates.enable = true;
-              my.gnome.enable = true;
-              my.kdeconnect.enable = true;
-              my.modernDesktop.enable = true;
-              my.niri.enable = true;
-              my.nixLd.enable = true;
-              my.quietBoot.enable = true;
-              my.stylix.enable = true;
+              my = {
+                enDe.enable = true;
+                firmwareUpdates.enable = true;
+                gnome.enable = true;
+                kdeconnect.enable = true;
+                modernDesktop.enable = true;
+                niri.enable = true;
+                nixLd.enable = true;
+                quietBoot.enable = true;
+                stylix.enable = true;
+              };
             }
           ];
         }

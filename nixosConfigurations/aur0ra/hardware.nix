@@ -10,11 +10,9 @@
   # No one got time for xz compression.
   #isoImage.squashfsCompression = "zstd";
 
-  boot.loader = {
-    raspberry-pi.bootloader = "kernel";
-    systemd-boot.enable = lib.mkForce false;
-    #generic-extlinux-compatible.enable = lib.mkForce false;
-  };
+  boot.loader.raspberry-pi.bootloader = "kernel";
+
+  my.systemdBoot.enable = lib.mkForce false;
 
   /*
     fileSystems = {

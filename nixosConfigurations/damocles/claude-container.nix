@@ -1,12 +1,11 @@
 {
   pkgs,
-  self,
   lib,
   ...
 }:
 {
 
-  nixpkgs.overlays = [ self.overlays.unstable-packages ];
+  my.overlays.unstable.enable = true;
   allowedUnfreePackages = [ "claude-code" ];
 
   environment.systemPackages = with pkgs; [

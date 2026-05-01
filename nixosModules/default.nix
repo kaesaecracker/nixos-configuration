@@ -18,6 +18,7 @@
     ./modern-desktop.nix
     ./muede-desktop-settings.nix
     ./nix-ld.nix
+    ./nixpkgs-overlays.nix
     ./openssh.nix
     ./podman.nix
     ./printing.nix
