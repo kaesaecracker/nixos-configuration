@@ -39,6 +39,7 @@ in
       isBuilder = true;
       hostPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHGKoZ68wwyVRmPB0SkvpJUyUMDWeFbC5Je9zukyEOh7";
       clientPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAbojdhb3PfazSRmudvo381Y+zUFVLMa7AbWbfK/Zp2 muede-lpt2-nix-builds";
+      storeSigningPublicKey = "muede-lpt2:3csut7FW6oZK/ztRLBRC80LSBfFE3qzl+aIYgOixB6U=";
     };
   };
   muede-pc2 = {
@@ -51,6 +52,7 @@ in
       speedFactor = 2;
       hostPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKEQQS5XNoj62Oj85xQfIuLORwoBRwfqjvfBHHsiI+RH";
       clientPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmnyhP6L+kGHV15cb/d31AQr50wSEaQhkUBwy2+OEKk muede-pc2-nix-builds";
+      storeSigningPublicKey = "muede-pc2:fqQO0E0y65MjUWlQnrgWt5ZsmQKlKCv4jls3CmUXDEQ=";
     };
   };
   ronja-pc = {

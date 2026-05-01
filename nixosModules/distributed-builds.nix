@@ -14,24 +14,6 @@ let
     (lib.mapAttrsToList (_: v: v.distributedBuilds.clientPublicKey))
   ];
 
-  # === Onboarding a device as a build client ===
-  #
-  # 1. Generate a key pair on the device:
-  #      sudo ssh-keygen -t ed25519 -f /etc/nix/distributed-build-key -N "" -C "$(hostname)-nix-builds"
-  #    (owned by root, mode 0600)
-  #
-  # 2. Add the public key to the device entry in flake.nix:
-  #      distributedBuilds.clientPublicKey = "ssh-ed25519 AAAA... <hostname>-nix-builds";
-  #
-  # 3. Rebuild all machines so they pick up the new authorized key.
-  #
-  # === Marking a device as a build server ===
-  #
-  # Add to its entry in flake.nix:
-  #   distributedBuilds.isBuilder = true;
-  #   distributedBuilds.hostPublicKey = "ssh-ed25519 AAAA...";  # from: ssh-keyscan -t ed25519 <hostname>
-  # All machines automatically discover and use it after the next rebuild.
-
   buildServerDevices = lib.filterAttrs (
     _: v: (v.distributedBuilds or { }).isBuilder or false
   ) devices;
@@ -92,6 +74,22 @@ in
       settings = {
         trusted-users = [ buildUser ];
         builders-use-substitutes = true;
+        # Use build machines as binary caches so already-built paths are downloaded
+        # rather than rebuilt. Only machines with a storeSigningPublicKey are used.
+        substituters = lib.pipe buildServerDevices [
+          (lib.filterAttrs (_: v: v.distributedBuilds ? storeSigningPublicKey))
+          (lib.mapAttrsToList (hostName: _: "ssh-ng://${buildUser}@${hostName}"))
+          (lib.filter (s: s != "ssh-ng://${buildUser}@${config.networking.hostName}"))
+        ];
+        trusted-public-keys = lib.pipe buildServerDevices [
+          (lib.mapAttrsToList (_: v: v.distributedBuilds.storeSigningPublicKey or null))
+          (builtins.filter (k: k != null))
+        ];
+        secret-key-files =
+          let
+            thisDevice = devices.${config.networking.hostName} or { };
+          in
+          lib.optional (thisDevice.distributedBuilds.isBuilder or false) "/etc/nix/signing-key.sec";
         max-jobs = (devices.${config.networking.hostName}.distributedBuilds or { }).maxJobs or "auto";
         cores = 0;
         min-free = 10 * 1024 * 1024;
