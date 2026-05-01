@@ -15,6 +15,7 @@
     my.amdGraphics.enable = true;
     my.secureBoot.enable = true;
 
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     nix.settings.extra-platforms = [
       "aarch64-linux"
       "i686-linux"
