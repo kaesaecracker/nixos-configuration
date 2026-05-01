@@ -65,17 +65,20 @@ forDevice (
         };
 
         my = {
+          # keep-sorted start
           autoupdate.enable = true;
           distributedBuilds.enable = true;
-          overlays.unstable.enable = true;
-          overlays.vscodeExtensions.enable = true;
           extraCaches.enable = true;
+          git.enable = true;
           globalinstalls.enable = true;
           lixIsNix.enable = true;
           openssh.enable = true;
+          overlays.unstable.enable = true;
+          overlays.vscodeExtensions.enable = true;
           # prometheusNode.enable = true;
           systemdBoot.enable = true;
           tailscale.enable = true;
+          # keep-sorted end
         };
       }
     ]
@@ -90,7 +93,6 @@ forDevice (
           sharedModules = [
             { home.stateVersion = "22.11"; }
             # keep-sorted start
-            self.homeModules.git
             self.homeModules.gnome-extensions
             self.homeModules.nano
             self.homeModules.templates
@@ -108,6 +110,7 @@ forDevice (
         };
 
         my = {
+          # keep-sorted start
           enDe.enable = true;
           firmwareUpdates.enable = true;
           gnome.enable = true;
@@ -116,6 +119,7 @@ forDevice (
           nixLd.enable = true;
           quietBoot.enable = true;
           stylix.enable = true;
+          # keep-sorted end
         };
       }
     ];

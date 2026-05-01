@@ -9,6 +9,7 @@
     ./en-de.nix
     ./extra-caches.nix
     ./firmware-updates.nix
+    ./git.nix
     ./globalinstalls.nix
     ./gnome.nix
     ./intel-graphics.nix
