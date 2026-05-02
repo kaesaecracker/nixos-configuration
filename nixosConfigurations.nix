@@ -3,7 +3,7 @@
   lib,
 }:
 let
-  devices = import ./devices.nix { inherit (inputs) self; };
+  allDevices = import ./devices.nix { inherit (inputs) self; };
   inherit (inputs)
     self
     home-manager
@@ -15,7 +15,7 @@ let
     stylix
     zerforschen-plus
     ;
-  forDevice = f: lib.mapAttrs (device: value: f (value // { inherit device; })) devices;
+  forDevice = f: lib.mapAttrs (device: value: f (value // { inherit device; })) allDevices;
 in
 forDevice (
   {
@@ -24,10 +24,15 @@ forDevice (
     home-manager-users ? { },
     nixosSystem ? inputs.nixpkgs.lib.nixosSystem,
     ...
-  }:
+  }@thisDevice:
   let
     specialArgs = inputs // {
-      inherit device home-manager-users devices;
+      inherit
+        device
+        home-manager-users
+        allDevices
+        thisDevice
+        ;
     };
   in
   nixosSystem {
