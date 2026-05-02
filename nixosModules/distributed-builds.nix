@@ -103,8 +103,7 @@ in
         programs.ssh = {
           knownHosts = buildServerKnownHosts;
           extraConfig = ''
-            Host ${lib.concatStringsSep " " (lib.attrNames buildServerDevices)}
-              User ${buildUser}
+            Match Host ${lib.concatStringsSep " " (lib.attrNames buildServerDevices)} User ${buildUser}
               IdentityFile ${clientSshKeyPath}
               IdentitiesOnly yes
           '';
