@@ -26,6 +26,12 @@ in
   };
   forgejo-runner-1 = {
     system = "aarch64-linux";
+    distributedBuilds = {
+      isBuilder = true;
+      clientPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0NLgg0sFobBWz/bjYs9WkrMvlcvJC5F6+3jQ/b+AnD forgejo-runner-1-nix-builds";
+      hostPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIANGC89GiT5xCsFICwrharrbV3q7acWHqk6ZwOUXbtGT";
+      storeSigningPublicKey = "forgejo-runner-1:ln1FVLL8G5+IveQuBi/Kn3SaqFZ1gaiQrE3yPlMhCMA=";
+    };
   };
   hetzner-vpn2 = {
     system = "aarch64-linux";
