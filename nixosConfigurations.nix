@@ -66,6 +66,8 @@ forDevice (
           doc.enable = false;
         };
 
+        time.timeZone = lib.mkDefault "Etc/UTC";
+
         my = {
           # keep-sorted start
           autoupdate.enable = true;
