@@ -21,6 +21,7 @@ forDevice (
   {
     device,
     system,
+    isDesktop ? false,
     home-manager-users ? { },
     nixosSystem ? inputs.nixpkgs.lib.nixosSystem,
     ...
@@ -87,7 +88,7 @@ forDevice (
         };
       }
     ]
-    ++ lib.optionals (home-manager-users != { }) [
+    ++ lib.optionals isDesktop [
       # Desktop config
       {
         home-manager = {
@@ -100,6 +101,7 @@ forDevice (
             # keep-sorted start
             self.homeModules.gnome-extensions
             self.homeModules.nano
+            self.homeModules.tailscale
             self.homeModules.templates
             self.homeModules.zsh-basics
             # keep-sorted end

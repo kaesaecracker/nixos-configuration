@@ -80,7 +80,6 @@
       onefetch
       servicepoint-cli
       servicepoint-simulator
-      tailscale
       telegram-desktop
       thunderbird
       vlc
@@ -93,9 +92,6 @@
       "idea.properties".text = "idea.filewatcher.executable.path = ${pkgs.fsnotifier}/bin/fsnotifier";
     };
 
-    services = {
-      trayscale.enable = true;
-      poweralertd.enable = true;
-    };
+    services.poweralertd.enable = true;
   };
 }

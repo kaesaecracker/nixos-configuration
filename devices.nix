@@ -38,6 +38,7 @@ in
   };
   muede-lpt2 = {
     system = "x86_64-linux";
+    isDesktop = true;
     home-manager-users = {
       inherit (self.homeConfigurations) muede;
     };
@@ -50,6 +51,7 @@ in
   };
   muede-pc2 = {
     system = "x86_64-linux";
+    isDesktop = true;
     home-manager-users = {
       inherit (self.homeConfigurations) muede;
     };
@@ -63,6 +65,7 @@ in
   };
   ronja-pc = {
     system = "x86_64-linux";
+    isDesktop = true;
     home-manager-users = {
       inherit (self.homeConfigurations) ronja;
     };
