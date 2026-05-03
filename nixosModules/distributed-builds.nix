@@ -102,11 +102,13 @@ in
       (lib.mkIf isClient {
         programs.ssh = {
           knownHosts = buildServerKnownHosts;
-          extraConfig = ''
-            Match Host ${lib.concatStringsSep " " (lib.attrNames buildServerDevices)} User ${buildUser}
-              IdentityFile ${clientSshKeyPath}
-              IdentitiesOnly yes
-          '';
+          extraConfig = lib.concatStringsSep "\n" (
+            lib.mapAttrsToList (name: _: ''
+              Match host ${name} user ${buildUser}
+                IdentityFile ${clientSshKeyPath}
+                IdentitiesOnly yes
+            '') buildServerDevices
+          );
         };
         nix = {
           distributedBuilds = buildMachines != [ ];
