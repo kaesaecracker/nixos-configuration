@@ -7,7 +7,7 @@
 {
   options = {
     my.gnome.enable = lib.mkEnableOption "GNOME desktop environment";
-    muede.keep-gnome-default-apps = lib.mkEnableOption "keep gnome default apps";
+    my.gnome.keep-default-apps = lib.mkEnableOption "keep gnome default apps";
   };
 
   config = lib.mkIf config.my.gnome.enable (
@@ -39,7 +39,7 @@
           gpaste.enable = true;
         };
       }
-      (lib.mkIf (!config.muede.keep-gnome-default-apps) {
+      (lib.mkIf (!config.my.gnome.keep-default-apps) {
         environment.gnome.excludePackages = with pkgs; [
           cheese # photo booth
           epiphany # web browser

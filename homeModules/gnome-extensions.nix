@@ -6,7 +6,7 @@
   ...
 }:
 {
-  options.muede.gnome-extensions =
+  options.my.gnome-extensions =
     let
       mkDefaultEnabledOption =
         name:
@@ -40,7 +40,7 @@
 
   config =
     let
-      cfg = config.muede.gnome-extensions;
+      cfg = config.my.gnome-extensions;
     in
     lib.mkIf cfg.enable (
       lib.mkMerge [
