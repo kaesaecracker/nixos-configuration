@@ -26,6 +26,7 @@ in
   };
   forgejo-runner-1 = {
     system = "aarch64-linux";
+    publicFqdn = "forgejo-runner-1.dev.zerforschen.plus";
     distributedBuilds = {
       isBuilder = true;
       speedFactor = 1;

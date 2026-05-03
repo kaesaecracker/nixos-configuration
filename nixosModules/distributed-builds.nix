@@ -21,13 +21,14 @@ let
     _: v: (v.distributedBuilds or { }).isBuilder or false
   ) allDevices;
 
+  sshHostname = m: m.publicFqdn or m.hostName;
+
   buildServerKnownHosts = lib.pipe buildServerDevices [
     (lib.filterAttrs (_: v: v.distributedBuilds ? hostPublicKey))
-    (lib.mapAttrs (
-      _: v: {
-        publicKey = v.distributedBuilds.hostPublicKey;
-      }
-    ))
+    (lib.mapAttrs (name: v: {
+      publicKey = v.distributedBuilds.hostPublicKey;
+      hostNames = [ (v.publicFqdn or name) ];
+    }))
   ];
 
   remoteBuildServerDevices = builtins.filter (
@@ -37,7 +38,7 @@ let
   buildMachines = map (
     m:
     {
-      hostName = m.hostName;
+      hostName = sshHostname m;
       systems = [ m.system ];
       sshUser = buildUser;
       sshKey = clientSshKeyPath;
@@ -65,6 +66,8 @@ in
       # All machines
       {
         nix.settings = {
+          #fallback = true;
+          connect-timeout = 5;
           trusted-public-keys = lib.pipe buildServerDevices [
             (lib.mapAttrsToList (_: v: v.distributedBuilds.storeSigningPublicKey or null))
             (builtins.filter (k: k != null))
@@ -103,11 +106,15 @@ in
         programs.ssh = {
           knownHosts = buildServerKnownHosts;
           extraConfig = lib.concatStringsSep "\n" (
-            lib.mapAttrsToList (name: _: ''
-              Match originalhost ${name} user ${buildUser}
-                IdentityFile ${clientSshKeyPath}
-                IdentitiesOnly yes
-            '') buildServerDevices
+            lib.mapAttrsToList (name: v:
+              let
+                names = lib.unique [ name (v.publicFqdn or name) ];
+              in
+              ''
+                Match originalhost ${lib.concatStringsSep "," names} user ${buildUser}
+                  IdentityFile ${clientSshKeyPath}
+                  IdentitiesOnly yes
+              '') buildServerDevices
           );
         };
         nix = {
@@ -115,7 +122,7 @@ in
           buildMachines = buildMachines;
           settings = {
             builders-use-substitutes = true;
-            substituters = map (m: "ssh-ng://${buildUser}@${m.hostName}") (
+            substituters = map (m: "ssh-ng://${buildUser}@${sshHostname m}") (
               builtins.filter (m: m.distributedBuilds ? storeSigningPublicKey) remoteBuildServerDevices
             );
           };
