@@ -104,7 +104,7 @@ in
           knownHosts = buildServerKnownHosts;
           extraConfig = lib.concatStringsSep "\n" (
             lib.mapAttrsToList (name: _: ''
-              Match host ${name} user ${buildUser}
+              Match originalhost ${name} user ${buildUser}
                 IdentityFile ${clientSshKeyPath}
                 IdentitiesOnly yes
             '') buildServerDevices
