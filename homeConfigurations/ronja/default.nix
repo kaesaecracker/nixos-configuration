@@ -2,6 +2,14 @@
 {
   imports = [ ./vscode.nix ];
   config = {
+    my = {
+      # keep-sorted start
+      nano.enable = true;
+      templates.enable = true;
+      zsh.enable = true;
+      # keep-sorted end
+    };
+
     home.packages = with pkgs; [
       ## Apps
       telegram-desktop

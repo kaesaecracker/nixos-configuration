@@ -96,16 +96,7 @@ forDevice (
           useGlobalPkgs = true;
           useUserPackages = true;
           users = home-manager-users;
-          sharedModules = [
-            { home.stateVersion = "22.11"; }
-            # keep-sorted start
-            self.homeModules.gnome-extensions
-            self.homeModules.nano
-            self.homeModules.tailscale
-            self.homeModules.templates
-            self.homeModules.zsh-basics
-            # keep-sorted end
-          ];
+          sharedModules = [ { home.stateVersion = "22.11"; } ] ++ builtins.attrValues self.homeModules;
         };
 
         time.timeZone = "Europe/Berlin";

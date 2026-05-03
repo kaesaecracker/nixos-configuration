@@ -18,7 +18,7 @@
         };
     in
     {
-      enable = mkDefaultEnabledOption "gnome extended options";
+      enable = lib.mkEnableOption "gnome extended options";
       appindicator.enable = mkDefaultEnabledOption "appindicator";
       caffeine.enable = mkDefaultEnabledOption "caffeine";
       tailscale-qs.enable = lib.mkOption {

@@ -23,6 +23,15 @@
   ];
 
   config = {
+    my = {
+      # keep-sorted start
+      gnome-extensions.enable = true;
+      nano.enable = true;
+      templates.enable = true;
+      zsh.enable = true;
+      # keep-sorted end
+    };
+
     programs = {
       home-manager.enable = true;
       fzf.enable = true;
