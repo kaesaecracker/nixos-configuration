@@ -2,12 +2,9 @@
   lib,
   config,
   pkgs,
-  niri,
   ...
 }:
 {
-  imports = [ niri.nixosModules.niri ];
-
   options.my.muedeDesktopSettings.enable = lib.mkEnableOption "muede desktop settings (Firefox, Logitech, RDP)";
 
   config = lib.mkIf config.my.muedeDesktopSettings.enable {

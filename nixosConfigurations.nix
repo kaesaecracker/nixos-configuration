@@ -45,10 +45,6 @@ forDevice (
       # keep-sorted start
       home-manager.nixosModules.home-manager
       lanzaboote.nixosModules.lanzaboote
-      nova-shell.nixosModules.default
-      servicepoint-cli.nixosModules.default
-      servicepoint-simulator.nixosModules.default
-      servicepoint-tanks.nixosModules.default
       stylix.nixosModules.stylix
       zerforschen-plus.nixosModules.default
       # keep-sorted end
@@ -80,15 +76,32 @@ forDevice (
           lixIsNix.enable = true;
           openssh.enable = true;
           overlays.unstable.enable = true;
-          overlays.vscodeExtensions.enable = true;
           # prometheusNode.enable = true;
           systemdBoot.enable = true;
           tailscale.enable = true;
+          # keep-sorted end
+
+          # keep-sorted start
+          enDe.enable = isDesktop;
+          firmwareUpdates.enable = isDesktop;
+          gnome.enable = isDesktop;
+          kdeconnect.enable = isDesktop;
+          modernDesktop.enable = isDesktop;
+          nixLd.enable = isDesktop;
+          overlays.vscodeExtensions.enable = isDesktop;
+          quietBoot.enable = isDesktop;
+          stylix.enable = isDesktop;
           # keep-sorted end
         };
       }
     ]
     ++ lib.optionals isDesktop [
+      inputs.niri.nixosModules.niri
+      nova-shell.nixosModules.default
+      servicepoint-cli.nixosModules.default
+      servicepoint-simulator.nixosModules.default
+      servicepoint-tanks.nixosModules.default
+
       # Desktop config
       {
         home-manager = {
@@ -105,19 +118,6 @@ forDevice (
         nix = {
           daemonCPUSchedPolicy = "idle";
           daemonIOSchedClass = "idle";
-        };
-
-        my = {
-          # keep-sorted start
-          enDe.enable = true;
-          firmwareUpdates.enable = true;
-          gnome.enable = true;
-          kdeconnect.enable = true;
-          modernDesktop.enable = true;
-          nixLd.enable = true;
-          quietBoot.enable = true;
-          stylix.enable = true;
-          # keep-sorted end
         };
       }
     ];
