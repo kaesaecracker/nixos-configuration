@@ -5,13 +5,17 @@
   ];
 
   config = {
-    my.users.muede.enable = true;
-    my.wineGaming.enable = true;
-    my.steam.enable = true;
-    my.podman.enable = true;
-    my.muedeDesktopSettings.enable = true;
-    my.intelGraphics.enable = true;
-    my.secureBoot.enable = true;
+    my = {
+      # keep-sorted start
+      intelGraphics.enable = true;
+      muedeDesktopSettings.enable = true;
+      podman.enable = true;
+      secureBoot.enable = true;
+      steam.enable = true;
+      users.muede.enable = true;
+      wineGaming.enable = true;
+      # keep-sorted end
+    };
 
     nix.settings.extra-platforms = [
       "aarch64-linux"

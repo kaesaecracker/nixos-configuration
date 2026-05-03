@@ -5,10 +5,14 @@
   ];
 
   config = {
-    my.users.ronja.enable = true;
-    my.steam.enable = true;
-    my.wineGaming.enable = true;
-    my.muedeDesktopSettings.enable = true;
+    my = {
+      # keep-sorted start
+      muedeDesktopSettings.enable = true;
+      steam.enable = true;
+      users.ronja.enable = true;
+      wineGaming.enable = true;
+      # keep-sorted end
+    };
 
     # Configure keymap in X11
     services.xserver.xkb = {

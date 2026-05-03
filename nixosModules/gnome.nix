@@ -5,9 +5,9 @@
   ...
 }:
 {
-  options = {
-    my.gnome.enable = lib.mkEnableOption "GNOME desktop environment";
-    my.gnome.keep-default-apps = lib.mkEnableOption "keep gnome default apps";
+  options.my.gnome = {
+    enable = lib.mkEnableOption "GNOME desktop environment";
+    keep-default-apps = lib.mkEnableOption "keep gnome default apps";
   };
 
   config = lib.mkIf config.my.gnome.enable (

@@ -7,13 +7,17 @@
   ];
 
   config = {
-    my.users.muede.enable = true;
-    my.wineGaming.enable = true;
-    my.steam.enable = true;
-    my.podman.enable = true;
-    my.muedeDesktopSettings.enable = true;
-    my.amdGraphics.enable = true;
-    my.secureBoot.enable = true;
+    my = {
+      # keep-sorted start
+      amdGraphics.enable = true;
+      muedeDesktopSettings.enable = true;
+      podman.enable = true;
+      secureBoot.enable = true;
+      steam.enable = true;
+      users.muede.enable = true;
+      wineGaming.enable = true;
+      # keep-sorted end
+    };
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     nix.settings.extra-platforms = [

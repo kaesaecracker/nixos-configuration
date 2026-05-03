@@ -5,8 +5,10 @@
 }:
 {
 
-  my.overlays.unstable.enable = true;
-  my.allowedUnfreePackages = [ "claude-code" ];
+  my = {
+    allowedUnfreePackages = [ "claude-code" ];
+    overlays.unstable.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     unstable.claude-code
