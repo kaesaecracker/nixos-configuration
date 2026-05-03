@@ -1,4 +1,10 @@
-{ lib, config, osConfig, thisDevice, ... }:
+{
+  lib,
+  config,
+  osConfig,
+  thisDevice,
+  ...
+}:
 {
   options.my.tailscale.enable = lib.mkOption {
     type = lib.types.bool;

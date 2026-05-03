@@ -25,15 +25,17 @@ let
 
   buildServerKnownHosts = lib.pipe buildServerDevices [
     (lib.filterAttrs (_: v: v.distributedBuilds ? hostPublicKey))
-    (lib.mapAttrs (name: v: {
-      publicKey = v.distributedBuilds.hostPublicKey;
-      hostNames = [ (v.publicFqdn or name) ];
-    }))
+    (lib.mapAttrs (
+      name: v: {
+        publicKey = v.distributedBuilds.hostPublicKey;
+        hostNames = [ (v.publicFqdn or name) ];
+      }
+    ))
   ];
 
-  remoteBuildServerDevices = builtins.filter (
-    m: m.hostName != config.networking.hostName
-  ) (lib.mapAttrsToList (name: v: v // { hostName = name; }) buildServerDevices);
+  remoteBuildServerDevices = builtins.filter (m: m.hostName != config.networking.hostName) (
+    lib.mapAttrsToList (name: v: v // { hostName = name; }) buildServerDevices
+  );
 
   buildMachines = map (
     m:
@@ -65,6 +67,20 @@ in
 
       # All machines
       {
+        assertions =
+          lib.mapAttrsToList (name: v: {
+            assertion = v.distributedBuilds ? hostPublicKey && v.distributedBuilds ? storeSigningPublicKey;
+            message = "devices.${name}: isBuilder = true requires distributedBuilds.hostPublicKey and distributedBuilds.storeSigningPublicKey";
+          }) buildServerDevices
+          ++ lib.mapAttrsToList (name: v: {
+            assertion = lib.hasPrefix "ssh-" v.distributedBuilds.clientPublicKey;
+            message = "devices.${name}: distributedBuilds.clientPublicKey must start with 'ssh-'";
+          }) (lib.filterAttrs (_: v: (v.distributedBuilds or { }) ? clientPublicKey) allDevices)
+          ++ lib.mapAttrsToList (name: v: {
+            assertion = builtins.match ".+:.+" v.distributedBuilds.storeSigningPublicKey != null;
+            message = "devices.${name}: distributedBuilds.storeSigningPublicKey must be in '<name>:<base64>' format";
+          }) (lib.filterAttrs (_: v: (v.distributedBuilds or { }) ? storeSigningPublicKey) allDevices);
+
         nix.settings = {
           #fallback = true;
           connect-timeout = 5;
@@ -106,15 +122,20 @@ in
         programs.ssh = {
           knownHosts = buildServerKnownHosts;
           extraConfig = lib.concatStringsSep "\n" (
-            lib.mapAttrsToList (name: v:
+            lib.mapAttrsToList (
+              name: v:
               let
-                names = lib.unique [ name (v.publicFqdn or name) ];
+                names = lib.unique [
+                  name
+                  (v.publicFqdn or name)
+                ];
               in
               ''
                 Match originalhost ${lib.concatStringsSep "," names} user ${buildUser}
                   IdentityFile ${clientSshKeyPath}
                   IdentitiesOnly yes
-              '') buildServerDevices
+              ''
+            ) buildServerDevices
           );
         };
         nix = {
