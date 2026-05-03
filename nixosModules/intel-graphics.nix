@@ -22,6 +22,6 @@
       ];
     };
     environment.systemPackages = with pkgs; [ nvtopPackages.intel ];
-    allowedUnfreePackages = [ "intel-ocl" ];
+    my.allowedUnfreePackages = [ "intel-ocl" ];
   };
 }

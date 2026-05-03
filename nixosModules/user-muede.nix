@@ -31,7 +31,7 @@
 
     nix.settings.trusted-users = [ "muede" ];
 
-    allowedUnfreePackages = [
+    my.allowedUnfreePackages = [
       "rider"
       "pycharm-professional"
       "jetbrains-toolbox"

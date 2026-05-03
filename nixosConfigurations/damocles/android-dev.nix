@@ -12,7 +12,7 @@ in
 {
   nixpkgs.config.android_sdk.accept_license = true;
 
-  allowedUnfreePackages = [
+  my.allowedUnfreePackages = [
     "android-sdk-cmdline-tools"
     "android-sdk-platform-tools"
     "android-sdk-tools"

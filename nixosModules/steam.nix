@@ -40,7 +40,7 @@
       ];
     };
 
-    allowedUnfreePackages = [
+    my.allowedUnfreePackages = [
       "steam"
       "steam-original"
       "steam-run"

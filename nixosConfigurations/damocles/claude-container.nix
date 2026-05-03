@@ -6,7 +6,7 @@
 {
 
   my.overlays.unstable.enable = true;
-  allowedUnfreePackages = [ "claude-code" ];
+  my.allowedUnfreePackages = [ "claude-code" ];
 
   environment.systemPackages = with pkgs; [
     unstable.claude-code
