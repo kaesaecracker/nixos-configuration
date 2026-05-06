@@ -29,7 +29,7 @@
         "${pkgs.writeShellScript "ssh-inhibit-pam" ''
           PIDFILE="/run/ssh-inhibitor-''${PPID}.pid"
           case "''${PAM_TYPE:-}" in
-            open)
+            open_session)
               ${pkgs.systemd}/bin/systemd-inhibit \
                 --what=sleep \
                 --who=sshd \
@@ -38,7 +38,7 @@
                 sleep infinity &
               echo $! > "$PIDFILE"
               ;;
-            close)
+            close_session)
               if [ -f "$PIDFILE" ]; then
                 kill "$(cat "$PIDFILE")" 2>/dev/null || true
                 rm -f "$PIDFILE"
