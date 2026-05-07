@@ -73,6 +73,7 @@
       arduino
       arduino-cli
       arduino-ide
+      btop
       claude-code
       dconf2nix
       foliate

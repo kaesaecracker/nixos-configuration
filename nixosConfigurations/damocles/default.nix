@@ -10,5 +10,6 @@
     rustc
     clippy
     gh
+    buildPackages.stdenv.cc
   ];
 }

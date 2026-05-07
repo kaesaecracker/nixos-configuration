@@ -18,6 +18,7 @@
     gawk
     gnugrep
     curl
+    bintools
   ];
 
   boot.isContainer = true;
