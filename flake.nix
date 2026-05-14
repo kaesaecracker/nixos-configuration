@@ -13,6 +13,10 @@
       url = "github:hercules-ci/flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyperhive = {
+      url = "git+https://git.berlin.ccc.de/vinzenz/hyperhive.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";

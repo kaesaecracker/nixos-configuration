@@ -3,6 +3,7 @@
   imports = [
     ./containers.nix
     ./hardware.nix
+    ./hyperhive.nix
   ];
 
   config = {
