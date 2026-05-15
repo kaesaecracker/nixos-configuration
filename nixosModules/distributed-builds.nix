@@ -82,7 +82,7 @@ in
           }) (lib.filterAttrs (_: v: (v.distributedBuilds or { }) ? storeSigningPublicKey) allDevices);
 
         nix.settings = {
-          #fallback = true;
+          fallback = true;
           connect-timeout = 5;
           trusted-public-keys = lib.pipe buildServerDevices [
             (lib.mapAttrsToList (_: v: v.distributedBuilds.storeSigningPublicKey or null))
