@@ -74,10 +74,11 @@
       arduino-cli
       arduino-ide
       btop
-      claude-code
+      unstable.claude-code
       dconf2nix
       foliate
       fractal
+      file
       geary
       gnome-terminal
       gparted

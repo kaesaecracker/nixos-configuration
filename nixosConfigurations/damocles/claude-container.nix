@@ -19,6 +19,7 @@
     gnugrep
     curl
     bintools
+    file
   ];
 
   boot.isContainer = true;
