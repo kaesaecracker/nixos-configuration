@@ -15,7 +15,10 @@
     };
     hyperhive = {
       url = "git+https://git.berlin.ccc.de/vinzenz/hyperhive.git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-unstable.follows = "nixpkgs-unstable";
+      };
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.3";
