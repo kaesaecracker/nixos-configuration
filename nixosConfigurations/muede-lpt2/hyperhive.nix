@@ -6,5 +6,4 @@
   ];
 
   config.services.hive-c0re.enable = true;
-  config.services.hive-forge.enable = true;
 }
