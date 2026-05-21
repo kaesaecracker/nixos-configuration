@@ -379,11 +379,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1779297160,
-        "narHash": "sha256-5siEd/rpH3tVdBNFRBCFxUXtLPYs8OLQNkffhZZR9vQ=",
+        "lastModified": 1779389374,
+        "narHash": "sha256-u/ygppXPZc3VshRDhU9MY3Zc2pJn9QlWvmZiEEefJvA=",
         "ref": "refs/heads/main",
-        "rev": "3224178d2d38aafeb123daeefbcc6904fc922e22",
-        "revCount": 494,
+        "rev": "0884a5496015472afad97972a7c12fc1cd06a59e",
+        "revCount": 547,
         "type": "git",
         "url": "https://git.berlin.ccc.de/vinzenz/hyperhive.git"
       },
