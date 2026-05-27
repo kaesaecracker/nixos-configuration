@@ -2,60 +2,58 @@
   config.programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
-      "vpn2" = {
-        host = "vpn2 hetzner-vpn2";
-        hostname = "2a01:4f8:c013:65dd::1";
-        user = "root";
+    settings = {
+      "vpn2 hetzner-vpn2" = {
+        HostName = "2a01:4f8:c013:65dd::1";
+        User = "root";
       };
-      "openwrt" = {
-        host = "openwrt openwrt.lan";
-        hostname = "openwrt.lan";
-        user = "root";
+      "openwrt openwrt.lan" = {
+        HostName = "openwrt.lan";
+        User = "root";
       };
       "openwrt-ts" = {
-        hostname = "openwrt.donkey-pentatonic.ts.net";
-        port = 2222;
-        user = "root";
+        HostName = "openwrt.donkey-pentatonic.ts.net";
+        Port = 2222;
+        User = "root";
       };
       "openwrt-j" = {
-        hostname = "openwrt.donkey-pentatonic.ts.net";
-        proxyJump = "vpn1";
-        port = 2222;
-        user = "root";
+        HostName = "openwrt.donkey-pentatonic.ts.net";
+        ProxyJump = "vpn1";
+        Port = 2222;
+        User = "root";
       };
       "pc2-power" = {
-        hostname = "openwrt.donkey-pentatonic.ts.net";
-        proxyJump = "vpn1";
-        port = 2222;
-        user = "pc2-power";
+        HostName = "openwrt.donkey-pentatonic.ts.net";
+        ProxyJump = "vpn1";
+        Port = 2222;
+        User = "pc2-power";
       };
       "avd-power" = {
-        # hostname = "2001:678:560:23:9833:63ff:fe2d:f477"
-        # hostname = "195.160.172.25";
-        hostname = "avd-jumphost.club.berlin.ccc.de";
-        user = "power";
+        # HostName = "2001:678:560:23:9833:63ff:fe2d:f477"
+        # HostName = "195.160.172.25";
+        HostName = "avd-jumphost.club.berlin.ccc.de";
+        User = "power";
       };
       "avd" = {
-        hostname = "avd.club.berlin.ccc.de";
-        user = "vinzenz";
+        HostName = "avd.club.berlin.ccc.de";
+        User = "vinzenz";
       };
       "builder.berlin.ccc.de" = {
-        hostname = "195.160.172.36";
-        user = "root";
+        HostName = "195.160.172.36";
+        User = "root";
       };
       "cccb.zerforschen.plus" = {
-        hostname = "2a01:4f8:c013:cbdd::1";
-        user = "root";
+        HostName = "2a01:4f8:c013:cbdd::1";
+        User = "root";
       };
       "berlin.ccc.de" = {
-        hostname = "195.160.173.9";
-        user = "deploy";
-        port = 31337;
+        HostName = "195.160.173.9";
+        User = "deploy";
+        Port = 31337;
       };
       "forgejo-runner-1" = {
-        hostname = "forgejo-runner-1.dev.zerforschen.plus";
-        user = "root";
+        HostName = "forgejo-runner-1.dev.zerforschen.plus";
+        User = "root";
       };
     };
   };
