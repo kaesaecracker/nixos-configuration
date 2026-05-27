@@ -369,6 +369,26 @@
         "url": "https://git.berlin.ccc.de/vinzenz/hyperhive.git"
       }
     },
+    "hyperhive-website": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779905524,
+        "narHash": "sha256-qhPwDaNHsmIRoe+rMUAc0C842LaHWnE6TkH4y+ru86g=",
+        "ref": "refs/heads/main",
+        "rev": "3b4900690dbc8e28e3c4e4e907ece870cdbff1a4",
+        "revCount": 10,
+        "type": "git",
+        "url": "https://forge.darkest.space/hyperhive/website.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://forge.darkest.space/hyperhive/website.git"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -789,6 +809,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hyperhive": "hyperhive",
+        "hyperhive-website": "hyperhive-website",
         "lanzaboote": "lanzaboote",
         "naersk": "naersk_2",
         "niri": "niri",

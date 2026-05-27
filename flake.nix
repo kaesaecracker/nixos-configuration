@@ -20,6 +20,10 @@
         nixpkgs-unstable.follows = "nixpkgs-unstable";
       };
     };
+    hyperhive-website = {
+      url = "git+https://forge.darkest.space/hyperhive/website.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";

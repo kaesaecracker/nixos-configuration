@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hyperhive-website, ... }:
 let
   blog-domain-socket = "/run/nginx/blog.sock";
   anubis-domain-socket = "/run/anubis/anubis-main/anubis.sock";
@@ -40,6 +40,12 @@ in
               addr = "unix:" + blog-domain-socket;
             }
           ];
+        };
+
+        "hyperhive.darkest.space" = {
+          addSSL = true;
+          enableACME = true;
+          root = hyperhive-website.packages.${pkgs.stdenv.hostPlatform.system}.default;
         };
       };
     };
