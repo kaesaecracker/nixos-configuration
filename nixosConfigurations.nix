@@ -72,7 +72,10 @@ forDevice (
           # keep-sorted start
           autoupdate.enable = true;
           distributedBuilds.enable = true;
-          extraCaches.enable = true;
+          extraCaches = {
+            enable = true;
+            homeManager = home-manager-users != { };
+          };
           git.enable = true;
           globalinstalls.enable = true;
           lixIsNix.enable = true;
