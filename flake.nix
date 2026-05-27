@@ -66,7 +66,6 @@
       url = "git+https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        naersk.follows = "naersk";
         nix-filter.follows = "nix-filter";
         treefmt-nix.follows = "treefmt-nix";
       };

@@ -158,6 +158,21 @@
         "type": "github"
       }
     },
+    "crane_3": {
+      "locked": {
+        "lastModified": 1779130139,
+        "narHash": "sha256-BLrtr42azquO7MdGFU5a7KiMl3YpFlTeIXqy1fT5GlQ=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "edb38893982a3338972bb4a2ec7ce7c29ba10fd9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -886,9 +901,7 @@
     },
     "servicepoint-cli": {
       "inputs": {
-        "naersk": [
-          "naersk"
-        ],
+        "crane": "crane_3",
         "nix-filter": [
           "nix-filter"
         ],
@@ -900,11 +913,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771709842,
-        "narHash": "sha256-zbKj2waitgCFE/I4DcV4lWMRkQ7gDOa9QgPXVTao5+g=",
+        "lastModified": 1779909128,
+        "narHash": "sha256-H1NNRXwM1/tpRY+qDgEpfietLZ83oAbac0CHOD8TxjE=",
         "ref": "refs/heads/main",
-        "rev": "6c731e3f5ac0fc63e3cf1e727856f3a3327fddfb",
-        "revCount": 52,
+        "rev": "0457966ae9927bad1b0b931b8e09e2c03cdde88d",
+        "revCount": 53,
         "type": "git",
         "url": "https://git.berlin.ccc.de/servicepoint/servicepoint-cli.git"
       },

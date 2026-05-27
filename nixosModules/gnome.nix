@@ -13,11 +13,28 @@
   config = lib.mkIf config.my.gnome.enable (
     lib.mkMerge [
       {
+        # Workaround for GDM 50 + NixOS 26.05: greeter PAM session strips PATH so
+        # gdm-wayland-session can't find `gnome-session` and exits 70.
+        # https://github.com/NixOS/nixpkgs/issues/523332 — drop once #523948 lands.
+        security.pam.services.gdm-launch-environment.rules.session.env-greeter = {
+          control = "required";
+          modulePath = "${config.security.pam.package}/lib/security/pam_env.so";
+          settings.conffile = pkgs.writeText "gdm-launch-environment-env-conf" ''
+            PATH          DEFAULT="''${PATH}:${pkgs.gnome-session}/bin"
+            XDG_DATA_DIRS DEFAULT="''${XDG_DATA_DIRS}:/run/current-system/sw/share"
+          '';
+          settings.readenv = 0;
+          order = 12200;
+        };
+
         services = {
           xserver.excludePackages = [ pkgs.xterm ];
 
           # Enable the GNOME Desktop Environment.
-          displayManager.gdm.enable = true;
+          displayManager.gdm = {
+            enable = true;
+            debug = true;
+          };
           desktopManager.gnome = {
             enable = true;
             extraGSettingsOverridePackages = [ pkgs.mutter ];
