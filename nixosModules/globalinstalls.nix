@@ -10,7 +10,6 @@
   config = lib.mkIf config.my.globalinstalls.enable {
     environment.systemPackages = with pkgs; [
       ncdu
-      glances
       lsof
       dig
       screen
