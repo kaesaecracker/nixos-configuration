@@ -55,7 +55,7 @@ forDevice (
         networking.hostName = device;
         system = {
           stateVersion = "22.11";
-          autoUpgrade.flake = "git+https://git.berlin.ccc.de/vinzenz/nixos-configuration.git";
+          autoUpgrade.flake = "git+https://forge.darkest.space/mara/nixos-configs.git";
         };
         nix.settings.experimental-features = [
           "nix-command"
