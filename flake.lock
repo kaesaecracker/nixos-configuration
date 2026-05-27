@@ -391,11 +391,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779918663,
-        "narHash": "sha256-IM75qATgUokpZPftZsoQt8o/k2KI5UojLPiZFd0X4GA=",
+        "lastModified": 1779920983,
+        "narHash": "sha256-Fp8KWjsTctUBDJgF2FaFQ62qZYOMPE08+SKfWZNkVss=",
         "ref": "refs/heads/main",
-        "rev": "e61095de197ae192509729891954a23b19bb9160",
-        "revCount": 11,
+        "rev": "107f8b2670698346784b3ca9ac6a48692eac659b",
+        "revCount": 12,
         "type": "git",
         "url": "https://forge.darkest.space/hyperhive/website.git"
       },
