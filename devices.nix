@@ -38,6 +38,9 @@ in
   hetzner-vpn2 = {
     system = "aarch64-linux";
   };
+  hyperforge = {
+    system = "aarch64-linux";
+  };
   muede-lpt2 = {
     system = "x86_64-linux";
     isDesktop = true;

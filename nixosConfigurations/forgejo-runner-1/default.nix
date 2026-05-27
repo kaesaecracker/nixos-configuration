@@ -10,9 +10,6 @@
 
     # uncomment for build check on non arm system (requires --impure)
     # nixpkgs.buildPlatform = builtins.currentSystem;
-    services.tailscale.useRoutingFeatures = "both";
-    system.autoUpgrade.allowReboot = true;
-
     users.users = {
       root.openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCJUpbpB3KEKVoKWsKoar9J4RNah8gmQoSH6jQEw5dY pixel-JuiceSSH"
