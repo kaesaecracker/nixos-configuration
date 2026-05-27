@@ -5,9 +5,8 @@
       NIXOS_OZONE_WL = "1";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
-      package = pkgs.vscodium;
       profiles.default = {
         enableUpdateCheck = false;
         extensions =
@@ -83,16 +82,16 @@
           "dotnetAcquisitionExtension.sharedExistingDotnetPath" =
             "${lib.getBin pkgs.dotnetCorePackages.sdk_9_0}/bin/dotnet";
 
-          "\[makefile\]" = {
+          "[makefile]" = {
             "editor.insertSpaces" = false;
             "editor.detectIndentation" = false;
           };
 
-          "\[nix\]" = {
+          "[nix]" = {
             "editor.formatOnSave" = false;
           };
 
-          "\[css\]" = {
+          "[css]" = {
             "editor.formatOnSave" = false;
           };
         };

@@ -6,7 +6,7 @@
     in
     {
       enable = true;
-      systemdTarget = "graphical-session.target";
+      systemdTargets = [ "graphical-session.target" ];
       timeouts = [
         {
           timeout = 30;
@@ -17,11 +17,8 @@
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.playerctl}/bin/playerctl pause; ${lock-command}";
-        }
-      ];
+      events = {
+        before-sleep = "${pkgs.playerctl}/bin/playerctl pause; ${lock-command}";
+      };
     };
 }

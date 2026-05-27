@@ -49,7 +49,7 @@
         };
       };
       container = {
-        format = "\[$symbol$name\]";
+        format = "[$symbol$name]";
       };
       directory = {
         format = "$path[( $read_only)]($read_only_style)";
@@ -91,7 +91,7 @@
       package = {
         symbol = "󰏗";
         format = "$symbol$version ";
-        version_format = "$\{raw\}";
+        version_format = "\${raw}";
       };
       rust = {
         symbol = "󱘗";
@@ -100,7 +100,7 @@
       };
       nix_shell = {
         symbol = "";
-        format = "$symbol( \($name\))";
+        format = "$symbol( ($name))";
       };
 
       status = {

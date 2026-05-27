@@ -2,9 +2,8 @@
 {
   config = {
     home.sessionVariables.NIXOS_OZONE_WL = "1";
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
-      package = pkgs.vscodium;
       profiles.default = {
         enableUpdateCheck = false;
         extensions = with pkgs.vscode-extensions; [
@@ -52,12 +51,12 @@
 
           "nix.formatterPath" = "${lib.getBin pkgs.nixfmt-rfc-style}/bin/nixfmt";
 
-          "\[makefile\]" = {
+          "[makefile]" = {
             "editor.insertSpaces" = false;
             "editor.detectIndentation" = false;
           };
 
-          "\[nix\]" = {
+          "[nix]" = {
             "editor.formatOnSave" = false;
           };
         };

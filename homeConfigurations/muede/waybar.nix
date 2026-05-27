@@ -158,8 +158,9 @@
         backlight = {
           device = "intel_backlight";
           format = "{percent}%  ";
-          on-scroll-down = "light -U 1";
-          on-scroll-up = "light -A 1";
+          # `light` removed in nixpkgs 26.05; migrate to brightnessctl when re-enabling backlight module
+          # on-scroll-down = "light -U 1";
+          # on-scroll-up = "light -A 1";
         };
         cpu = {
           interval = 1;

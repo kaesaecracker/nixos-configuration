@@ -19,8 +19,8 @@
     };
 
     environment.systemPackages = with pkgs; [
-      wineWowPackages.stagingFull
-      wineWowPackages.fonts
+      wineWow64Packages.stagingFull
+      wineWow64Packages.fonts
       winetricks
       dxvk
       mangohud
