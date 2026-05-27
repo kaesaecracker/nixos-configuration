@@ -1,6 +1,8 @@
 {
   imports = [
     ./hardware.nix
+    ./forgejo.nix
+    ./nginx.nix
   ];
 
   config = {
