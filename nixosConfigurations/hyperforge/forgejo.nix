@@ -1,6 +1,23 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   srv = config.services.forgejo.settings.server;
+
+  catppuccinThemes = pkgs.fetchzip {
+    url = "https://github.com/catppuccin/gitea/releases/download/v1.0.2/catppuccin-gitea.tar.gz";
+    hash = "sha256-rZHLORwLUfIFcB6K9yhrzr+UwdPNQVSadsw6rg8Q7gs=";
+    stripRoot = false;
+  };
+
+  themeNames = lib.pipe (builtins.readDir catppuccinThemes) [
+    (lib.filterAttrs (n: t: t == "regular" && lib.hasSuffix ".css" n))
+    builtins.attrNames
+    (map (n: lib.removePrefix "theme-" (lib.removeSuffix ".css" n)))
+  ];
 in
 {
   services.forgejo = {
@@ -17,6 +34,18 @@ in
       };
       service.DISABLE_REGISTRATION = true;
       session.COOKIE_SECURE = true;
+      ui.THEMES = lib.concatStringsSep "," ([ "forgejo-auto" "forgejo-light" "forgejo-dark" ] ++ themeNames);
+    };
+  };
+
+  systemd.tmpfiles.settings."10-forgejo-catppuccin" = {
+    "${config.services.forgejo.customDir}/public/assets".d = {
+      user = config.services.forgejo.user;
+      group = config.services.forgejo.group;
+      mode = "0755";
+    };
+    "${config.services.forgejo.customDir}/public/assets/css"."L+" = {
+      argument = "${catppuccinThemes}";
     };
   };
 
