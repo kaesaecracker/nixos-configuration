@@ -35,6 +35,7 @@ in
       service.DISABLE_REGISTRATION = true;
       session.COOKIE_SECURE = true;
       ui.THEMES = lib.concatStringsSep "," ([ "forgejo-auto" "forgejo-light" "forgejo-dark" ] ++ themeNames);
+      ui.DEFAULT_THEME = "catppuccin-mocha-mauve";
     };
   };
 
