@@ -14,7 +14,7 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     hyperhive = {
-      url = "git+https://git.berlin.ccc.de/vinzenz/hyperhive.git";
+      url = "git+https://forge.darkest.space/hyperhive/hyperhive.git";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-unstable.follows = "nixpkgs-unstable";

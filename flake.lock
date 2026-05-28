@@ -371,17 +371,17 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1779885470,
-        "narHash": "sha256-eXkIlzY7OCWW0P9RTi+B3UBKy1SU6cELNwEy50TVZkg=",
+        "lastModified": 1779974732,
+        "narHash": "sha256-/4P6dIPg62+kjFiwhm3BfzCMI93+HMqusIG4dVpyBxM=",
         "ref": "refs/heads/main",
-        "rev": "dfc944d5faf4da8b9a4852806c3a2c32b2c46532",
-        "revCount": 777,
+        "rev": "2d9109d1bd14ada2ec8a271741f3fe8c1a911b9f",
+        "revCount": 797,
         "type": "git",
-        "url": "https://git.berlin.ccc.de/vinzenz/hyperhive.git"
+        "url": "https://forge.darkest.space/hyperhive/hyperhive.git"
       },
       "original": {
         "type": "git",
-        "url": "https://git.berlin.ccc.de/vinzenz/hyperhive.git"
+        "url": "https://forge.darkest.space/hyperhive/hyperhive.git"
       }
     },
     "hyperhive-website": {
