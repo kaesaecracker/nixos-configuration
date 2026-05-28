@@ -38,16 +38,21 @@ in
     };
   };
 
-  systemd.tmpfiles.settings."10-forgejo-catppuccin" = {
-    "${config.services.forgejo.customDir}/public/assets".d = {
-      user = config.services.forgejo.user;
-      group = config.services.forgejo.group;
-      mode = "0755";
+  systemd.tmpfiles.settings."10-forgejo-catppuccin" =
+    let
+      dirOwn = {
+        user = config.services.forgejo.user;
+        group = config.services.forgejo.group;
+        mode = "0755";
+      };
+    in
+    {
+      "${config.services.forgejo.customDir}/public".d = dirOwn;
+      "${config.services.forgejo.customDir}/public/assets".d = dirOwn;
+      "${config.services.forgejo.customDir}/public/assets/css"."L+" = {
+        argument = "${catppuccinThemes}";
+      };
     };
-    "${config.services.forgejo.customDir}/public/assets/css"."L+" = {
-      argument = "${catppuccinThemes}";
-    };
-  };
 
   services.openssh.enable = true;
 }
