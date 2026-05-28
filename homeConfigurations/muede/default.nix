@@ -74,11 +74,10 @@
       arduino-cli
       arduino-ide
       btop
-      unstable.claude-code
       dconf2nix
+      file
       foliate
       fractal
-      file
       geary
       gnome-terminal
       gparted
@@ -86,13 +85,15 @@
       jetbrains-toolbox
       kdiff3
       keepassxc
-      lutris
+      # lutris
       nextcloud-client
       onefetch
       servicepoint-cli
       servicepoint-simulator
+      tea
       telegram-desktop
       thunderbird
+      unstable.claude-code
       vlc
       wireguard-tools
       wirelesstools

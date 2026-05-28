@@ -69,7 +69,7 @@ forDevice (
         time.timeZone = lib.mkDefault "Etc/UTC";
 
         my = {
-          # keep-sorted start
+          # keep-sorted start block=yes
           autoupdate.enable = true;
           distributedBuilds.enable = true;
           extraCaches = {
