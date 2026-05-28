@@ -55,6 +55,10 @@
         HostName = "forgejo-runner-1.dev.zerforschen.plus";
         User = "root";
       };
+      "hyperforge" = {
+        HostName = "hyperforge.darkest.space";
+        User = "root";
+      };
     };
   };
 }

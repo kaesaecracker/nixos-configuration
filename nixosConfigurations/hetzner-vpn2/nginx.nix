@@ -43,7 +43,7 @@ in
         };
 
         "hyperhive.darkest.space" = {
-          addSSL = true;
+          forceSSL = true;
           enableACME = true;
           root = hyperhive-website.packages.${pkgs.stdenv.hostPlatform.system}.default;
         };
