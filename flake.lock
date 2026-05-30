@@ -363,11 +363,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1780085413,
-        "narHash": "sha256-lWF/VBNjKpsZdyJ5AX2CsqNxtzacjod8nmUaVXNeIdc=",
+        "lastModified": 1780133251,
+        "narHash": "sha256-lAM3/Arxt4HzhFbW6aihYFkvnZ+ZAF1ycXff0WA1Upk=",
         "ref": "refs/heads/main",
-        "rev": "d074b25fac09a64f91a2e2126acfe6d74c53f948",
-        "revCount": 861,
+        "rev": "983a4fa229925e84802d11e3ded9822e5a98e76e",
+        "revCount": 867,
         "type": "git",
         "url": "https://forge.darkest.space/hyperhive/hyperhive.git"
       },
