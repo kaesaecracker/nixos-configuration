@@ -1,4 +1,4 @@
-{ pkgs, hyperhive-website, ... }:
+{ pkgs, hyperhive, hyperhive-website, ... }:
 let
   blog-domain-socket = "/run/nginx/blog.sock";
   anubis-domain-socket = "/run/anubis/anubis-main/anubis.sock";
@@ -46,6 +46,8 @@ in
           forceSSL = true;
           enableACME = true;
           root = hyperhive-website.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          locations."/options/".alias =
+            "${hyperhive.packages.${pkgs.stdenv.hostPlatform.system}.docs}/";
         };
       };
     };

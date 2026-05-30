@@ -1,9 +1,8 @@
 { hyperhive, ... }:
 {
-  imports = [
-    hyperhive.nixosModules.hive-c0re
-    hyperhive.nixosModules.hive-forge
-  ];
+  imports = [ hyperhive.nixosModules.default ];
 
-  config.services.hive-c0re.enable = true;
+  config.services.hyperhive = {
+    enable = true;
+  };
 }
