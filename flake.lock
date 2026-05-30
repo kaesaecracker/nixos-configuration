@@ -363,11 +363,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1780141405,
-        "narHash": "sha256-QJREfAH5StjYj0q0AZueiVvlDh74+PEBheoqwZO7ISY=",
+        "lastModified": 1780152631,
+        "narHash": "sha256-GUgJbRpRmdkJgfbkGa87BLuoudsvmxYS+/wN45NHcrE=",
         "ref": "refs/heads/main",
-        "rev": "f943976f14aa56de50953d2e44416bf1b85ed719",
-        "revCount": 884,
+        "rev": "459baebbb81e2c0db9e362800b921df07be1433e",
+        "revCount": 891,
         "type": "git",
         "url": "https://forge.darkest.space/hyperhive/hyperhive.git"
       },
@@ -383,11 +383,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779921547,
-        "narHash": "sha256-WK9BrRTcPUuSqc+3KBCL1rRlKNy+ltHCZ/89UG/uJR4=",
+        "lastModified": 1780152618,
+        "narHash": "sha256-vnx1m2lxIjoJd1e3PJz4XVmScF4maxQ9SMZWQym1mm0=",
         "ref": "refs/heads/main",
-        "rev": "a3933ff1d28d898335f996c134dc31a584601eac",
-        "revCount": 13,
+        "rev": "98930caaca4d8bdc5957d6e24aa1438dac122d85",
+        "revCount": 15,
         "type": "git",
         "url": "https://forge.darkest.space/hyperhive/website.git"
       },
